@@ -1,7 +1,13 @@
-# Data Product Definitions template
+# Finnish Dataeconomy Testbed Definitions
 
-This repository contains a minimal set of resources that are necessary to get started
-with defining your own Data Product Definitions.
+This repository contains Data Product definitions for the Finnish dataeconomy testbed
+nexus.
+
+Specification for describing data product definitions can be found in
+[./DataProducts/README.md](./DataProducts/README.md).
+
+_Please note that this repository is under active development, and all the definitions
+are subjects to change at any time._
 
 # Repo structure
 
@@ -11,9 +17,6 @@ with defining your own Data Product Definitions.
   and converting definitions from sources
 
 # Getting started
-
-Press `Use template` to create a new repo from this template and define your data
-products there.
 
 ## Adding new Data Product Definition
 
@@ -43,6 +46,19 @@ There are two ways of contribution:
       converted automatically before each commit
    2. By creating a PR to the `master` branch. CI workflow will run the automation and
       push updated/generated files if needed.
+
+## Test version of definitions
+
+Everyone can submit to this repo whatever definitions they seem appropriate. It will
+allow to create data products using these definitions in the Finnish dataeconomy testbed
+nexus and experiment with the system. In order to do this:
+
+1. Fork this repository
+2. Create your definitions under `src/test/<your_github_username>/` if you're familiar
+   with Python approach, or directly under `DataProducts/test/<your_github_username>` if
+   you know what you're doing
+3. Submit a PR and wait for CI Workflow to run and validate the changes
+4. Once PR is merged, it's possible to use the definitions in the nexus
 
 ## Python sources
 
