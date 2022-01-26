@@ -1,0 +1,182 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Dimensions And Weights",
+    "description": "Data Product for Dimensions And Weights",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/draft/Product/DimensionsAndWeights": {
+      "post": {
+        "summary": "draft/Product/DimensionsAndWeights",
+        "description": "Dimensions And Weights",
+        "operationId": "request_draft_Product_DimensionsAndWeights",
+        "parameters": [
+          {
+            "description": "Optional consent token",
+            "required": false,
+            "schema": {
+              "title": "X-Consent-Token",
+              "type": "string",
+              "description": "Optional consent token"
+            },
+            "name": "x-consent-token",
+            "in": "header"
+          },
+          {
+            "description": "The login token. Value should be \"Bearer [token]\"",
+            "required": false,
+            "schema": {
+              "title": "Authorization",
+              "type": "string",
+              "description": "The login token. Value should be \"Bearer [token]\""
+            },
+            "name": "authorization",
+            "in": "header"
+          },
+          {
+            "description": "The bare domain of the system that provided the token.",
+            "required": false,
+            "schema": {
+              "title": "X-Authorization-Provider",
+              "type": "string",
+              "description": "The bare domain of the system that provided the token."
+            },
+            "name": "x-authorization-provider",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DimensionsAndWeightsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DimensionsAndWeightsResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DimensionsAndWeightsRequest": {
+        "title": "DimensionsAndWeightsRequest",
+        "required": ["productCode"],
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "title": "Product code",
+            "type": "string"
+          }
+        }
+      },
+      "DimensionsAndWeightsResponse": {
+        "title": "DimensionsAndWeightsResponse",
+        "required": [
+          "grossWeight",
+          "height",
+          "length",
+          "netWeight",
+          "productDescription",
+          "productName",
+          "volume",
+          "width"
+        ],
+        "type": "object",
+        "properties": {
+          "grossWeight": {
+            "title": "Gross weight",
+            "type": "string"
+          },
+          "height": {
+            "title": "Height",
+            "type": "number"
+          },
+          "length": {
+            "title": "Length",
+            "type": "number"
+          },
+          "netWeight": {
+            "title": "Net weight",
+            "type": "number"
+          },
+          "productDescription": {
+            "title": "Product description",
+            "type": "string"
+          },
+          "productName": {
+            "title": "Product name",
+            "type": "string"
+          },
+          "volume": {
+            "title": "Volume",
+            "type": "number"
+          },
+          "width": {
+            "title": "Width",
+            "type": "number"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
