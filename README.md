@@ -1,6 +1,6 @@
-# Finnish Dataeconomy Testbed Definitions
+# Finnish Data Economy Testbed Definitions
 
-This repository contains Data Product definitions for the Finnish dataeconomy testbed
+This repository contains Data Product definitions for the Finnish data economy testbed
 nexus.
 
 Specification for describing data product definitions can be found in
@@ -50,8 +50,8 @@ There are two ways of contribution:
 ## Test version of definitions
 
 Everyone can submit to this repo whatever definitions they seem appropriate. It will
-allow to create data products using these definitions in the Finnish dataeconomy testbed
-nexus and experiment with the system. In order to do this:
+allow to create data products using these definitions in the Finnish data economy
+testbed nexus and experiment with the system. In order to do this:
 
 1. Fork this repository
 2. Create your definitions under `src/test/<your_github_username>/` if you're familiar
