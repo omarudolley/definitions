@@ -127,7 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-.idea
 .DS_Store
 *~
 ._*
@@ -152,3 +151,6 @@ Thumbs.db:encryptable
 __pycache__
 .python-version
 .venv
+
+# PyCharm
+.idea

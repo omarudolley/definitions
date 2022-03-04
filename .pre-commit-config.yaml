@@ -49,7 +49,7 @@ repos:
       - id: black
         language_version: python3
   - repo: https://github.com/digitalliving/openapi-to-fastapi
-    rev: 0.2.0
+    rev: 0.3.0
     hooks:
       - id: openapi-validator
         files: ".*?DataProducts/.*?json$"
