@@ -4717,7 +4717,7 @@
         "title": "RegisteredAddress",
         "required": [
           "streetName",
-          "buildingNumber",
+          "buildingDesignator",
           "postalCode",
           "city",
           "region",
@@ -4730,10 +4730,10 @@
             "type": "string",
             "example": "Fredrikinkatu"
           },
-          "buildingNumber": {
-            "title": "Building number",
-            "type": "integer",
-            "example": 34
+          "buildingDesignator": {
+            "title": "Building designator",
+            "type": "string",
+            "example": "34 A 17"
           },
           "postalCode": {
             "title": "Postal code",

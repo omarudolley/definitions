@@ -4555,10 +4555,10 @@ class RegisteredAddress(CamelCaseModel):
         title="Street name",
         example="Fredrikinkatu",
     )
-    building_number: int = Field(
+    building_designator: str = Field(
         ...,
-        title="Building number",
-        example=34,
+        title="Building designator",
+        example="34 A 17",
     )
     postal_code: str = Field(
         ...,
