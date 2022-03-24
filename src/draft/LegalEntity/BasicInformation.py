@@ -15,7 +15,7 @@ class BasicInformationRequest(CamelCaseModel):
     )
 
 
-class LegalForm(str, Enum):
+class EntityLegalForm(str, Enum):
     ISO_20275_8888 = "8888"
     ISO_20275_9999 = "9999"
     ISO_20275_CDOV = "CDOV"
@@ -4590,11 +4590,11 @@ class BasicInformationResponse(CamelCaseModel):
         description="The name of the legal entity",
         example="Oy Example Ab",
     )
-    legal_form: LegalForm = Field(
+    legal_form: EntityLegalForm = Field(
         ...,
         title="Legal form",
         description="ISO 20275 legal entity code from version 1.4.1",
-        example=LegalForm.ISO_20275_DKUW,
+        example=EntityLegalForm.ISO_20275_DKUW,
     )
     activity: List[Activity] = Field(
         ...,
