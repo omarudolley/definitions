@@ -4720,16 +4720,22 @@
           },
           "postalCode": {
             "title": "Postal code",
+            "maxLength": 10,
+            "minLength": 1,
             "type": "string",
             "example": "00100"
           },
           "city": {
             "title": "City",
+            "maxLength": 20,
+            "minLength": 1,
             "type": "string",
             "example": "Helsinki"
           },
           "region": {
             "title": "Region",
+            "maxLength": 20,
+            "minLength": 1,
             "type": "string",
             "example": "Southern Finland"
           },

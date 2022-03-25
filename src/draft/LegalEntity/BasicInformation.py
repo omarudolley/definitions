@@ -4548,16 +4548,22 @@ class RegisteredAddress(CamelCaseModel):
         ...,
         title="Postal code",
         example="00100",
+        min_length=1,
+        max_length=10,
     )
     city: str = Field(
         ...,
         title="City",
         example="Helsinki",
+        min_length=1,
+        max_length=20,
     )
     region: Optional[str] = Field(
         ...,
         title="Region",
         example="Southern Finland",
+        min_length=1,
+        max_length=20,
     )
     country: ISO_3166_1_Alpha_2 = Field(
         ...,
