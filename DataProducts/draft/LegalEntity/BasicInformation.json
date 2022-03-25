@@ -1123,7 +1123,7 @@
               }
             ],
             "description": "Status of the legal entity",
-            "example": "ACTIVE"
+            "example": "NORMAL"
           },
           "registrationDate": {
             "title": "Registration date",
@@ -4688,7 +4688,7 @@
       },
       "LegalStatus": {
         "title": "LegalStatus",
-        "enum": ["NEW", "ACTIVE", "DISBANDED"],
+        "enum": ["NORMAL", "LIQUIDATION", "RESTRUCTURING", "BANKRUPTCY"],
         "type": "string",
         "description": "An enumeration."
       },

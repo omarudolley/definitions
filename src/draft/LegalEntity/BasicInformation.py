@@ -4523,9 +4523,10 @@ class ISO_3166_1_Alpha_2(str, Enum):
 
 
 class LegalStatus(str, Enum):
-    NEW = "NEW"
-    ACTIVE = "ACTIVE"
-    DISBANDED = "DISBANDED"
+    NORMAL = "NORMAL"
+    LIQUIDATION = "LIQUIDATION"
+    RESTRUCTURING = "RESTRUCTURING"
+    BANKRUPTCY = "BANKRUPTCY"
 
 
 class RegisteredAddress(CamelCaseModel):
@@ -4589,7 +4590,7 @@ class BasicInformationResponse(CamelCaseModel):
         ...,
         title="Legal status",
         description="Status of the legal entity",
-        example=LegalStatus.ACTIVE,
+        example=LegalStatus.NORMAL,
     )
     registration_date: date = Field(
         ...,
