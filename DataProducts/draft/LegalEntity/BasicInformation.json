@@ -4706,11 +4706,15 @@
         "properties": {
           "streetName": {
             "title": "Street name",
+            "maxLength": 40,
+            "minLength": 1,
             "type": "string",
             "example": "Fredrikinkatu"
           },
           "buildingDesignator": {
             "title": "Building designator",
+            "maxLength": 10,
+            "minLength": 1,
             "type": "string",
             "example": "34 A 17"
           },

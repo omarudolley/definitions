@@ -4533,11 +4533,15 @@ class RegisteredAddress(CamelCaseModel):
         ...,
         title="Street name",
         example="Fredrikinkatu",
+        min_length=1,
+        max_length=40,
     )
     building_designator: str = Field(
         ...,
         title="Building designator",
         example="34 A 17",
+        min_length=1,
+        max_length=10,
     )
     postal_code: str = Field(
         ...,
