@@ -1,7 +1,7 @@
 # Finnish Data Economy Testbed Definitions
 
 This repository contains Data Product definitions for the Finnish data economy testbed
-nexus.
+dataspace.
 
 Specification for describing data product definitions can be found in
 [./DataProducts/README.md](./DataProducts/README.md).
