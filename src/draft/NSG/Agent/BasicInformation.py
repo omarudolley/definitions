@@ -4681,6 +4681,5 @@ DEFINITION = DataProductDefinition(
     "any agent.",
     request=BasicInformationRequest,
     response=BasicInformationResponse,
-    route_description="Agent Basic Information",
     summary="Agent Basic Information",
 )

@@ -4610,6 +4610,5 @@ DEFINITION = DataProductDefinition(
     description="Data Product for Legal Entity Basic Information",
     request=BasicInformationRequest,
     response=BasicInformationResponse,
-    route_description="Legal Entity Basic Information",
     summary="Legal Entity Basic Information",
 )
