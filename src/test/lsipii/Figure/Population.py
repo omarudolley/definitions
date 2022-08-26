@@ -12,7 +12,8 @@ class PopulationResponse(CamelCaseModel):
     population: int = Field(..., title="The population value", example=5548241)
     updated_at: datetime = Field(
         "",
-        title="Datetime the data was last updated at. A datetime in RFC3339 date-time syntax",
+        title="Datetime the data was last updated at",
+        description="A datetime in RFC3339 date-time syntax",
         example="2022-06-17T11:52:00Z",
     )
 
