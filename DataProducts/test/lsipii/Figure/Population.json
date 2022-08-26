@@ -115,7 +115,7 @@
       },
       "PopulationResponse": {
         "title": "PopulationResponse",
-        "required": ["population", "updatedAt"],
+        "required": ["population"],
         "type": "object",
         "properties": {
           "description": {
@@ -135,7 +135,8 @@
           "updatedAt": {
             "title": "Data updated at datetime",
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "default": ""
           }
         }
       },

@@ -8,7 +8,7 @@ class PopulationResponse(CamelCaseModel):
     description: str = Field("", title="Data description")
     source_name: str = Field("", title="Data source name")
     population: int = Field(..., title="The population value")
-    updated_at: datetime = Field(..., title="Data updated at datetime")
+    updated_at: datetime = Field("", title="Data updated at datetime")
 
 
 class PopulationRequest(CamelCaseModel):
