@@ -1,0 +1,201 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Job Posting",
+    "description": "Data product for Job Posting",
+    "version": "1.0"
+  },
+  "paths": {
+    "/test/Job/JobPosting": {
+      "post": {
+        "summary": "test/Job/JobPosting",
+        "operationId": "request_test_JobPosting",
+        "parameters": [
+          {
+            "description": "Optional consent token",
+            "required": false,
+            "schema": {
+              "title": "X-Consent-Token",
+              "type": "string",
+              "description": "Optional consent token"
+            },
+            "name": "x-consent-token",
+            "in": "header"
+          },
+          {
+            "description": "The login token. Value should be \"Bearer [token]\"",
+            "required": false,
+            "schema": {
+              "title": "Authorization",
+              "type": "string",
+              "description": "The login token. Value should be \"Bearer [token]\""
+            },
+            "name": "authorization",
+            "in": "header"
+          },
+          {
+            "description": "The bare domain of the system that provided the token.",
+            "required": false,
+            "schema": {
+              "title": "X-Authorization-Provider",
+              "type": "string",
+              "description": "The bare domain of the system that provided the token."
+            },
+            "name": "x-authorization-provider",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobPostingResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobPostingRequest"
+              }
+            }
+          }
+        },
+        "description": "Job Posting"
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      },
+      "JobPostingRequest": {
+        "title": "JobPostingRequest",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "keywords": {
+            "type": "string",
+            "description": "Comma separated list of keywords to search for."
+          }
+        }
+      },
+      "JobPostingResponse": {
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "employer": "",
+            "location": {
+              "city": ""
+            },
+            "basicInfo": {
+              "title": "",
+              "description": ""
+            },
+            "published_at": ""
+          }
+        },
+        "properties": {
+          "employer": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object",
+            "required": [
+              "city"
+            ],
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            }
+          },
+          "basicInfo": {
+            "type": "object",
+            "required": [
+              "title",
+              "description"
+            ],
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          "published_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "employer",
+          "location",
+          "basicInfo",
+          "published_at"
+        ]
+      }
+    }
+  }
+}
