@@ -185,7 +185,7 @@
               }
             }
           },
-          "published_at": {
+          "publishedAt": {
             "type": "string"
           }
         },
