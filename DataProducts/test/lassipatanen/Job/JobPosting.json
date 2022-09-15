@@ -6,7 +6,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/test/Job/JobPosting": {
+    "/test/lassipatanen/Job/JobPosting": {
       "post": {
         "summary": "test/Job/JobPosting",
         "operationId": "request_test_JobPosting",
