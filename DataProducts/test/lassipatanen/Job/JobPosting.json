@@ -97,11 +97,7 @@
       },
       "ValidationError": {
         "title": "ValidationError",
-        "required": [
-          "loc",
-          "msg",
-          "type"
-        ],
+        "required": ["loc", "msg", "type"],
         "type": "object",
         "properties": {
           "loc": {
@@ -160,9 +156,7 @@
           },
           "location": {
             "type": "object",
-            "required": [
-              "city"
-            ],
+            "required": ["city"],
             "properties": {
               "city": {
                 "type": "string"
@@ -171,10 +165,7 @@
           },
           "basicInfo": {
             "type": "object",
-            "required": [
-              "title",
-              "description"
-            ],
+            "required": ["title", "description"],
             "properties": {
               "title": {
                 "type": "string"
@@ -188,12 +179,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "employer",
-          "location",
-          "basicInfo",
-          "publishedAt"
-        ]
+        "required": ["employer", "location", "basicInfo", "publishedAt"]
       }
     }
   }
