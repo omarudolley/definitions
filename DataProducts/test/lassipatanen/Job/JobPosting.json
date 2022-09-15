@@ -193,7 +193,7 @@
           "employer",
           "location",
           "basicInfo",
-          "published_at"
+          "publishedAt"
         ]
       }
     }
