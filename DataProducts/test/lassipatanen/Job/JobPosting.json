@@ -129,36 +129,82 @@
         "type": "object",
         "description": "",
         "properties": {
-          "keywords": {
+          "query": {
             "type": "string",
-            "description": "Comma separated list of keywords to search for."
+            "description": "Comma separated list of query keywords to search for."
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "countries": {
+                "type": "array",
+                "description": "Sijainnin maa-tiedon koodistona käytetään ISO 3166 standardin mukaisia numerokoodeja.",
+                "items": {
+                  "type": "string",
+                  "example": "FI"
+                }
+              },
+              "regions": {
+                "type": "array",
+                "description": "Sijainnin maakunta-tiedon koodistona käytetään Tilastokeskuksen Maakunnat 2022-luokituksen mukaisia numerokoodeja.",
+                "items": {
+                  "type": "string",
+                  "example": "09"
+                }
+              },
+              "municipalities": {
+                "type": "array",
+                "description": "Sijainnin kunta-tiedon koodistona käytetään Tilastokeskuksen Kunnat 2022-luokituksen mukaisia kuntien numerokoodeja.",
+                "items": {
+                  "type": "string",
+                  "example": "405"
+                }
+              }
+            }
+          },
+          "paging": {
+            "type": "object",
+            "properties": {
+              "limit": {
+                "type": "integer"
+              },
+              "offset": {
+                "type": "integer"
+              }
+            }
           }
         }
       },
       "JobPostingResponse": {
+        "x-examples": {},
         "type": "object",
-        "x-examples": {
-          "example-1": {
-            "employer": "",
-            "location": {
-              "city": ""
-            },
-            "basicInfo": {
-              "title": "",
-              "description": ""
-            },
-            "published_at": ""
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobPosting"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "Total count of job postings",
+            "example": 1
           }
         },
+        "required": ["results", "totalCount"]
+      },
+      "JobPosting": {
+        "title": "JobPostingEntry",
+        "type": "object",
         "properties": {
           "employer": {
             "type": "string"
           },
           "location": {
             "type": "object",
-            "required": ["city"],
+            "required": ["municipality"],
             "properties": {
-              "city": {
+              "municipality": {
                 "type": "string"
               }
             }
@@ -176,7 +222,8 @@
             }
           },
           "publishedAt": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": ["employer", "location", "basicInfo", "publishedAt"]
