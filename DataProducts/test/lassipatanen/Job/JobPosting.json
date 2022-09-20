@@ -165,10 +165,10 @@
           "paging": {
             "type": "object",
             "properties": {
-              "pageNumber": {
+              "limit": {
                 "type": "integer"
               },
-              "pageSize": {
+              "offset": {
                 "type": "integer"
               }
             }
@@ -176,8 +176,26 @@
         }
       },
       "JobPostingResponse": {
-        "type": "object",
         "x-examples": {},
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobPosting"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "Total count of job postings",
+            "example": 1
+          }
+        },
+        "required": ["results", "totalCount"]
+      },
+      "JobPosting": {
+        "title": "JobPostingEntry",
+        "type": "object",
         "properties": {
           "employer": {
             "type": "string"
@@ -204,7 +222,8 @@
             }
           },
           "publishedAt": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": ["employer", "location", "basicInfo", "publishedAt"]
