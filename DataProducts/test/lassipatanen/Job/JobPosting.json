@@ -129,9 +129,38 @@
         "type": "object",
         "description": "",
         "properties": {
-          "keywords": {
+          "query": {
             "type": "string",
-            "description": "Comma separated list of keywords to search for."
+            "description": "Comma separated list of query keywords to search for."
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "countries": {
+                "type": "array",
+                "description": "Sijainnin maa-tiedon koodistona käytetään ISO 3166 standardin mukaisia numerokoodeja.",
+                "items": {
+                  "type": "string",
+                  "example": "FI"
+                }
+              },
+              "regions": {
+                "type": "array",
+                "description": "Sijainnin maakunta-tiedon koodistona käytetään Tilastokeskuksen Maakunnat 2022-luokituksen mukaisia numerokoodeja.",
+                "items": {
+                  "type": "string",
+                  "example": "09"
+                }
+              },
+              "municipalities": {
+                "type": "array",
+                "description": "Sijainnin kunta-tiedon koodistona käytetään Tilastokeskuksen Kunnat 2022-luokituksen mukaisia kuntien numerokoodeja.",
+                "items": {
+                  "type": "string",
+                  "example": "405"
+                }
+              }
+            }
           }
         }
       },
@@ -144,9 +173,9 @@
           },
           "location": {
             "type": "object",
-            "required": ["city"],
+            "required": ["municipality"],
             "properties": {
-              "city": {
+              "municipality": {
                 "type": "string"
               }
             }
