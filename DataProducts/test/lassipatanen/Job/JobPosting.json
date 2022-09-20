@@ -137,19 +137,7 @@
       },
       "JobPostingResponse": {
         "type": "object",
-        "x-examples": {
-          "example-1": {
-            "employer": "",
-            "location": {
-              "city": ""
-            },
-            "basicInfo": {
-              "title": "",
-              "description": ""
-            },
-            "published_at": ""
-          }
-        },
+        "x-examples": {},
         "properties": {
           "employer": {
             "type": "string"
