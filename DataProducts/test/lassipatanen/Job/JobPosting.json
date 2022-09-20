@@ -161,6 +161,17 @@
                 }
               }
             }
+          },
+          "paging": {
+            "type": "object",
+            "properties": {
+              "pageNumber": {
+                "type": "integer"
+              },
+              "pageSize": {
+                "type": "integer"
+              }
+            }
           }
         }
       },
