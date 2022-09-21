@@ -206,6 +206,9 @@
             "properties": {
               "municipality": {
                 "type": "string"
+              },
+              "postcode": {
+                "type": "string"
               }
             }
           },
@@ -214,16 +217,32 @@
             "required": ["title", "description"],
             "properties": {
               "title": {
-                "type": "string"
+                "type": "string",
+                "description": "Title of the job posting"
               },
               "description": {
-                "type": "string"
+                "type": "string",
+                "description": "Short description about the job"
+              },
+              "workTimeType": {
+                "type": "string",
+                "example": "01",
+                "description": "<pre>01 = Kokoaikatyö\n02 = Osa-aikatyö</pre>"
               }
             }
           },
           "publishedAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "applicationEndDate": {
+            "type": "string",
+            "description": "Last date to apply for the job",
+            "format": "date-time"
+          },
+          "applicationUrl": {
+            "type": "string",
+            "description": "Link to external application page"
           }
         },
         "required": ["employer", "location", "basicInfo", "publishedAt"]
