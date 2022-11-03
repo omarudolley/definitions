@@ -1,4 +1,4 @@
-# Contributing to Data Product Definitions
+# Contributing to Finnish Data Economy Testbed Definitions
 
 A big welcome and thank you for considering contributing to this project!
 
@@ -10,7 +10,7 @@ you finalize your pull requests.
 
 ## Quicklinks
 
-- [Contributing to Data Product Definitions](#contributing-to-data-product-definitions)
+- [Contributing to Finnish Data Economy Testbed Definitions](#contributing-to-finnish-data-economy-testbed-definitions)
   - [Quicklinks](#quicklinks)
   - [Getting Started](#getting-started)
   - [Definitions format](#definitions-format)
@@ -70,8 +70,8 @@ You have 2 options to use the converter:
 ### Test version of definitions
 
 Everyone can submit to this repo whatever definitions they seem appropriate. It will
-allow to create data products using these definitions in a dataspace and experiment with
-the system. In order to do this:
+allow to create data products using these definitions in the Finnish data economy
+testbed dataspace and experiment with the system. In order to do this:
 
 1. Fork this repository
 2. Create your definitions under `src/test/<your_github_username>/` if you're familiar

@@ -108,9 +108,13 @@ DataProductDefinition is a structure consisting of:
 
 - `route_description`
 
-  Description for the POST route
+  Description for the POST route (defaults to the summary if not provided)
 
-- `generic_description`
+- `requires_authorization`
+
+  Marks the Authorization header as required
+
+- `requires_consent`
 
   Marks the X-Consent-Token header as required
 
