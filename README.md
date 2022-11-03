@@ -25,34 +25,8 @@ format in this repository, you can check these resources:
 
 # Getting started
 
-## Adding new Data Product Definition
-
-There are two ways of contribution:
-
-1. **Submit OpenAPI spec directly**
-
-   For example, to add a definition for `Foo/Bar`:
-
-   - create `DataProducts/<version>/Foo/Bar.json`
-   - make sure you follow the data product definition
-     [guidelines](./DataProducts/README.md)
-
-2. **Submit definition as python file**
-
-   If you're familiar with python and
-   [pydantic](https://github.com/samuelcolvin/pydantic) library, you may find it easier
-   to create the definition as a set of pydantic models.
-
-   For example, to add a definition for `Foo/Bar`:
-
-   - create `DataProducts/<version>/Foo/Bar.py`
-
-   You have 2 options to use the converter:
-
-   1. By running `pre-commit install` after cloning the repo. Then definitions will be
-      converted automatically before each commit
-   2. By creating a PR to the `main` branch. CI workflow will run the automation and
-      push updated/generated files if needed.
+Please check the [Contribution guidelines](./CONTRIBUTING.md) to learn how to submit new
+data product definitions in this repo.
 
 ## Test version of definitions
 
@@ -117,7 +91,8 @@ DataProductDefinition is a structure consisting of:
 
 - `description`
 
-  Data product description, used in top of OpenAPI spec
+  Data product description, used in top of OpenAPI spec (defaults to the summary if not
+  provided)
 
 - `request`
 
@@ -137,10 +112,7 @@ DataProductDefinition is a structure consisting of:
 
 - `generic_description`
 
-  You may omit providing `summary`, `description`, `route_summary` and
-  `route_description` if you define this field. Others will be generated automatically
-  based on it. Use something brief and meaningful, like "Company Recommendations" or
-  "Cargo receipt".
+  Marks the X-Consent-Token header as required
 
 ### Example
 
