@@ -223,3 +223,37 @@ _Rules below are applied for each definition._
   }
 }
 ```
+
+### All information should be described in American English
+
+> ❌ Wrong: Definition name is in Finnish
+
+```json
+{
+  "paths": {
+    "/Grafiikka/Väri": { "post": {} }
+  }
+}
+```
+
+> ❌ Wrong: Definition name is in British English
+
+```json
+{
+  "paths": {
+    "/Graphics/Colour": { "post": {} }
+  }
+}
+```
+
+> ✅ Correct: Definition name is in American English
+
+```json
+{
+  "paths": {
+    "/Graphics/Color": { "post": {} }
+  }
+}
+```
+
+_Note: Same rule applies to all description fields._
