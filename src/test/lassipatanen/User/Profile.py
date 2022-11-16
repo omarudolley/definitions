@@ -38,29 +38,29 @@ class ProfileResponse(CamelCaseModel):
     )
     date_of_birth: date = Field(
         ...,
-        title="Date of Birth",
+        title="Date of birth",
         description="Date of Birth (date only)",
         example="1.1.2000",
     )
     gender: str = Field(..., title="Gender", description="Gender")
-    country_of_birth_iso_code: str = Field(
+    country_of_birth_code: str = Field(
         ...,
-        title="Country of Birth",
+        title="Country of birth code",
         description="ISO 3166-1 alpha-2 code for country",
         example="FI",
     )
-    native_language_iso_code: str = Field(
+    native_language_code: str = Field(
         ...,
-        title="Native language ISO code",
+        title="Native language code",
         description="ISO 3166-1 alpha-2 code for language",
         example="FI",
     )
-    occupation_iso_code: str = Field(
+    occupation_code: str = Field(
         ..., title="Occupation code", description="Suomi.Fi code scheme"
     )
-    nationality_iso_code: str = Field(
+    citizenship_code: str = Field(
         ...,
-        title="Nationality ISO code",
+        title="Nationality code",
         description="ISO 3166-1 alpha-2 code for nationality",
         example="FI",
     )

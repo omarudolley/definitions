@@ -114,10 +114,10 @@
           "jobsDataConsent",
           "dateOfBirth",
           "gender",
-          "countryOfBirthIsoCode",
-          "nativeLanguageIsoCode",
-          "occupationIsoCode",
-          "nationalityIsoCode"
+          "countryOfBirthCode",
+          "nativeLanguageCode",
+          "occupationCode",
+          "citizenshipCode"
         ],
         "type": "object",
         "properties": {
@@ -169,7 +169,7 @@
             "description": "Has user given permission to use their data on form application"
           },
           "dateOfBirth": {
-            "title": "Date of Birth",
+            "title": "Date of birth",
             "type": "string",
             "description": "Date of Birth (date only)",
             "format": "date",
@@ -180,25 +180,25 @@
             "type": "string",
             "description": "Gender"
           },
-          "countryOfBirthIsoCode": {
-            "title": "Country of Birth",
+          "countryOfBirthCode": {
+            "title": "Country of birth code",
             "type": "string",
             "description": "ISO 3166-1 alpha-2 code for country",
             "example": "FI"
           },
-          "nativeLanguageIsoCode": {
-            "title": "Native language ISO code",
+          "nativeLanguageCode": {
+            "title": "Native language code",
             "type": "string",
             "description": "ISO 3166-1 alpha-2 code for language",
             "example": "FI"
           },
-          "occupationIsoCode": {
+          "occupationCode": {
             "title": "Occupation code",
             "type": "string",
             "description": "Suomi.Fi code scheme"
           },
-          "nationalityIsoCode": {
-            "title": "Nationality ISO code",
+          "citizenshipCode": {
+            "title": "Nationality code",
             "type": "string",
             "description": "ISO 3166-1 alpha-2 code for nationality",
             "example": "FI"
