@@ -37,18 +37,16 @@ class ProfileResponse(CamelCaseModel):
     immigration_data_consent: bool = Field(
         title="Immigration data consent",
         description="Has user given permission to use their data on Registration of Foreigners application",
-        example="true",
     )
     jobs_data_consent: bool = Field(
         title="Jobs data consent",
         description="Has user given permission to use their data on form application",
-        example="false",
     )
     date_of_birth: date = Field(
         ...,
         title="Date of birth",
         description="Date of Birth (date only)",
-        example="1.1.2000",
+        example="2000-01-01",
     )
     gender: str = Field(..., title="Gender", description="Gender")
     country_of_birth_code: str = Field(

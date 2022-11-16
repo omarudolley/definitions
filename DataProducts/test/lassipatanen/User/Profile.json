@@ -165,21 +165,19 @@
           "immigrationDataConsent": {
             "title": "Immigration data consent",
             "type": "boolean",
-            "description": "Has user given permission to use their data on Registration of Foreigners application",
-            "example": "true"
+            "description": "Has user given permission to use their data on Registration of Foreigners application"
           },
           "jobsDataConsent": {
             "title": "Jobs data consent",
             "type": "boolean",
-            "description": "Has user given permission to use their data on form application",
-            "example": "false"
+            "description": "Has user given permission to use their data on form application"
           },
           "dateOfBirth": {
             "title": "Date of birth",
             "type": "string",
             "description": "Date of Birth (date only)",
             "format": "date",
-            "example": "1.1.2000"
+            "example": "2000-01-01"
           },
           "gender": {
             "title": "Gender",
