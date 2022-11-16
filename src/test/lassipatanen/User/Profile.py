@@ -23,18 +23,26 @@ class ProfileResponse(CamelCaseModel):
         example="2042-04-23T10:20:30.400",
     )
     first_name: Optional[str] = Field(
-        ..., title="First name", description="First name of the user"
+        ..., title="First name", description="First name of the user", example="John"
     )
-    last_name: str = Field(..., title="Last name", description="Last name of the user")
-    address: str = Field(..., title="Address", description="Address of the user")
+    last_name: str = Field(
+        ..., title="Last name", description="Last name of the user", example="Doe"
+    )
+    address: str = Field(
+        ...,
+        title="Address",
+        description="Address of the user",
+        example="Paradise st. 13",
+    )
     immigration_data_consent: bool = Field(
         title="Immigration data consent",
         description="Has user given permission to use their data on Registration of Foreigners application",
-        example=["true", "false"],
+        example="true",
     )
     jobs_data_consent: bool = Field(
         title="Jobs data consent",
         description="Has user given permission to use their data on form application",
+        example="false",
     )
     date_of_birth: date = Field(
         ...,
@@ -56,7 +64,10 @@ class ProfileResponse(CamelCaseModel):
         example="FI",
     )
     occupation_code: str = Field(
-        ..., title="Occupation code", description="Suomi.Fi code scheme"
+        ...,
+        title="Occupation code",
+        description="Suomi.Fi code scheme",
+        example="11122",
     )
     citizenship_code: str = Field(
         ...,
@@ -65,6 +76,7 @@ class ProfileResponse(CamelCaseModel):
         example="FI",
     )
     job_titles: Optional[List[str]] = Field(
+        ...,
         title="Job titles",
         description="List of job titles",
         example=["Chef", "Programmer"],
