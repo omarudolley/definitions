@@ -70,6 +70,7 @@ class ProfileResponse(CamelCaseModel):
         example=["Chef", "Programmer"],
     )
     regions: Optional[List[str]] = Field(
+        ...,
         title="Regions",
         description="List of regions where user would want to search for a job",
         example=["Etelä-Suomi"],

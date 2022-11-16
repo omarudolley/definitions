@@ -117,7 +117,8 @@
           "countryOfBirthCode",
           "nativeLanguageCode",
           "occupationCode",
-          "citizenshipCode"
+          "citizenshipCode",
+          "regions"
         ],
         "type": "object",
         "properties": {
