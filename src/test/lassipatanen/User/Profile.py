@@ -1,9 +1,15 @@
 from datetime import date, datetime
+from enum import Enum
 from typing import List, Optional
 from uuid import UUID
 
 from converter import CamelCaseModel, DataProductDefinition
-from pydantic import Field
+from pydantic import Field, constr
+
+
+class Gender(str, Enum):
+    male = "MALE"
+    female = "FEMALE"
 
 
 class ProfileResponse(CamelCaseModel):
@@ -48,14 +54,14 @@ class ProfileResponse(CamelCaseModel):
         description="Date of Birth (date only)",
         example="2000-01-01",
     )
-    gender: str = Field(..., title="Gender", description="Gender")
-    country_of_birth_code: str = Field(
+    gender: Gender = Field(..., title="Gender", description="Gender of the user")
+    country_of_birth_code: constr(min_length=2, max_length=2, to_upper=True) = Field(
         ...,
         title="Country of birth code",
         description="ISO 3166-1 alpha-2 code for country",
         example="FI",
     )
-    native_language_code: str = Field(
+    native_language_code: constr(min_length=2, max_length=2, to_upper=True) = Field(
         ...,
         title="Native language code",
         description="ISO 3166-1 alpha-2 code for language",
@@ -67,7 +73,7 @@ class ProfileResponse(CamelCaseModel):
         description="Suomi.Fi code scheme",
         example="11122",
     )
-    citizenship_code: str = Field(
+    citizenship_code: constr(min_length=2, max_length=2, to_upper=True) = Field(
         ...,
         title="Nationality code",
         description="ISO 3166-1 alpha-2 code for nationality",

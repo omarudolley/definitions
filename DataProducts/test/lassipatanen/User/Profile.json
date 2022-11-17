@@ -83,6 +83,12 @@
   },
   "components": {
     "schemas": {
+      "Gender": {
+        "title": "Gender",
+        "enum": ["MALE", "FEMALE"],
+        "type": "string",
+        "description": "An enumeration."
+      },
       "HTTPValidationError": {
         "title": "HTTPValidationError",
         "type": "object",
@@ -181,17 +187,25 @@
           },
           "gender": {
             "title": "Gender",
-            "type": "string",
-            "description": "Gender"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Gender"
+              }
+            ],
+            "description": "Gender of the user"
           },
           "countryOfBirthCode": {
             "title": "Country of birth code",
+            "maxLength": 2,
+            "minLength": 2,
             "type": "string",
             "description": "ISO 3166-1 alpha-2 code for country",
             "example": "FI"
           },
           "nativeLanguageCode": {
             "title": "Native language code",
+            "maxLength": 2,
+            "minLength": 2,
             "type": "string",
             "description": "ISO 3166-1 alpha-2 code for language",
             "example": "FI"
@@ -204,6 +218,8 @@
           },
           "citizenshipCode": {
             "title": "Nationality code",
+            "maxLength": 2,
+            "minLength": 2,
             "type": "string",
             "description": "ISO 3166-1 alpha-2 code for nationality",
             "example": "FI"
