@@ -12,6 +12,27 @@ class Gender(str, Enum):
     female = "FEMALE"
 
 
+class Address(CamelCaseModel):
+    street_address: str = Field(
+        ...,
+        title="Street address",
+        description="Street address",
+        example="Mannerheimintie 42",
+    )
+    zip_code: constr(min_length=5, max_length=5) = Field(
+        ..., title="ZIP code", description="ZIP code of the address", example="00100"
+    )
+    city: str = Field(
+        ...,
+        title="City",
+        description="City of the address location",
+        example="Helsinki",
+    )
+    country: str = Field(
+        ..., title="Country", description="Country of the address", example="Suomi"
+    )
+
+
 class ProfileResponse(CamelCaseModel):
     id: UUID = Field(
         title="Id",
@@ -34,12 +55,7 @@ class ProfileResponse(CamelCaseModel):
     last_name: str = Field(
         ..., title="Last name", description="Last name of the user", example="Doe"
     )
-    address: str = Field(
-        ...,
-        title="Address",
-        description="Address of the user",
-        example="Paradise st. 13",
-    )
+    address: Address = Field(..., title="Address", description="Address of the user")
     immigration_data_consent: bool = Field(
         title="Immigration data consent",
         description="Has user given permission to use their data on Registration of Foreigners application",
@@ -64,13 +80,13 @@ class ProfileResponse(CamelCaseModel):
     native_language_code: constr(min_length=2, max_length=2, to_upper=True) = Field(
         ...,
         title="Native language code",
-        description="ISO 3166-1 alpha-2 code for language",
-        example="FI",
+        description="ISO 639-1 code for language",
+        example="fi",
     )
     occupation_code: str = Field(
         ...,
         title="Occupation code",
-        description="Suomi.Fi code scheme",
+        description="Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
         example="11122",
     )
     citizenship_code: constr(min_length=2, max_length=2, to_upper=True) = Field(

@@ -83,6 +83,39 @@
   },
   "components": {
     "schemas": {
+      "Address": {
+        "title": "Address",
+        "required": ["streetAddress", "zipCode", "city", "country"],
+        "type": "object",
+        "properties": {
+          "streetAddress": {
+            "title": "Street address",
+            "type": "string",
+            "description": "Street address",
+            "example": "Mannerheimintie 42"
+          },
+          "zipCode": {
+            "title": "ZIP code",
+            "maxLength": 5,
+            "minLength": 5,
+            "type": "string",
+            "description": "ZIP code of the address",
+            "example": "00100"
+          },
+          "city": {
+            "title": "City",
+            "type": "string",
+            "description": "City of the address location",
+            "example": "Helsinki"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string",
+            "description": "Country of the address",
+            "example": "Suomi"
+          }
+        }
+      },
       "Gender": {
         "title": "Gender",
         "enum": ["MALE", "FEMALE"],
@@ -164,9 +197,12 @@
           },
           "address": {
             "title": "Address",
-            "type": "string",
-            "description": "Address of the user",
-            "example": "Paradise st. 13"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              }
+            ],
+            "description": "Address of the user"
           },
           "immigrationDataConsent": {
             "title": "Immigration data consent",
@@ -207,13 +243,13 @@
             "maxLength": 2,
             "minLength": 2,
             "type": "string",
-            "description": "ISO 3166-1 alpha-2 code for language",
-            "example": "FI"
+            "description": "ISO 639-1 code for language",
+            "example": "fi"
           },
           "occupationCode": {
             "title": "Occupation code",
             "type": "string",
-            "description": "Suomi.Fi code scheme",
+            "description": "Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
             "example": "11122"
           },
           "citizenshipCode": {
