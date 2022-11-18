@@ -242,6 +242,7 @@
             "title": "Native language code",
             "maxLength": 2,
             "minLength": 2,
+            "pattern": "^[a-z]{2}$",
             "type": "string",
             "description": "ISO 639-1 code for language",
             "example": "fi"

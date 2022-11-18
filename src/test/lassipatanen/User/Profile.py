@@ -77,7 +77,9 @@ class ProfileResponse(CamelCaseModel):
         description="ISO 3166-1 alpha-2 code for country",
         example="FI",
     )
-    native_language_code: constr(min_length=2, max_length=2, to_lower=True) = Field(
+    native_language_code: constr(
+        min_length=2, max_length=2, to_lower=True, regex="^[a-z]{2}$"
+    ) = Field(
         ...,
         title="Native language code",
         description="ISO 639-1 code for language",
