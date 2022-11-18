@@ -1,0 +1,315 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Basic user profile information",
+    "description": "Data product for basic user profile information",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/test/lassipatanen/User/Profile": {
+      "post": {
+        "summary": "test/lassipatanen/User/Profile",
+        "description": "User profile information",
+        "operationId": "request_test_lassipatanen_User_Profile",
+        "parameters": [
+          {
+            "description": "Optional consent token",
+            "required": false,
+            "schema": {
+              "title": "X-Consent-Token",
+              "type": "string",
+              "description": "Optional consent token"
+            },
+            "name": "x-consent-token",
+            "in": "header"
+          },
+          {
+            "description": "The login token. Value should be \"Bearer [token]\"",
+            "required": false,
+            "schema": {
+              "title": "Authorization",
+              "type": "string",
+              "description": "The login token. Value should be \"Bearer [token]\""
+            },
+            "name": "authorization",
+            "in": "header"
+          },
+          {
+            "description": "The bare domain of the system that provided the token.",
+            "required": false,
+            "schema": {
+              "title": "X-Authorization-Provider",
+              "type": "string",
+              "description": "The bare domain of the system that provided the token."
+            },
+            "name": "x-authorization-provider",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Address": {
+        "title": "Address",
+        "required": ["streetAddress", "zipCode", "city", "country"],
+        "type": "object",
+        "properties": {
+          "streetAddress": {
+            "title": "Street address",
+            "type": "string",
+            "description": "Street address",
+            "example": "Mannerheimintie 42"
+          },
+          "zipCode": {
+            "title": "ZIP code",
+            "maxLength": 5,
+            "minLength": 5,
+            "type": "string",
+            "description": "ZIP code of the address",
+            "example": "00100"
+          },
+          "city": {
+            "title": "City",
+            "type": "string",
+            "description": "City of the address location",
+            "example": "Helsinki"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string",
+            "description": "Country of the address",
+            "example": "Suomi"
+          }
+        }
+      },
+      "Gender": {
+        "title": "Gender",
+        "enum": ["MALE", "FEMALE"],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+          "detail": {
+            "title": "Detail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "ProfileRequest": {
+        "title": "ProfileRequest",
+        "type": "object",
+        "properties": {}
+      },
+      "ProfileResponse": {
+        "title": "ProfileResponse",
+        "required": [
+          "id",
+          "created",
+          "modified",
+          "firstName",
+          "lastName",
+          "address",
+          "immigrationDataConsent",
+          "jobsDataConsent",
+          "dateOfBirth",
+          "gender",
+          "countryOfBirthCode",
+          "nativeLanguageCode",
+          "occupationCode",
+          "citizenshipCode",
+          "jobTitles",
+          "regions"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "description": "uuid formatted string used to identify users",
+            "format": "uuid",
+            "example": "cf57432e-809e-4353-adbd-9d5c0d733868"
+          },
+          "created": {
+            "title": "Created",
+            "type": "string",
+            "description": "Created at timestamp",
+            "format": "date-time",
+            "example": "2042-04-23T10:20:30.400"
+          },
+          "modified": {
+            "title": "Modified",
+            "type": "string",
+            "description": "Modified at timestamp",
+            "format": "date-time",
+            "example": "2042-04-23T10:20:30.400"
+          },
+          "firstName": {
+            "title": "First name",
+            "type": "string",
+            "description": "First name of the user",
+            "example": "John"
+          },
+          "lastName": {
+            "title": "Last name",
+            "type": "string",
+            "description": "Last name of the user",
+            "example": "Doe"
+          },
+          "address": {
+            "title": "Address",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              }
+            ],
+            "description": "Address of the user"
+          },
+          "immigrationDataConsent": {
+            "title": "Immigration data consent",
+            "type": "boolean",
+            "description": "Has user given permission to use their data on Registration of Foreigners application"
+          },
+          "jobsDataConsent": {
+            "title": "Jobs data consent",
+            "type": "boolean",
+            "description": "Has user given permission to use their data on form application"
+          },
+          "dateOfBirth": {
+            "title": "Date of birth",
+            "type": "string",
+            "description": "Date of Birth (date only)",
+            "format": "date",
+            "example": "2000-01-01"
+          },
+          "gender": {
+            "title": "Gender",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Gender"
+              }
+            ],
+            "description": "Gender of the user"
+          },
+          "countryOfBirthCode": {
+            "title": "Country of birth code",
+            "maxLength": 2,
+            "minLength": 2,
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 code for country",
+            "example": "FI"
+          },
+          "nativeLanguageCode": {
+            "title": "Native language code",
+            "maxLength": 2,
+            "minLength": 2,
+            "pattern": "^[a-z]{2}$",
+            "type": "string",
+            "description": "ISO 639-1 code for language",
+            "example": "fi"
+          },
+          "occupationCode": {
+            "title": "Occupation code",
+            "type": "string",
+            "description": "Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
+            "example": "11122"
+          },
+          "citizenshipCode": {
+            "title": "Nationality code",
+            "maxLength": 2,
+            "minLength": 2,
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 code for nationality",
+            "example": "FI"
+          },
+          "jobTitles": {
+            "title": "Job titles",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of job titles",
+            "example": ["Chef", "Programmer"]
+          },
+          "regions": {
+            "title": "Regions",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of regions where user would want to search for a job",
+            "example": ["Etelä-Suomi"]
+          }
+        }
+      },
+      "ValidationError": {
+        "title": "ValidationError",
+        "required": ["loc", "msg", "type"],
+        "type": "object",
+        "properties": {
+          "loc": {
+            "title": "Location",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
