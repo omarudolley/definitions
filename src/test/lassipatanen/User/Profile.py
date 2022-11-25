@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from enum import Enum
-from typing import List, Optional
+from typing import List, Optional, Union
 from uuid import UUID
 
 from converter import CamelCaseModel, DataProductDefinition
@@ -8,27 +8,27 @@ from pydantic import Field, constr
 
 
 class Gender(str, Enum):
-    male = "MALE"
-    female = "FEMALE"
+    male = "Male"
+    female = "Female"
 
 
 class Address(CamelCaseModel):
-    street_address: str = Field(
+    street_address: Optional[str] = Field(
         ...,
         title="Street address",
         description="Street address",
         example="Mannerheimintie 42",
     )
-    zip_code: constr(min_length=5, max_length=5) = Field(
+    zip_code: Optional[constr(min_length=5, max_length=5)] = Field(
         ..., title="ZIP code", description="ZIP code of the address", example="00100"
     )
-    city: str = Field(
+    city: Optional[str] = Field(
         ...,
         title="City",
         description="City of the address location",
         example="Helsinki",
     )
-    country: str = Field(
+    country: Optional[str] = Field(
         ..., title="Country", description="Country of the address", example="Suomi"
     )
 
@@ -52,7 +52,7 @@ class ProfileResponse(CamelCaseModel):
     first_name: Optional[str] = Field(
         ..., title="First name", description="First name of the user", example="John"
     )
-    last_name: str = Field(
+    last_name: Optional[str] = Field(
         ..., title="Last name", description="Last name of the user", example="Doe"
     )
     address: Address = Field(..., title="Address", description="Address of the user")
@@ -64,7 +64,7 @@ class ProfileResponse(CamelCaseModel):
         title="Jobs data consent",
         description="Has user given permission to use their data on form application",
     )
-    date_of_birth: date = Field(
+    date_of_birth: Optional[date] = Field(
         ...,
         title="Date of birth",
         description="Date of Birth (date only)",
@@ -77,21 +77,27 @@ class ProfileResponse(CamelCaseModel):
         description="ISO 3166-1 alpha-2 code for country",
         example="FI",
     )
-    native_language_code: constr(
-        min_length=2, max_length=2, to_lower=True, regex="^[a-z]{2}$"
-    ) = Field(
+    native_language_code: Optional[
+        constr(
+            min_length=2,
+            max_length=2,
+            to_lower=True,
+        )
+    ] = Field(
         ...,
         title="Native language code",
         description="ISO 639-1 code for language",
         example="fi",
     )
-    occupation_code: str = Field(
+    occupation_code: Optional[str] = Field(
         ...,
         title="Occupation code",
         description="Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
         example="11122",
     )
-    citizenship_code: constr(min_length=2, max_length=2, to_upper=True) = Field(
+    citizenship_code: Optional[
+        constr(min_length=2, max_length=2, to_upper=True)
+    ] = Field(
         ...,
         title="Nationality code",
         description="ISO 3166-1 alpha-2 code for nationality",
