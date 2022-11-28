@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from enum import Enum
-from typing import List, Optional
+from typing import List, Optional, Union
 from uuid import UUID
 
 from converter import CamelCaseModel, DataProductDefinition
@@ -8,28 +8,28 @@ from pydantic import Field, constr
 
 
 class Gender(str, Enum):
-    male = "MALE"
-    female = "FEMALE"
+    male = "Male"
+    female = "Female"
 
 
 class Address(CamelCaseModel):
-    street_address: str = Field(
-        ...,
+    street_address: Optional[str] = Field(
+        None,
         title="Street address",
         description="Street address",
         example="Mannerheimintie 42",
     )
-    zip_code: constr(min_length=5, max_length=5) = Field(
-        ..., title="ZIP code", description="ZIP code of the address", example="00100"
+    zip_code: Optional[constr(min_length=5, max_length=5)] = Field(
+        None, title="ZIP code", description="ZIP code of the address", example="00100"
     )
-    city: str = Field(
-        ...,
+    city: Optional[str] = Field(
+        None,
         title="City",
         description="City of the address location",
         example="Helsinki",
     )
-    country: str = Field(
-        ..., title="Country", description="Country of the address", example="Suomi"
+    country: Optional[str] = Field(
+        None, title="Country", description="Country of the address", example="Suomi"
     )
 
 
@@ -50,10 +50,10 @@ class ProfileResponse(CamelCaseModel):
         example="2042-04-23T10:20:30.400",
     )
     first_name: Optional[str] = Field(
-        ..., title="First name", description="First name of the user", example="John"
+        None, title="First name", description="First name of the user", example="John"
     )
-    last_name: str = Field(
-        ..., title="Last name", description="Last name of the user", example="Doe"
+    last_name: Optional[str] = Field(
+        None, title="Last name", description="Last name of the user", example="Doe"
     )
     address: Address = Field(..., title="Address", description="Address of the user")
     immigration_data_consent: bool = Field(
@@ -64,47 +64,57 @@ class ProfileResponse(CamelCaseModel):
         title="Jobs data consent",
         description="Has user given permission to use their data on form application",
     )
-    date_of_birth: date = Field(
-        ...,
+    date_of_birth: Optional[date] = Field(
+        None,
         title="Date of birth",
         description="Date of Birth (date only)",
         example="2000-01-01",
     )
-    gender: Gender = Field(..., title="Gender", description="Gender of the user")
-    country_of_birth_code: constr(min_length=2, max_length=2, to_upper=True) = Field(
-        ...,
+    gender: Optional[Gender] = Field(
+        None, title="Gender", description="Gender of the user"
+    )
+    country_of_birth_code: Optional[
+        constr(min_length=2, max_length=2, to_upper=True)
+    ] = Field(
+        None,
         title="Country of birth code",
         description="ISO 3166-1 alpha-2 code for country",
         example="FI",
     )
-    native_language_code: constr(
-        min_length=2, max_length=2, to_lower=True, regex="^[a-z]{2}$"
-    ) = Field(
-        ...,
+    native_language_code: Optional[
+        constr(
+            min_length=2,
+            max_length=2,
+            to_lower=True,
+        )
+    ] = Field(
+        None,
         title="Native language code",
         description="ISO 639-1 code for language",
         example="fi",
     )
-    occupation_code: str = Field(
-        ...,
+    occupation_code: Optional[str] = Field(
+        None,
         title="Occupation code",
         description="Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
         example="11122",
     )
-    citizenship_code: constr(min_length=2, max_length=2, to_upper=True) = Field(
-        ...,
+    citizenship_code: Optional[
+        constr(min_length=2, max_length=2, to_upper=True)
+    ] = Field(
+        None,
         title="Nationality code",
         description="ISO 3166-1 alpha-2 code for nationality",
         example="FI",
     )
     job_titles: Optional[List[str]] = Field(
-        ...,
+        None,
         title="Job titles",
         description="List of job titles",
         example=["Chef", "Programmer"],
     )
     regions: Optional[List[str]] = Field(
-        ...,
+        None,
         title="Regions",
         description="List of regions where user would want to search for a job",
         example=["Etelä-Suomi"],
