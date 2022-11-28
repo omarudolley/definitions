@@ -85,7 +85,6 @@
     "schemas": {
       "Address": {
         "title": "Address",
-        "required": ["streetAddress", "zipCode", "city", "country"],
         "type": "object",
         "properties": {
           "streetAddress": {
@@ -146,19 +145,9 @@
           "id",
           "created",
           "modified",
-          "firstName",
-          "lastName",
           "address",
           "immigrationDataConsent",
-          "jobsDataConsent",
-          "dateOfBirth",
-          "gender",
-          "countryOfBirthCode",
-          "nativeLanguageCode",
-          "occupationCode",
-          "citizenshipCode",
-          "jobTitles",
-          "regions"
+          "jobsDataConsent"
         ],
         "type": "object",
         "properties": {
