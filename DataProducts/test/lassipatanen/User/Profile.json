@@ -151,7 +151,9 @@
           "modified",
           "address",
           "immigrationDataConsent",
-          "jobsDataConsent"
+          "jobsDataConsent",
+          "jobTitles",
+          "regions"
         ],
         "type": "object",
         "properties": {

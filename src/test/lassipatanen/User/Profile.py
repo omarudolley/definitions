@@ -131,13 +131,13 @@ class ProfileResponse(CamelCaseModel):
         nullable=True,
     )
     job_titles: Optional[List[str]] = Field(
-        None,
+        ...,
         title="Job titles",
         description="List of job titles",
         example=["Chef", "Programmer"],
     )
     regions: Optional[List[str]] = Field(
-        None,
+        ...,
         title="Regions",
         description="List of regions where user would want to search for a job",
         example=["Etelä-Suomi"],
