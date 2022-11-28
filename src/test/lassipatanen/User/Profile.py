@@ -18,18 +18,28 @@ class Address(CamelCaseModel):
         title="Street address",
         description="Street address",
         example="Mannerheimintie 42",
+        nullable=True,
     )
     zip_code: Optional[constr(min_length=5, max_length=5)] = Field(
-        None, title="ZIP code", description="ZIP code of the address", example="00100"
+        None,
+        title="ZIP code",
+        description="ZIP code of the address",
+        example="00100",
+        nullable=True,
     )
     city: Optional[str] = Field(
         None,
         title="City",
         description="City of the address location",
         example="Helsinki",
+        nullable=True,
     )
     country: Optional[str] = Field(
-        None, title="Country", description="Country of the address", example="Suomi"
+        None,
+        title="Country",
+        description="Country of the address",
+        example="Suomi",
+        nullable=True,
     )
 
 
@@ -50,10 +60,18 @@ class ProfileResponse(CamelCaseModel):
         example="2042-04-23T10:20:30.400",
     )
     first_name: Optional[str] = Field(
-        None, title="First name", description="First name of the user", example="John"
+        None,
+        title="First name",
+        description="First name of the user",
+        example="John",
+        nullable=True,
     )
     last_name: Optional[str] = Field(
-        None, title="Last name", description="Last name of the user", example="Doe"
+        None,
+        title="Last name",
+        description="Last name of the user",
+        example="Doe",
+        nullable=True,
     )
     address: Address = Field(..., title="Address", description="Address of the user")
     immigration_data_consent: bool = Field(
@@ -69,9 +87,10 @@ class ProfileResponse(CamelCaseModel):
         title="Date of birth",
         description="Date of Birth (date only)",
         example="2000-01-01",
+        nullable=True,
     )
     gender: Optional[Gender] = Field(
-        None, title="Gender", description="Gender of the user"
+        None, title="Gender", description="Gender of the user", nullable=True
     )
     country_of_birth_code: Optional[
         constr(min_length=2, max_length=2, to_upper=True)
@@ -80,6 +99,7 @@ class ProfileResponse(CamelCaseModel):
         title="Country of birth code",
         description="ISO 3166-1 alpha-2 code for country",
         example="FI",
+        nullable=True,
     )
     native_language_code: Optional[
         constr(
@@ -92,12 +112,14 @@ class ProfileResponse(CamelCaseModel):
         title="Native language code",
         description="ISO 639-1 code for language",
         example="fi",
+        nullable=True,
     )
     occupation_code: Optional[str] = Field(
         None,
         title="Occupation code",
         description="Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
         example="11122",
+        nullable=True,
     )
     citizenship_code: Optional[
         constr(min_length=2, max_length=2, to_upper=True)
@@ -106,6 +128,7 @@ class ProfileResponse(CamelCaseModel):
         title="Nationality code",
         description="ISO 3166-1 alpha-2 code for nationality",
         example="FI",
+        nullable=True,
     )
     job_titles: Optional[List[str]] = Field(
         None,
