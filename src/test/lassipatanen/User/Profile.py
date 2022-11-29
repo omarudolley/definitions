@@ -10,6 +10,7 @@ from pydantic import Field, constr
 class Gender(str, Enum):
     male = "Male"
     female = "Female"
+    other = "Other"
 
 
 class Address(CamelCaseModel):
