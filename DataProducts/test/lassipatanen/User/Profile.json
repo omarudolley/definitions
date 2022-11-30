@@ -121,7 +121,7 @@
       },
       "Gender": {
         "title": "Gender",
-        "enum": ["Male", "Female"],
+        "enum": ["Male", "Female", "Other"],
         "type": "string",
         "description": "An enumeration."
       },
