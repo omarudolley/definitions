@@ -145,16 +145,7 @@
       },
       "ProfileResponse": {
         "title": "ProfileResponse",
-        "required": [
-          "id",
-          "created",
-          "modified",
-          "address",
-          "immigrationDataConsent",
-          "jobsDataConsent",
-          "jobTitles",
-          "regions"
-        ],
+        "required": ["id", "created", "modified", "address", "jobTitles", "regions"],
         "type": "object",
         "properties": {
           "id": {
@@ -200,16 +191,6 @@
               }
             ],
             "description": "Address of the user"
-          },
-          "immigrationDataConsent": {
-            "title": "Immigration data consent",
-            "type": "boolean",
-            "description": "Has user given permission to use their data on Registration of Foreigners application"
-          },
-          "jobsDataConsent": {
-            "title": "Jobs data consent",
-            "type": "boolean",
-            "description": "Has user given permission to use their data on form application"
           },
           "dateOfBirth": {
             "title": "Date of birth",

@@ -75,14 +75,6 @@ class ProfileResponse(CamelCaseModel):
         nullable=True,
     )
     address: Address = Field(..., title="Address", description="Address of the user")
-    immigration_data_consent: bool = Field(
-        title="Immigration data consent",
-        description="Has user given permission to use their data on Registration of Foreigners application",
-    )
-    jobs_data_consent: bool = Field(
-        title="Jobs data consent",
-        description="Has user given permission to use their data on form application",
-    )
     date_of_birth: Optional[date] = Field(
         None,
         title="Date of birth",
