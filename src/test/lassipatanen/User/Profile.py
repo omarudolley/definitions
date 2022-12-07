@@ -104,15 +104,15 @@ class ProfileResponse(CamelCaseModel):
     )
     native_language_code: Optional[
         constr(
-            min_length=2,
-            max_length=2,
+            min_length=3,
+            max_length=3,
             to_lower=True,
         )
     ] = Field(
         None,
         title="Native language code",
-        description="ISO 639-1 code for language",
-        example="fi",
+        description="ISO 639-3 code for language",
+        example="fin",
         nullable=True,
     )
     occupation_code: Optional[str] = Field(

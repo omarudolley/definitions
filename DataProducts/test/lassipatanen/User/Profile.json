@@ -240,12 +240,12 @@
           },
           "nativeLanguageCode": {
             "title": "Native language code",
-            "maxLength": 2,
-            "minLength": 2,
+            "maxLength": 3,
+            "minLength": 3,
             "type": "string",
-            "description": "ISO 639-1 code for language",
+            "description": "ISO 639-3 code for language",
             "nullable": true,
-            "example": "fi"
+            "example": "fin"
           },
           "occupationCode": {
             "title": "Occupation code",
