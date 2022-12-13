@@ -162,15 +162,23 @@
               }
             }
           },
-          "job": {
+          "requirements": {
             "type": "object",
             "properties": {
-              "occupationCodes": {
+              "occupations": {
                 "type": "array",
-                "description": "Etsittävän työtehtävän koodit. Koodistona käytetään ESCO 1.1.0:n mukaisia työtehtävän koodistoja.",
+                "description": "Professions being sought. The occupation codes used are in an URL format according to ESCO 1.1.0.",
                 "items": {
                   "type": "string",
-                  "example": "101"
+                  "example": "http://data.europa.eu/esco/occupation/8d3e8aaa-791b-4c75-a465-f3f827028f50"
+                }
+              },
+              "skills": {
+                "type": "array",
+                "description": "Areas of expertise being sought. The codes for skills are in an URL format according to ESCO 1.1.0.",
+                "items": {
+                  "type": "string",
+                  "example": "http://data.europa.eu/esco/skill/a17286c5-238d-4f0b-bc24-29e9121345de"
                 }
               }
             }
