@@ -162,6 +162,19 @@
               }
             }
           },
+          "job": {
+            "type": "object",
+            "properties": {
+              "occupationCodes": {
+                "type": "array",
+                "description": "Etsittävän työtehtävän koodit. Koodistona käytetään ESCO 1.1.0:n mukaisia työtehtävän koodistoja.",
+                "items": {
+                  "type": "string",
+                  "example": "101"
+                }
+              }
+            }
+          },
           "paging": {
             "type": "object",
             "properties": {
