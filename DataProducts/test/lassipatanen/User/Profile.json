@@ -145,16 +145,7 @@
       },
       "ProfileResponse": {
         "title": "ProfileResponse",
-        "required": [
-          "id",
-          "created",
-          "modified",
-          "address",
-          "immigrationDataConsent",
-          "jobsDataConsent",
-          "jobTitles",
-          "regions"
-        ],
+        "required": ["id", "created", "modified", "address", "jobTitles", "regions"],
         "type": "object",
         "properties": {
           "id": {
@@ -201,16 +192,6 @@
             ],
             "description": "Address of the user"
           },
-          "immigrationDataConsent": {
-            "title": "Immigration data consent",
-            "type": "boolean",
-            "description": "Has user given permission to use their data on Registration of Foreigners application"
-          },
-          "jobsDataConsent": {
-            "title": "Jobs data consent",
-            "type": "boolean",
-            "description": "Has user given permission to use their data on form application"
-          },
           "dateOfBirth": {
             "title": "Date of birth",
             "type": "string",
@@ -240,12 +221,12 @@
           },
           "nativeLanguageCode": {
             "title": "Native language code",
-            "maxLength": 2,
-            "minLength": 2,
+            "maxLength": 3,
+            "minLength": 3,
             "type": "string",
-            "description": "ISO 639-1 code for language",
+            "description": "ISO 639-3 code for language",
             "nullable": true,
-            "example": "fi"
+            "example": "fin"
           },
           "occupationCode": {
             "title": "Occupation code",
