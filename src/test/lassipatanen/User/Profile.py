@@ -4,7 +4,7 @@ from typing import List, Optional
 from uuid import UUID
 
 from converter import CamelCaseModel, DataProductDefinition
-from pydantic import Field, constr
+from pydantic import Field, HttpUrl, constr
 
 
 class Gender(str, Enum):
@@ -14,27 +14,27 @@ class Gender(str, Enum):
 
 
 class EmploymentType(str, Enum):
-    permanent = "permanent"
-    temporary = "temporary"
-    seasonal = "seasonal"
-    summer_job = "summerJob"
+    PERMANENT = "permanent"
+    TEMPORARY = "temporary"
+    SEASONAL = "seasonal"
+    SUMMER_JOB = "summerJob"
 
 
 class WorkTime(str, Enum):
-    day_shift = "01"
-    evening_shift = "02"
-    night_shift = "03"
-    work_in_episodes = "04"
-    flexible_hours = "05"
-    normal_days = "06"
-    weekend_hours = "07"
-    work_in_shifts = "08"
+    DAY_SHIFT = "01"
+    EVENING_SHIFT = "02"
+    NIGHT_SHIFT = "03"
+    WORK_IN_EPISODES = "04"
+    FLEXIBLE_HOURS = "05"
+    NORMAL_DAYS = "06"
+    WEEKEND_HOURS = "07"
+    WORK_IN_SHIFTS = "08"
 
 
 class WorkingLanguage(str, Enum):
-    finnish = "fi"
-    swedish = "sv"
-    english = "en"
+    FINNISH = "fi"
+    SWEDISH = "sv"
+    ENGLISH = "en"
 
 
 class Address(CamelCaseModel):
@@ -69,10 +69,12 @@ class Address(CamelCaseModel):
 
 
 class Occupation(CamelCaseModel):
-    esco_identifier: Optional[str] = Field(
+    esco_identifier: Optional[HttpUrl] = Field(
         None,
         title="Occupation",
-        description="Occupation with ESCO URI as identifier",
+        description="The identifier of the occupation in which the user has previously "
+        "worked. The identifier is based on European Standard Classification of "
+        "Occupations (ESCO).",
         example="http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84",
         nullable=True,
     )
@@ -93,7 +95,11 @@ class Occupation(CamelCaseModel):
         None, title="Industry sector", description="", nullable=True, example=""
     )
     work_experience_in_years: Optional[int] = Field(
-        None, title="", description="", nullable=True, example=1
+        None,
+        title="Work experience in years",
+        description="The number of years that the person has experience in the specific occupation",
+        nullable=True,
+        example=1,
     )
 
 
@@ -103,13 +109,14 @@ class WorkPreferences(CamelCaseModel):
         title="Preferred location",
         description="List of locations from where the user would like to search for jobs",
         nullable=True,
-        example=["405"],
+        example="405",
     )
     work_type: Optional[EmploymentType] = Field(
         None,
         title="Type of employment",
         description="Enum value describing the type of employment",
         nullable=True,
+        example=EmploymentType.SUMMER_JOB,
     )
     working_hours: Optional[str] = Field(
         None, title="Working Hours", description="", nullable=True, example=""
@@ -207,7 +214,8 @@ class ProfileResponse(CamelCaseModel):
     occupations: Optional[List[Occupation]] = Field(
         None,
         title="Occupations",
-        description="List of occupations user has had",
+        description="The work history of a person with a list of occupations, related "
+        "industry fields, employer and the duration of a specific work experience.",
         nullable=True,
     )
     work_preferences: Optional[WorkPreferences] = Field(
