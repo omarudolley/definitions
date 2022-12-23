@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Optional
 from uuid import UUID
 
 from converter import CamelCaseModel, DataProductDefinition
@@ -11,6 +11,30 @@ class Gender(str, Enum):
     male = "Male"
     female = "Female"
     other = "Other"
+
+
+class EmploymentType(str, Enum):
+    permanent = "Permanent"
+    temporary = "Temporary"
+    seasonal = "Seasonal"
+    summer_job = "SummerJob"
+
+
+class WorkTime(str, Enum):
+    day_shift = "01"
+    evening_shift = "02"
+    night_shift = "03"
+    work_in_episodes = "04"
+    flexible_hours = "05"
+    normal_days = "06"
+    weekend_hours = "07"
+    work_in_shifts = "08"
+
+
+class WorkingLanguage(str, Enum):
+    finnish = "Fi"
+    swedish = "Sv"
+    english = "En"
 
 
 class Address(CamelCaseModel):
@@ -40,6 +64,68 @@ class Address(CamelCaseModel):
         title="Country",
         description="Country of the address",
         example="Suomi",
+        nullable=True,
+    )
+
+
+class Occupation(CamelCaseModel):
+    esco_identifier: Optional[str] = Field(
+        None,
+        title="Occupation",
+        description="Occupation with ESCO URI as identifier",
+        nullable=True,
+    )
+    occupation_class: Optional[str] = Field(
+        None, title="Occupation class", description="Class of the occupation"
+    )
+    name: Optional[str] = Field(
+        None,
+        title="Occupation name",
+        description="Name of the occupation",
+        nullable=True,
+        example="Farmer",
+    )
+    industry_sector: Optional[str] = Field(
+        None, title="Industry sector", description="", nullable=True, example=""
+    )
+    work_experience_in_years: Optional[int] = Field(
+        None, title="", description="", nullable=True, example=1
+    )
+
+
+class WorkPreferences(CamelCaseModel):
+    preferred_location: Optional[str] = Field(
+        None,
+        title="Preferred location",
+        description="List of locations from where the user would like to search for jobs",
+        nullable=True,
+        example=["405"],
+    )
+    work_type: Optional[EmploymentType] = Field(
+        None,
+        title="Type of employment",
+        description="Enum value describing the type of employment",
+        nullable=True,
+    )
+    working_hours: Optional[str] = Field(
+        None, title="Working Hours", description="", nullable=True, example=""
+    )
+    working_time: Optional[WorkTime] = Field(
+        None, title="Working Time", description="", nullable=True
+    )
+    working_language: Optional[str] = Field(
+        None, title="Working Language", description="", nullable=True, example="fi"
+    )
+    created: Optional[datetime] = Field(
+        None,
+        title="Created at timestamp",
+        description="Timestamp for when the work preferences were first saved",
+        nullable=True,
+    )
+    modified: Optional[datetime] = Field(
+        None,
+        title="Modified at timestamp",
+        description="Timestamp for when the work preferences were last modified",
         nullable=True,
     )
 
@@ -113,6 +199,15 @@ class ProfileResponse(CamelCaseModel):
         description="Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
         example="11122",
         nullable=True,
+    )
+    occupations: Optional[List[Occupation]] = Field(
+        None,
+        title="Occupations",
+        description="List of occupations user has had",
+        nullable=True,
+    )
+    work_preferences: Optional[WorkPreferences] = Field(
+        None, title="Working preferences", description="", nullable=True
     )
     citizenship_code: Optional[
         constr(min_length=2, max_length=2, to_upper=True)

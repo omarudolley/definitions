@@ -119,6 +119,12 @@
           }
         }
       },
+      "EmploymentType": {
+        "title": "EmploymentType",
+        "enum": ["Permanent", "Temporary", "Seasonal", "SummerJob"],
+        "type": "string",
+        "description": "An enumeration."
+      },
       "Gender": {
         "title": "Gender",
         "enum": ["Male", "Female", "Other"],
@@ -135,6 +141,42 @@
             "items": {
               "$ref": "#/components/schemas/ValidationError"
             }
+          }
+        }
+      },
+      "Occupation": {
+        "title": "Occupation",
+        "type": "object",
+        "properties": {
+          "escoIdentifier": {
+            "title": "Occupation",
+            "type": "string",
+            "description": "Occupation with ESCO URI as identifier",
+            "nullable": true
+          },
+          "occupationClass": {
+            "title": "Occupation class",
+            "type": "string",
+            "description": "Class of the occupation"
+          },
+          "name": {
+            "title": "Occupation name",
+            "type": "string",
+            "description": "Name of the occupation",
+            "nullable": true,
+            "example": "Farmer"
+          },
+          "industrySector": {
+            "title": "Industry sector",
+            "type": "string",
+            "nullable": true,
+            "example": ""
+          },
+          "workExperienceInYears": {
+            "title": "Workexperienceinyears",
+            "type": "integer",
+            "nullable": true,
+            "example": 1
           }
         }
       },
@@ -235,6 +277,24 @@
             "nullable": true,
             "example": "11122"
           },
+          "occupations": {
+            "title": "Occupations",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Occupation"
+            },
+            "description": "List of occupations user has had",
+            "nullable": true
+          },
+          "workPreferences": {
+            "title": "Working preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkPreferences"
+              }
+            ],
+            "nullable": true
+          },
           "citizenshipCode": {
             "title": "Nationality code",
             "maxLength": 2,
@@ -292,6 +352,70 @@
             "type": "string"
           }
         }
+      },
+      "WorkPreferences": {
+        "title": "WorkPreferences",
+        "type": "object",
+        "properties": {
+          "preferredLocation": {
+            "title": "Preferred location",
+            "type": "string",
+            "description": "List of locations from where the user would like to search for jobs",
+            "nullable": true,
+            "example": ["405"]
+          },
+          "workType": {
+            "title": "Type of employment",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmploymentType"
+              }
+            ],
+            "description": "Enum value describing the type of employment",
+            "nullable": true
+          },
+          "workingHours": {
+            "title": "Working Hours",
+            "type": "string",
+            "nullable": true,
+            "example": ""
+          },
+          "workingTime": {
+            "title": "Working Time",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkTime"
+              }
+            ],
+            "nullable": true
+          },
+          "workingLanguage": {
+            "title": "Working Language",
+            "type": "string",
+            "nullable": true,
+            "example": "fi"
+          },
+          "created": {
+            "title": "Created at timestamp",
+            "type": "string",
+            "description": "Timestamp for when the work preferences were first saved",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modified": {
+            "title": "Modified at timestamp",
+            "type": "string",
+            "description": "Timestamp for when the work preferences were last modified",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "WorkTime": {
+        "title": "WorkTime",
+        "enum": ["01", "02", "03", "04", "05", "06", "07", "08"],
+        "type": "string",
+        "description": "An enumeration."
       }
     }
   }
