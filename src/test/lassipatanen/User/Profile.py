@@ -73,10 +73,14 @@ class Occupation(CamelCaseModel):
         None,
         title="Occupation",
         description="Occupation with ESCO URI as identifier",
+        example="http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84",
         nullable=True,
     )
     occupation_class: Optional[str] = Field(
-        None, title="Occupation class", description="Class of the occupation"
+        None,
+        title="Occupation class",
+        description="Class of the occupation",
+        nullable=True,
     )
     name: Optional[str] = Field(
         None,

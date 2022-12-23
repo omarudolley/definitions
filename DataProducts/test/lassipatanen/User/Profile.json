@@ -152,12 +152,14 @@
             "title": "Occupation",
             "type": "string",
             "description": "Occupation with ESCO URI as identifier",
-            "nullable": true
+            "nullable": true,
+            "example": "http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84"
           },
           "occupationClass": {
             "title": "Occupation class",
             "type": "string",
-            "description": "Class of the occupation"
+            "description": "Class of the occupation",
+            "nullable": true
           },
           "name": {
             "title": "Occupation name",
