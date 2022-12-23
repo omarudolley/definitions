@@ -20,7 +20,7 @@ class EmploymentType(str, Enum):
     SUMMER_JOB = "summerJob"
 
 
-class WorkTime(str, Enum):
+class WorkingTime(str, Enum):
     DAY_SHIFT = "01"
     EVENING_SHIFT = "02"
     NIGHT_SHIFT = "03"
@@ -121,7 +121,7 @@ class WorkPreferences(CamelCaseModel):
     working_hours: Optional[str] = Field(
         None, title="Working Hours", description="", nullable=True, example=""
     )
-    working_time: Optional[WorkTime] = Field(
+    working_time: Optional[WorkingTime] = Field(
         None, title="Working Time", description="", nullable=True
     )
     working_language: Optional[str] = Field(
