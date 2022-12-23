@@ -121,7 +121,7 @@
       },
       "EmploymentType": {
         "title": "EmploymentType",
-        "enum": ["Permanent", "Temporary", "Seasonal", "SummerJob"],
+        "enum": ["permanent", "temporary", "seasonal", "summerJob"],
         "type": "string",
         "description": "An enumeration."
       },

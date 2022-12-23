@@ -14,10 +14,10 @@ class Gender(str, Enum):
 
 
 class EmploymentType(str, Enum):
-    permanent = "Permanent"
-    temporary = "Temporary"
-    seasonal = "Seasonal"
-    summer_job = "SummerJob"
+    permanent = "permanent"
+    temporary = "temporary"
+    seasonal = "seasonal"
+    summer_job = "summerJob"
 
 
 class WorkTime(str, Enum):
@@ -32,9 +32,9 @@ class WorkTime(str, Enum):
 
 
 class WorkingLanguage(str, Enum):
-    finnish = "Fi"
-    swedish = "Sv"
-    english = "En"
+    finnish = "fi"
+    swedish = "sv"
+    english = "en"
 
 
 class Address(CamelCaseModel):
