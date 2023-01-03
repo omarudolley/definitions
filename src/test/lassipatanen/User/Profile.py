@@ -1,16 +1,40 @@
 from datetime import date, datetime
 from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Optional
 from uuid import UUID
 
 from converter import CamelCaseModel, DataProductDefinition
-from pydantic import Field, constr
+from pydantic import Field, HttpUrl, constr
 
 
 class Gender(str, Enum):
     male = "Male"
     female = "Female"
     other = "Other"
+
+
+class EmploymentType(str, Enum):
+    PERMANENT = "permanent"
+    TEMPORARY = "temporary"
+    SEASONAL = "seasonal"
+    SUMMER_JOB = "summerJob"
+
+
+class WorkingTime(str, Enum):
+    DAY_SHIFT = "01"
+    EVENING_SHIFT = "02"
+    NIGHT_SHIFT = "03"
+    WORK_IN_EPISODES = "04"
+    FLEXIBLE_HOURS = "05"
+    NORMAL_DAYS = "06"
+    WEEKEND_HOURS = "07"
+    WORK_IN_SHIFTS = "08"
+
+
+class WorkingLanguage(str, Enum):
+    FINNISH = "fi"
+    SWEDISH = "sv"
+    ENGLISH = "en"
 
 
 class Address(CamelCaseModel):
@@ -40,6 +64,79 @@ class Address(CamelCaseModel):
         title="Country",
         description="Country of the address",
         example="Suomi",
+        nullable=True,
+    )
+
+
+class Occupation(CamelCaseModel):
+    esco_identifier: Optional[HttpUrl] = Field(
+        None,
+        title="Occupation",
+        description="The identifier of the occupation in which the user has previously "
+        "worked. The identifier is based on European Standard Classification of "
+        "Occupations (ESCO).",
+        example="http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84",
+        nullable=True,
+    )
+    occupation_class: Optional[str] = Field(
+        None,
+        title="Occupation class",
+        description="Class of the occupation",
+        nullable=True,
+    )
+    name: Optional[str] = Field(
+        None,
+        title="Occupation name",
+        description="Name of the occupation",
+        nullable=True,
+        example="Farmer",
+    )
+    industry_sector: Optional[str] = Field(
+        None, title="Industry sector", description="", nullable=True, example=""
+    )
+    work_experience_in_years: Optional[int] = Field(
+        None,
+        title="Work experience in years",
+        description="The number of years that the person has experience in the specific occupation",
+        nullable=True,
+        example=1,
+    )
+
+
+class WorkPreferences(CamelCaseModel):
+    preferred_location: Optional[str] = Field(
+        None,
+        title="Preferred location",
+        description="List of locations from where the user would like to search for jobs",
+        nullable=True,
+        example="405",
+    )
+    work_type: Optional[EmploymentType] = Field(
+        None,
+        title="Type of employment",
+        description="Enum value describing the type of employment",
+        nullable=True,
+        example=EmploymentType.SUMMER_JOB,
+    )
+    working_hours: Optional[str] = Field(
+        None, title="Working Hours", description="", nullable=True, example=""
+    )
+    working_time: Optional[WorkingTime] = Field(
+        None, title="Working Time", description="", nullable=True
+    )
+    working_language: Optional[str] = Field(
+        None, title="Working Language", description="", nullable=True, example="fi"
+    )
+    created: Optional[datetime] = Field(
+        None,
+        title="Created at timestamp",
+        description="Timestamp for when the work preferences were first saved",
+        nullable=True,
+    )
+    modified: Optional[datetime] = Field(
+        None,
+        title="Modified at timestamp",
+        description="Timestamp for when the work preferences were last modified",
         nullable=True,
     )
 
@@ -113,6 +210,16 @@ class ProfileResponse(CamelCaseModel):
         description="Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
         example="11122",
         nullable=True,
+    )
+    occupations: Optional[List[Occupation]] = Field(
+        None,
+        title="Occupations",
+        description="The work history of a person with a list of occupations, related "
+        "industry fields, employer and the duration of a specific work experience.",
+        nullable=True,
+    )
+    work_preferences: Optional[WorkPreferences] = Field(
+        None, title="Working preferences", description="", nullable=True
     )
     citizenship_code: Optional[
         constr(min_length=2, max_length=2, to_upper=True)

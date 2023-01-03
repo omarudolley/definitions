@@ -119,6 +119,12 @@
           }
         }
       },
+      "EmploymentType": {
+        "title": "EmploymentType",
+        "enum": ["permanent", "temporary", "seasonal", "summerJob"],
+        "type": "string",
+        "description": "An enumeration."
+      },
       "Gender": {
         "title": "Gender",
         "enum": ["Male", "Female", "Other"],
@@ -135,6 +141,48 @@
             "items": {
               "$ref": "#/components/schemas/ValidationError"
             }
+          }
+        }
+      },
+      "Occupation": {
+        "title": "Occupation",
+        "type": "object",
+        "properties": {
+          "escoIdentifier": {
+            "title": "Occupation",
+            "maxLength": 2083,
+            "minLength": 1,
+            "type": "string",
+            "description": "The identifier of the occupation in which the user has previously worked. The identifier is based on European Standard Classification of Occupations (ESCO).",
+            "format": "uri",
+            "nullable": true,
+            "example": "http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84"
+          },
+          "occupationClass": {
+            "title": "Occupation class",
+            "type": "string",
+            "description": "Class of the occupation",
+            "nullable": true
+          },
+          "name": {
+            "title": "Occupation name",
+            "type": "string",
+            "description": "Name of the occupation",
+            "nullable": true,
+            "example": "Farmer"
+          },
+          "industrySector": {
+            "title": "Industry sector",
+            "type": "string",
+            "nullable": true,
+            "example": ""
+          },
+          "workExperienceInYears": {
+            "title": "Work experience in years",
+            "type": "integer",
+            "description": "The number of years that the person has experience in the specific occupation",
+            "nullable": true,
+            "example": 1
           }
         }
       },
@@ -235,6 +283,24 @@
             "nullable": true,
             "example": "11122"
           },
+          "occupations": {
+            "title": "Occupations",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Occupation"
+            },
+            "description": "The work history of a person with a list of occupations, related industry fields, employer and the duration of a specific work experience.",
+            "nullable": true
+          },
+          "workPreferences": {
+            "title": "Working preferences",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkPreferences"
+              }
+            ],
+            "nullable": true
+          },
           "citizenshipCode": {
             "title": "Nationality code",
             "maxLength": 2,
@@ -292,6 +358,71 @@
             "type": "string"
           }
         }
+      },
+      "WorkPreferences": {
+        "title": "WorkPreferences",
+        "type": "object",
+        "properties": {
+          "preferredLocation": {
+            "title": "Preferred location",
+            "type": "string",
+            "description": "List of locations from where the user would like to search for jobs",
+            "nullable": true,
+            "example": "405"
+          },
+          "workType": {
+            "title": "Type of employment",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmploymentType"
+              }
+            ],
+            "description": "Enum value describing the type of employment",
+            "nullable": true,
+            "example": "summerJob"
+          },
+          "workingHours": {
+            "title": "Working Hours",
+            "type": "string",
+            "nullable": true,
+            "example": ""
+          },
+          "workingTime": {
+            "title": "Working Time",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkingTime"
+              }
+            ],
+            "nullable": true
+          },
+          "workingLanguage": {
+            "title": "Working Language",
+            "type": "string",
+            "nullable": true,
+            "example": "fi"
+          },
+          "created": {
+            "title": "Created at timestamp",
+            "type": "string",
+            "description": "Timestamp for when the work preferences were first saved",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modified": {
+            "title": "Modified at timestamp",
+            "type": "string",
+            "description": "Timestamp for when the work preferences were last modified",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "WorkingTime": {
+        "title": "WorkingTime",
+        "enum": ["01", "02", "03", "04", "05", "06", "07", "08"],
+        "type": "string",
+        "description": "An enumeration."
       }
     }
   }
