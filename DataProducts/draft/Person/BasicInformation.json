@@ -109,9 +109,9 @@
           },
           "email": {
             "title": "Email",
-            "maxLength": 250,
             "type": "string",
             "description": "The person's contact email address",
+            "format": "email",
             "example": "john.doe@test.fi"
           },
           "phoneNumber": {

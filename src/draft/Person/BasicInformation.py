@@ -272,14 +272,11 @@ class BasicInformationResponse(CamelCaseModel):
         example="Doe",
         max_length=250,
     )
-    # TODO: Change to EmailStr when tooling supports it, check if it also applies a max
-    #  length by default
-    email: str = Field(
+    email: EmailStr = Field(
         ...,
         title="Email",
         description="The person's contact email address",
         example="john.doe@test.fi",
-        max_length=250,
     )
     phone_number: str = Field(
         None,
