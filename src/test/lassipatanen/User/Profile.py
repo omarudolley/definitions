@@ -106,19 +106,19 @@ class Occupation(CamelCaseModel):
 
 
 class WorkPreferences(CamelCaseModel):
-    preferred_region: Optional[str] = Field(
+    preferred_region: Optional[List[str]] = Field(
         None,
         title="Preferred region",
         description="List of regions from where the user would like to search for jobs",
         nullable=True,
-        example="01",
+        example=["01"],
     )
-    preferred_municipality: Optional[str] = Field(
+    preferred_municipality: Optional[List[str]] = Field(
         None,
         title="Preferred municipality",
         description="List of municipalities from where the user would like to search for jobs",
         nullable=True,
-        example="091",
+        example=["091"],
     )
     type_of_employment: Optional[EmploymentType] = Field(
         None,
