@@ -71,72 +71,90 @@ class Address(CamelCaseModel):
 class Occupation(CamelCaseModel):
     esco_identifier: Optional[HttpUrl] = Field(
         None,
-        title="Occupation",
+        title="ESCO identifier",
         description="The identifier of the occupation in which the user has previously "
         "worked. The identifier is based on European Standard Classification of "
         "Occupations (ESCO).",
         example="http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84",
         nullable=True,
     )
-    occupation_class: Optional[str] = Field(
+    esco_code: Optional[str] = Field(
         None,
-        title="Occupation class",
-        description="Class of the occupation",
+        title="ESCO code",
+        description="The code of the occupation in which the user has previously "
+        "worked. The code based on European Standard Classification of Occupations "
+        "(ESCO).",
+        example="2654.1.7",
         nullable=True,
     )
-    name: Optional[str] = Field(
+    nace_code: Optional[str] = Field(
         None,
-        title="Occupation name",
-        description="Name of the occupation",
+        title="NACE code",
+        description="The industry field where the person has worked on. The codes are "
+        "based on the Statistical classification of economic activities in the "
+        "European Community, abbreviated as NACE.",
         nullable=True,
-        example="Farmer",
+        example="62.01",
     )
-    industry_sector: Optional[str] = Field(
-        None, title="Industry sector", description="", nullable=True, example=""
-    )
-    work_experience_in_years: Optional[int] = Field(
+    work_experience: Optional[int] = Field(
         None,
         title="Work experience in years",
-        description="The number of years that the person has experience in the specific occupation",
+        description="The number of months that the person has experience in the specific occupation",
         nullable=True,
-        example=1,
+        example=5,
     )
 
 
 class WorkPreferences(CamelCaseModel):
-    preferred_location: Optional[str] = Field(
+    preferred_region: Optional[str] = Field(
         None,
-        title="Preferred location",
-        description="List of locations from where the user would like to search for jobs",
+        title="Preferred region",
+        description="List of regions from where the user would like to search for jobs",
         nullable=True,
-        example="405",
+        example="FI-18",
     )
-    work_type: Optional[EmploymentType] = Field(
+    preferred_municipality: Optional[str] = Field(
+        None,
+        title="Preferred municipality",
+        description="List of municipalities from where the user would like to search for jobs",
+        nullable=True,
+        example="091",
+    )
+    type_of_employment: Optional[EmploymentType] = Field(
         None,
         title="Type of employment",
-        description="Enum value describing the type of employment",
+        description="The type of employment contract that the person is looking for.",
         nullable=True,
         example=EmploymentType.SUMMER_JOB,
     )
-    working_hours: Optional[str] = Field(
-        None, title="Working Hours", description="", nullable=True, example=""
-    )
     working_time: Optional[WorkingTime] = Field(
-        None, title="Working Time", description="", nullable=True
+        None,
+        title="Working Time",
+        description="The preferred working time that the person is looking for based on the national "
+        "[working time codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
+        example=WorkingTime.NIGHT_SHIFT,
+        nullable=True,
     )
     working_language: Optional[str] = Field(
-        None, title="Working Language", description="", nullable=True, example="fi"
+        None,
+        title="Working Language",
+        description="The preferred list of working languages identified by the "
+        "ISO 639-1 standard (Alpha-2).",
+        nullable=True,
+        example="fi",
     )
     created: Optional[datetime] = Field(
         None,
         title="Created at timestamp",
         description="Timestamp for when the work preferences were first saved",
+        example="2042-04-23T10:20:30.400",
         nullable=True,
     )
     modified: Optional[datetime] = Field(
         None,
         title="Modified at timestamp",
         description="Timestamp for when the work preferences were last modified",
+        example="2042-04-23T10:20:30.400",
         nullable=True,
     )
 

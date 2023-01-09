@@ -149,7 +149,7 @@
         "type": "object",
         "properties": {
           "escoIdentifier": {
-            "title": "Occupation",
+            "title": "ESCO identifier",
             "maxLength": 2083,
             "minLength": 1,
             "type": "string",
@@ -158,31 +158,26 @@
             "nullable": true,
             "example": "http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84"
           },
-          "occupationClass": {
-            "title": "Occupation class",
+          "escoCode": {
+            "title": "ESCO code",
             "type": "string",
-            "description": "Class of the occupation",
-            "nullable": true
-          },
-          "name": {
-            "title": "Occupation name",
-            "type": "string",
-            "description": "Name of the occupation",
+            "description": "The code of the occupation in which the user has previously worked. The code based on European Standard Classification of Occupations (ESCO).",
             "nullable": true,
-            "example": "Farmer"
+            "example": "2654.1.7"
           },
-          "industrySector": {
-            "title": "Industry sector",
+          "naceCode": {
+            "title": "NACE code",
             "type": "string",
+            "description": "The industry field where the person has worked on. The codes are based on the Statistical classification of economic activities in the European Community, abbreviated as NACE.",
             "nullable": true,
-            "example": ""
+            "example": "62.01"
           },
-          "workExperienceInYears": {
+          "workExperience": {
             "title": "Work experience in years",
             "type": "integer",
-            "description": "The number of years that the person has experience in the specific occupation",
+            "description": "The number of months that the person has experience in the specific occupation",
             "nullable": true,
-            "example": 1
+            "example": 5
           }
         }
       },
@@ -363,29 +358,30 @@
         "title": "WorkPreferences",
         "type": "object",
         "properties": {
-          "preferredLocation": {
-            "title": "Preferred location",
+          "preferredRegion": {
+            "title": "Preferred region",
             "type": "string",
-            "description": "List of locations from where the user would like to search for jobs",
+            "description": "List of regions from where the user would like to search for jobs",
             "nullable": true,
-            "example": "405"
+            "example": "FI-18"
           },
-          "workType": {
+          "preferredMunicipality": {
+            "title": "Preferred municipality",
+            "type": "string",
+            "description": "List of municipalities from where the user would like to search for jobs",
+            "nullable": true,
+            "example": "091"
+          },
+          "typeOfEmployment": {
             "title": "Type of employment",
             "allOf": [
               {
                 "$ref": "#/components/schemas/EmploymentType"
               }
             ],
-            "description": "Enum value describing the type of employment",
+            "description": "The type of employment contract that the person is looking for.",
             "nullable": true,
             "example": "summerJob"
-          },
-          "workingHours": {
-            "title": "Working Hours",
-            "type": "string",
-            "nullable": true,
-            "example": ""
           },
           "workingTime": {
             "title": "Working Time",
@@ -394,11 +390,14 @@
                 "$ref": "#/components/schemas/WorkingTime"
               }
             ],
-            "nullable": true
+            "description": "The preferred working time that the person is looking for based on the national [working time codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
+            "nullable": true,
+            "example": "03"
           },
           "workingLanguage": {
             "title": "Working Language",
             "type": "string",
+            "description": "The preferred list of working languages identified by the ISO 639-1 standard (Alpha-2).",
             "nullable": true,
             "example": "fi"
           },
@@ -407,14 +406,16 @@
             "type": "string",
             "description": "Timestamp for when the work preferences were first saved",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "example": "2042-04-23T10:20:30.400"
           },
           "modified": {
             "title": "Modified at timestamp",
             "type": "string",
             "description": "Timestamp for when the work preferences were last modified",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "example": "2042-04-23T10:20:30.400"
           }
         }
       },
