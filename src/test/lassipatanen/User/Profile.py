@@ -111,7 +111,7 @@ class WorkPreferences(CamelCaseModel):
         title="Preferred region",
         description="List of regions from where the user would like to search for jobs",
         nullable=True,
-        example="FI-18",
+        example="01",
     )
     preferred_municipality: Optional[str] = Field(
         None,
