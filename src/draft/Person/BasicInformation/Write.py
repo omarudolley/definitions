@@ -6,10 +6,6 @@ from converter import CamelCaseModel, DataProductDefinition
 from pydantic import EmailStr, Field, constr
 
 
-class BasicInformationRequest(CamelCaseModel):
-    pass
-
-
 class ISO_3166_1_Alpha_3(str, Enum):
     AFG = "AFG"
     ALB = "ALB"
@@ -257,7 +253,7 @@ class ISO_3166_1_Alpha_3(str, Enum):
     ZWE = "ZWE"
 
 
-class BasicInformationResponse(CamelCaseModel):
+class BasicInformationRequestResponse(CamelCaseModel):
     given_name: Optional[str] = Field(
         None,
         title="Given name",
@@ -294,10 +290,10 @@ class BasicInformationResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    description="A minimal set of basic information of a person",
-    request=BasicInformationRequest,
-    response=BasicInformationResponse,
-    summary="Person Basic Information",
+    description="Create or update a minimal set of basic information of a person",
+    request=BasicInformationRequestResponse,
+    response=BasicInformationRequestResponse,
+    summary="Write Person Basic Information",
     requires_authorization=True,
     requires_consent=True,
 )

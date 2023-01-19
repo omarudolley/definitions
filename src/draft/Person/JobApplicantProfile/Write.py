@@ -6,10 +6,6 @@ from converter import CamelCaseModel, DataProductDefinition
 from pydantic import Field, HttpUrl
 
 
-class JobApplicantProfileRequest(CamelCaseModel):
-    pass
-
-
 class EscoCode(str, Enum):
     ESCO_2654_1_7 = "2654.1.7"
     ESCO_8121_4 = "8121.4"
@@ -4987,7 +4983,7 @@ class WorkPreference(CamelCaseModel):
     )
 
 
-class JobApplicantProfileResponse(CamelCaseModel):
+class JobApplicantProfileRequestResponse(CamelCaseModel):
     occupations: List[Occupation] = Field(
         ...,
         title="Occupations",
@@ -5033,11 +5029,11 @@ class JobApplicantProfileResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    description="A comprehensive set of skills, competences, occupations and work "
-    "preferences of a person",
-    request=JobApplicantProfileRequest,
-    response=JobApplicantProfileResponse,
-    summary="Person Job Applicant Profile",
+    description="Create or update a comprehensive set of skills, competences, "
+    "occupations and work preferences of a person",
+    request=JobApplicantProfileRequestResponse,
+    response=JobApplicantProfileRequestResponse,
+    summary="Write Person Job Applicant Profile",
     requires_authorization=True,
     requires_consent=True,
 )

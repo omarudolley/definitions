@@ -1,16 +1,16 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Person Job Applicant Profile",
-    "description": "A comprehensive set of skills, competences, occupations and work preferences of a person",
+    "title": "Write Person Job Applicant Profile",
+    "description": "Create or update a comprehensive set of skills, competences, occupations and work preferences of a person",
     "version": "1.0.0"
   },
   "paths": {
-    "/draft/Person/JobApplicantProfile": {
+    "/draft/Person/JobApplicantProfile/Write": {
       "post": {
-        "summary": "draft/Person/JobApplicantProfile",
-        "description": "Person Job Applicant Profile",
-        "operationId": "request_draft_Person_JobApplicantProfile",
+        "summary": "draft/Person/JobApplicantProfile/Write",
+        "description": "Write Person Job Applicant Profile",
+        "operationId": "request_draft_Person_JobApplicantProfile_Write",
         "parameters": [
           {
             "description": "Consent token",
@@ -50,7 +50,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/JobApplicantProfileRequest"
+                "$ref": "#/components/schemas/JobApplicantProfileRequestResponse"
               }
             }
           },
@@ -62,7 +62,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JobApplicantProfileResponse"
+                  "$ref": "#/components/schemas/JobApplicantProfileRequestResponse"
                 }
               }
             }
@@ -3878,13 +3878,8 @@
         "type": "string",
         "description": "An enumeration."
       },
-      "JobApplicantProfileRequest": {
-        "title": "JobApplicantProfileRequest",
-        "type": "object",
-        "properties": {}
-      },
-      "JobApplicantProfileResponse": {
-        "title": "JobApplicantProfileResponse",
+      "JobApplicantProfileRequestResponse": {
+        "title": "JobApplicantProfileRequestResponse",
         "required": [
           "occupations",
           "educations",

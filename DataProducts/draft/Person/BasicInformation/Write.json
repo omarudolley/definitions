@@ -1,16 +1,16 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Person Basic Information",
-    "description": "A minimal set of basic information of a person",
+    "title": "Write Person Basic Information",
+    "description": "Create or update a minimal set of basic information of a person",
     "version": "1.0.0"
   },
   "paths": {
-    "/draft/Person/BasicInformation": {
+    "/draft/Person/BasicInformation/Write": {
       "post": {
-        "summary": "draft/Person/BasicInformation",
-        "description": "Person Basic Information",
-        "operationId": "request_draft_Person_BasicInformation",
+        "summary": "draft/Person/BasicInformation/Write",
+        "description": "Write Person Basic Information",
+        "operationId": "request_draft_Person_BasicInformation_Write",
         "parameters": [
           {
             "description": "Consent token",
@@ -50,7 +50,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BasicInformationRequest"
+                "$ref": "#/components/schemas/BasicInformationRequestResponse"
               }
             }
           },
@@ -62,7 +62,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BasicInformationResponse"
+                  "$ref": "#/components/schemas/BasicInformationRequestResponse"
                 }
               }
             }
@@ -83,13 +83,8 @@
   },
   "components": {
     "schemas": {
-      "BasicInformationRequest": {
-        "title": "BasicInformationRequest",
-        "type": "object",
-        "properties": {}
-      },
-      "BasicInformationResponse": {
-        "title": "BasicInformationResponse",
+      "BasicInformationRequestResponse": {
+        "title": "BasicInformationRequestResponse",
         "required": ["email"],
         "type": "object",
         "properties": {
