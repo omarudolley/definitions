@@ -13,6 +13,12 @@ class StatusInfoValue(str, Enum):
 
 
 class StatusInfoResponse(CamelCaseModel):
+    status_label: str = Field(
+        ...,
+        title="Label of the status",
+        description="Label of the status in english",
+        example="Sent",
+    )
     status_name: str = Field(
         ...,
         title="Name of the status",
@@ -28,6 +34,12 @@ class StatusInfoResponse(CamelCaseModel):
     updated_at: datetime = Field(
         ...,
         title="Datetime the data was last updated at",
+        description="A datetime in RFC3339 date-time syntax",
+        example="2022-06-17T11:52:00Z",
+    )
+    created_at: datetime = Field(
+        ...,
+        title="Datetime the data was created at",
         description="A datetime in RFC3339 date-time syntax",
         example="2022-06-17T11:52:00Z",
     )

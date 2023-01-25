@@ -120,9 +120,21 @@
       },
       "StatusInfoResponse": {
         "title": "StatusInfoResponse",
-        "required": ["statusName", "statusValue", "updatedAt"],
+        "required": [
+          "statusLabel",
+          "statusName",
+          "statusValue",
+          "updatedAt",
+          "createdAt"
+        ],
         "type": "object",
         "properties": {
+          "statusLabel": {
+            "title": "Label of the status",
+            "type": "string",
+            "description": "Label of the status in english",
+            "example": "Sent"
+          },
           "statusName": {
             "title": "Name of the status",
             "type": "string",
@@ -141,6 +153,13 @@
           },
           "updatedAt": {
             "title": "Datetime the data was last updated at",
+            "type": "string",
+            "description": "A datetime in RFC3339 date-time syntax",
+            "format": "date-time",
+            "example": "2022-06-17T11:52:00Z"
+          },
+          "createdAt": {
+            "title": "Datetime the data was created at",
             "type": "string",
             "description": "A datetime in RFC3339 date-time syntax",
             "format": "date-time",
