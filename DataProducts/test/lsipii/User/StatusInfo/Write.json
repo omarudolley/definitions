@@ -1,15 +1,15 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Data product for users status information",
-    "description": "Data product for users status information",
+    "title": "Data product for user's status information",
+    "description": "Data product for user's status information",
     "version": "1.0.0"
   },
   "paths": {
     "/test/lsipii/User/StatusInfo/Write": {
       "post": {
-        "summary": "Save users status information",
-        "description": "Data product for users status information",
+        "summary": "Save user's status information",
+        "description": "Data product for user's status information",
         "operationId": "request_test_lsipii_User_StatusInfo_Write",
         "parameters": [
           {
@@ -132,13 +132,13 @@
           "statusLabel": {
             "title": "Label of the status",
             "type": "string",
-            "description": "Label of the status in english",
+            "description": "Label of the status in English",
             "example": "Sent"
           },
           "statusName": {
             "title": "Name of the status",
             "type": "string",
-            "description": "Programmic identity field of the status",
+            "description": "Programmatic identity field of the status",
             "example": "tax_form"
           },
           "statusValue": {

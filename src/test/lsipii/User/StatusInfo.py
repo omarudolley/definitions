@@ -6,23 +6,23 @@ from pydantic import Field
 
 
 class StatusInfoValue(str, Enum):
-    SENT = ("SENT",)
-    PROCESSING = ("PROCESSING",)
-    WAITING_FOR_COMPLETION = ("WAITING_FOR_COMPLETION",)
-    READY = ("READY",)
+    SENT = "SENT"
+    PROCESSING = "PROCESSING"
+    WAITING_FOR_COMPLETION = "WAITING_FOR_COMPLETION"
+    READY = "READY"
 
 
 class StatusInfoResponse(CamelCaseModel):
     status_label: str = Field(
         ...,
         title="Label of the status",
-        description="Label of the status in english",
+        description="Label of the status in English",
         example="Sent",
     )
     status_name: str = Field(
         ...,
         title="Name of the status",
-        description="Programmic identity field of the status",
+        description="Programmatic identity field of the status",
         example="tax_form",
     )
     status_value: StatusInfoValue = Field(
@@ -54,9 +54,9 @@ class StatusInfoRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    summary="Data product for users status information",
+    summary="Data product for user's status information",
     request=StatusInfoRequest,
     response=StatusInfoResponse,
-    route_summary="Retrieve users status information",
+    route_summary="Retrieve user's status information",
     requires_authorization=True,
 )
