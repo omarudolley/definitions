@@ -8,7 +8,7 @@
   "paths": {
     "/test/Indoor/BLEBeacons": {
       "post": {
-        "summary": "test/Indoor/BLEBeacons",
+        "summary": "BLE Beacons",
         "description": "Indoor location based on BLE beacons",
         "operationId": "request_test_Indoor_BLEBeacons",
         "parameters": [

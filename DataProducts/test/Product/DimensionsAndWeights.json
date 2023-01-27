@@ -8,7 +8,7 @@
   "paths": {
     "/test/Product/DimensionsAndWeights": {
       "post": {
-        "summary": "test/Product/DimensionsAndWeights",
+        "summary": "Dimensions And Weights",
         "description": "Dimensions And Weights",
         "operationId": "request_test_Product_DimensionsAndWeights",
         "parameters": [

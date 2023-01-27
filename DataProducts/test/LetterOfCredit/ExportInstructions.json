@@ -8,7 +8,7 @@
   "paths": {
     "/test/LetterOfCredit/ExportInstructions": {
       "post": {
-        "summary": "test/LetterOfCredit/ExportInstructions",
+        "summary": "Export Instructions",
         "description": "Export Instructions",
         "operationId": "request_test_LetterOfCredit_ExportInstructions",
         "parameters": [

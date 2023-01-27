@@ -8,7 +8,7 @@
   "paths": {
     "/test/lassipatanen/User/Profile": {
       "post": {
-        "summary": "test/lassipatanen/User/Profile",
+        "summary": "Basic user profile information",
         "description": "User profile information",
         "operationId": "request_test_lassipatanen_User_Profile",
         "parameters": [

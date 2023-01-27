@@ -8,7 +8,7 @@
   "paths": {
     "/test/Shipment/ForwardersCargoReceipt": {
       "post": {
-        "summary": "test/Shipment/ForwardersCargoReceipt",
+        "summary": "Cargo Receipt",
         "description": "Cargo Receipt",
         "operationId": "request_test_Shipment_ForwardersCargoReceipt",
         "parameters": [

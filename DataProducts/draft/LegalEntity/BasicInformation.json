@@ -8,7 +8,7 @@
   "paths": {
     "/draft/LegalEntity/BasicInformation": {
       "post": {
-        "summary": "draft/LegalEntity/BasicInformation",
+        "summary": "Legal Entity Basic Information",
         "description": "Legal Entity Basic Information",
         "operationId": "request_draft_LegalEntity_BasicInformation",
         "parameters": [

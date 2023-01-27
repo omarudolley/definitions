@@ -8,7 +8,7 @@
   "paths": {
     "/draft/AirQuality/Current": {
       "post": {
-        "summary": "draft/AirQuality/Current",
+        "summary": "Air Quality Index",
         "description": "Current air quality",
         "operationId": "request_draft_AirQuality_Current",
         "parameters": [
