@@ -8,7 +8,7 @@
   "paths": {
     "/test/Transaction/Invoice": {
       "post": {
-        "summary": "test/Transaction/Invoice",
+        "summary": "Invoice",
         "description": "Invoice",
         "operationId": "request_test_Transaction_Invoice",
         "parameters": [

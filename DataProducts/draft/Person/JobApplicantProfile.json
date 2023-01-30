@@ -8,7 +8,7 @@
   "paths": {
     "/draft/Person/JobApplicantProfile": {
       "post": {
-        "summary": "draft/Person/JobApplicantProfile",
+        "summary": "Person Job Applicant Profile",
         "description": "Person Job Applicant Profile",
         "operationId": "request_draft_Person_JobApplicantProfile",
         "parameters": [

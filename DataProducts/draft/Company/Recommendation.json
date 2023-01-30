@@ -8,7 +8,7 @@
   "paths": {
     "/draft/Company/Recommendation": {
       "post": {
-        "summary": "draft/Company/Recommendation",
+        "summary": "Company Recommendations Scores",
         "description": "Data Product for company recommendations score",
         "operationId": "request_draft_Company_Recommendation",
         "parameters": [

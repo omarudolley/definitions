@@ -8,7 +8,7 @@
   "paths": {
     "/draft/Weather/Current/Metric": {
       "post": {
-        "summary": "draft/Weather/Current/Metric",
+        "summary": "Current Weather (Metric)",
         "description": "Current weather in metric units",
         "operationId": "request_draft_Weather_Current_Metric",
         "parameters": [

@@ -8,7 +8,7 @@
   "paths": {
     "/draft/Company/Shareholders": {
       "post": {
-        "summary": "draft/Company/Shareholders",
+        "summary": "Shareholders Info",
         "description": "Information about the shareholders of the company",
         "operationId": "request_draft_Company_Shareholders",
         "parameters": [

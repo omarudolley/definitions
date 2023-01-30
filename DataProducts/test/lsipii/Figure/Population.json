@@ -8,7 +8,7 @@
   "paths": {
     "/test/lsipii/Figure/Population": {
       "post": {
-        "summary": "test/lsipii/Figure/Population",
+        "summary": "Figure for population",
         "description": "Figure for population",
         "operationId": "request_test_lsipii_Figure_Population",
         "parameters": [

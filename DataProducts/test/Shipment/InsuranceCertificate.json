@@ -8,7 +8,7 @@
   "paths": {
     "/test/Shipment/InsuranceCertificate": {
       "post": {
-        "summary": "test/Shipment/InsuranceCertificate",
+        "summary": "Insurance Certificate",
         "description": "Insurance Certificate",
         "operationId": "request_test_Shipment_InsuranceCertificate",
         "parameters": [

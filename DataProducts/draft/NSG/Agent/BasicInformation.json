@@ -8,7 +8,7 @@
   "paths": {
     "/draft/NSG/Agent/BasicInformation": {
       "post": {
-        "summary": "draft/NSG/Agent/BasicInformation",
+        "summary": "Agent Basic Information",
         "description": "Agent Basic Information",
         "operationId": "request_draft_NSG_Agent_BasicInformation",
         "parameters": [

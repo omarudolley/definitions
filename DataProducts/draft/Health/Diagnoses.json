@@ -8,7 +8,7 @@
   "paths": {
     "/draft/Health/Diagnoses": {
       "post": {
-        "summary": "draft/Health/Diagnoses",
+        "summary": "Persons Diagnoses",
         "description": "Health diagnoses in ICD codes",
         "operationId": "request_draft_Health_Diagnoses",
         "parameters": [
