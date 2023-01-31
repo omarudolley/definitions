@@ -8,7 +8,7 @@
   "paths": {
     "/draft/Energy/Battery/ProductDataSheet": {
       "post": {
-        "summary": "draft/Energy/Battery/ProductDataSheet",
+        "summary": "Product Data Sheet for batteries",
         "description": "Product Data Sheet for batteries",
         "operationId": "request_draft_Energy_Battery_ProductDataSheet",
         "parameters": [
@@ -240,11 +240,11 @@
             "example": [
               "ECE R100",
               "ISO 16750",
-              "ISO 13849 PL C",
-              "IEC 61508 SIL 2",
-              "ECE R10",
               "IEC 62061 SIL 2",
-              "UN 38.3"
+              "ISO 13849 PL C",
+              "UN 38.3",
+              "IEC 61508 SIL 2",
+              "ECE R10"
             ]
           }
         }

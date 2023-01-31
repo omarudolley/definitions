@@ -8,7 +8,7 @@
   "paths": {
     "/draft/Energy/Battery/ChargingHistory": {
       "post": {
-        "summary": "draft/Energy/Battery/ChargingHistory",
+        "summary": "Charging history of a battery",
         "description": "Charging history of a battery",
         "operationId": "request_draft_Energy_Battery_ChargingHistory",
         "parameters": [

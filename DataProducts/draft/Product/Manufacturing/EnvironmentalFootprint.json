@@ -8,7 +8,7 @@
   "paths": {
     "/draft/Product/Manufacturing/EnvironmentalFootprint": {
       "post": {
-        "summary": "draft/Product/Manufacturing/EnvironmentalFootprint",
+        "summary": "Environmental Footprint information for a product",
         "description": "Environmental Footprint information for a product",
         "operationId": "request_draft_Product_Manufacturing_EnvironmentalFootprint",
         "parameters": [
