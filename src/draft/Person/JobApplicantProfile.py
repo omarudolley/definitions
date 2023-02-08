@@ -4827,14 +4827,6 @@ class Occupation(CamelCaseModel):
         "(ESCO).",
         example=EscoCode.ESCO_2654_1_7,
     )
-    nace_code: Optional[NaceCode] = Field(
-        None,
-        title="NACE code",
-        description="The industry field where the person has worked on. The codes are "
-        "based on the Statistical classification of economic activities in the "
-        "European Community, abbreviated as NACE.",
-        example=NaceCode.NACE_62_01,
-    )
     work_experience: Optional[int] = Field(
         None,
         title="Work experience in months",
@@ -4936,34 +4928,51 @@ class Certification(CamelCaseModel):
     certification_name: Optional[str] = Field(
         None,
         title="Certification name",
-        description="The name of the acquired qualification.",
+        description="The name of the acquired certification.",
         example="Cloud provider certification",
         max_length=250,
     )
-    qualification_type: Optional[str] = Field(
+    esco_identifier: List[HttpUrl] = Field(
+        ...,
+        title="List of ESCO Uris",
+        description="The identifier of the skill in which the user has qualified. The "
+        "skill identifier is based on European Standard Classification of Occupations "
+        "(ESCO).",
+        example=[
+            "http://data.europa.eu/esco/skill/b85711bc-32d6-42af-ae0f-e2e566d0dfca",
+        ],
+    )
+    institution_name: Optional[str] = Field(
         None,
-        title="Qualification type",
-        description="Type of qualification clarifies how the qualification has "
-        "been acquired (e.g. Self-organized / Institutional).",
-        example="Institutional",
+        title="Institution name",
+        description="The name of the organization that provided the certification.",
+        example="Skill Academy",
         max_length=250,
     )
 
 
 class WorkPreference(CamelCaseModel):
+    nace_code: Optional[NaceCode] = Field(
+        None,
+        title="NACE code",
+        description="The industry field where the person has worked on. The codes are "
+        "based on the Statistical classification of economic activities in the "
+        "European Community, abbreviated as NACE.",
+        example=NaceCode.NACE_62_01,
+    )
     preferred_region: List[ISO_3166_2_FI] = Field(
         ...,
         title="Preferred region",
         description="The potential regions in Finland that the user desired to find a "
         "job from.",
-        example=ISO_3166_2_FI.FI_18,
+        example=[ISO_3166_2_FI.FI_18],
     )
     preferred_municipality: List[FinnishMunicipality] = Field(
         ...,
         title="Preferred municipality",
         description="The potential municipalities in Finland that the user desires to "
         "find a job from.",
-        example=FinnishMunicipality.HELSINKI,
+        example=[FinnishMunicipality.HELSINKI],
     )
     type_of_employment: Optional[EmploymentType] = Field(
         None,
@@ -4983,7 +4992,7 @@ class WorkPreference(CamelCaseModel):
         title="Working language",
         description="The preferred list of working languages identified by the "
         "ISO 639-1 standard (Alpha-2).",
-        example=ISO_639_1.EN,
+        example=[ISO_639_1.EN],
     )
 
 
@@ -5023,7 +5032,7 @@ class JobApplicantProfileResponse(CamelCaseModel):
         description="The acquired permit list of a person based on the national "
         "classification of institutional permits in Finland, [permit codes]"
         "(https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
-        example=Permit.PERMIT_075,
+        example=[Permit.PERMIT_075],
     )
     work_preferences: WorkPreference = Field(
         ...,

@@ -285,7 +285,7 @@ class BasicInformationRequestResponse(CamelCaseModel):
         None,
         title="Residency",
         description="The person's current country of the residency in the three character (Alpha-3) format",
-        example=[ISO_3166_1_Alpha_3.USA],
+        example=ISO_3166_1_Alpha_3.USA,
     )
 
 

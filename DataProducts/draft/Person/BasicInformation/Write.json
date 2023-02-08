@@ -124,7 +124,7 @@
               }
             ],
             "description": "The person's current country of the residency in the three character (Alpha-3) format",
-            "example": ["USA"]
+            "example": "USA"
           }
         }
       },
