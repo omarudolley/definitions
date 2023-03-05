@@ -134,7 +134,7 @@
               }
             ],
             "description": "The role of the person in the board",
-            "example": "Member"
+            "example": "member"
           },
           "givenName": {
             "title": "Given name",
@@ -175,7 +175,7 @@
       },
       "BoardMembersRole": {
         "title": "BoardMembersRole",
-        "enum": ["Chairperson", "Member", "Deputy member"],
+        "enum": ["chairperson", "member", "deputy member"],
         "type": "string",
         "description": "An enumeration."
       },
@@ -1696,7 +1696,7 @@
               }
             ],
             "description": "The role of the director",
-            "example": "Director"
+            "example": "director"
           },
           "givenName": {
             "title": "Given name",
@@ -1737,7 +1737,7 @@
       },
       "ManagingDirectorsRole": {
         "title": "ManagingDirectorsRole",
-        "enum": ["Director", "Deputy director"],
+        "enum": ["director", "deputy director"],
         "type": "string",
         "description": "An enumeration."
       },

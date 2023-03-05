@@ -1248,14 +1248,14 @@ class ShareSeriesClass(str, Enum):
 
 
 class BoardMembersRole(str, Enum):
-    Chairperson = "Chairperson"
-    Member = "Member"
-    Deputy_member = "Deputy member"
+    Chairperson = "chairperson"
+    Member = "member"
+    Deputy_member = "deputy member"
 
 
 class ManagingDirectorsRole(str, Enum):
-    Director = "Director"
-    Deputy_director = "Deputy director"
+    Director = "director"
+    Deputy_director = "deputy director"
 
 
 class Registrant(CamelCaseModel):
@@ -1588,7 +1588,9 @@ class EstablishmentRequest(CamelCaseModel):
         description="The details of the share series of the company",
     )
     company_address: CompanyAddress = Field(
-        ..., title="Company address", description="The official address of the company"
+        ...,
+        title="Company address",
+        description="The official address of the company",
     )
     managing_directors: List[ManagingDirectors] = Field(
         ...,
