@@ -394,18 +394,21 @@
           },
           "givenName": {
             "title": "Given name",
+            "maxLength": 250,
             "type": "string",
             "description": "The first name that the person is being called by",
             "example": "Mary"
           },
           "middleNames": {
             "title": "Middle name",
+            "maxLength": 250,
             "type": "string",
             "description": "All the middle names of the person",
             "example": "Juliet Olive"
           },
           "lastName": {
             "title": "Last name",
+            "maxLength": 250,
             "type": "string",
             "description": "The person's current family name",
             "example": "Deo"
@@ -413,7 +416,7 @@
           "dateOfBirth": {
             "title": "Date of birth",
             "type": "string",
-            "description": "The birth day of a person ",
+            "description": "The birth day of a person",
             "format": "date",
             "example": "1976-04-16"
           },
@@ -429,6 +432,7 @@
           },
           "fullAddress": {
             "title": "Full address",
+            "maxLength": 250,
             "type": "string",
             "description": "The complete address written as a string. Use of this property is recommended as it will not suffer any misunderstandings that might arise through the breaking up of an address into its component parts. ",
             "example": "Tietotie 4 A 7, 00100 Helsinki, Finland"

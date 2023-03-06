@@ -261,28 +261,31 @@ class SigningRights(CamelCaseModel):
         example="1129955131",
         max_length=40,
     )
-    givenName: str = Field(
+    given_name: str = Field(
         ...,
         title="Given name",
         description="The first name that the person is being called by",
         example="Mary",
+        max_length=250,
     )
-    middleNames: str = Field(
+    middle_names: str = Field(
         ...,
         title="Middle name",
         description="All the middle names of the person",
         example="Juliet Olive",
+        max_length=250,
     )
-    lastName: str = Field(
+    last_name: str = Field(
         ...,
         title="Last name",
         description="The person's current family name",
         example="Deo",
+        max_length=250,
     )
-    dateOfBirth: date = Field(
+    date_of_birth: date = Field(
         ...,
         title="Date of birth",
-        description="The birth day of a person ",
+        description="The birth day of a person",
         example=date(1976, 4, 16),
     )
     nationality: ISO_3166_1_Alpha_3 = Field(
@@ -299,6 +302,7 @@ class SigningRights(CamelCaseModel):
         "suffer any misunderstandings that might arise through the breaking up of an address into its "
         "component parts. ",
         example="Tietotie 4 A 7, 00100 Helsinki, Finland",
+        max_length=250,
     )
 
     thoroughfare: Optional[str] = Field(
