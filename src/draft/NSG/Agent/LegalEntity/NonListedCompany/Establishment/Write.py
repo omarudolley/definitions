@@ -1231,7 +1231,7 @@ class ISO_3166_1_Alpha_3(str, Enum):
     ZWE = "ZWE"
 
 
-class Iso4217CurrencyCode(str, Enum):
+class ISO_4217_CurrencyCode(str, Enum):
     EUR = "EUR"
     SEK = "SEK"
     NOK = "NOK"
@@ -1247,15 +1247,15 @@ class ShareSeriesClass(str, Enum):
     E = "E"
 
 
-class BoardMembersRole(str, Enum):
-    Chairperson = "chairperson"
-    Member = "member"
-    Deputy_member = "deputy member"
+class BoardMemberRole(str, Enum):
+    CHAIRPERSON = "chairperson"
+    MEMBER = "member"
+    DEPUTY_MEMBER = "deputy member"
 
 
-class ManagingDirectorsRole(str, Enum):
-    Director = "director"
-    Deputy_director = "deputy director"
+class ManagingDirectorRole(str, Enum):
+    DIRECTOR = "director"
+    DEPUTY_DIRECTOR = "deputy director"
 
 
 class Registrant(CamelCaseModel):
@@ -1292,14 +1292,14 @@ class CompanyDetails(CamelCaseModel):
     name: str = Field(
         ...,
         title="Name",
-        description="The desired name to be registerd for the company",
+        description="The desired name to be registered for the company",
         max_length=250,
         example="Digital company X",
     )
     alternative_name: Optional[str] = Field(
         None,
         title="Alternative name",
-        description="The second alternative for the desired name to be registerd for the company if the primary name "
+        description="The second alternative for the desired name to be registered for the company if the primary name "
         "is not available",
         max_length=250,
         example="Digital company Y",
@@ -1323,11 +1323,11 @@ class CompanyDetails(CamelCaseModel):
         description="The total value of the issued shares of the company",
         example=1000.0,
     )
-    capital_currency: Iso4217CurrencyCode = Field(
+    capital_currency: ISO_4217_CurrencyCode = Field(
         ...,
         title="Capital currency",
         description="The currency used for the share capital in ISO 4217 format",
-        example=Iso4217CurrencyCode.EUR,
+        example=ISO_4217_CurrencyCode.EUR,
     )
     settlement_deposit: Optional[float] = Field(
         None,
@@ -1336,12 +1336,12 @@ class CompanyDetails(CamelCaseModel):
         "company",
         example=1000.0,
     )
-    deposit_currency: Optional[Iso4217CurrencyCode] = Field(
+    deposit_currency: Optional[ISO_4217_CurrencyCode] = Field(
         None,
         title="Deposit currency",
         description="The currency used for the paying the settlement deposit in ISO "
         "4217 format",
-        example=Iso4217CurrencyCode.EUR,
+        example=ISO_4217_CurrencyCode.EUR,
     )
     settlement_date: date = Field(
         ...,
@@ -1387,6 +1387,7 @@ class CompanyAddress(CamelCaseModel):
         "suffer any misunderstandings that might arise through the breaking up of an address into its "
         "component parts. ",
         example="Tietotie 4 A 7, 00100 Helsinki, Finland",
+        max_length=250,
     )
 
     thoroughfare: Optional[str] = Field(
@@ -1466,34 +1467,37 @@ class CompanyAddress(CamelCaseModel):
 
 
 class ManagingDirectors(CamelCaseModel):
-    role: ManagingDirectorsRole = Field(
+    role: ManagingDirectorRole = Field(
         ...,
         title="List of director roles",
         description="The role of the director",
-        example=ManagingDirectorsRole.Director,
+        example=ManagingDirectorRole.DIRECTOR,
     )
     givenName: str = Field(
         ...,
         title="Given name",
         description="The first name that the person is being called by",
         example="Mary",
+        max_length=250,
     )
     middleNames: str = Field(
         ...,
         title="Middle name",
         description="All the middle names of the person",
         example="Juliet Olive",
+        max_length=250,
     )
     lastName: str = Field(
         ...,
         title="Last name",
         description="The person's current family name",
         example="Deo",
+        max_length=250,
     )
     dateOfBirth: date = Field(
         ...,
         title="Date of birth",
-        description="The birth day of a person ",
+        description="The birth day of a person",
         example=date(1976, 4, 16),
     )
     nationality: ISO_3166_1_Alpha_3 = Field(
@@ -1505,34 +1509,37 @@ class ManagingDirectors(CamelCaseModel):
 
 
 class BoardMembers(CamelCaseModel):
-    role: BoardMembersRole = Field(
+    role: BoardMemberRole = Field(
         ...,
         title="List of board roles",
         description="The role of the person in the board",
-        example=BoardMembersRole.Member,
+        example=BoardMemberRole.MEMBER,
     )
     givenName: str = Field(
         ...,
         title="Given name",
         description="The first name that the person is being called by",
         example="Mary",
+        max_length=250,
     )
     middleNames: str = Field(
         ...,
         title="Middle name",
         description="All the middle names of the person",
         example="Juliet Olive",
+        max_length=250,
     )
     lastName: str = Field(
         ...,
         title="Last name",
         description="The person's current family name",
         example="Deo",
+        max_length=250,
     )
     dateOfBirth: date = Field(
         ...,
         title="Date of birth",
-        description="The birth day of a person ",
+        description="The birth day of a person",
         example=date(1976, 4, 16),
     )
     nationality: ISO_3166_1_Alpha_3 = Field(
@@ -1549,6 +1556,7 @@ class Auditor(CamelCaseModel):
         title="Company name",
         description="The name of the auditor company if exists",
         example="Auditor company X",
+        max_length=250,
     )
     nationalIdentifier: Optional[str] = Field(
         None,
@@ -1562,12 +1570,14 @@ class Auditor(CamelCaseModel):
         title="Given name",
         description="The first name that the person is being called by",
         example="Jane",
+        max_length=250,
     )
     lastName: Optional[str] = Field(
         None,
         title="Last name",
         description="The person's current family name",
         example="Doe",
+        max_length=250,
     )
 
 

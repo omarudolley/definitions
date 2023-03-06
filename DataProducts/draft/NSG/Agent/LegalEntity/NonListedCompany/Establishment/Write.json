@@ -89,6 +89,7 @@
         "properties": {
           "companyName": {
             "title": "Company name",
+            "maxLength": 250,
             "type": "string",
             "description": "The name of the auditor company if exists",
             "example": "Auditor company X"
@@ -102,17 +103,25 @@
           },
           "givenName": {
             "title": "Given name",
+            "maxLength": 250,
             "type": "string",
             "description": "The first name that the person is being called by",
             "example": "Jane"
           },
           "lastName": {
             "title": "Last name",
+            "maxLength": 250,
             "type": "string",
             "description": "The person's current family name",
             "example": "Doe"
           }
         }
+      },
+      "BoardMemberRole": {
+        "title": "BoardMemberRole",
+        "enum": ["chairperson", "member", "deputy member"],
+        "type": "string",
+        "description": "An enumeration."
       },
       "BoardMembers": {
         "title": "BoardMembers",
@@ -130,7 +139,7 @@
             "title": "List of board roles",
             "allOf": [
               {
-                "$ref": "#/components/schemas/BoardMembersRole"
+                "$ref": "#/components/schemas/BoardMemberRole"
               }
             ],
             "description": "The role of the person in the board",
@@ -138,18 +147,21 @@
           },
           "givenName": {
             "title": "Given name",
+            "maxLength": 250,
             "type": "string",
             "description": "The first name that the person is being called by",
             "example": "Mary"
           },
           "middleNames": {
             "title": "Middle name",
+            "maxLength": 250,
             "type": "string",
             "description": "All the middle names of the person",
             "example": "Juliet Olive"
           },
           "lastName": {
             "title": "Last name",
+            "maxLength": 250,
             "type": "string",
             "description": "The person's current family name",
             "example": "Deo"
@@ -157,7 +169,7 @@
           "dateOfBirth": {
             "title": "Date of birth",
             "type": "string",
-            "description": "The birth day of a person ",
+            "description": "The birth day of a person",
             "format": "date",
             "example": "1976-04-16"
           },
@@ -173,18 +185,13 @@
           }
         }
       },
-      "BoardMembersRole": {
-        "title": "BoardMembersRole",
-        "enum": ["chairperson", "member", "deputy member"],
-        "type": "string",
-        "description": "An enumeration."
-      },
       "CompanyAddress": {
         "title": "CompanyAddress",
         "type": "object",
         "properties": {
           "fullAddress": {
             "title": "Full address",
+            "maxLength": 250,
             "type": "string",
             "description": "The complete address written as a string. Use of this property is recommended as it will not suffer any misunderstandings that might arise through the breaking up of an address into its component parts. ",
             "example": "Tietotie 4 A 7, 00100 Helsinki, Finland"
@@ -273,14 +280,14 @@
             "title": "Name",
             "maxLength": 250,
             "type": "string",
-            "description": "The desired name to be registerd for the company",
+            "description": "The desired name to be registered for the company",
             "example": "Digital company X"
           },
           "alternativeName": {
             "title": "Alternative name",
             "maxLength": 250,
             "type": "string",
-            "description": "The second alternative for the desired name to be registerd for the company if the primary name is not available",
+            "description": "The second alternative for the desired name to be registered for the company if the primary name is not available",
             "example": "Digital company Y"
           },
           "foundingDate": {
@@ -310,7 +317,7 @@
             "title": "Capital currency",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Iso4217CurrencyCode"
+                "$ref": "#/components/schemas/ISO_4217_CurrencyCode"
               }
             ],
             "description": "The currency used for the share capital in ISO 4217 format",
@@ -326,7 +333,7 @@
             "title": "Deposit currency",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Iso4217CurrencyCode"
+                "$ref": "#/components/schemas/ISO_4217_CurrencyCode"
               }
             ],
             "description": "The currency used for the paying the settlement deposit in ISO 4217 format",
@@ -685,6 +692,12 @@
           "ZMB",
           "ZWE"
         ],
+        "type": "string",
+        "description": "An enumeration."
+      },
+      "ISO_4217_CurrencyCode": {
+        "title": "ISO_4217_CurrencyCode",
+        "enum": ["EUR", "SEK", "NOK", "DKK", "ISK"],
         "type": "string",
         "description": "An enumeration."
       },
@@ -1670,9 +1683,9 @@
         "type": "string",
         "description": "An enumeration."
       },
-      "Iso4217CurrencyCode": {
-        "title": "Iso4217CurrencyCode",
-        "enum": ["EUR", "SEK", "NOK", "DKK", "ISK"],
+      "ManagingDirectorRole": {
+        "title": "ManagingDirectorRole",
+        "enum": ["director", "deputy director"],
         "type": "string",
         "description": "An enumeration."
       },
@@ -1692,7 +1705,7 @@
             "title": "List of director roles",
             "allOf": [
               {
-                "$ref": "#/components/schemas/ManagingDirectorsRole"
+                "$ref": "#/components/schemas/ManagingDirectorRole"
               }
             ],
             "description": "The role of the director",
@@ -1700,18 +1713,21 @@
           },
           "givenName": {
             "title": "Given name",
+            "maxLength": 250,
             "type": "string",
             "description": "The first name that the person is being called by",
             "example": "Mary"
           },
           "middleNames": {
             "title": "Middle name",
+            "maxLength": 250,
             "type": "string",
             "description": "All the middle names of the person",
             "example": "Juliet Olive"
           },
           "lastName": {
             "title": "Last name",
+            "maxLength": 250,
             "type": "string",
             "description": "The person's current family name",
             "example": "Deo"
@@ -1719,7 +1735,7 @@
           "dateOfBirth": {
             "title": "Date of birth",
             "type": "string",
-            "description": "The birth day of a person ",
+            "description": "The birth day of a person",
             "format": "date",
             "example": "1976-04-16"
           },
@@ -1734,12 +1750,6 @@
             "example": "USA"
           }
         }
-      },
-      "ManagingDirectorsRole": {
-        "title": "ManagingDirectorsRole",
-        "enum": ["director", "deputy director"],
-        "type": "string",
-        "description": "An enumeration."
       },
       "Registrant": {
         "title": "Registrant",
