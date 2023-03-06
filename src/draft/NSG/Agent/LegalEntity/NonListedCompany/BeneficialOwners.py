@@ -55,6 +55,7 @@ class Shareholders(CamelCaseModel):
         title="Name",
         description="The type of the share series of a company",
         example="Lars Lindberg | Company Ltd",
+        max_length=250,
     )
     ownerships: List[Ownerships] = Field(..., title="Ownerships")
 
