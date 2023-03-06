@@ -83,8 +83,8 @@
   },
   "components": {
     "schemas": {
-      "Auditor": {
-        "title": "Auditor",
+      "AuditorDetail": {
+        "title": "AuditorDetail",
         "type": "object",
         "properties": {
           "companyName": {
@@ -367,7 +367,7 @@
           "companyAddress",
           "managingDirectors",
           "boardMembers",
-          "auditor"
+          "auditorDetails"
         ],
         "type": "object",
         "properties": {
@@ -420,11 +420,11 @@
               "$ref": "#/components/schemas/BoardMembers"
             }
           },
-          "auditor": {
-            "title": "Auditor",
+          "auditorDetails": {
+            "title": "Auditor details",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Auditor"
+                "$ref": "#/components/schemas/AuditorDetail"
               }
             ],
             "description": "The details of the company and person auditing the company"

@@ -1550,7 +1550,7 @@ class BoardMembers(CamelCaseModel):
     )
 
 
-class Auditor(CamelCaseModel):
+class AuditorDetail(CamelCaseModel):
     companyName: Optional[str] = Field(
         None,
         title="Company name",
@@ -1610,9 +1610,9 @@ class EstablishmentRequest(CamelCaseModel):
         ...,
         title="Board members",
     )
-    auditor: Auditor = Field(
+    auditor_details: AuditorDetail = Field(
         ...,
-        title="Auditor",
+        title="Auditor details",
         description="The details of the company and person auditing the company",
     )
 
