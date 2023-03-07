@@ -62,7 +62,7 @@ class Shareholders(CamelCaseModel):
 
 class BeneficialOwnersRequest(CamelCaseModel):
     national_identifier: str = Field(
-        None,
+        ...,
         title="National identifier",
         description="The national identifier of the non-listed company issued by the trade register in any Nordic "
         "country.",
