@@ -1490,6 +1490,7 @@ class ManagingDirectors(CamelCaseModel):
         ...,
         title="Middle name",
         description="All the middle names of the person",
+        max_length=250,
         example="Juliet Olive",
         max_length=250,
     )
