@@ -1375,7 +1375,7 @@ class ShareSeries(CamelCaseModel):
         ...,
         title="Share value",
         description="The total nominal value of the issued shares of the company",
-        example=100,
+        example=10,
     )
     share_value_currency: Optional[ISO_4217_CurrencyCode] = Field(
         None,
