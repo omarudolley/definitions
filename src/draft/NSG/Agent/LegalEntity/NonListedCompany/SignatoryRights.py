@@ -254,9 +254,9 @@ class ISO_3166_1_Alpha_3(str, Enum):
 
 
 class SigningRights(CamelCaseModel):
-    personalID: Optional[str] = Field(
+    personal_id: Optional[str] = Field(
         None,
-        title="personalID",
+        title="Personal ID",
         description="The ID of a person if exists, e.g. social security number or similar",
         example="1129955131",
         max_length=40,
@@ -300,7 +300,7 @@ class SigningRights(CamelCaseModel):
         title="Full address",
         description="The complete address written as a string. Use of this property is recommended as it will not "
         "suffer any misunderstandings that might arise through the breaking up of an address into its "
-        "component parts. ",
+        "component parts.",
         example="Tietotie 4 A 7, 00100 Helsinki, Finland",
         max_length=250,
     )
@@ -309,7 +309,7 @@ class SigningRights(CamelCaseModel):
         None,
         title="Thoroughfare",
         description="The name of a passage or way through from one location to another. A thoroughfare is usually a "
-        "street, but it might be a waterway or some other feature. ",
+        "street, but it might be a waterway or some other feature.",
         example="Avenue des Champs-Élysées",
         max_length=40,
     )
@@ -328,7 +328,7 @@ class SigningRights(CamelCaseModel):
         "could be the name of the property or complex, of the building or part of the building, "
         "or it could be the name of a room inside a building. The key difference between a locator "
         "designator and a locator name is that the latter is a proper name and is unlikely to include "
-        "digits. ",
+        "digits.",
         example="Shumann, Berlaymont building",
         max_length=40,
     )
@@ -359,7 +359,7 @@ class SigningRights(CamelCaseModel):
     po_box: Optional[str] = Field(
         None,
         title="PO box",
-        description="A location designator for a postal delivery point at a post office, usually a number. ",
+        description="A location designator for a postal delivery point at a post office, usually a number.",
         example="9383",
         max_length=10,
     )
