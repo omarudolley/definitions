@@ -1483,6 +1483,7 @@ class ManagingDirectors(CamelCaseModel):
         ...,
         title="Given name",
         description="The first name that the person is being called by",
+        max_length=250,
         example="Mary",
         max_length=250,
     )
