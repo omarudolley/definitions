@@ -383,7 +383,7 @@ class SigningRights(CamelCaseModel):
 
 class SignatoryRightsRequest(CamelCaseModel):
     national_identifier: str = Field(
-        None,
+        ...,
         title="National identifier",
         description="The national identifier of the non-listed company issued by the trade register",
         example="2464491-9 / 5560125790",
