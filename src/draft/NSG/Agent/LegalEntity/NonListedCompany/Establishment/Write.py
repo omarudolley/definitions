@@ -1377,7 +1377,7 @@ class ShareSeries(CamelCaseModel):
         description="The total nominal value of the issued shares of the company",
         example=100,
     )
-    shareValueCurrency: ISO_4217_CurrencyCode = Field(
+    share_value_currency: Optional[ISO_4217_CurrencyCode] = Field(
         None,
         title="Share value currency",
         description="The currency used for paying the settlement deposit in ISO 4217 format",
@@ -1479,28 +1479,28 @@ class ManagingDirectors(CamelCaseModel):
         description="The role of the director",
         example=ManagingDirectorRole.DIRECTOR,
     )
-    givenName: str = Field(
+    given_name: str = Field(
         ...,
         title="Given name",
         description="The first name that the person is being called by",
         example="Mary",
         max_length=250,
     )
-    middleNames: str = Field(
+    middle_names: str = Field(
         ...,
         title="Middle name",
         description="All the middle names of the person",
         example="Juliet Olive",
         max_length=250,
     )
-    lastName: str = Field(
+    last_name: str = Field(
         ...,
         title="Last name",
         description="The person's current family name",
         example="Deo",
         max_length=250,
     )
-    dateOfBirth: date = Field(
+    date_of_birth: date = Field(
         ...,
         title="Date of birth",
         description="The birth day of a person",
@@ -1521,28 +1521,28 @@ class BoardMembers(CamelCaseModel):
         description="The role of the person in the board",
         example=BoardMemberRole.MEMBER,
     )
-    givenName: str = Field(
+    given_name: str = Field(
         ...,
         title="Given name",
         description="The first name that the person is being called by",
         example="Mary",
         max_length=250,
     )
-    middleNames: str = Field(
+    middle_names: str = Field(
         ...,
         title="Middle name",
         description="All the middle names of the person",
         example="Juliet Olive",
         max_length=250,
     )
-    lastName: str = Field(
+    last_name: str = Field(
         ...,
         title="Last name",
         description="The person's current family name",
         example="Deo",
         max_length=250,
     )
-    dateOfBirth: date = Field(
+    date_of_birth: date = Field(
         ...,
         title="Date of birth",
         description="The birth day of a person",
@@ -1557,28 +1557,28 @@ class BoardMembers(CamelCaseModel):
 
 
 class AuditorDetails(CamelCaseModel):
-    companyName: Optional[str] = Field(
+    company_name: Optional[str] = Field(
         None,
         title="Company name",
         description="The name of the auditor company if exists",
         example="Auditor company X",
         max_length=250,
     )
-    nationalIdentifier: Optional[str] = Field(
+    national_identifier: Optional[str] = Field(
         None,
         title="National identifier",
         description="The national identifier of the non-listed company issued by the trade register",
         example="2464491-9",
         max_length=40,
     )
-    givenName: Optional[str] = Field(
+    given_name: Optional[str] = Field(
         None,
         title="Given name",
         description="The first name that the person is being called by",
         example="Jane",
         max_length=250,
     )
-    lastName: Optional[str] = Field(
+    last_name: Optional[str] = Field(
         None,
         title="Last name",
         description="The person's current family name",
