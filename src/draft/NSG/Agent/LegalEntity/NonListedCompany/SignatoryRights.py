@@ -338,7 +338,7 @@ class SigningRights(CamelCaseModel):
     )
     locator_name: Optional[str] = Field(
         None,
-        title="Location name",
+        title="Locator name",
         description="Proper noun(s) applied to the real world entity identified by the locator. The locator name "
         "could be the name of the property or complex, of the building or part of the building, "
         "or it could be the name of a room inside a building. The key difference between a locator "
@@ -378,14 +378,14 @@ class SigningRights(CamelCaseModel):
         example="9383",
         max_length=10,
     )
-    admin_unit_level1: Optional[ISO_3166_1_Alpha_3] = Field(
+    admin_unit_level_1: Optional[ISO_3166_1_Alpha_3] = Field(
         None,
         title="Admin unit level 1",
         description="The name of the uppermost level of the address, almost always a country. ISO 3166 three "
         "character (Alpha 3) format.",
         example=ISO_3166_1_Alpha_3.USA,
     )
-    admin_unit_level2: Optional[str] = Field(
+    admin_unit_level_2: Optional[str] = Field(
         None,
         title="Admin unit level 2",
         description="The name of a secondary level/region of the address, usually a county, state or other such area "

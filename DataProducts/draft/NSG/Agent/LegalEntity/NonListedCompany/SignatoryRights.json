@@ -478,7 +478,7 @@
             "example": "Flat 3, 17 or 3 A 4"
           },
           "locatorName": {
-            "title": "Location name",
+            "title": "Locator name",
             "maxLength": 40,
             "type": "string",
             "description": "Proper noun(s) applied to the real world entity identified by the locator. The locator name could be the name of the property or complex, of the building or part of the building, or it could be the name of a room inside a building. The key difference between a locator designator and a locator name is that the latter is a proper name and is unlikely to include digits.",
@@ -512,7 +512,7 @@
             "description": "A location designator for a postal delivery point at a post office, usually a number.",
             "example": "9383"
           },
-          "adminUnitLevel1": {
+          "adminUnitLevel_1": {
             "title": "Admin unit level 1",
             "allOf": [
               {
@@ -522,7 +522,7 @@
             "description": "The name of the uppermost level of the address, almost always a country. ISO 3166 three character (Alpha 3) format.",
             "example": "USA"
           },
-          "adminUnitLevel2": {
+          "adminUnitLevel_2": {
             "title": "Admin unit level 2",
             "maxLength": 40,
             "type": "string",
