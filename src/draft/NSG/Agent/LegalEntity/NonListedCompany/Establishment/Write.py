@@ -1517,7 +1517,7 @@ class ManagingDirectors(CamelCaseModel):
 class BoardMembers(CamelCaseModel):
     role: BoardMemberRole = Field(
         ...,
-        title="List of board roles",
+        title="Role",
         description="The role of the person in the board",
         example=BoardMemberRole.MEMBER,
     )
