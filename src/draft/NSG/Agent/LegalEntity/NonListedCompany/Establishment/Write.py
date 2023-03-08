@@ -1483,7 +1483,6 @@ class ManagingDirectors(CamelCaseModel):
         ...,
         title="Given name",
         description="The first name that the person is being called by",
-        max_length=250,
         example="Mary",
         max_length=250,
     )
@@ -1491,7 +1490,6 @@ class ManagingDirectors(CamelCaseModel):
         ...,
         title="Middle name",
         description="All the middle names of the person",
-        max_length=250,
         example="Juliet Olive",
         max_length=250,
     )
@@ -1499,7 +1497,6 @@ class ManagingDirectors(CamelCaseModel):
         ...,
         title="Last name",
         description="The person's current family name",
-        max_length=250,
         example="Deo",
         max_length=250,
     )

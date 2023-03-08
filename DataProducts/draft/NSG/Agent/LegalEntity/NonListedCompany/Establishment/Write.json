@@ -136,7 +136,7 @@
         "type": "object",
         "properties": {
           "role": {
-            "title": "List of board roles",
+            "title": "Role",
             "allOf": [
               {
                 "$ref": "#/components/schemas/BoardMemberRole"
@@ -153,7 +153,7 @@
             "example": "Mary"
           },
           "middleNames": {
-            "title": "Middle name",
+            "title": "Middle names",
             "maxLength": 250,
             "type": "string",
             "description": "All the middle names of the person",
@@ -211,7 +211,7 @@
             "example": "Flat 3, 17 or 3 A 4"
           },
           "locatorName": {
-            "title": "Location name",
+            "title": "Locator name",
             "maxLength": 40,
             "type": "string",
             "description": "Proper noun(s) applied to the real world entity identified by the locator. The locator name could be the name of the property or complex, of the building or part of the building, or it could be the name of a room inside a building. The key difference between a locator designator and a locator name is that the latter is a proper name and is unlikely to include digits.",
@@ -245,7 +245,7 @@
             "description": "A location designator for a postal delivery point at a post office, usually a number.",
             "example": "9383"
           },
-          "adminUnitLevel1": {
+          "adminUnitLevel_1": {
             "title": "Admin unit level 1",
             "allOf": [
               {
@@ -255,7 +255,7 @@
             "description": "The name of the uppermost level of the address, almost always a country. ISO 3166 three character (Alpha 3) format.",
             "example": "USA"
           },
-          "adminUnitLevel2": {
+          "adminUnitLevel_2": {
             "title": "Admin unit level 2",
             "maxLength": 40,
             "type": "string",
@@ -1810,7 +1810,7 @@
             "title": "Share value",
             "type": "number",
             "description": "The total nominal value of the issued shares of the company",
-            "example": 100
+            "example": 10
           },
           "shareValueCurrency": {
             "title": "Share value currency",
