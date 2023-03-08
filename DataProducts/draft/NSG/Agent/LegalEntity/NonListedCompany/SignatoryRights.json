@@ -349,6 +349,7 @@
       },
       "SignatoryRightsRequest": {
         "title": "SignatoryRightsRequest",
+        "required": ["nationalIdentifier"],
         "type": "object",
         "properties": {
           "nationalIdentifier": {
@@ -385,8 +386,8 @@
         ],
         "type": "object",
         "properties": {
-          "personalID": {
-            "title": "personalID",
+          "personalId": {
+            "title": "Personal ID",
             "maxLength": 40,
             "type": "string",
             "description": "The ID of a person if exists, e.g. social security number or similar",
@@ -400,7 +401,7 @@
             "example": "Mary"
           },
           "middleNames": {
-            "title": "Middle name",
+            "title": "Middle names",
             "maxLength": 250,
             "type": "string",
             "description": "All the middle names of the person",
@@ -434,14 +435,14 @@
             "title": "Full address",
             "maxLength": 250,
             "type": "string",
-            "description": "The complete address written as a string. Use of this property is recommended as it will not suffer any misunderstandings that might arise through the breaking up of an address into its component parts. ",
+            "description": "The complete address written as a string. Use of this property is recommended as it will not suffer any misunderstandings that might arise through the breaking up of an address into its component parts.",
             "example": "Tietotie 4 A 7, 00100 Helsinki, Finland"
           },
           "thoroughfare": {
             "title": "Thoroughfare",
             "maxLength": 40,
             "type": "string",
-            "description": "The name of a passage or way through from one location to another. A thoroughfare is usually a street, but it might be a waterway or some other feature. ",
+            "description": "The name of a passage or way through from one location to another. A thoroughfare is usually a street, but it might be a waterway or some other feature.",
             "example": "Avenue des Champs-Élysées"
           },
           "locatorDesignator": {
@@ -455,7 +456,7 @@
             "title": "Location name",
             "maxLength": 40,
             "type": "string",
-            "description": "Proper noun(s) applied to the real world entity identified by the locator. The locator name could be the name of the property or complex, of the building or part of the building, or it could be the name of a room inside a building. The key difference between a locator designator and a locator name is that the latter is a proper name and is unlikely to include digits. ",
+            "description": "Proper noun(s) applied to the real world entity identified by the locator. The locator name could be the name of the property or complex, of the building or part of the building, or it could be the name of a room inside a building. The key difference between a locator designator and a locator name is that the latter is a proper name and is unlikely to include digits.",
             "example": "Shumann, Berlaymont building"
           },
           "addressArea": {
@@ -483,7 +484,7 @@
             "title": "PO box",
             "maxLength": 10,
             "type": "string",
-            "description": "A location designator for a postal delivery point at a post office, usually a number. ",
+            "description": "A location designator for a postal delivery point at a post office, usually a number.",
             "example": "9383"
           },
           "adminUnitLevel1": {
