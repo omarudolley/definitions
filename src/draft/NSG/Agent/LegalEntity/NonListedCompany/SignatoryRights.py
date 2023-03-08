@@ -253,6 +253,15 @@ class ISO_3166_1_Alpha_3(str, Enum):
     ZWE = "ZWE"
 
 
+class Role(str, Enum):
+    DIRECTOR = "director"
+    DEPUTY_DIRECTOR = "deputy director"
+    CHAIRPERSON = "chairperson"
+    BOARD_MEMBER = "board member"
+    DEPUTY_BOARD_MEMBER = "deputy board member"
+    OTHER = "other"
+
+
 class SigningRights(CamelCaseModel):
     personal_id: Optional[str] = Field(
         None,
@@ -260,6 +269,12 @@ class SigningRights(CamelCaseModel):
         description="The ID of a person if exists, e.g. social security number or similar",
         example="1129955131",
         max_length=40,
+    )
+    role: Role = Field(
+        ...,
+        title="Role",
+        example=Role.CHAIRPERSON,
+        description="The role of the person that has a signing right in the company",
     )
     given_name: str = Field(
         ...,
@@ -367,7 +382,7 @@ class SigningRights(CamelCaseModel):
         None,
         title="Admin unit level 1",
         description="The name of the uppermost level of the address, almost always a country. ISO 3166 three "
-        "character (Alpha 3) format",
+        "character (Alpha 3) format.",
         example=ISO_3166_1_Alpha_3.USA,
     )
     admin_unit_level2: Optional[str] = Field(
@@ -386,7 +401,7 @@ class SignatoryRightsRequest(CamelCaseModel):
         ...,
         title="National identifier",
         description="The national identifier of the non-listed company issued by the trade register",
-        example="2464491-9 / 5560125790",
+        example="FIN: 2464491-9 / SWE: 5560125791 / NOR: 923609016",
         max_length=40,
     )
 
@@ -395,6 +410,7 @@ class SignatoryRightsResponse(CamelCaseModel):
     signing_rights: List[SigningRights] = Field(
         ...,
         title="Signing rights",
+        description="The list of representatives that have signing rights for the company",
     )
 
 
