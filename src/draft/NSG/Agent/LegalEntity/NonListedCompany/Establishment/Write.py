@@ -1343,8 +1343,8 @@ class CompanyDetails(CamelCaseModel):
         "4217 format",
         example=ISO_4217_CurrencyCode.EUR,
     )
-    settlement_date: date = Field(
-        ...,
+    settlement_date: Optional[date] = Field(
+        None,
         title="Settlement date",
         description="The date of memorandum of association",
         example=date(2022, 2, 1),
@@ -1377,6 +1377,12 @@ class ShareSeries(CamelCaseModel):
         description="The total nominal value of the issued shares of the company",
         example=100,
     )
+    shareValueCurrency: ISO_4217_CurrencyCode = Field(
+        None,
+        title="Share value currency",
+        description="The currency used for paying the settlement deposit in ISO 4217 format",
+        example=ISO_4217_CurrencyCode.EUR,
+    )
 
 
 class CompanyAddress(CamelCaseModel):
@@ -1394,7 +1400,7 @@ class CompanyAddress(CamelCaseModel):
         None,
         title="Thoroughfare",
         description="The name of a passage or way through from one location to another. A thoroughfare is usually a "
-        "street, but it might be a waterway or some other feature. ",
+        "street, but it might be a waterway or some other feature.",
         example="Avenue des Champs-Élysées",
         max_length=40,
     )
@@ -1413,7 +1419,7 @@ class CompanyAddress(CamelCaseModel):
         "could be the name of the property or complex, of the building or part of the building, "
         "or it could be the name of a room inside a building. The key difference between a locator "
         "designator and a locator name is that the latter is a proper name and is unlikely to include "
-        "digits. ",
+        "digits.",
         example="Shumann, Berlaymont building",
         max_length=40,
     )
@@ -1421,7 +1427,7 @@ class CompanyAddress(CamelCaseModel):
         None,
         title="Address area",
         description="The name of a geographic area that groups Addresses. This would typically be part of a city, "
-        "a neighbourhood or village. Address area is not an administrative unit. ",
+        "a neighbourhood or village. Address area is not an administrative unit.",
         example="Montmartre (in Paris)",
         max_length=40,
     )
@@ -1444,7 +1450,7 @@ class CompanyAddress(CamelCaseModel):
     po_box: Optional[str] = Field(
         None,
         title="PO box",
-        description="A location designator for a postal delivery point at a post office, usually a number. ",
+        description="A location designator for a postal delivery point at a post office, usually a number.",
         example="9383",
         max_length=10,
     )
@@ -1452,7 +1458,7 @@ class CompanyAddress(CamelCaseModel):
         None,
         title="Admin unit level 1",
         description="The name of the uppermost level of the address, almost always a country. ISO 3166 three "
-        "character (Alpha 3) format",
+        "character (Alpha 3) format.",
         example=ISO_3166_1_Alpha_3.USA,
     )
     admin_unit_level2: Optional[str] = Field(
@@ -1550,7 +1556,7 @@ class BoardMembers(CamelCaseModel):
     )
 
 
-class AuditorDetail(CamelCaseModel):
+class AuditorDetails(CamelCaseModel):
     companyName: Optional[str] = Field(
         None,
         title="Company name",
@@ -1610,7 +1616,7 @@ class EstablishmentRequest(CamelCaseModel):
         ...,
         title="Board members",
     )
-    auditor_details: AuditorDetail = Field(
+    auditor_details: AuditorDetails = Field(
         ...,
         title="Auditor details",
         description="The details of the company and person auditing the company",

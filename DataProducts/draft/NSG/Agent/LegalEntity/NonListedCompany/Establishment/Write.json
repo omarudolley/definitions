@@ -83,8 +83,8 @@
   },
   "components": {
     "schemas": {
-      "AuditorDetail": {
-        "title": "AuditorDetail",
+      "AuditorDetails": {
+        "title": "AuditorDetails",
         "type": "object",
         "properties": {
           "companyName": {
@@ -193,14 +193,14 @@
             "title": "Full address",
             "maxLength": 250,
             "type": "string",
-            "description": "The complete address written as a string. Use of this property is recommended as it will not suffer any misunderstandings that might arise through the breaking up of an address into its component parts. ",
+            "description": "The complete address written as a string. Use of this property is recommended as it will not suffer any misunderstandings that might arise through the breaking up of an address into its component parts.",
             "example": "Tietotie 4 A 7, 00100 Helsinki, Finland"
           },
           "thoroughfare": {
             "title": "Thoroughfare",
             "maxLength": 40,
             "type": "string",
-            "description": "The name of a passage or way through from one location to another. A thoroughfare is usually a street, but it might be a waterway or some other feature. ",
+            "description": "The name of a passage or way through from one location to another. A thoroughfare is usually a street, but it might be a waterway or some other feature.",
             "example": "Avenue des Champs-Élysées"
           },
           "locatorDesignator": {
@@ -214,14 +214,14 @@
             "title": "Location name",
             "maxLength": 40,
             "type": "string",
-            "description": "Proper noun(s) applied to the real world entity identified by the locator. The locator name could be the name of the property or complex, of the building or part of the building, or it could be the name of a room inside a building. The key difference between a locator designator and a locator name is that the latter is a proper name and is unlikely to include digits. ",
+            "description": "Proper noun(s) applied to the real world entity identified by the locator. The locator name could be the name of the property or complex, of the building or part of the building, or it could be the name of a room inside a building. The key difference between a locator designator and a locator name is that the latter is a proper name and is unlikely to include digits.",
             "example": "Shumann, Berlaymont building"
           },
           "addressArea": {
             "title": "Address area",
             "maxLength": 40,
             "type": "string",
-            "description": "The name of a geographic area that groups Addresses. This would typically be part of a city, a neighbourhood or village. Address area is not an administrative unit. ",
+            "description": "The name of a geographic area that groups Addresses. This would typically be part of a city, a neighbourhood or village. Address area is not an administrative unit.",
             "example": "Montmartre (in Paris)"
           },
           "postCode": {
@@ -242,7 +242,7 @@
             "title": "PO box",
             "maxLength": 10,
             "type": "string",
-            "description": "A location designator for a postal delivery point at a post office, usually a number. ",
+            "description": "A location designator for a postal delivery point at a post office, usually a number.",
             "example": "9383"
           },
           "adminUnitLevel1": {
@@ -252,7 +252,7 @@
                 "$ref": "#/components/schemas/ISO_3166_1_Alpha_3"
               }
             ],
-            "description": "The name of the uppermost level of the address, almost always a country. ISO 3166 three character (Alpha 3) format",
+            "description": "The name of the uppermost level of the address, almost always a country. ISO 3166 three character (Alpha 3) format.",
             "example": "USA"
           },
           "adminUnitLevel2": {
@@ -271,8 +271,7 @@
           "foundingDate",
           "industrySector",
           "shareCapital",
-          "capitalCurrency",
-          "settlementDate"
+          "capitalCurrency"
         ],
         "type": "object",
         "properties": {
@@ -424,7 +423,7 @@
             "title": "Auditor details",
             "allOf": [
               {
-                "$ref": "#/components/schemas/AuditorDetail"
+                "$ref": "#/components/schemas/AuditorDetails"
               }
             ],
             "description": "The details of the company and person auditing the company"
@@ -1812,6 +1811,16 @@
             "type": "number",
             "description": "The total nominal value of the issued shares of the company",
             "example": 100
+          },
+          "shareValueCurrency": {
+            "title": "Share value currency",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ISO_4217_CurrencyCode"
+              }
+            ],
+            "description": "The currency used for paying the settlement deposit in ISO 4217 format",
+            "example": "EUR"
           }
         }
       },
