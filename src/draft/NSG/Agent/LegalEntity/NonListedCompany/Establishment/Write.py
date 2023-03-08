@@ -1414,7 +1414,7 @@ class CompanyAddress(CamelCaseModel):
     )
     locator_name: Optional[str] = Field(
         None,
-        title="Location name",
+        title="Locator name",
         description="Proper noun(s) applied to the real world entity identified by the locator. The locator name "
         "could be the name of the property or complex, of the building or part of the building, "
         "or it could be the name of a room inside a building. The key difference between a locator "
