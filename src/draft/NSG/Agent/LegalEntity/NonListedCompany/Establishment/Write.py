@@ -1385,7 +1385,7 @@ class CompanyAddress(CamelCaseModel):
         title="Full address",
         description="The complete address written as a string. Use of this property is recommended as it will not "
         "suffer any misunderstandings that might arise through the breaking up of an address into its "
-        "component parts. ",
+        "component parts.",
         example="Tietotie 4 A 7, 00100 Helsinki, Finland",
         max_length=250,
     )
