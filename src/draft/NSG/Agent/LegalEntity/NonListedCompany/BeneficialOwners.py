@@ -17,7 +17,7 @@ class Ownerships(CamelCaseModel):
     share_series_class: ShareSeriesClass = Field(
         ...,
         title="Share series class",
-        description="The class of the share series that the shareholder owns",
+        description="The class of the share series that the shareholder owns.",
         example=ShareSeriesClass.B,
     )
     quantity: int = Field(
@@ -89,8 +89,7 @@ class BeneficialOwnersResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    description="The list of beneficial owners of a non-listed company. The list of shareholders that exceed 25 % "
-    "ownership in the company.",
+    description="The list of beneficial owners of a non-listed company. The shareholders exceeding 25 % ownership.",
     request=BeneficialOwnersRequest,
     response=BeneficialOwnersResponse,
     summary="Non-listed Company Beneficial Owners",

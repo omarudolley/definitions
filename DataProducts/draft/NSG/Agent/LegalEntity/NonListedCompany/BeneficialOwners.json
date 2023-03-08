@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Non-listed Company Beneficial Owners",
-    "description": "The list of beneficial owners of a non-listed company. The list of shareholders that exceed 25 % ownership in the company.",
+    "description": "The list of beneficial owners of a non-listed company. The shareholders exceeding 25 % ownership.",
     "version": "1.0.0"
   },
   "paths": {
@@ -145,7 +145,7 @@
                 "$ref": "#/components/schemas/ShareSeriesClass"
               }
             ],
-            "description": "The class of the share series that the shareholder owns",
+            "description": "The class of the share series that the shareholder owns.",
             "example": "B"
           },
           "quantity": {
