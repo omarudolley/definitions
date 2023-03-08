@@ -488,7 +488,7 @@
             "title": "Address area",
             "maxLength": 40,
             "type": "string",
-            "description": "The name of a geographic area that groups Addresses. This would typically be part of a city, a neighbourhood or village. Address area is not an administrative unit. ",
+            "description": "The name of a geographic area that groups Addresses. This would typically be part of a city, a neighbourhood or village. Address area is not an administrative unit.",
             "example": "Montmartre (in Paris)"
           },
           "postCode": {

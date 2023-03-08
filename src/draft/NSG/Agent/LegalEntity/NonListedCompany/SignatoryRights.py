@@ -351,7 +351,7 @@ class SigningRights(CamelCaseModel):
         None,
         title="Address area",
         description="The name of a geographic area that groups Addresses. This would typically be part of a city, "
-        "a neighbourhood or village. Address area is not an administrative unit. ",
+        "a neighbourhood or village. Address area is not an administrative unit.",
         example="Montmartre (in Paris)",
         max_length=40,
     )
