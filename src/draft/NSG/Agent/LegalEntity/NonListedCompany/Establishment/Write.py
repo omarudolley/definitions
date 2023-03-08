@@ -1530,7 +1530,7 @@ class BoardMembers(CamelCaseModel):
     )
     middle_names: str = Field(
         ...,
-        title="Middle name",
+        title="Middle names",
         description="All the middle names of the person",
         example="Juliet Olive",
         max_length=250,
