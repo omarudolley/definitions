@@ -1497,6 +1497,7 @@ class ManagingDirectors(CamelCaseModel):
         ...,
         title="Last name",
         description="The person's current family name",
+        max_length=250,
         example="Deo",
         max_length=250,
     )
