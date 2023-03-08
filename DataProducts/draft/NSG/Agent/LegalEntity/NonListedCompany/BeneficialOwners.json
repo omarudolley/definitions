@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Non-listed Company Beneficial Owners",
-    "description": "The list of shareholders of a non-listed company",
+    "description": "The list of beneficial owners of a non-listed company. The shareholders exceeding 25 % ownership.",
     "version": "1.0.0"
   },
   "paths": {
@@ -85,6 +85,7 @@
     "schemas": {
       "BeneficialOwnersRequest": {
         "title": "BeneficialOwnersRequest",
+        "required": ["nationalIdentifier"],
         "type": "object",
         "properties": {
           "nationalIdentifier": {
@@ -98,7 +99,7 @@
       },
       "BeneficialOwnersResponse": {
         "title": "BeneficialOwnersResponse",
-        "required": ["shareSeries", "shareHolders", "ownerships"],
+        "required": ["shareSeries", "shareholders", "ownerships"],
         "type": "object",
         "properties": {
           "shareSeries": {
@@ -109,8 +110,8 @@
             },
             "description": "The details of the share series of the company"
           },
-          "shareHolders": {
-            "title": "Share holders",
+          "shareholders": {
+            "title": "Shareholders",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Shareholders"
