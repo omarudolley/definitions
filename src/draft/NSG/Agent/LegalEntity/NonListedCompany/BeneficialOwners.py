@@ -53,11 +53,15 @@ class Shareholders(CamelCaseModel):
     name: str = Field(
         ...,
         title="Name",
-        description="The type of the share series of a company",
+        description="The name of a shareholder of the company",
         example="Lars Lindberg | Company Ltd",
         max_length=250,
     )
-    ownerships: List[Ownerships] = Field(..., title="Ownerships")
+    ownerships: List[Ownerships] = Field(
+        ...,
+        title="Ownerships",
+        description="The list of ownerships that the shareholder has in the company",
+    )
 
 
 class BeneficialOwnersRequest(CamelCaseModel):
@@ -82,14 +86,11 @@ class BeneficialOwnersResponse(CamelCaseModel):
         title="Shareholders",
         description="The list of beneficial owners of the company",
     )
-    ownerships: Ownerships = Field(
-        ...,
-        title="Ownership",
-    )
 
 
 DEFINITION = DataProductDefinition(
-    description="The list of beneficial owners of a non-listed company. The shareholders exceeding 25 % ownership.",
+    description="The list of beneficial owners of a non-listed company. The list of shareholders that exceed 25 % "
+    "ownership in the company.",
     request=BeneficialOwnersRequest,
     response=BeneficialOwnersResponse,
     summary="Non-listed Company Beneficial Owners",

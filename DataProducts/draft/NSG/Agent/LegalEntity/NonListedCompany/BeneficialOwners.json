@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Non-listed Company Beneficial Owners",
-    "description": "The list of beneficial owners of a non-listed company. The shareholders exceeding 25 % ownership.",
+    "description": "The list of beneficial owners of a non-listed company. The list of shareholders that exceed 25 % ownership in the company.",
     "version": "1.0.0"
   },
   "paths": {
@@ -99,7 +99,7 @@
       },
       "BeneficialOwnersResponse": {
         "title": "BeneficialOwnersResponse",
-        "required": ["shareSeries", "shareholders", "ownerships"],
+        "required": ["shareSeries", "shareholders"],
         "type": "object",
         "properties": {
           "shareSeries": {
@@ -117,14 +117,6 @@
               "$ref": "#/components/schemas/Shareholders"
             },
             "description": "The list of beneficial owners of the company"
-          },
-          "ownerships": {
-            "title": "Ownership",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Ownerships"
-              }
-            ]
           }
         }
       },
@@ -208,7 +200,7 @@
             "title": "Name",
             "maxLength": 250,
             "type": "string",
-            "description": "The type of the share series of a company",
+            "description": "The name of a shareholder of the company",
             "example": "Lars Lindberg | Company Ltd"
           },
           "ownerships": {
@@ -216,7 +208,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Ownerships"
-            }
+            },
+            "description": "The list of ownerships that the shareholder has in the company"
           }
         }
       },
