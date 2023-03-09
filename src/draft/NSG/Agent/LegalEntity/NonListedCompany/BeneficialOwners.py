@@ -1,24 +1,16 @@
-from enum import Enum
 from typing import List
 
 from converter import CamelCaseModel, DataProductDefinition
 from pydantic import Field
 
 
-class ShareSeriesClass(str, Enum):
-    A = "A"
-    B = "B"
-    C = "C"
-    D = "D"
-    E = "E"
-
-
-class Ownerships(CamelCaseModel):
-    share_series_class: ShareSeriesClass = Field(
+class ShareOwnership(CamelCaseModel):
+    share_series_class: str = Field(
         ...,
         title="Share series class",
         description="The class of the share series that the shareholder owns.",
-        example=ShareSeriesClass.B,
+        example="B",
+        max_length=5,
     )
     quantity: int = Field(
         ...,
@@ -29,11 +21,12 @@ class Ownerships(CamelCaseModel):
 
 
 class ShareSeries(CamelCaseModel):
-    share_series_class: ShareSeriesClass = Field(
+    share_series_class: str = Field(
         ...,
         title="Share series class",
         description="The type of the share series of a company",
-        example=ShareSeriesClass.A,
+        example="A",
+        max_length=5,
     )
     number_of_shares: int = Field(
         ...,
@@ -49,7 +42,7 @@ class ShareSeries(CamelCaseModel):
     )
 
 
-class Shareholders(CamelCaseModel):
+class Shareholder(CamelCaseModel):
     name: str = Field(
         ...,
         title="Name",
@@ -57,9 +50,9 @@ class Shareholders(CamelCaseModel):
         example="Lars Lindberg | Company Ltd",
         max_length=250,
     )
-    ownerships: List[Ownerships] = Field(
+    share_ownership: List[ShareOwnership] = Field(
         ...,
-        title="Ownerships",
+        title="Share ownership",
         description="The list of ownerships that the shareholder has in the company",
     )
 
@@ -81,9 +74,9 @@ class BeneficialOwnersResponse(CamelCaseModel):
         title="Share series",
         description="The details of the share series of the company",
     )
-    shareholders: List[Shareholders] = Field(
+    shareholder: List[Shareholder] = Field(
         ...,
-        title="Shareholders",
+        title="Shareholder",
         description="The list of beneficial owners of the company",
     )
 

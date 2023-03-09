@@ -99,7 +99,7 @@
       },
       "BeneficialOwnersResponse": {
         "title": "BeneficialOwnersResponse",
-        "required": ["shareSeries", "shareholders"],
+        "required": ["shareSeries", "shareholder"],
         "type": "object",
         "properties": {
           "shareSeries": {
@@ -110,11 +110,11 @@
             },
             "description": "The details of the share series of the company"
           },
-          "shareholders": {
-            "title": "Shareholders",
+          "shareholder": {
+            "title": "Shareholder",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Shareholders"
+              "$ref": "#/components/schemas/Shareholder"
             },
             "description": "The list of beneficial owners of the company"
           }
@@ -133,18 +133,15 @@
           }
         }
       },
-      "Ownerships": {
-        "title": "Ownerships",
+      "ShareOwnership": {
+        "title": "ShareOwnership",
         "required": ["shareSeriesClass", "quantity"],
         "type": "object",
         "properties": {
           "shareSeriesClass": {
             "title": "Share series class",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ShareSeriesClass"
-              }
-            ],
+            "maxLength": 5,
+            "type": "string",
             "description": "The class of the share series that the shareholder owns.",
             "example": "B"
           },
@@ -163,11 +160,8 @@
         "properties": {
           "shareSeriesClass": {
             "title": "Share series class",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ShareSeriesClass"
-              }
-            ],
+            "maxLength": 5,
+            "type": "string",
             "description": "The type of the share series of a company",
             "example": "A"
           },
@@ -185,15 +179,9 @@
           }
         }
       },
-      "ShareSeriesClass": {
-        "title": "ShareSeriesClass",
-        "enum": ["A", "B", "C", "D", "E"],
-        "type": "string",
-        "description": "An enumeration."
-      },
-      "Shareholders": {
-        "title": "Shareholders",
-        "required": ["name", "ownerships"],
+      "Shareholder": {
+        "title": "Shareholder",
+        "required": ["name", "shareOwnership"],
         "type": "object",
         "properties": {
           "name": {
@@ -203,11 +191,11 @@
             "description": "The name of a shareholder of the company",
             "example": "Lars Lindberg | Company Ltd"
           },
-          "ownerships": {
-            "title": "Ownerships",
+          "shareOwnership": {
+            "title": "Share ownership",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Ownerships"
+              "$ref": "#/components/schemas/ShareOwnership"
             },
             "description": "The list of ownerships that the shareholder has in the company"
           }
