@@ -1465,7 +1465,7 @@ class CompanyAddress(CamelCaseModel):
     )
 
 
-class ManagingDirectors(CamelCaseModel):
+class ManagingDirector(CamelCaseModel):
     role: ManagingDirectorRole = Field(
         ...,
         title="Role",
@@ -1507,7 +1507,7 @@ class ManagingDirectors(CamelCaseModel):
     )
 
 
-class BoardMembers(CamelCaseModel):
+class BoardMember(CamelCaseModel):
     role: BoardMemberRole = Field(
         ...,
         title="Role",
@@ -1601,11 +1601,11 @@ class EstablishmentRequest(CamelCaseModel):
         title="Company address",
         description="The official address of the company",
     )
-    managing_directors: List[ManagingDirectors] = Field(
+    managing_directors: List[ManagingDirector] = Field(
         ...,
         title="Managing directors",
     )
-    board_members: List[BoardMembers] = Field(
+    board_members: List[BoardMember] = Field(
         ...,
         title="Board members",
     )

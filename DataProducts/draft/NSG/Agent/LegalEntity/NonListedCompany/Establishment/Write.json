@@ -117,14 +117,8 @@
           }
         }
       },
-      "BoardMemberRole": {
-        "title": "BoardMemberRole",
-        "enum": ["chairperson", "member", "deputy member"],
-        "type": "string",
-        "description": "An enumeration."
-      },
-      "BoardMembers": {
-        "title": "BoardMembers",
+      "BoardMember": {
+        "title": "BoardMember",
         "required": [
           "role",
           "givenName",
@@ -184,6 +178,12 @@
             "example": "USA"
           }
         }
+      },
+      "BoardMemberRole": {
+        "title": "BoardMemberRole",
+        "enum": ["chairperson", "member", "deputy member"],
+        "type": "string",
+        "description": "An enumeration."
       },
       "CompanyAddress": {
         "title": "CompanyAddress",
@@ -409,14 +409,14 @@
             "title": "Managing directors",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ManagingDirectors"
+              "$ref": "#/components/schemas/ManagingDirector"
             }
           },
           "boardMembers": {
             "title": "Board members",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/BoardMembers"
+              "$ref": "#/components/schemas/BoardMember"
             }
           },
           "auditorDetails": {
@@ -1682,14 +1682,8 @@
         "type": "string",
         "description": "An enumeration."
       },
-      "ManagingDirectorRole": {
-        "title": "ManagingDirectorRole",
-        "enum": ["director", "deputy director"],
-        "type": "string",
-        "description": "An enumeration."
-      },
-      "ManagingDirectors": {
-        "title": "ManagingDirectors",
+      "ManagingDirector": {
+        "title": "ManagingDirector",
         "required": [
           "role",
           "givenName",
@@ -1749,6 +1743,12 @@
             "example": "USA"
           }
         }
+      },
+      "ManagingDirectorRole": {
+        "title": "ManagingDirectorRole",
+        "enum": ["director", "deputy director"],
+        "type": "string",
+        "description": "An enumeration."
       },
       "Registrant": {
         "title": "Registrant",
