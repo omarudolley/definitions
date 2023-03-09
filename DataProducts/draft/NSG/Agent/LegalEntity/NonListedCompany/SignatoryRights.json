@@ -360,37 +360,8 @@
         "type": "string",
         "description": "An enumeration."
       },
-      "SignatoryRightsRequest": {
-        "title": "SignatoryRightsRequest",
-        "required": ["nationalIdentifier"],
-        "type": "object",
-        "properties": {
-          "nationalIdentifier": {
-            "title": "National identifier",
-            "maxLength": 40,
-            "type": "string",
-            "description": "The national identifier of the non-listed company issued by the trade register",
-            "example": "FIN: 2464491-9 / SWE: 5560125791 / NOR: 923609016"
-          }
-        }
-      },
-      "SignatoryRightsResponse": {
-        "title": "SignatoryRightsResponse",
-        "required": ["signingRights"],
-        "type": "object",
-        "properties": {
-          "signingRights": {
-            "title": "Signing rights",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SigningRights"
-            },
-            "description": "The list of representatives that have signing rights for the company"
-          }
-        }
-      },
-      "SigningRights": {
-        "title": "SigningRights",
+      "SignatoryRights": {
+        "title": "SignatoryRights",
         "required": [
           "role",
           "givenName",
@@ -401,13 +372,6 @@
         ],
         "type": "object",
         "properties": {
-          "personalId": {
-            "title": "Personal ID",
-            "maxLength": 40,
-            "type": "string",
-            "description": "The ID of a person if exists, e.g. social security number or similar",
-            "example": "1129955131"
-          },
           "role": {
             "title": "Role",
             "allOf": [
@@ -417,6 +381,13 @@
             ],
             "description": "The role of the person that has a signing right in the company",
             "example": "chairperson"
+          },
+          "personalId": {
+            "title": "Personal ID",
+            "maxLength": 40,
+            "type": "string",
+            "description": "The ID of a person if exists, e.g. social security number or similar",
+            "example": "1129955131"
           },
           "givenName": {
             "title": "Given name",
@@ -528,6 +499,35 @@
             "type": "string",
             "description": "The name of a secondary level/region of the address, usually a county, state or other such area that typically encompasses several localities. Values could be a region or province, more granular than level 1.",
             "example": "Lapland"
+          }
+        }
+      },
+      "SignatoryRightsRequest": {
+        "title": "SignatoryRightsRequest",
+        "required": ["nationalIdentifier"],
+        "type": "object",
+        "properties": {
+          "nationalIdentifier": {
+            "title": "National identifier",
+            "maxLength": 40,
+            "type": "string",
+            "description": "The national identifier of the non-listed company issued by the trade register",
+            "example": "FIN: 2464491-9 / SWE: 5560125791 / NOR: 923609016"
+          }
+        }
+      },
+      "SignatoryRightsResponse": {
+        "title": "SignatoryRightsResponse",
+        "required": ["signingRights"],
+        "type": "object",
+        "properties": {
+          "signingRights": {
+            "title": "Signing rights",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SignatoryRights"
+            },
+            "description": "The list of representatives that have signing rights for the company"
           }
         }
       },

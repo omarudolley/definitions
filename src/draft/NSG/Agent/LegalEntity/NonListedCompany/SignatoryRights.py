@@ -262,19 +262,19 @@ class Role(str, Enum):
     OTHER = "other"
 
 
-class SigningRights(CamelCaseModel):
-    personal_id: Optional[str] = Field(
-        None,
-        title="Personal ID",
-        description="The ID of a person if exists, e.g. social security number or similar",
-        example="1129955131",
-        max_length=40,
-    )
+class SignatoryRights(CamelCaseModel):
     role: Role = Field(
         ...,
         title="Role",
         example=Role.CHAIRPERSON,
         description="The role of the person that has a signing right in the company",
+    )
+    personalId: Optional[str] = Field(
+        None,
+        title="Personal ID",
+        description="The ID of a person if exists, e.g. social security number or similar",
+        example="1129955131",
+        max_length=40,
     )
     given_name: str = Field(
         ...,
@@ -407,7 +407,7 @@ class SignatoryRightsRequest(CamelCaseModel):
 
 
 class SignatoryRightsResponse(CamelCaseModel):
-    signing_rights: List[SigningRights] = Field(
+    signing_rights: List[SignatoryRights] = Field(
         ...,
         title="Signing rights",
         description="The list of representatives that have signing rights for the company",
