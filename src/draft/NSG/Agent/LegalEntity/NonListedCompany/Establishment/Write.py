@@ -1370,10 +1370,10 @@ class ShareSeries(CamelCaseModel):
         description="The total nominal value of the issued shares of the company",
         example=10,
     )
-    share_value_currency: Optional[ISO_4217_CurrencyCode] = Field(
+    share_value_currency: ISO_4217_CurrencyCode = Field(
         None,
         title="Share value currency",
-        description="The currency used for paying the settlement deposit in ISO 4217 format",
+        description="The currency used for the share value in ISO 4217 format",
         example=ISO_4217_CurrencyCode.EUR,
     )
 
@@ -1496,13 +1496,13 @@ class ManagingDirectors(CamelCaseModel):
     date_of_birth: date = Field(
         ...,
         title="Date of birth",
-        description="The birth day of a person",
+        description="The birth day of the person",
         example=date(1976, 4, 16),
     )
     nationality: ISO_3166_1_Alpha_3 = Field(
         ...,
         title="Nationality",
-        description="The nationality of a person",
+        description="The nationality of the person",
         example=ISO_3166_1_Alpha_3.USA,
     )
 
@@ -1538,13 +1538,13 @@ class BoardMembers(CamelCaseModel):
     date_of_birth: date = Field(
         ...,
         title="Date of birth",
-        description="The birth day of a person",
+        description="The birth day of the person",
         example=date(1976, 4, 16),
     )
     nationality: ISO_3166_1_Alpha_3 = Field(
         ...,
         title="Nationality",
-        description="The nationality of a person",
+        description="The nationality of the person",
         example=ISO_3166_1_Alpha_3.USA,
     )
 

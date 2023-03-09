@@ -169,7 +169,7 @@
           "dateOfBirth": {
             "title": "Date of birth",
             "type": "string",
-            "description": "The birth day of a person",
+            "description": "The birth day of the person",
             "format": "date",
             "example": "1976-04-16"
           },
@@ -180,7 +180,7 @@
                 "$ref": "#/components/schemas/ISO_3166_1_Alpha_3"
               }
             ],
-            "description": "The nationality of a person",
+            "description": "The nationality of the person",
             "example": "USA"
           }
         }
@@ -1734,7 +1734,7 @@
           "dateOfBirth": {
             "title": "Date of birth",
             "type": "string",
-            "description": "The birth day of a person",
+            "description": "The birth day of the person",
             "format": "date",
             "example": "1976-04-16"
           },
@@ -1745,7 +1745,7 @@
                 "$ref": "#/components/schemas/ISO_3166_1_Alpha_3"
               }
             ],
-            "description": "The nationality of a person",
+            "description": "The nationality of the person",
             "example": "USA"
           }
         }
@@ -1816,7 +1816,7 @@
                 "$ref": "#/components/schemas/ISO_4217_CurrencyCode"
               }
             ],
-            "description": "The currency used for paying the settlement deposit in ISO 4217 format",
+            "description": "The currency used for the share value in ISO 4217 format",
             "example": "EUR"
           }
         }
