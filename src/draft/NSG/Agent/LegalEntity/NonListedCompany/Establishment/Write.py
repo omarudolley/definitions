@@ -1475,7 +1475,7 @@ class CompanyAddress(CamelCaseModel):
 class ManagingDirectors(CamelCaseModel):
     role: ManagingDirectorRole = Field(
         ...,
-        title="List of director roles",
+        title="Role",
         description="The role of the director",
         example=ManagingDirectorRole.DIRECTOR,
     )
