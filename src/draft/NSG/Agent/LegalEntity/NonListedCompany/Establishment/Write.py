@@ -1553,7 +1553,7 @@ class AuditorDetails(CamelCaseModel):
     company_name: Optional[str] = Field(
         None,
         title="Company name",
-        description="The name of the auditor company if exists",
+        description="The name of the auditor company if it exists",
         example="Auditor company X",
         max_length=250,
     )
