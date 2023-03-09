@@ -1560,7 +1560,7 @@ class AuditorDetails(CamelCaseModel):
     national_identifier: Optional[str] = Field(
         None,
         title="National identifier",
-        description="The national identifier of the non-listed company issued by the trade register",
+        description="The national identifier of the auditor company issued by the trade register",
         example="2464491-9",
         max_length=40,
     )

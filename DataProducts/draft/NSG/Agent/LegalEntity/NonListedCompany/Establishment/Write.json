@@ -98,7 +98,7 @@
             "title": "National identifier",
             "maxLength": 40,
             "type": "string",
-            "description": "The national identifier of the non-listed company issued by the trade register",
+            "description": "The national identifier of the auditor company issued by the trade register",
             "example": "2464491-9"
           },
           "givenName": {
