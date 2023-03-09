@@ -1701,7 +1701,7 @@
         "type": "object",
         "properties": {
           "role": {
-            "title": "List of director roles",
+            "title": "Role",
             "allOf": [
               {
                 "$ref": "#/components/schemas/ManagingDirectorRole"
@@ -1792,11 +1792,8 @@
         "properties": {
           "shareSeriesClass": {
             "title": "Share series class",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ShareSeriesClass"
-              }
-            ],
+            "maxLength": 5,
+            "type": "string",
             "description": "The type of the share series of a company",
             "example": "A"
           },
@@ -1823,12 +1820,6 @@
             "example": "EUR"
           }
         }
-      },
-      "ShareSeriesClass": {
-        "title": "ShareSeriesClass",
-        "enum": ["A", "B", "C", "D", "E"],
-        "type": "string",
-        "description": "An enumeration."
       },
       "ValidationError": {
         "title": "ValidationError",

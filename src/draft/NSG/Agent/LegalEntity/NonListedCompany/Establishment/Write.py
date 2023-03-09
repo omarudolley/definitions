@@ -1239,14 +1239,6 @@ class ISO_4217_CurrencyCode(str, Enum):
     ISK = "ISK"
 
 
-class ShareSeriesClass(str, Enum):
-    A = "A"
-    B = "B"
-    C = "C"
-    D = "D"
-    E = "E"
-
-
 class BoardMemberRole(str, Enum):
     CHAIRPERSON = "chairperson"
     MEMBER = "member"
@@ -1359,11 +1351,12 @@ class CompanyDetails(CamelCaseModel):
 
 
 class ShareSeries(CamelCaseModel):
-    share_series_class: ShareSeriesClass = Field(
+    share_series_class: str = Field(
         ...,
         title="Share series class",
         description="The type of the share series of a company",
-        example=ShareSeriesClass.A,
+        example="A",
+        max_length=5,
     )
     number_of_shares: int = Field(
         ...,
