@@ -72,7 +72,7 @@ class BeneficialOwnersResponse(CamelCaseModel):
     share_series: List[ShareSeries] = Field(
         ...,
         title="Share series",
-        description="The details of the share series of the company",
+        description="The details of the share series classes of the company",
     )
     shareholder: List[Shareholder] = Field(
         ...,

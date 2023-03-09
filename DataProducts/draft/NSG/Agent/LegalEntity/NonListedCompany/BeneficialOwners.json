@@ -108,7 +108,7 @@
             "items": {
               "$ref": "#/components/schemas/ShareSeries"
             },
-            "description": "The details of the share series of the company"
+            "description": "The details of the share series classes of the company"
           },
           "shareholder": {
             "title": "Shareholder",
