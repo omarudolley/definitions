@@ -1584,7 +1584,7 @@ class EstablishmentRequest(CamelCaseModel):
     registrant: Registrant = Field(
         ...,
         title="Registrant",
-        description="The personal details of person registering the company",
+        description="The personal details of the person registering the company",
     )
     company_details: CompanyDetails = Field(
         ...,
