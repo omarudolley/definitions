@@ -221,7 +221,7 @@
             "title": "Address area",
             "maxLength": 40,
             "type": "string",
-            "description": "The name of a geographic area that groups Addresses. This would typically be part of a city, a neighbourhood or village. Address area is not an administrative unit.",
+            "description": "The name of a geographic area that groups addresses. This would typically be part of a city, a neighbourhood or village. Address area is not an administrative unit.",
             "example": "Montmartre (in Paris)"
           },
           "postCode": {
@@ -341,7 +341,7 @@
           "settlementDate": {
             "title": "Settlement date",
             "type": "string",
-            "description": "The date of memorandum of association",
+            "description": "The date on which the share deposit has been settled and available as full",
             "format": "date",
             "example": "2022-02-01"
           },
@@ -1806,7 +1806,7 @@
           "shareValue": {
             "title": "Share value",
             "type": "number",
-            "description": "The total nominal value of the issued shares of the company",
+            "description": "The nominal value of a share of this class",
             "example": 10
           },
           "shareValueCurrency": {

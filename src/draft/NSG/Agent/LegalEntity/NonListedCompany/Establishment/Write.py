@@ -1339,7 +1339,8 @@ class CompanyDetails(CamelCaseModel):
     settlement_date: Optional[date] = Field(
         None,
         title="Settlement date",
-        description="The date of memorandum of association",
+        description="The date on which the share deposit has been settled and "
+        "available as full",
         example=date(2022, 2, 1),
     )
     country_of_residence: Optional[ISO_3166_1_Alpha_3] = Field(
@@ -1368,7 +1369,7 @@ class ShareSeries(CamelCaseModel):
     share_value: float = Field(
         ...,
         title="Share value",
-        description="The total nominal value of the issued shares of the company",
+        description="The nominal value of a share of this class",
         example=10,
     )
     share_value_currency: ISO_4217_CurrencyCode = Field(
@@ -1423,7 +1424,7 @@ class CompanyAddress(CamelCaseModel):
     address_area: Optional[str] = Field(
         None,
         title="Address area",
-        description="The name of a geographic area that groups Addresses. This would "
+        description="The name of a geographic area that groups addresses. This would "
         "typically be part of a city, a neighbourhood or village. Address area is not "
         "an administrative unit.",
         example="Montmartre (in Paris)",
