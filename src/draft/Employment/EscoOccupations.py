@@ -3033,7 +3033,7 @@ class Occupation(CamelCaseModel):
         ...,
         title="ESCO Alternative Job Titles",
         description="The alternative job titles based on ESCO classification",
-        example="[coach driver, driver of a bus]",
+        example=["coach driver", "driver of a bus"],
     )
     esco_description: str = Field(
         ...,
