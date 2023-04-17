@@ -3163,7 +3163,7 @@
         "type": "object",
         "properties": {
           "escoCode": {
-            "title": "ESCO codes",
+            "title": "ESCO Code",
             "allOf": [
               {
                 "$ref": "#/components/schemas/EscoCode"
