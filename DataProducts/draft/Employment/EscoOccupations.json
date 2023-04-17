@@ -3128,7 +3128,7 @@
             "items": {
               "$ref": "#/components/schemas/Occupation"
             },
-            "description": "A list of relevant occupation classes based on ESCO standard"
+            "description": "The list of occupations based on ESCO standard"
           },
           "totalCount": {
             "title": "Total Count",
@@ -3153,7 +3153,13 @@
       },
       "Occupation": {
         "title": "Occupation",
-        "required": ["escoCode", "escoJobTitle", "escoDescription", "escoIdentifier"],
+        "required": [
+          "escoCode",
+          "escoJobTitle",
+          "alternativeTitles",
+          "escoDescription",
+          "escoIdentifier"
+        ],
         "type": "object",
         "properties": {
           "escoCode": {
@@ -3168,14 +3174,22 @@
           },
           "escoJobTitle": {
             "title": "ESCO Job Title",
-            "maxLength": 40,
+            "maxLength": 250,
             "type": "string",
             "description": "The job title based on ESCO classification",
             "example": "bus driver"
           },
+          "alternativeTitles": {
+            "title": "ESCO Alternative Job Titles",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The alternative job titles based on ESCO classification",
+            "example": "[coach driver, driver of a bus]"
+          },
           "escoDescription": {
             "title": "ESCO Job Title Description",
-            "maxLength": 250,
             "type": "string",
             "description": "The description of the job title",
             "example": "Bus drivers operate buses or coaches, take fares, and look after passengers."

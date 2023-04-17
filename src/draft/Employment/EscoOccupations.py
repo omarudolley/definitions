@@ -3026,14 +3026,19 @@ class Occupation(CamelCaseModel):
         ...,
         title="ESCO Job Title",
         description="The job title based on ESCO classification",
-        max_length=40,
+        max_length=250,
         example="bus driver",
+    )
+    alternative_titles: List[str] = Field(
+        ...,
+        title="ESCO Alternative Job Titles",
+        description="The alternative job titles based on ESCO classification",
+        example="[coach driver, driver of a bus]",
     )
     esco_description: str = Field(
         ...,
         title="ESCO Job Title Description",
         description="The description of the job title",
-        max_length=250,
         example="Bus drivers operate buses or coaches, take fares, and look after passengers.",
     )
     esco_identifier: HttpUrl = Field(
@@ -3065,7 +3070,7 @@ class EscoOccupationResponse(CamelCaseModel):
     occupations: List[Occupation] = Field(
         ...,
         title="Occupations",
-        description="A list of relevant occupation classes based on ESCO standard",
+        description="The list of occupations based on ESCO standard",
     )
     total_count: int = Field(
         ...,
