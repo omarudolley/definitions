@@ -3018,7 +3018,7 @@ class EscoCode(str, Enum):
 class Occupation(CamelCaseModel):
     esco_code: EscoCode = Field(
         ...,
-        title="ESCO codes",
+        title="ESCO Code",
         description="The ESCO code based on the level 5 or narrower in ESCO classification",
         example=EscoCode.ESCO_8331_1,
     )
