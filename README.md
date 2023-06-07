@@ -54,7 +54,7 @@ structure:
 ```python
 from pydantic import Field
 
-from converter import CamelCaseModel, DataProductDefinition
+from converter import CamelCaseModel, DataProductDefinition, ErrorResponse
 
 
 class Request(CamelCaseModel):
@@ -65,12 +65,23 @@ class Response(CamelCaseModel):
     ...
 
 
+@ErrorResponse(description="...")
+class Error418(CamelCaseModel):
+    ...
+
+
 DEFINITION = DataProductDefinition(
     description="...",
     request=Request,
     response=Response,
     route_description="...",
     summary="...",
+    requires_authorization=False,
+    requires_consent=False,
+    error_responses={
+        418: Error418,
+    },
+    deprecated=False,
 )
 
 ```
@@ -117,6 +128,15 @@ DataProductDefinition is a structure consisting of:
 - `requires_consent`
 
   Marks the X-Consent-Token header as required
+
+- `error_responses`
+
+  A mapping from HTTP error status codes to pydantic models, wrapped in the
+  `ErrorResponse` decorator, describing expected error responses from the data source
+
+- `deprecated`
+
+  Marks the route as deprecated
 
 ### Example
 
