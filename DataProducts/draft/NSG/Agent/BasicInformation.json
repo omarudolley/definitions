@@ -67,6 +67,66 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseFor401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentRequired"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSourceNotFound"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseFor502"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSourceUnavailable"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSourceTimeout"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation Error",
             "content": {
@@ -83,6 +143,28 @@
   },
   "components": {
     "schemas": {
+      "AuthorizationRequired": {
+        "title": "AuthorizationRequired",
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "default": "Authorization is required to access this data source"
+          }
+        }
+      },
+      "AuthorizationRequiredForUnpublished": {
+        "title": "AuthorizationRequiredForUnpublished",
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "default": "Unpublished data sources require preview token"
+          }
+        }
+      },
       "BasicInformationRequest": {
         "title": "BasicInformationRequest",
         "required": ["nationalIdentifier"],
@@ -141,6 +223,83 @@
           },
           "registeredAddress": {
             "$ref": "#/components/schemas/RegisteredAddress"
+          }
+        }
+      },
+      "ConsentRequired": {
+        "title": "ConsentRequired",
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "default": "Consent is required to access this data source"
+          }
+        }
+      },
+      "DataSourceError": {
+        "title": "DataSourceError",
+        "required": ["status", "error"],
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "default": "Data source returned an error"
+          },
+          "status": {
+            "title": "Status code",
+            "minimum": 400.0,
+            "type": "integer",
+            "description": "Status code from the data source"
+          },
+          "error": {
+            "title": "Original error",
+            "description": "Raw error from the data source"
+          }
+        }
+      },
+      "DataSourceNotFound": {
+        "title": "DataSourceNotFound",
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "default": "Requested data source is not found"
+          }
+        }
+      },
+      "DataSourceTimeout": {
+        "title": "DataSourceTimeout",
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "default": "Timeout reached while communicating with the data source"
+          }
+        }
+      },
+      "DataSourceUnavailable": {
+        "title": "DataSourceUnavailable",
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "default": "Error while communicating with the data source"
+          }
+        }
+      },
+      "DoesNotConformToDefinition": {
+        "title": "DoesNotConformToDefinition",
+        "type": "object",
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string",
+            "default": "Response from the data source does not conform to definition"
           }
         }
       },
@@ -652,6 +811,28 @@
             "example": "123e4567-e89b-12d3-a456-42661417400"
           }
         }
+      },
+      "ResponseFor401": {
+        "title": "ResponseFor401",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AuthorizationRequired"
+          },
+          {
+            "$ref": "#/components/schemas/AuthorizationRequiredForUnpublished"
+          }
+        ]
+      },
+      "ResponseFor502": {
+        "title": "ResponseFor502",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/DoesNotConformToDefinition"
+          },
+          {
+            "$ref": "#/components/schemas/DataSourceError"
+          }
+        ]
       },
       "ValidationError": {
         "title": "ValidationError",
