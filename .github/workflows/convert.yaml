@@ -5,8 +5,8 @@ on:
     branches: ["main"]
 jobs:
   Test:
-    - name: Run validation
-      uses: ./.github/workflows/validation-template.yaml
+    name: Run validation
+    uses: ./.github/workflows/validation-template.yaml
   Convert:
     name: Convert definitions
     runs-on: ubuntu-latest
