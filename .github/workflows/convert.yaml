@@ -1,4 +1,4 @@
-name: Convert and validate definitions
+name: Convert definitions
 
 on:
   push:
