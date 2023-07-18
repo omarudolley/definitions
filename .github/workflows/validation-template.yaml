@@ -1,0 +1,14 @@
+name: Test definitions
+
+on:
+  workflow_call:
+
+jobs:
+  Validate:
+    name: Test definitions
+    steps:
+      - name: Install python dependencies
+        run: pip install openapi-to-fastapi
+
+      - name: Run tests
+        run: openapi-validator --path ./DataProducts -v IhanStandardsValidator
