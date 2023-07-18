@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, edited]
 
 jobs:
-  test definitions:
+  test:
     name: Validate definitions
     runs-on: ubuntu-latest
     steps:
