@@ -7,7 +7,9 @@ jobs:
   Validate:
     name: Test definitions
     steps:
-      - name: Install python dependencies
+      - uses: actions/checkout@v2
+
+      - name: Install openapi-to-fastapi
         run: pip install openapi-to-fastapi
 
       - name: Run tests
