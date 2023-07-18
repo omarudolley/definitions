@@ -5,6 +5,6 @@ on:
     types: [opened, synchronize, edited]
 
 jobs:
-  test:
+  Test:
     name: Validate definitions
     uses: ./.github/workflows/validation-template.yaml

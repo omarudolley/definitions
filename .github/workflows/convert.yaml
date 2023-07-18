@@ -4,13 +4,13 @@ on:
   push:
     branches: ["main"]
 jobs:
+  Test:
+    - name: Run validation
+      uses: ./.github/workflows/validation-template.yaml
   Convert:
     name: Convert definitions
     runs-on: ubuntu-latest
     steps:
-      - name: Run validation
-        uses: ./.github/workflows/validation-template.yaml
-
       - uses: actions/checkout@v2
 
       - name: Set up Python 🐍
