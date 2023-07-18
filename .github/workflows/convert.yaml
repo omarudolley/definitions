@@ -8,6 +8,9 @@ jobs:
     name: Convert definitions
     runs-on: ubuntu-latest
     steps:
+      - name: Run validation
+        uses: ./.github/workflows/validation-template.yaml
+
       - uses: actions/checkout@v2
 
       - name: Set up Python 🐍
@@ -37,7 +40,7 @@ jobs:
 
             git add .
             # format files if necessary
-            pre-commit run --all-files || echo
+            pre-commit run --all-files || true
 
             git add .
             # run validation one more time. this time exit on error
@@ -51,7 +54,3 @@ jobs:
           BRANCH: ${{ github.ref_name }}
           BOT_NAME: github-actions[bot]
           BOT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-
-        # run validation if previous step was skipped
-      - name: Run validation
-        uses: ./.github/workflows/validation-template.yaml
