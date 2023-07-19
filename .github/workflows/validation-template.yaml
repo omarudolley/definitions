@@ -1,0 +1,22 @@
+name: Test definitions
+
+on:
+  workflow_call:
+
+jobs:
+  Validate:
+    name: Test definitions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python 🐍
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+
+      - name: Install openapi-to-fastapi
+        run: pip install openapi-to-fastapi
+
+      - name: Run tests
+        run: openapi-validator --path ./DataProducts -v IhanStandardsValidator

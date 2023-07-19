@@ -1,58 +1,10 @@
-name: Convert and validate definitions
+name: Validate definitions
 
 on:
   pull_request:
     types: [opened, synchronize, edited]
 
 jobs:
-  Convert:
-    name: Convert definitions
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Python 🐍
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.9
-
-      - name: Install python dependencies
-        run: pip install pre-commit data-product-definition-tooling
-
-      - name: Generate definitions
-        run: converter src DataProducts
-
-      - name: Commit and push
-        run: |
-          git status
-
-          if [[ -z $(git status -s) ]]; then
-            echo "No changes detected"
-          else
-            set -x
-            git config --local user.name "${BOT_NAME}"
-            git config --local user.email "${BOT_EMAIL}"
-
-            git fetch --depth=1
-            git checkout "${BRANCH}"
-
-            git add .
-            # format files if necessary
-            pre-commit run --all-files || echo
-
-            git add .
-            # run validation one more time. this time exit on error
-            pre-commit run --all-files
-
-            git commit -m "Convert definitions" -a
-            git push https://${GITHUB_ACTOR}:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:${BRANCH}
-          fi
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: ${{ github.head_ref }}
-          BOT_NAME: github-actions[bot]
-          BOT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-
-      # run validation if previous step was skipped
-      - name: Run validation
-        run: pre-commit run --all-files
+  Test:
+    name: Validate definitions
+    uses: ./.github/workflows/validation-template.yaml
