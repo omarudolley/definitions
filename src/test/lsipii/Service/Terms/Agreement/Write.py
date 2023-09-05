@@ -52,6 +52,12 @@ class AgreementResponse(CamelCaseModel):
         example="2022-06-17T11:52:00Z",
         nullable=True,
     )
+    accepted_previous_version: bool = Field(
+        ...,
+        title="Accepted previous version",
+        description="Whether the user has accepted the previous version of the terms of service",
+        example=False,
+    )
 
 
 DEFINITION = DataProductDefinition(

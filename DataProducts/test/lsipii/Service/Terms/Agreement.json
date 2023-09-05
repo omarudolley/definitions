@@ -180,13 +180,22 @@
       },
       "AgreementResponse": {
         "title": "AgreementResponse",
-        "required": ["termsOfServiceUrl", "description", "version", "accepted"],
+        "required": [
+          "termsOfServiceUrl",
+          "description",
+          "version",
+          "accepted",
+          "acceptedPreviousVersion"
+        ],
         "type": "object",
         "properties": {
           "termsOfServiceUrl": {
             "title": "Terms of service URL",
+            "maxLength": 2083,
+            "minLength": 1,
             "type": "string",
             "description": "Link to the terms of service",
+            "format": "uri",
             "example": "https://example.com/terms-of-service-v1.0"
           },
           "description": {
@@ -214,6 +223,12 @@
             "format": "date-time",
             "nullable": true,
             "example": "2022-06-17T11:52:00Z"
+          },
+          "acceptedPreviousVersion": {
+            "title": "Accepted previous version",
+            "type": "boolean",
+            "description": "Whether the user has accepted the previous version of the terms of service",
+            "example": false
           }
         }
       },

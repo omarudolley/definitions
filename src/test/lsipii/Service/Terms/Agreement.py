@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Optional
 
 from definition_tooling.converter import CamelCaseModel, DataProductDefinition
-from pydantic import Field
+from pydantic import Field, HttpUrl
 
 
 class AgreementRequest(CamelCaseModel):
@@ -10,7 +10,7 @@ class AgreementRequest(CamelCaseModel):
 
 
 class AgreementResponse(CamelCaseModel):
-    terms_of_service_url: str = Field(
+    terms_of_service_url: HttpUrl = Field(
         ...,
         title="Terms of service URL",
         description="Link to the terms of service",
@@ -40,6 +40,12 @@ class AgreementResponse(CamelCaseModel):
         description="A datetime in RFC3339 date-time syntax",
         example="2022-06-17T11:52:00Z",
         nullable=True,
+    )
+    accepted_previous_version: bool = Field(
+        ...,
+        title="Accepted previous version",
+        description="Whether the user has accepted the previous version of the terms of service",
+        example=False,
     )
 
 
