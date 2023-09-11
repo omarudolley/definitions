@@ -71,11 +71,10 @@ class Error418(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    title="...",
     description="...",
     request=Request,
     response=Response,
-    route_description="...",
-    summary="...",
     requires_authorization=False,
     requires_consent=False,
     error_responses={
@@ -96,14 +95,13 @@ variable which is an instance of `DataProductDefinition` class.
 
 DataProductDefinition is a structure consisting of:
 
-- `summary`
+- `title`
 
-  Summary used in top of OpenAPI spec
+  Title used in the info block of OpenAPI spec and the summary for the POST route
 
 - `description`
 
-  Data product description, used in top of OpenAPI spec (defaults to the summary if not
-  provided)
+  Data product description, used in the top of OpenAPI spec and in the POST route
 
 - `request`
 
@@ -112,14 +110,6 @@ DataProductDefinition is a structure consisting of:
 - `response`
 
   pydantic model describing expected response from data source
-
-- `route_summary`
-
-  Summary for the POST route
-
-- `route_description`
-
-  Description for the POST route (defaults to the summary if not provided)
 
 - `requires_authorization`
 
@@ -187,11 +177,10 @@ class CurrentWeatherMetricResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    description="Data Product for current weather with metric units",
+    title="Current weather in a given location",
+    description="Current weather in a given location with metric units",
     request=CurrentWeatherMetricRequest,
     response=CurrentWeatherMetricResponse,
-    route_description="Current weather in metric units",
-    summary="Current Weather (Metric)",
 )
 ```
 
