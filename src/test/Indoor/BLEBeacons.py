@@ -36,9 +36,8 @@ class BLEBeaconsResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    description="Data Product for indoor location based on BLE beacons",
+    title="Indoor location based on BLE beacons",
+    description="Determine the indoor location based on BLE beacons a device can hear and the signal strength in dBm.",
     request=BLEBeaconsRequest,
     response=BLEBeaconsResponse,
-    route_description="Indoor location based on BLE beacons",
-    summary="BLE Beacons",
 )

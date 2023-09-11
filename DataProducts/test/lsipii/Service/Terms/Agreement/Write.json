@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Data product for updating the user's terms of service agreement",
+    "title": "Update the user's terms of service agreement",
     "description": "Data product for updating the user's terms of service agreement",
     "version": "1.0.0"
   },

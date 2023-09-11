@@ -9,7 +9,7 @@
     "/test/lsipii/Figure/Population": {
       "post": {
         "summary": "Figure for population",
-        "description": "Figure for population",
+        "description": "Data Product for population figure",
         "operationId": "request_test_lsipii_Figure_Population",
         "parameters": [
           {

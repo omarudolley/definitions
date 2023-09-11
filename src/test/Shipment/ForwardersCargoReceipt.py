@@ -35,8 +35,8 @@ class ForwardersCargoReceiptRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    description="Data Product for Cargo Receipt",
+    title="Cargo receipt for a forwarder",
+    description="Information necessary for the receipt of cargo for a forwarder",
     request=ForwardersCargoReceiptRequest,
     response=ForwardersCargoReceiptResponse,
-    summary="Cargo Receipt",
 )

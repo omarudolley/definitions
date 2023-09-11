@@ -9,7 +9,7 @@
     "/draft/Employment/ForeignerJobRecommendatations": {
       "post": {
         "summary": "Foreigner Job Recommendations",
-        "description": "Foreigner Job Recommendations",
+        "description": "Returns the list of jobs recommended for the foreigner based on e.g. the citizenship area and previous occupations based on the European Standard Classification of Occupations (ESCO) version 1.1.1",
         "operationId": "request_draft_Employment_ForeignerJobRecommendatations",
         "parameters": [
           {

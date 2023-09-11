@@ -60,9 +60,9 @@ class StatusInfoRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    summary="Data product for user's status information",
+    title="Save user's status information",
+    description="Data product for user's status information",
     request=StatusInfoRequest,
     response=StatusInfoResponse,
-    route_summary="Save user's status information",
     requires_authorization=True,
 )

@@ -50,9 +50,9 @@ class AgreementResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    summary="Data product for the user's terms of service agreement",
+    title="Retrieve user's terms of service agreement",
+    description="Data product for the user's terms of service agreement",
     request=AgreementRequest,
     response=AgreementResponse,
-    route_summary="Retrieve user's terms of service agreement",
     requires_authorization=True,
 )

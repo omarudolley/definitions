@@ -5038,11 +5038,11 @@ class JobApplicantProfileRequestResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    title="Write Person Job Applicant Profile",
     description="Create or update a comprehensive set of skills, competences, "
     "occupations and work preferences of a person",
     request=JobApplicantProfileRequestResponse,
     response=JobApplicantProfileRequestResponse,
-    summary="Write Person Job Applicant Profile",
     requires_authorization=True,
     requires_consent=True,
 )

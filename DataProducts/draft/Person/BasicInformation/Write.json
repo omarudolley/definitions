@@ -9,7 +9,7 @@
     "/draft/Person/BasicInformation/Write": {
       "post": {
         "summary": "Write Person Basic Information",
-        "description": "Write Person Basic Information",
+        "description": "Create or update a minimal set of basic information of a person",
         "operationId": "request_draft_Person_BasicInformation_Write",
         "parameters": [
           {

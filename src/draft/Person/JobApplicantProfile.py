@@ -5042,11 +5042,11 @@ class JobApplicantProfileResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    title="Person Job Applicant Profile",
     description="A comprehensive set of skills, competences, occupations and work "
     "preferences of a person",
     request=JobApplicantProfileRequest,
     response=JobApplicantProfileResponse,
-    summary="Person Job Applicant Profile",
     requires_authorization=True,
     requires_consent=True,
 )

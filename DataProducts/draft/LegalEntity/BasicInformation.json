@@ -9,7 +9,7 @@
     "/draft/LegalEntity/BasicInformation": {
       "post": {
         "summary": "Legal Entity Basic Information",
-        "description": "Legal Entity Basic Information",
+        "description": "Data Product for Legal Entity Basic Information",
         "operationId": "request_draft_LegalEntity_BasicInformation",
         "parameters": [
           {

@@ -4607,8 +4607,8 @@ class BasicInformationResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    title="Legal Entity Basic Information",
     description="Data Product for Legal Entity Basic Information",
     request=BasicInformationRequest,
     response=BasicInformationResponse,
-    summary="Legal Entity Basic Information",
 )

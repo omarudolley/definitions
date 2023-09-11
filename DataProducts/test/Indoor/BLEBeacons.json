@@ -1,15 +1,15 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "BLE Beacons",
-    "description": "Data Product for indoor location based on BLE beacons",
+    "title": "Indoor location based on BLE beacons",
+    "description": "Determine the indoor location based on BLE beacons a device can hear and the signal strength in dBm.",
     "version": "1.0.0"
   },
   "paths": {
     "/test/Indoor/BLEBeacons": {
       "post": {
-        "summary": "BLE Beacons",
-        "description": "Indoor location based on BLE beacons",
+        "summary": "Indoor location based on BLE beacons",
+        "description": "Determine the indoor location based on BLE beacons a device can hear and the signal strength in dBm.",
         "operationId": "request_test_Indoor_BLEBeacons",
         "parameters": [
           {
