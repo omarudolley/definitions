@@ -290,10 +290,10 @@ class BasicInformationRequestResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    title="Write Person Basic Information",
     description="Create or update a minimal set of basic information of a person",
     request=BasicInformationRequestResponse,
     response=BasicInformationRequestResponse,
-    summary="Write Person Basic Information",
     requires_authorization=True,
     requires_consent=True,
 )

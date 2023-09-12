@@ -9,7 +9,7 @@
     "/test/lassipatanen/User/Profile": {
       "post": {
         "summary": "Basic user profile information",
-        "description": "User profile information",
+        "description": "Data product for basic user profile information",
         "operationId": "request_test_lassipatanen_User_Profile",
         "parameters": [
           {

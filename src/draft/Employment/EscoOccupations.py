@@ -3081,11 +3081,11 @@ class EscoOccupationResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    title="Employment ESCO Occupations",
     description="Returns the list of standardized occupations based on the European Standard Classification of "
     "Occupations (ESCO) version 1.1.1",
     request=EscoOccupationRequest,
     response=EscoOccupationResponse,
-    summary="Employment ESCO Occupations",
     requires_authorization=False,
     requires_consent=False,
 )

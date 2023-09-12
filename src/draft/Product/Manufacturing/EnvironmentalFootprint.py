@@ -27,7 +27,8 @@ class EnvironmentalFootprintResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    title="Environmental footprint information for a product",
+    description="Information about environmental footprint of a product in the manufacturing phase",
     request=EnvironmentalFootprintRequest,
     response=EnvironmentalFootprintResponse,
-    summary="Environmental Footprint information for a product",
 )

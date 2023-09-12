@@ -267,9 +267,8 @@ class ProfileRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    title="Basic user profile information",
     description="Data product for basic user profile information",
     request=ProfileRequest,
     response=ProfileResponse,
-    route_description="User profile information",
-    summary="Basic user profile information",
 )

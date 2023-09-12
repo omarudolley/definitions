@@ -42,6 +42,30 @@ _Rules below are applied for each definition._
 }
 ```
 
+### Spec file must include title, description and summary fields
+
+Main file must have a `title` and `description` and POST definition must contain
+`summary` and `description` fields.
+
+> ✅ Correct
+
+```json
+{
+  "info": {
+    "title": "Current air quality",
+    "description": "Current air quality (AQI) in a given location"
+  },
+  "paths": {
+    "/AirQuality/Current": {
+      "post": {
+        "summary": "Current air quality",
+        "description": "Current air quality (AQI) in a given location"
+      }
+    }
+  }
+}
+```
+
 ### Spec file must include request body schema
 
 > ✅ Correct

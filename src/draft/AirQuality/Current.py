@@ -46,17 +46,16 @@ class CurrentAirQualityResponse(CamelCaseModel):
         title="Source Attribution",
         description="List of text to show required credits to data sources",
         example=[
-            "Moscow State environmental monitoring "
-            "(Государственный экологический мониторинг в Москве)",
+            "Eesti välisõhu kvaliteet - Estonian ambient air quality",
             "World Air Quality Index Project",
         ],
     )
 
 
 DEFINITION = DataProductDefinition(
-    description="Data Product for current air quality index",
+    title="Current air quality in a given location",
+    description="Current Air Quality Index (AQI) in a given location with attribution of the sources",
     request=CurrentAirQualityRequest,
     response=CurrentAirQualityResponse,
     route_description="Current air quality",
-    summary="Air Quality Index",
 )

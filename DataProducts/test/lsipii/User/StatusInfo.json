@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Data product for user's status information",
+    "title": "Retrieve user's status information",
     "description": "Data product for user's status information",
     "version": "1.0.0"
   },

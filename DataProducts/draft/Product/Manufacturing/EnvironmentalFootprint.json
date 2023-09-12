@@ -1,15 +1,15 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Environmental Footprint information for a product",
-    "description": "Environmental Footprint information for a product",
+    "title": "Environmental footprint information for a product",
+    "description": "Information about environmental footprint of a product in the manufacturing phase",
     "version": "1.0.0"
   },
   "paths": {
     "/draft/Product/Manufacturing/EnvironmentalFootprint": {
       "post": {
-        "summary": "Environmental Footprint information for a product",
-        "description": "Environmental Footprint information for a product",
+        "summary": "Environmental footprint information for a product",
+        "description": "Information about environmental footprint of a product in the manufacturing phase",
         "operationId": "request_draft_Product_Manufacturing_EnvironmentalFootprint",
         "parameters": [
           {

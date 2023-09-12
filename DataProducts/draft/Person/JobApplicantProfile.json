@@ -9,7 +9,7 @@
     "/draft/Person/JobApplicantProfile": {
       "post": {
         "summary": "Person Job Applicant Profile",
-        "description": "Person Job Applicant Profile",
+        "description": "A comprehensive set of skills, competences, occupations and work preferences of a person",
         "operationId": "request_draft_Person_JobApplicantProfile",
         "parameters": [
           {
