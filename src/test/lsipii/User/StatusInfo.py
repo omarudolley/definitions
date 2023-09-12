@@ -54,8 +54,8 @@ class StatusInfoRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    title="Data product for user's status information",
-    description="Retrieve user's status information",
+    title="Retrieve user's status information",
+    description="Data product for user's status information",
     request=StatusInfoRequest,
     response=StatusInfoResponse,
     requires_authorization=True,

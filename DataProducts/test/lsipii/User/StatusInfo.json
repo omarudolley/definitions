@@ -1,15 +1,15 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Data product for user's status information",
-    "description": "Retrieve user's status information",
+    "title": "Retrieve user's status information",
+    "description": "Data product for user's status information",
     "version": "1.0.0"
   },
   "paths": {
     "/test/lsipii/User/StatusInfo": {
       "post": {
-        "summary": "Data product for user's status information",
-        "description": "Retrieve user's status information",
+        "summary": "Retrieve user's status information",
+        "description": "Data product for user's status information",
         "operationId": "request_test_lsipii_User_StatusInfo",
         "parameters": [
           {
