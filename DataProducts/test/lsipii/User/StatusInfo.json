@@ -3,7 +3,7 @@
   "info": {
     "title": "Retrieve user's status information",
     "description": "Data product for user's status information",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/test/lsipii/User/StatusInfo": {

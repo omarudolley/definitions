@@ -3,7 +3,7 @@
   "info": {
     "title": "Charging history of a battery",
     "description": "Charging history of a battery",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/draft/Energy/Battery/ChargingHistory": {

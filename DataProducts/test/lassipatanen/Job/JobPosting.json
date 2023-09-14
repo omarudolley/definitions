@@ -3,7 +3,7 @@
   "info": {
     "title": "Job Posting",
     "description": "Data product for Job Posting",
-    "version": "1.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/test/lassipatanen/Job/JobPosting": {

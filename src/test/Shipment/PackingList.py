@@ -33,6 +33,7 @@ class PackingListRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    version="0.0.1",
     title="Packing List",
     description="Packing List",
     request=PackingListRequest,

@@ -3454,6 +3454,7 @@ class ForeignerJobRecommendationsResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    version="0.0.1",
     title="Foreigner Job Recommendations",
     description="Returns the list of jobs recommended for the foreigner based on e.g. "
     "the citizenship area and previous occupations based on the European Standard "

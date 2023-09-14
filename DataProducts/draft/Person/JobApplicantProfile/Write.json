@@ -3,7 +3,7 @@
   "info": {
     "title": "Write Person Job Applicant Profile",
     "description": "Create or update a comprehensive set of skills, competences, occupations and work preferences of a person",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/draft/Person/JobApplicantProfile/Write": {

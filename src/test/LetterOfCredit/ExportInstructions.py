@@ -37,6 +37,7 @@ class ExportInstructionsRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    version="0.0.1",
     title="Export Instructions",
     description="Get instructions necessary in the export context, based on a Letter of Credit number.",
     request=ExportInstructionsRequest,

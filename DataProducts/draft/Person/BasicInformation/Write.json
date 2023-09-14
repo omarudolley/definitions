@@ -3,7 +3,7 @@
   "info": {
     "title": "Write Person Basic Information",
     "description": "Create or update a minimal set of basic information of a person",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/draft/Person/BasicInformation/Write": {

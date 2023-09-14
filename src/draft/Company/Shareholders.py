@@ -63,6 +63,7 @@ class ShareholdersInfoResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    version="0.0.1",
     title="List of the shareholders of a company",
     description="Information about the shareholders of a company such as owners and shares quantity.",
     request=ShareholdersInfoRequest,

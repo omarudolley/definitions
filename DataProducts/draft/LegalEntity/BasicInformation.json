@@ -3,7 +3,7 @@
   "info": {
     "title": "Legal Entity Basic Information",
     "description": "Data Product for Legal Entity Basic Information",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/draft/LegalEntity/BasicInformation": {

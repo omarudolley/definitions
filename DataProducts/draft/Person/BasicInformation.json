@@ -3,7 +3,7 @@
   "info": {
     "title": "Person Basic Information",
     "description": "A minimal set of basic information of a person",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/draft/Person/BasicInformation": {

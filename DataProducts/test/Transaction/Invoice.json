@@ -3,7 +3,7 @@
   "info": {
     "title": "Invoice",
     "description": "Invoice",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/test/Transaction/Invoice": {

@@ -28,6 +28,7 @@ class PopulationRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    version="0.0.1",
     title="Figure for population",
     description="Data Product for population figure",
     request=PopulationRequest,

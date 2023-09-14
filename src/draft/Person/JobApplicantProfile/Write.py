@@ -5038,6 +5038,7 @@ class JobApplicantProfileRequestResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    version="0.0.1",
     title="Write Person Job Applicant Profile",
     description="Create or update a comprehensive set of skills, competences, "
     "occupations and work preferences of a person",

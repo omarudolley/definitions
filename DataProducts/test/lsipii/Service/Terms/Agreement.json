@@ -3,7 +3,7 @@
   "info": {
     "title": "Retrieve user's terms of service agreement",
     "description": "Data product for the user's terms of service agreement",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/test/lsipii/Service/Terms/Agreement": {
