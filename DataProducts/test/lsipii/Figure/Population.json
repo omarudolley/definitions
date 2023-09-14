@@ -3,7 +3,7 @@
   "info": {
     "title": "Figure for population",
     "description": "Data Product for population figure",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/test/lsipii/Figure/Population": {

@@ -42,6 +42,7 @@ class InvoiceRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    version="0.0.1",
     title="Invoice",
     description="Invoice",
     request=InvoiceRequest,

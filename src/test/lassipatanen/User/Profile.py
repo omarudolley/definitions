@@ -267,6 +267,7 @@ class ProfileRequest(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
+    version="0.0.1",
     title="Basic user profile information",
     description="Data product for basic user profile information",
     request=ProfileRequest,

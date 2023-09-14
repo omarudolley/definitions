@@ -3,7 +3,7 @@
   "info": {
     "title": "Persons health diagnoses",
     "description": "Diagnoses of a user with ICD10 codes",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/draft/Health/Diagnoses": {

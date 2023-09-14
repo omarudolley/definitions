@@ -3,7 +3,7 @@
   "info": {
     "title": "Cargo receipt for a forwarder",
     "description": "Information necessary for the receipt of cargo for a forwarder",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/test/Shipment/ForwardersCargoReceipt": {

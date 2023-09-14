@@ -3,7 +3,7 @@
   "info": {
     "title": "Establish a non-listed company",
     "description": "Create the initial set of data to establish a non-listed company",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/draft/NSG/Agent/LegalEntity/NonListedCompany/Establishment/Write": {

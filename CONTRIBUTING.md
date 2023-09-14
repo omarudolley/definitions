@@ -41,29 +41,21 @@ meet the following criterias:
 
 ## Adding new Data Product Definition
 
-There are two ways of contribution:
-
-### Raw OpenApi spec
-
-For example, to add a definition for `Foo/Bar`:
-
-- create `DataProducts/<version>/Foo/Bar.json`
-- make sure you follow the data product definition
-  [guidelines](./DataProducts/README.md)
-
 ### Definition as a Python file
 
-If you're familiar with Python and [pydantic](https://github.com/samuelcolvin/pydantic)
-library, you may find it easier to create the definition as a set of pydantic models.
+Definitions are created using Python and a set of
+[pydantic](https://github.com/pydantic/pydantic) models. The converter from the
+[ioxio-data-product-definition-tooling](https://github.com/ioxio-dataspace/ioxio-data-product-definition-tooling)
+takes care of converting each `.py` file to the corresponding `.json` OpenAPI spec file.
 
-For example, to add a definition for `Foo/Bar`:
+For example, to add a definition for `Foo/Bar` version `0.1.0`:
 
-- create `src/<version>/Foo/Bar.py`
+- create `src/Foo/Bar_v0.1.py`
 
 You have 2 options to use the converter:
 
 1. By running `pre-commit install` after cloning the repo. Then definitions will be
-   converted automatically before each commit.
+   converted automatically before each commit (recommended).
 2. By creating a PR to the `main` branch. CI workflow will run the automation and push
    updated/generated files if needed.
 
@@ -74,11 +66,74 @@ allow to create data products using these definitions in the Finnish data econom
 testbed dataspace and experiment with the system. In order to do this:
 
 1. Fork this repository
-2. Create your definitions under `src/test/<your_github_username>/` if you're familiar
-   with Python approach, or directly under `DataProducts/test/<your_github_username>` if
-   you know what you're doing
+2. Create your definitions under `src/test/<your_github_username>/`
 3. Submit a PR and wait for CI Workflow to run and validate the changes
 4. Once PR is merged, it's possible to use the definitions in the dataspace
+
+### Versioning of definitions
+
+#### Test definitions
+
+Definitions in `src/test/<your_github_username>/` should not have any version number in
+the filename and the version in the file needs to be of the form `0.0.x`. Each change to
+the definition should increment the version by one. Examples of `version` -> `filename`:
+
+- `0.0.1` -> `src/test/<your_github_username>/Foo/Bar.py`
+- `0.0.2` -> `src/test/<your_github_username>/Foo/Bar.py`
+- `0.0.3` -> `src/test/<your_github_username>/Foo/Bar.py`
+- ...
+
+#### Draft definitions
+
+Definitions in `src/draft/` work the same way as the definitions in
+`src/test/<your_github_username>/`. They are however being phased out on the dataspaces
+where they still exist.
+
+#### Other definitions
+
+All other definitions have version numbers that are `>= 0.1.0` and they should follow
+[Semantic Versioning](https://semver.org/) of the form `MAJOR.MINOR.PATCH`.
+
+A general rule of thumb would be that the first definition should be versioned as
+`0.1.0`. Any backward-compatible changes to it should increment the PATCH number (i.e.
+`z` in `0.y.z`) and any breaking changes increment the MINOR number (i.e. increment `y`
+in `0.y.z` and reset `z` to `0`).
+
+Once the definition has been tested out a bit in practice and can be considered stable a
+`1.0.0` version should be created. As per normal Semantic Versioning rules, any trivial
+changes that does not break anything (for example fixing a typo in a description that
+does not affect the data being transferred) should update the PATCH version, any new
+backwards compatible functionality (like adding a new optional field) should update the
+MINOR version and any breaking changes (like renaming a field or adding a new required
+field) should increment the MAJOR version number (i.e. `1.2.3` -> `2.0.0`).
+
+The version number in the definitions are reflected in the filenames and the URL path to
+the data product. In the filename and URL the version is added to the end and separated
+by `_v`, followed by the `MAJOR.MINOR` part of the version number. The `.PATCH` part is
+left out as those changes are not allowed to change anything in the actual data format.
+Any possible pre-release identifiers are included though. For example version `1.2.3` of
+the `Foo/Bar` definition would correspond to the file `src/Foo/Bar_v1.2.py` and will be
+requested from a URL of the form `/Foo/Bar_v1.2`.
+
+Note that each time the MINOR version is updated the file is changed in place and when
+the MAJOR or MINOR version number is updated a new definition file is created. At the
+same time the definitions in the previous files are usually marked as deprecated. The
+deprecation rules and deletion of old definitions can vary per dataspace.
+
+Example of a typical flow of versions and corresponding filenames:
+
+- `0.1.0` -> `src/Foo/Bar_v0.1.py` The first version.
+- `0.1.1` -> `src/Foo/Bar_v0.1.py` Fix a typo in a title or description.
+- `0.2.0` -> `src/Foo/Bar_v0.2.py` Add an optional or required field or rename a field.
+- `0.2.1` -> `src/Foo/Bar_v0.2.py` Fix a typo in a title or description.
+- `1.0.0` -> `src/Foo/Bar_v1.0.py` First stable release.
+- `1.0.1` -> `src/Foo/Bar_v1.0.py` Fix a typo in a title or description.
+- `1.1.0` -> `src/Foo/Bar_v1.1.py` Add a new optional field.
+- `2.0.0` -> `src/Foo/Bar_v2.0.py` Rename a field or add a new required field.
+- `3.0.0-beta` -> `src/Foo/Bar_v3.0-beta.py` Major rewrite of the whole definition
+  structure that needs to be tested before being considered ready to be used.
+- `3.0.0-beta.2` -> `src/Foo/Bar_v3.0-beta.2.py` Changes to data being transferred.
+- `3.0.0` -> `src/Foo/Bar_v3.0.py` Final new version of the definition.
 
 ## Pull Requests
 

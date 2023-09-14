@@ -3,7 +3,7 @@
   "info": {
     "title": "Basic user profile information",
     "description": "Data product for basic user profile information",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/test/lassipatanen/User/Profile": {

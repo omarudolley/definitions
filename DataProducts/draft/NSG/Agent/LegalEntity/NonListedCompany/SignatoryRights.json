@@ -3,7 +3,7 @@
   "info": {
     "title": "Signatory rights of a non-listed company",
     "description": "The list of representation rights of a legal entity",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/draft/NSG/Agent/LegalEntity/NonListedCompany/SignatoryRights": {

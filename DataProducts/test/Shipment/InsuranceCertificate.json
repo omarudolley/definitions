@@ -3,7 +3,7 @@
   "info": {
     "title": "Insurance certificate for a shipment",
     "description": "Get all the details necessary about the insurance certificate for a specific shipment based on the shipment ID.",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/test/Shipment/InsuranceCertificate": {

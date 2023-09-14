@@ -3,7 +3,7 @@
   "info": {
     "title": "Dimensions and weights of a product",
     "description": "Get the physical dimensions and weights of a product based on its product code",
-    "version": "1.0.0"
+    "version": "0.0.1"
   },
   "paths": {
     "/test/Product/DimensionsAndWeights": {
