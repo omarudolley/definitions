@@ -4825,13 +4825,13 @@ class Occupation(CamelCaseModel):
     )
     start_date: Optional[date] = Field(
         None,
-        title="Start date",
+        title="Start Date",
         description="The start date of the employment in the occupation",
         example=date(year=2018, month=1, day=1),
     )
     end_date: Optional[date] = Field(
         None,
-        title="End date",
+        title="End Date",
         description="The end date of the employment in the occupation",
         example=date(year=2021, month=12, day=31),
     )
@@ -4872,7 +4872,7 @@ class Education(CamelCaseModel):
     )
     start_date: Optional[date] = Field(
         None,
-        title="Start date",
+        title="Start Date",
         description="The date on which the specific education has been started",
         example=date(year=2015, month=9, day=1),
     )
