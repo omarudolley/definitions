@@ -299,6 +299,13 @@
             "description": "The education field based on the International Standard Classification of Education, [ISCED education codes](https://koodistot.suomi.fi/codescheme;registryCode=jhs;schemeCode=isced_ala_1_20110101).",
             "example": "0731"
           },
+          "startDate": {
+            "title": "Start date",
+            "type": "string",
+            "description": "The date on which the specific education has been started",
+            "format": "date",
+            "example": "2015-09-01"
+          },
           "graduationDate": {
             "title": "Graduation date",
             "type": "string",
@@ -5196,11 +5203,19 @@
             "description": "The code of the occupation in which the user has previously worked. The code based on European Standard Classification of Occupations (ESCO).",
             "example": "2654.1.7"
           },
-          "workExperience": {
-            "title": "Work experience in months",
-            "type": "integer",
-            "description": "The number of months that the person has experience in the specific occupation.",
-            "example": 5
+          "startDate": {
+            "title": "Start date",
+            "type": "string",
+            "description": "The start date of the employment in the occupation",
+            "format": "date",
+            "example": "2018-01-01"
+          },
+          "endDate": {
+            "title": "End date",
+            "type": "string",
+            "description": "The end date of the employment in the occupation",
+            "format": "date",
+            "example": "2021-12-31"
           },
           "employer": {
             "title": "Employer",
