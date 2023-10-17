@@ -42,7 +42,7 @@ class BasicInformationResponse(CamelCaseModel):
         example="+358501234567",
         max_length=250,
     )
-    citizenshipArea: Optional[CitizenshipArea] = Field(
+    citizenship_area: Optional[CitizenshipArea] = Field(
         None,
         title="Citizenship Area",
         description="The citizenship area based on his or her native country."
