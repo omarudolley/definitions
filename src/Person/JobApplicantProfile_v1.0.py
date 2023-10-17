@@ -4827,17 +4827,12 @@ class Occupation(CamelCaseModel):
         "(ESCO).",
         example=EscoCode.ESCO_2654_1_7,
     )
-    start_date: Optional[date] = Field(
+    work_experience: Optional[int] = Field(
         None,
-        title="Start Date",
-        description="The start date of the employment in the occupation",
-        example=date(year=2018, month=1, day=1),
-    )
-    end_date: Optional[date] = Field(
-        None,
-        title="End Date",
-        description="The end date of the employment in the occupation",
-        example=date(year=2021, month=12, day=31),
+        title="Work experience in months",
+        description="The number of months that the person has experience in the "
+        "specific occupation.",
+        example=5,
     )
     employer: Optional[str] = Field(
         None,
@@ -4873,12 +4868,6 @@ class Education(CamelCaseModel):
         "Classification of Education, [ISCED education codes]"
         "(https://koodistot.suomi.fi/codescheme;registryCode=jhs;schemeCode=isced_ala_1_20110101).",
         example=EducationField.ISCED_FIELD_0731,
-    )
-    start_date: Optional[date] = Field(
-        None,
-        title="Start Date",
-        description="The date on which the specific education has been started",
-        example=date(year=2015, month=9, day=1),
     )
     graduation_date: Optional[date] = Field(
         None,

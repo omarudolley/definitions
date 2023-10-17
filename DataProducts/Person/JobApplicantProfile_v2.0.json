@@ -3,14 +3,14 @@
   "info": {
     "title": "Person Job Applicant Profile",
     "description": "A comprehensive set of skills, competences, occupations and work preferences of a person",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "paths": {
-    "/Person/JobApplicantProfile_v1.0": {
+    "/Person/JobApplicantProfile_v2.0": {
       "post": {
         "summary": "Person Job Applicant Profile",
         "description": "A comprehensive set of skills, competences, occupations and work preferences of a person",
-        "operationId": "request_Person_JobApplicantProfile_v1_0",
+        "operationId": "request_Person_JobApplicantProfile_v2_0",
         "parameters": [
           {
             "description": "Consent token",
@@ -298,6 +298,13 @@
             ],
             "description": "The education field based on the International Standard Classification of Education, [ISCED education codes](https://koodistot.suomi.fi/codescheme;registryCode=jhs;schemeCode=isced_ala_1_20110101).",
             "example": "0731"
+          },
+          "startDate": {
+            "title": "Start Date",
+            "type": "string",
+            "description": "The date on which the specific education has been started",
+            "format": "date",
+            "example": "2015-09-01"
           },
           "graduationDate": {
             "title": "Graduation date",
@@ -5201,11 +5208,19 @@
             "description": "The code of the occupation in which the user has previously worked. The code based on European Standard Classification of Occupations (ESCO).",
             "example": "2654.1.7"
           },
-          "workExperience": {
-            "title": "Work experience in months",
-            "type": "integer",
-            "description": "The number of months that the person has experience in the specific occupation.",
-            "example": 5
+          "startDate": {
+            "title": "Start Date",
+            "type": "string",
+            "description": "The start date of the employment in the occupation",
+            "format": "date",
+            "example": "2018-01-01"
+          },
+          "endDate": {
+            "title": "End Date",
+            "type": "string",
+            "description": "The end date of the employment in the occupation",
+            "format": "date",
+            "example": "2021-12-31"
           },
           "employer": {
             "title": "Employer",
