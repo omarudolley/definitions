@@ -45,8 +45,8 @@ class BasicInformationResponse(CamelCaseModel):
     citizenship_area: Optional[CitizenshipArea] = Field(
         None,
         title="Citizenship Area",
-        description="The citizenship area based on his or her native country."
-        " Switzerland is considered as part of the EEA category.",
+        description="The citizenship area based on his or her native country. "
+        "Switzerland is considered as part of the EEA category.",
         example=CitizenshipArea.EEA,
     )
 
