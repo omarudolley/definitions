@@ -35,9 +35,7 @@ allow to create data products using these definitions in the Finnish data econom
 testbed dataspace and experiment with the system. In order to do this:
 
 1. Fork this repository
-2. Create your definitions under `src/test/<your_github_username>/` if you're familiar
-   with Python approach, or directly under `DataProducts/test/<your_github_username>` if
-   you know what you're doing
+2. Create your definitions under `src/test/<your_github_username>/`
 3. Submit a PR and wait for CI Workflow to run and validate the changes
 4. Once PR is merged, it's possible to use the definitions in the dataspace
 
