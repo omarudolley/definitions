@@ -262,34 +262,34 @@ class BasicInformationResponse(CamelCaseModel):
         None,
         title="Given name",
         description="The first name that the person is being called by",
-        example="John",
+        examples="John",
         max_length=250,
     )
     last_name: Optional[str] = Field(
         None,
         title="Last name",
         description="The person's current family name",
-        example="Doe",
+        examples="Doe",
         max_length=250,
     )
     email: EmailStr = Field(
         ...,
         title="Email",
         description="The person's contact email address",
-        example="john.doe@test.fi",
+        examples="john.doe@test.fi",
     )
     phone_number: Optional[str] = Field(
         None,
         title="Phone number",
         description="The person's phone number in the international format",
-        example="+358501234567",
+        examples="+358501234567",
         max_length=250,
     )
     residency: Optional[ISO_3166_1_Alpha_3] = Field(
         None,
         title="Residency",
         description="The person's current country of the residency in the three character (Alpha-3) format",
-        example=ISO_3166_1_Alpha_3.USA,
+        examples=ISO_3166_1_Alpha_3.USA,
     )
 
 

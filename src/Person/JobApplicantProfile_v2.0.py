@@ -4817,7 +4817,7 @@ class Occupation(CamelCaseModel):
         description="The identifier of the occupation in which the user has previously "
         "worked. The identifier is based on European Standard Classification of "
         "Occupations (ESCO).",
-        example="http://data.europa.eu/esco/occupation/0022f466-426c-41a4-ac96-a235c945cf97",
+        examples="http://data.europa.eu/esco/occupation/0022f466-426c-41a4-ac96-a235c945cf97",
     )
     esco_code: Optional[EscoCode] = Field(
         None,
@@ -4825,19 +4825,19 @@ class Occupation(CamelCaseModel):
         description="The code of the occupation in which the user has previously "
         "worked. The code based on European Standard Classification of Occupations "
         "(ESCO).",
-        example=EscoCode.ESCO_2654_1_7,
+        examples=EscoCode.ESCO_2654_1_7,
     )
     start_date: Optional[date] = Field(
         None,
         title="Start Date",
         description="The start date of the employment in the occupation",
-        example=date(year=2018, month=1, day=1),
+        examples=date(year=2018, month=1, day=1),
     )
     end_date: Optional[date] = Field(
         None,
         title="End Date",
         description="The end date of the employment in the occupation",
-        example=date(year=2021, month=12, day=31),
+        examples=date(year=2021, month=12, day=31),
     )
     employer: Optional[str] = Field(
         None,
@@ -4845,7 +4845,7 @@ class Occupation(CamelCaseModel):
         description="The name of the employer by which the work experience has been "
         "acquired.",
         max_length=250,
-        example="The name of the employer by which the work experience has been "
+        examples="The name of the employer by which the work experience has been "
         "acquired.",
     )
 
@@ -4856,7 +4856,7 @@ class Education(CamelCaseModel):
         title="Education name",
         description="The name of the education completed by a person.",
         max_length=250,
-        example="Master of Business Administration",
+        examples="Master of Business Administration",
     )
     education_level: Optional[EducationLevel] = Field(
         None,
@@ -4864,7 +4864,7 @@ class Education(CamelCaseModel):
         description="The education level which the person has acquired based on the "
         "International Standard Classification of Education, [ISCED education codes]"
         "(https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=educationlevel).",
-        example=EducationLevel.ISCED_LEVEL_7,
+        examples=EducationLevel.ISCED_LEVEL_7,
     )
     education_field: Optional[EducationField] = Field(
         None,
@@ -4872,26 +4872,26 @@ class Education(CamelCaseModel):
         description="The education field based on the International Standard "
         "Classification of Education, [ISCED education codes]"
         "(https://koodistot.suomi.fi/codescheme;registryCode=jhs;schemeCode=isced_ala_1_20110101).",
-        example=EducationField.ISCED_FIELD_0731,
+        examples=EducationField.ISCED_FIELD_0731,
     )
     start_date: Optional[date] = Field(
         None,
         title="Start Date",
         description="The date on which the specific education has been started",
-        example=date(year=2015, month=9, day=1),
+        examples=date(year=2015, month=9, day=1),
     )
     graduation_date: Optional[date] = Field(
         None,
         title="Graduation date",
         description="The date on which the specific education has been completed.",
-        example=date(year=2022, month=12, day=8),
+        examples=date(year=2022, month=12, day=8),
     )
     institution_name: Optional[str] = Field(
         None,
         title="Institution name",
         description="The name of the organization that provided the education.",
         max_length=250,
-        example="Institute of Technology",
+        examples="Institute of Technology",
     )
 
 
@@ -4901,20 +4901,20 @@ class LanguageSkill(CamelCaseModel):
         title="ESCO identifier",
         description="The languange skill identifier based on European Standard "
         "Classification of Occupations (ESCO).",
-        example="http://data.europa.eu/esco/skill/6d3edede-8951-4621-a835-e04323300fa0",
+        examples="http://data.europa.eu/esco/skill/6d3edede-8951-4621-a835-e04323300fa0",
     )
     language_code: Optional[ISO_639_1] = Field(
         None,
         title="Language code",
         description="The language skill identifier by the ISO 639-1 standard (Alpha-2).",
-        example=ISO_639_1.EN,
+        examples=ISO_639_1.EN,
     )
     skill_level: Optional[CERFLevel] = Field(
         None,
         title="Skill level",
         description="The language skill level according to Common European Framework "
         "of Reference for Languages, known as CERF.",
-        example=CERFLevel.B2,
+        examples=CERFLevel.B2,
     )
 
 
@@ -4924,14 +4924,14 @@ class OtherSkill(CamelCaseModel):
         title="ESCO identifier",
         description="The skill identifier based on European Standard Classification of "
         "Occupations (ESCO).",
-        example="http://data.europa.eu/esco/skill/869fc2ce-478f-4420-8766-e1f02cec4fb2",
+        examples="http://data.europa.eu/esco/skill/869fc2ce-478f-4420-8766-e1f02cec4fb2",
     )
     skill_level: Optional[SkillLevel] = Field(
         None,
         title="Skill level",
         description="The language skill level according to Common European Framework "
         "of Reference for Languages, known as CERF.",
-        example=SkillLevel.BEGINNER,
+        examples=SkillLevel.BEGINNER,
     )
 
 
@@ -4940,7 +4940,7 @@ class Certification(CamelCaseModel):
         None,
         title="Certification name",
         description="The name of the acquired certification.",
-        example="Cloud provider certification",
+        examples="Cloud provider certification",
         max_length=250,
     )
     esco_identifier: List[HttpUrl] = Field(
@@ -4949,7 +4949,7 @@ class Certification(CamelCaseModel):
         description="The identifier of the skill in which the user has qualified. The "
         "skill identifier is based on European Standard Classification of Occupations "
         "(ESCO).",
-        example=[
+        examples=[
             "http://data.europa.eu/esco/skill/b85711bc-32d6-42af-ae0f-e2e566d0dfca",
         ],
     )
@@ -4957,7 +4957,7 @@ class Certification(CamelCaseModel):
         None,
         title="Institution name",
         description="The name of the organization that provided the certification.",
-        example="Skill Academy",
+        examples="Skill Academy",
         max_length=250,
     )
 
@@ -4969,41 +4969,41 @@ class WorkPreference(CamelCaseModel):
         description="The industry field where the person has worked on. The codes are "
         "based on the Statistical classification of economic activities in the "
         "European Community, abbreviated as NACE.",
-        example=NaceCode.NACE_62_01,
+        examples=NaceCode.NACE_62_01,
     )
     preferred_region: List[ISO_3166_2_FI] = Field(
         ...,
         title="Preferred region",
         description="The potential regions in Finland that the user desired to find a "
         "job from.",
-        example=[ISO_3166_2_FI.FI_18],
+        examples=[ISO_3166_2_FI.FI_18],
     )
     preferred_municipality: List[FinnishMunicipality] = Field(
         ...,
         title="Preferred municipality",
         description="The potential municipalities in Finland that the user desires to "
         "find a job from.",
-        example=[FinnishMunicipality.HELSINKI],
+        examples=[FinnishMunicipality.HELSINKI],
     )
     type_of_employment: Optional[EmploymentType] = Field(
         None,
         title="Type of employment",
         description="The type of employment contract that the person is looking for.",
-        example=EmploymentType.PERMANENT,
+        examples=EmploymentType.PERMANENT,
     )
     working_time: Optional[WorkingTime] = Field(
         None,
         title="Working time",
         description="The preferred working time that the person is looking for based on the national "
         "[working time codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
-        example=WorkingTime.NIGHT_SHIFT,
+        examples=WorkingTime.NIGHT_SHIFT,
     )
     working_language: List[ISO_639_1] = Field(
         ...,
         title="Working language",
         description="The preferred list of working languages identified by the "
         "ISO 639-1 standard (Alpha-2).",
-        example=[ISO_639_1.EN],
+        examples=[ISO_639_1.EN],
     )
 
 
@@ -5043,7 +5043,7 @@ class JobApplicantProfileResponse(CamelCaseModel):
         description="The acquired permit list of a person based on the national "
         "classification of institutional permits in Finland, [permit codes]"
         "(https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
-        example=[Permit.PERMIT_075],
+        examples=[Permit.PERMIT_075],
     )
     work_preferences: WorkPreference = Field(
         ...,

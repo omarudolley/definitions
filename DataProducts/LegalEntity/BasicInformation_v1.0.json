@@ -1170,7 +1170,7 @@
             "title": "National Identifier",
             "type": "string",
             "description": "National identifier for a legal entity",
-            "example": "2464491-9"
+            "examples": "2464491-9"
           }
         }
       },
@@ -1190,7 +1190,7 @@
             "title": "Name",
             "type": "string",
             "description": "The name of the legal entity",
-            "example": "Oy Example Ab"
+            "examples": "Oy Example Ab"
           },
           "legalForm": {
             "title": "Legal form",
@@ -1200,7 +1200,7 @@
               }
             ],
             "description": "ISO 20275 legal entity code from version 1.4.1",
-            "example": "DKUW"
+            "examples": "DKUW"
           },
           "activity": {
             "title": "Activity",
@@ -1209,7 +1209,7 @@
               "$ref": "#/components/schemas/Activity"
             },
             "description": "List of European level NACE classification codes",
-            "example": ["62.01"]
+            "examples": ["62.01"]
           },
           "legalStatus": {
             "title": "Legal status",
@@ -1219,7 +1219,7 @@
               }
             ],
             "description": "Status of the legal entity",
-            "example": "NORMAL"
+            "examples": "NORMAL"
           },
           "registrationDate": {
             "title": "Registration date",
@@ -4899,35 +4899,35 @@
             "maxLength": 40,
             "minLength": 1,
             "type": "string",
-            "example": "Fredrikinkatu"
+            "examples": "Fredrikinkatu"
           },
           "buildingDesignator": {
             "title": "Building designator",
             "maxLength": 10,
             "minLength": 1,
             "type": "string",
-            "example": "34 A 17"
+            "examples": "34 A 17"
           },
           "postalCode": {
             "title": "Postal code",
             "maxLength": 10,
             "minLength": 1,
             "type": "string",
-            "example": "00100"
+            "examples": "00100"
           },
           "city": {
             "title": "City",
             "maxLength": 20,
             "minLength": 1,
             "type": "string",
-            "example": "Helsinki"
+            "examples": "Helsinki"
           },
           "region": {
             "title": "Region",
             "maxLength": 20,
             "minLength": 1,
             "type": "string",
-            "example": "Southern Finland"
+            "examples": "Southern Finland"
           },
           "country": {
             "title": "Country",
@@ -4937,7 +4937,7 @@
               }
             ],
             "description": "ISO 3166-1 alpha-2 code for the country",
-            "example": "FI"
+            "examples": "FI"
           }
         }
       },

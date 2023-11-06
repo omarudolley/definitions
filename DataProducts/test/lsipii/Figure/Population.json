@@ -312,18 +312,18 @@
             "title": "Data description",
             "type": "string",
             "default": "",
-            "example": "Väkiluku, KOKO MAA, 2021"
+            "examples": "Väkiluku, KOKO MAA, 2021"
           },
           "sourceName": {
             "title": "Data source name",
             "type": "string",
             "default": "",
-            "example": "Tilastokeskus"
+            "examples": "Tilastokeskus"
           },
           "population": {
             "title": "The population value",
             "type": "integer",
-            "example": 5548241
+            "examples": 5548241
           },
           "updatedAt": {
             "title": "Datetime the data was last updated at",
@@ -331,7 +331,7 @@
             "description": "A datetime in RFC3339 date-time syntax",
             "format": "date-time",
             "default": "",
-            "example": "2022-06-17T11:52:00Z"
+            "examples": "2022-06-17T11:52:00Z"
           }
         }
       },

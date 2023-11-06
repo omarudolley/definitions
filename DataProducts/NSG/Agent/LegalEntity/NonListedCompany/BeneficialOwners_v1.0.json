@@ -189,7 +189,7 @@
             "maxLength": 40,
             "type": "string",
             "description": "The national identifier of the non-listed company issued by the trade register in any Nordic country.",
-            "example": "FIN: 2464491-9 / SWE: 5560125791 / NOR:  923609016"
+            "examples": "FIN: 2464491-9 / SWE: 5560125791 / NOR:  923609016"
           }
         }
       },
@@ -345,13 +345,13 @@
             "maxLength": 5,
             "type": "string",
             "description": "The class of the share series that the shareholder owns.",
-            "example": "B"
+            "examples": "B"
           },
           "quantity": {
             "title": "Quantity",
             "type": "integer",
             "description": "The number of shares that the shareholder owns a share series",
-            "example": 20
+            "examples": 20
           }
         }
       },
@@ -365,19 +365,19 @@
             "maxLength": 5,
             "type": "string",
             "description": "The type of the share series of a company",
-            "example": "A"
+            "examples": "A"
           },
           "numberOfShares": {
             "title": "Number of shares",
             "type": "integer",
             "description": "The total number of the shares in the share series class",
-            "example": 1000
+            "examples": 1000
           },
           "votesPerShare": {
             "title": "Votes per share",
             "type": "integer",
             "description": "The number of votes per share in the share series",
-            "example": 1
+            "examples": 1
           }
         }
       },
@@ -391,7 +391,7 @@
             "maxLength": 250,
             "type": "string",
             "description": "The name of a shareholder of the company",
-            "example": "Lars Lindberg | Company Ltd"
+            "examples": "Lars Lindberg | Company Ltd"
           },
           "shareOwnership": {
             "title": "Share ownership",

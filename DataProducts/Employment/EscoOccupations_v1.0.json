@@ -3250,14 +3250,14 @@
             "minimum": 1.0,
             "type": "integer",
             "description": "The limit of items per page in response",
-            "example": 1000
+            "examples": 1000
           },
           "offset": {
             "title": "Offset",
             "minimum": 0.0,
             "type": "integer",
             "description": "The starting index of responses",
-            "example": 0
+            "examples": 0
           }
         }
       },
@@ -3278,7 +3278,7 @@
             "title": "Total Count",
             "type": "integer",
             "description": "The total count of occupation entries",
-            "example": 3568
+            "examples": 3568
           }
         }
       },
@@ -3360,14 +3360,14 @@
               }
             ],
             "description": "The ESCO code based on the level 5 or narrower in ESCO classification",
-            "example": "8331.1"
+            "examples": "8331.1"
           },
           "escoJobTitle": {
             "title": "ESCO Job Title",
             "maxLength": 250,
             "type": "string",
             "description": "The job title based on ESCO classification",
-            "example": "bus driver"
+            "examples": "bus driver"
           },
           "alternativeTitles": {
             "title": "ESCO Alternative Job Titles",
@@ -3376,13 +3376,13 @@
               "type": "string"
             },
             "description": "The alternative job titles based on ESCO classification",
-            "example": ["coach driver", "driver of a bus"]
+            "examples": ["coach driver", "driver of a bus"]
           },
           "escoDescription": {
             "title": "ESCO Job Title Description",
             "type": "string",
             "description": "The description of the job title",
-            "example": "Bus drivers operate buses or coaches, take fares, and look after passengers."
+            "examples": "Bus drivers operate buses or coaches, take fares, and look after passengers."
           },
           "escoIdentifier": {
             "title": "ESCO Identifier",
@@ -3391,7 +3391,7 @@
             "type": "string",
             "description": "The identifier of the ESCO occupation",
             "format": "uri",
-            "example": "http://data.europa.eu/esco/occupation/00cee175-1376-43fb-9f02-ba3d7a910a58"
+            "examples": "http://data.europa.eu/esco/occupation/00cee175-1376-43fb-9f02-ba3d7a910a58"
           }
         }
       },

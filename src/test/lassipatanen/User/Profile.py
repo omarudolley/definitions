@@ -42,28 +42,28 @@ class Address(CamelCaseModel):
         None,
         title="Street address",
         description="Street address",
-        example="Mannerheimintie 42",
+        examples="Mannerheimintie 42",
         nullable=True,
     )
     zip_code: Optional[constr(min_length=5, max_length=5)] = Field(
         None,
         title="ZIP code",
         description="ZIP code of the address",
-        example="00100",
+        examples="00100",
         nullable=True,
     )
     city: Optional[str] = Field(
         None,
         title="City",
         description="City of the address location",
-        example="Helsinki",
+        examples="Helsinki",
         nullable=True,
     )
     country: Optional[str] = Field(
         None,
         title="Country",
         description="Country of the address",
-        example="Suomi",
+        examples="Suomi",
         nullable=True,
     )
 
@@ -75,7 +75,7 @@ class Occupation(CamelCaseModel):
         description="The identifier of the occupation in which the user has previously "
         "worked. The identifier is based on European Standard Classification of "
         "Occupations (ESCO).",
-        example="http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84",
+        examples="http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84",
         nullable=True,
     )
     esco_code: Optional[str] = Field(
@@ -84,7 +84,7 @@ class Occupation(CamelCaseModel):
         description="The code of the occupation in which the user has previously "
         "worked. The code based on European Standard Classification of Occupations "
         "(ESCO).",
-        example="2654.1.7",
+        examples="2654.1.7",
         nullable=True,
     )
     nace_code: Optional[str] = Field(
@@ -94,14 +94,14 @@ class Occupation(CamelCaseModel):
         "based on the Statistical classification of economic activities in the "
         "European Community, abbreviated as NACE.",
         nullable=True,
-        example="62.01",
+        examples="62.01",
     )
     work_experience: Optional[int] = Field(
         None,
         title="Work experience in years",
         description="The number of months that the person has experience in the specific occupation",
         nullable=True,
-        example=5,
+        examples=5,
     )
 
 
@@ -111,28 +111,28 @@ class WorkPreferences(CamelCaseModel):
         title="Preferred region",
         description="List of regions from where the user would like to search for jobs",
         nullable=True,
-        example=["01"],
+        examples=["01"],
     )
     preferred_municipality: Optional[List[str]] = Field(
         None,
         title="Preferred municipality",
         description="List of municipalities from where the user would like to search for jobs",
         nullable=True,
-        example=["091"],
+        examples=["091"],
     )
     type_of_employment: Optional[EmploymentType] = Field(
         None,
         title="Type of employment",
         description="The type of employment contract that the person is looking for.",
         nullable=True,
-        example=EmploymentType.SUMMER_JOB,
+        examples=EmploymentType.SUMMER_JOB,
     )
     working_time: Optional[WorkingTime] = Field(
         None,
         title="Working Time",
         description="The preferred working time that the person is looking for based on the national "
         "[working time codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
-        example=WorkingTime.NIGHT_SHIFT,
+        examples=WorkingTime.NIGHT_SHIFT,
         nullable=True,
     )
     working_language: Optional[str] = Field(
@@ -141,20 +141,20 @@ class WorkPreferences(CamelCaseModel):
         description="The preferred list of working languages identified by the "
         "ISO 639-1 standard (Alpha-2).",
         nullable=True,
-        example="fi",
+        examples="fi",
     )
     created: Optional[datetime] = Field(
         None,
         title="Created at timestamp",
         description="Timestamp for when the work preferences were first saved",
-        example="2042-04-23T10:20:30.400",
+        examples="2042-04-23T10:20:30.400",
         nullable=True,
     )
     modified: Optional[datetime] = Field(
         None,
         title="Modified at timestamp",
         description="Timestamp for when the work preferences were last modified",
-        example="2042-04-23T10:20:30.400",
+        examples="2042-04-23T10:20:30.400",
         nullable=True,
     )
 
@@ -163,30 +163,30 @@ class ProfileResponse(CamelCaseModel):
     id: UUID = Field(
         title="Id",
         description="uuid formatted string used to identify users",
-        example="cf57432e-809e-4353-adbd-9d5c0d733868",
+        examples="cf57432e-809e-4353-adbd-9d5c0d733868",
     )
     created: datetime = Field(
         title="Created",
         description="Created at timestamp",
-        example="2042-04-23T10:20:30.400",
+        examples="2042-04-23T10:20:30.400",
     )
     modified: datetime = Field(
         title="Modified",
         description="Modified at timestamp",
-        example="2042-04-23T10:20:30.400",
+        examples="2042-04-23T10:20:30.400",
     )
     first_name: Optional[str] = Field(
         None,
         title="First name",
         description="First name of the user",
-        example="John",
+        examples="John",
         nullable=True,
     )
     last_name: Optional[str] = Field(
         None,
         title="Last name",
         description="Last name of the user",
-        example="Doe",
+        examples="Doe",
         nullable=True,
     )
     address: Address = Field(..., title="Address", description="Address of the user")
@@ -194,7 +194,7 @@ class ProfileResponse(CamelCaseModel):
         None,
         title="Date of birth",
         description="Date of Birth (date only)",
-        example="2000-01-01",
+        examples="2000-01-01",
         nullable=True,
     )
     gender: Optional[Gender] = Field(
@@ -206,7 +206,7 @@ class ProfileResponse(CamelCaseModel):
         None,
         title="Country of birth code",
         description="ISO 3166-1 alpha-2 code for country",
-        example="FI",
+        examples="FI",
         nullable=True,
     )
     native_language_code: Optional[
@@ -219,14 +219,14 @@ class ProfileResponse(CamelCaseModel):
         None,
         title="Native language code",
         description="ISO 639-3 code for language",
-        example="fin",
+        examples="fin",
         nullable=True,
     )
     occupation_code: Optional[str] = Field(
         None,
         title="Occupation code",
         description="Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
-        example="11122",
+        examples="11122",
         nullable=True,
     )
     occupations: Optional[List[Occupation]] = Field(
@@ -245,20 +245,20 @@ class ProfileResponse(CamelCaseModel):
         None,
         title="Nationality code",
         description="ISO 3166-1 alpha-2 code for nationality",
-        example="FI",
+        examples="FI",
         nullable=True,
     )
     job_titles: List[str] = Field(
         ...,
         title="Job titles",
         description="List of job titles",
-        example=["Chef", "Programmer"],
+        examples=["Chef", "Programmer"],
     )
     regions: List[str] = Field(
         ...,
         title="Regions",
         description="List of regions where user would want to search for a job",
-        example=["Etelä-Suomi"],
+        examples=["Etelä-Suomi"],
     )
 
 

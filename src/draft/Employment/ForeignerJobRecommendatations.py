@@ -3339,21 +3339,21 @@ class ForeignerJobRecommendationsRequest(CamelCaseModel):
         title="ESCO Codes",
         description="The ESCO code based on the level 5 or narrower in ESCO "
         "classification",
-        example=[EscoCode.ESCO_8331_1],
+        examples=[EscoCode.ESCO_8331_1],
     )
     citizenship_area: Optional[CitizenshipArea] = Field(
         None,
         title="Citizenship Area",
         description="The citizenship area based on his or her native country. "
         "Switzerland is considered as part of the EEA category.",
-        example=CitizenshipArea.EEA,
+        examples=CitizenshipArea.EEA,
     )
     preferred_municipalities: Optional[List[FinnishMunicipality]] = Field(
         None,
         title="Preferred Municipalities",
         description="The potential municipalities in Finland that the user desires to "
         "find a job from.",
-        example=[FinnishMunicipality.HELSINKI],
+        examples=[FinnishMunicipality.HELSINKI],
     )
     free_text: Optional[str] = Field(
         None,
@@ -3361,21 +3361,21 @@ class ForeignerJobRecommendationsRequest(CamelCaseModel):
         description="Free text that the user wants to use for filtering job "
         "advertisements",
         max_length=250,
-        example="Driving license",
+        examples="Driving license",
     )
     limit: Optional[int] = Field(
         None,
         title="Limit",
         description="The limit of items per page in response",
         ge=1,
-        example=1000,
+        examples=1000,
     )
     offset: Optional[int] = Field(
         None,
         title="Offset",
         description="The starting index of responses",
         ge=0,
-        example=0,
+        examples=0,
     )
 
 
@@ -3385,14 +3385,14 @@ class Employer(CamelCaseModel):
         title="Name",
         description="Then name of the employer issuing the job advertisement",
         max_length=250,
-        example="Company Oy",
+        examples="Company Oy",
     )
     logo_url: HttpUrl = Field(
         ...,
         alias="logoURL",
         title="Logo URL",
         description="The image URL of the employer logo",
-        example="https://example.com/image.jpg",
+        examples="https://example.com/image.jpg",
     )
 
 
@@ -3402,7 +3402,7 @@ class Job(CamelCaseModel):
         title="Title",
         description="Title of the advertised job",
         max_length=250,
-        example="Item specialist",
+        examples="Item specialist",
     )
     score: float = Field(
         ...,
@@ -3410,20 +3410,20 @@ class Job(CamelCaseModel):
         description="The confidence score for the job advertisement recommendation",
         ge=0.0,
         le=1.0,
-        example=0.88,
+        examples=0.88,
     )
     advertisement_url: HttpUrl = Field(
         ...,
         alias="advertisementURL",
         title="Advertisement URL",
         description="The link to the service providing the job advertisement details",
-        example="https://jobadvertisement.example.com/ad123",
+        examples="https://jobadvertisement.example.com/ad123",
     )
     municipality_code: FinnishMunicipality = Field(
         ...,
         title="Municipality Code",
         description="The location of the advertised job ",
-        example=FinnishMunicipality.HELSINKI,
+        examples=FinnishMunicipality.HELSINKI,
     )
     employer: Employer = Field(
         ...,
@@ -3437,7 +3437,7 @@ class ForeignerJobRecommendationsResponse(CamelCaseModel):
         ...,
         title="Identifier",
         description="The job recommendation search identifier",
-        example="123e4567-e89b-12d3-a456-426614174000",
+        examples="123e4567-e89b-12d3-a456-426614174000",
     )
     jobs: List[Job] = Field(
         ...,
@@ -3449,7 +3449,7 @@ class ForeignerJobRecommendationsResponse(CamelCaseModel):
         ...,
         title="Total Count",
         description="The total count of job recommendations",
-        example=47,
+        examples=47,
     )
 
 

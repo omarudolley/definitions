@@ -198,7 +198,7 @@
             "title": "Work time type",
             "type": "string",
             "description": "<pre>01 = Full time\n02 = Part time</pre>",
-            "example": "01"
+            "examples": "01"
           }
         }
       },
@@ -382,7 +382,7 @@
               }
             ],
             "description": "Requirements for the job posting",
-            "example": "http://data.europa.eu/esco/occupation/8d3e8aaa-791b-4c75-a465-f3f827028f50"
+            "examples": "http://data.europa.eu/esco/occupation/8d3e8aaa-791b-4c75-a465-f3f827028f50"
           },
           "paging": {
             "title": "Paging",
@@ -412,7 +412,7 @@
             "title": "Total count",
             "type": "integer",
             "description": "Total count of job postings",
-            "example": 1
+            "examples": 1
           }
         }
       },
@@ -427,7 +427,7 @@
               "type": "string"
             },
             "description": "Country codes of the location as the numeric codes according to ISO 3166",
-            "example": ["FI"]
+            "examples": ["FI"]
           },
           "regions": {
             "title": "Regions",
@@ -436,7 +436,7 @@
               "type": "string"
             },
             "description": "The numeric codes according to Statistics Finland's classification of Regions 2022 are used as the code for the region data",
-            "example": ["09"]
+            "examples": ["09"]
           },
           "municipalities": {
             "title": "Municipalities",
@@ -445,7 +445,7 @@
               "type": "string"
             },
             "description": "The code of the municipality of location data is the numerical codes of municipalities according to Statistics Finland's municipalities 2022 classification",
-            "example": ["405"]
+            "examples": ["405"]
           }
         }
       },
@@ -493,7 +493,7 @@
               "type": "string"
             },
             "description": "Professions being sought. The occupation codes used are in an URL format according to ESCO 1.1.0",
-            "example": [
+            "examples": [
               "http://data.europa.eu/esco/occupation/8d3e8aaa-791b-4c75-a465-f3f827028f50"
             ]
           },
@@ -504,7 +504,7 @@
               "type": "string"
             },
             "description": "Areas of expertise being sought. The codes for skills are in an URL format according to ESCO 1.1.0",
-            "example": [
+            "examples": [
               "http://data.europa.eu/esco/skill/a17286c5-238d-4f0b-bc24-29e9121345de"
             ]
           }

@@ -191,7 +191,7 @@
             "minimum": -90.0,
             "type": "number",
             "description": "The latitude coordinate of the desired location",
-            "example": 60.192059
+            "examples": 60.192059
           },
           "lon": {
             "title": "Longitude",
@@ -199,7 +199,7 @@
             "minimum": -180.0,
             "type": "number",
             "description": "The longitude coordinate of the desired location",
-            "example": 24.945831
+            "examples": 24.945831
           }
         }
       },
@@ -213,13 +213,13 @@
             "minimum": 0.0,
             "type": "integer",
             "description": "Current air quality index.\nRanges:\n0-50 Good;\n51-100 Moderate;\n101-150 Unhealthy For Sensitive Groups;\n151-200 Unhealthy;\n201-300 Very Unhealthy;\n301+ Hazardous",
-            "example": 30
+            "examples": 30
           },
           "timestamp": {
             "title": "Timestamp",
             "type": "string",
             "description": "Current timestamp in RFC 3339 format",
-            "example": "2020-04-03T13:00:00Z"
+            "examples": "2020-04-03T13:00:00Z"
           },
           "attribution": {
             "title": "Source Attribution",
@@ -228,7 +228,7 @@
               "type": "string"
             },
             "description": "List of text to show required credits to data sources",
-            "example": [
+            "examples": [
               "Eesti välisõhu kvaliteet - Estonian ambient air quality",
               "World Air Quality Index Project"
             ]

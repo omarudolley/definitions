@@ -195,7 +195,7 @@
             "maxLength": 250,
             "type": "string",
             "description": "The name of the acquired certification.",
-            "example": "Cloud provider certification"
+            "examples": "Cloud provider certification"
           },
           "escoIdentifier": {
             "title": "List of ESCO Uris",
@@ -207,7 +207,7 @@
               "format": "uri"
             },
             "description": "The identifier of the skill in which the user has qualified. The skill identifier is based on European Standard Classification of Occupations (ESCO).",
-            "example": [
+            "examples": [
               "http://data.europa.eu/esco/skill/b85711bc-32d6-42af-ae0f-e2e566d0dfca"
             ]
           },
@@ -216,7 +216,7 @@
             "maxLength": 250,
             "type": "string",
             "description": "The name of the organization that provided the certification.",
-            "example": "Skill Academy"
+            "examples": "Skill Academy"
           }
         }
       },
@@ -277,7 +277,7 @@
             "maxLength": 250,
             "type": "string",
             "description": "The name of the education completed by a person.",
-            "example": "Master of Business Administration"
+            "examples": "Master of Business Administration"
           },
           "educationLevel": {
             "title": "Education level",
@@ -287,7 +287,7 @@
               }
             ],
             "description": "The education level which the person has acquired based on the International Standard Classification of Education, [ISCED education codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=educationlevel).",
-            "example": "7"
+            "examples": "7"
           },
           "educationField": {
             "title": "Education field",
@@ -297,21 +297,21 @@
               }
             ],
             "description": "The education field based on the International Standard Classification of Education, [ISCED education codes](https://koodistot.suomi.fi/codescheme;registryCode=jhs;schemeCode=isced_ala_1_20110101).",
-            "example": "0731"
+            "examples": "0731"
           },
           "graduationDate": {
             "title": "Graduation date",
             "type": "string",
             "description": "The date on which the specific education has been completed.",
             "format": "date",
-            "example": "2022-12-08"
+            "examples": "2022-12-08"
           },
           "institutionName": {
             "title": "Institution name",
             "maxLength": 250,
             "type": "string",
             "description": "The name of the organization that provided the education.",
-            "example": "Institute of Technology"
+            "examples": "Institute of Technology"
           }
         }
       },
@@ -4126,7 +4126,7 @@
               "$ref": "#/components/schemas/Permit"
             },
             "description": "The acquired permit list of a person based on the national classification of institutional permits in Finland, [permit codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
-            "example": ["075"]
+            "examples": ["075"]
           },
           "workPreferences": {
             "title": "Work preference",
@@ -4150,7 +4150,7 @@
             "type": "string",
             "description": "The languange skill identifier based on European Standard Classification of Occupations (ESCO).",
             "format": "uri",
-            "example": "http://data.europa.eu/esco/skill/6d3edede-8951-4621-a835-e04323300fa0"
+            "examples": "http://data.europa.eu/esco/skill/6d3edede-8951-4621-a835-e04323300fa0"
           },
           "languageCode": {
             "title": "Language code",
@@ -4160,7 +4160,7 @@
               }
             ],
             "description": "The language skill identifier by the ISO 639-1 standard (Alpha-2).",
-            "example": "en"
+            "examples": "en"
           },
           "skillLevel": {
             "title": "Skill level",
@@ -4170,7 +4170,7 @@
               }
             ],
             "description": "The language skill level according to Common European Framework of Reference for Languages, known as CERF.",
-            "example": "B2"
+            "examples": "B2"
           }
         }
       },
@@ -5184,7 +5184,7 @@
             "type": "string",
             "description": "The identifier of the occupation in which the user has previously worked. The identifier is based on European Standard Classification of Occupations (ESCO).",
             "format": "uri",
-            "example": "http://data.europa.eu/esco/occupation/0022f466-426c-41a4-ac96-a235c945cf97"
+            "examples": "http://data.europa.eu/esco/occupation/0022f466-426c-41a4-ac96-a235c945cf97"
           },
           "escoCode": {
             "title": "ESCO code",
@@ -5194,20 +5194,20 @@
               }
             ],
             "description": "The code of the occupation in which the user has previously worked. The code based on European Standard Classification of Occupations (ESCO).",
-            "example": "2654.1.7"
+            "examples": "2654.1.7"
           },
           "workExperience": {
             "title": "Work experience in months",
             "type": "integer",
             "description": "The number of months that the person has experience in the specific occupation.",
-            "example": 5
+            "examples": 5
           },
           "employer": {
             "title": "Employer",
             "maxLength": 250,
             "type": "string",
             "description": "The name of the employer by which the work experience has been acquired.",
-            "example": "The name of the employer by which the work experience has been acquired."
+            "examples": "The name of the employer by which the work experience has been acquired."
           }
         }
       },
@@ -5222,7 +5222,7 @@
             "type": "string",
             "description": "The skill identifier based on European Standard Classification of Occupations (ESCO).",
             "format": "uri",
-            "example": "http://data.europa.eu/esco/skill/869fc2ce-478f-4420-8766-e1f02cec4fb2"
+            "examples": "http://data.europa.eu/esco/skill/869fc2ce-478f-4420-8766-e1f02cec4fb2"
           },
           "skillLevel": {
             "title": "Skill level",
@@ -5232,7 +5232,7 @@
               }
             ],
             "description": "The language skill level according to Common European Framework of Reference for Languages, known as CERF.",
-            "example": "beginner"
+            "examples": "beginner"
           }
         }
       },
@@ -5415,7 +5415,7 @@
               }
             ],
             "description": "The industry field where the person has worked on. The codes are based on the Statistical classification of economic activities in the European Community, abbreviated as NACE.",
-            "example": "62.01"
+            "examples": "62.01"
           },
           "preferredRegion": {
             "title": "Preferred region",
@@ -5424,7 +5424,7 @@
               "$ref": "#/components/schemas/ISO_3166_2_FI"
             },
             "description": "The potential regions in Finland that the user desired to find a job from.",
-            "example": ["FI-18"]
+            "examples": ["FI-18"]
           },
           "preferredMunicipality": {
             "title": "Preferred municipality",
@@ -5433,7 +5433,7 @@
               "$ref": "#/components/schemas/FinnishMunicipality"
             },
             "description": "The potential municipalities in Finland that the user desires to find a job from.",
-            "example": ["091"]
+            "examples": ["091"]
           },
           "typeOfEmployment": {
             "title": "Type of employment",
@@ -5443,7 +5443,7 @@
               }
             ],
             "description": "The type of employment contract that the person is looking for.",
-            "example": "permanent"
+            "examples": "permanent"
           },
           "workingTime": {
             "title": "Working time",
@@ -5453,7 +5453,7 @@
               }
             ],
             "description": "The preferred working time that the person is looking for based on the national [working time codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
-            "example": "03"
+            "examples": "03"
           },
           "workingLanguage": {
             "title": "Working language",
@@ -5462,7 +5462,7 @@
               "$ref": "#/components/schemas/ISO_639_1"
             },
             "description": "The preferred list of working languages identified by the ISO 639-1 standard (Alpha-2).",
-            "example": ["en"]
+            "examples": ["en"]
           }
         }
       },

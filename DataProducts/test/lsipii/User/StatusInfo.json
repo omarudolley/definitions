@@ -325,13 +325,13 @@
             "title": "Label of the status",
             "type": "string",
             "description": "Label of the status in English",
-            "example": "Sent"
+            "examples": "Sent"
           },
           "statusName": {
             "title": "Name of the status",
             "type": "string",
             "description": "Programmatic identity field of the status",
-            "example": "tax_form"
+            "examples": "tax_form"
           },
           "statusValue": {
             "title": "Status",
@@ -341,21 +341,21 @@
               }
             ],
             "description": "Value of the status",
-            "example": "SENT"
+            "examples": "SENT"
           },
           "updatedAt": {
             "title": "Datetime the data was last updated at",
             "type": "string",
             "description": "A datetime in RFC3339 date-time syntax",
             "format": "date-time",
-            "example": "2022-06-17T11:52:00Z"
+            "examples": "2022-06-17T11:52:00Z"
           },
           "createdAt": {
             "title": "Datetime the data was created at",
             "type": "string",
             "description": "A datetime in RFC3339 date-time syntax",
             "format": "date-time",
-            "example": "2022-06-17T11:52:00Z"
+            "examples": "2022-06-17T11:52:00Z"
           }
         }
       },

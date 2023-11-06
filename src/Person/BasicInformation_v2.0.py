@@ -19,27 +19,27 @@ class BasicInformationResponse(CamelCaseModel):
         None,
         title="Given name",
         description="The first name that the person is being called by",
-        example="John",
+        examples="John",
         max_length=250,
     )
     last_name: Optional[str] = Field(
         None,
         title="Last name",
         description="The person's current family name",
-        example="Doe",
+        examples="Doe",
         max_length=250,
     )
     email: EmailStr = Field(
         ...,
         title="Email",
         description="The person's contact email address",
-        example="john.doe@test.fi",
+        examples="john.doe@test.fi",
     )
     phone_number: Optional[str] = Field(
         None,
         title="Phone number",
         description="The person's phone number in the international format",
-        example="+358501234567",
+        examples="+358501234567",
         max_length=250,
     )
     citizenship_area: Optional[CitizenshipArea] = Field(
@@ -47,7 +47,7 @@ class BasicInformationResponse(CamelCaseModel):
         title="Citizenship Area",
         description="The citizenship area based on his or her native country. "
         "Switzerland is considered as part of the EEA category.",
-        example=CitizenshipArea.EEA,
+        examples=CitizenshipArea.EEA,
     )
 
 

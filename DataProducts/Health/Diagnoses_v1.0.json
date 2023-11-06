@@ -286,7 +286,7 @@
               "type": "string"
             },
             "description": "List of users diagnoses in ICD10 code",
-            "example": ["icd10:J45"]
+            "examples": ["icd10:J45"]
           }
         }
       },

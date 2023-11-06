@@ -196,13 +196,13 @@
             "title": "Location ID",
             "type": "string",
             "description": "Location ID",
-            "example": "849cc493-efb7-483f-b634-7a44849270f9"
+            "examples": "849cc493-efb7-483f-b634-7a44849270f9"
           },
           "locationName": {
             "title": "Location name",
             "type": "string",
             "description": "Location name",
-            "example": "Deck #3"
+            "examples": "Deck #3"
           }
         }
       },
@@ -221,13 +221,13 @@
             "title": "Beacon ID",
             "type": "string",
             "description": "Beacon ID",
-            "example": "0d9b38d3-f8a0-4efe-ad62-f781fea62b86"
+            "examples": "0d9b38d3-f8a0-4efe-ad62-f781fea62b86"
           },
           "rssi": {
             "title": "RSSI",
             "type": "number",
             "description": "Received Signal Strength Indication, in dBm",
-            "example": -55
+            "examples": -55
           }
         }
       },

@@ -196,25 +196,25 @@
             "type": "string",
             "description": "Link to the terms of service",
             "format": "uri",
-            "example": "https://example.com/terms-of-service-v1.0"
+            "examples": "https://example.com/terms-of-service-v1.0"
           },
           "description": {
             "title": "Description",
             "type": "string",
             "description": "Description of the terms of service",
-            "example": "This is the terms of service for the example service"
+            "examples": "This is the terms of service for the example service"
           },
           "version": {
             "title": "Version",
             "type": "string",
             "description": "Version of the terms of service",
-            "example": "1.0"
+            "examples": "1.0"
           },
           "accepted": {
             "title": "Accepted",
             "type": "boolean",
             "description": "Whether the user has accepted the terms of service",
-            "example": false
+            "examples": false
           },
           "acceptedAt": {
             "title": "Datetime the terms of service was accepted at",
@@ -222,13 +222,13 @@
             "description": "A datetime in RFC3339 date-time syntax",
             "format": "date-time",
             "nullable": true,
-            "example": "2022-06-17T11:52:00Z"
+            "examples": "2022-06-17T11:52:00Z"
           },
           "acceptedPreviousVersion": {
             "title": "Accepted previous version",
             "type": "boolean",
             "description": "Whether the user has accepted the previous version of the terms of service",
-            "example": false
+            "examples": false
           }
         }
       },

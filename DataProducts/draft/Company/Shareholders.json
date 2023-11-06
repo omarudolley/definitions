@@ -296,7 +296,7 @@
             "title": "Name of the Shareholder",
             "type": "string",
             "description": "Name of the shareholder",
-            "example": "Matti Meikäläinen | Oy Company Ltd"
+            "examples": "Matti Meikäläinen | Oy Company Ltd"
           },
           "ownerships": {
             "title": "Ownerships",
@@ -317,13 +317,13 @@
             "title": "Series Name",
             "type": "string",
             "description": "Name of the share series",
-            "example": "A"
+            "examples": "A"
           },
           "quantity": {
             "title": "Number of Shares",
             "type": "integer",
             "description": "Number of shares held by the owner",
-            "example": 100
+            "examples": 100
           }
         }
       },
@@ -348,19 +348,19 @@
             "title": "Series Name",
             "type": "string",
             "description": "Classification of the share",
-            "example": "A"
+            "examples": "A"
           },
           "votesPerShare": {
             "title": "Votes per share",
             "type": "integer",
             "description": "Number of votes per share in the share series",
-            "example": 1
+            "examples": 1
           },
           "totalShares": {
             "title": "Total Shares",
             "type": "integer",
             "description": "Total number of shares in the share series",
-            "example": 1000
+            "examples": 1000
           }
         }
       },
@@ -373,7 +373,7 @@
             "title": "Company ID",
             "type": "string",
             "description": "The ID of the company, only supports Finnish business ID's",
-            "example": "2464491-9"
+            "examples": "2464491-9"
           }
         }
       },

@@ -189,7 +189,7 @@
             "title": "Product Code",
             "type": "string",
             "description": "The product code used by the manufacturer",
-            "example": "MPP48V"
+            "examples": "MPP48V"
           }
         }
       },
@@ -221,18 +221,18 @@
             "title": "Manufacturer",
             "type": "string",
             "description": "The manufacturer of the battery",
-            "example": "Valmet Automotive"
+            "examples": "Valmet Automotive"
           },
           "productCode": {
             "title": "Product Code",
             "type": "string",
             "description": "The product code used by the manufacturer",
-            "example": "MPP48V"
+            "examples": "MPP48V"
           },
           "name": {
             "title": "Product Name",
             "type": "string",
-            "example": "Modular Power Pack, 48 V"
+            "examples": "Modular Power Pack, 48 V"
           },
           "cellType": {
             "title": "Cell Type",
@@ -241,19 +241,19 @@
                 "$ref": "#/components/schemas/CellType"
               }
             ],
-            "example": "lithium-titanate"
+            "examples": "lithium-titanate"
           },
           "capacity": {
             "title": "Capacity",
             "type": "number",
             "description": "Battery capacity in kWh",
-            "example": 2.2
+            "examples": 2.2
           },
           "energy": {
             "title": "Energy (Ah)",
             "type": "number",
             "description": "Energy, Ah [1C @ 25°C]",
-            "example": 46.0
+            "examples": 46.0
           },
           "voltage": {
             "title": "Voltage",
@@ -267,28 +267,28 @@
           "peakDischargingPower": {
             "title": "Peak Discharging Power [kW]",
             "type": "number",
-            "example": 20.0
+            "examples": 20.0
           },
           "peakChargingPower": {
             "title": "Peak Charging Power [kW]",
             "type": "number",
-            "example": 20.0
+            "examples": 20.0
           },
           "continuousPower": {
             "title": "Continuous Power [kW]",
             "type": "number",
-            "example": 10.0
+            "examples": 10.0
           },
           "standbyConsumption": {
             "title": "Standby Power Consumption [W]",
             "type": "number",
-            "example": 1.0
+            "examples": 1.0
           },
           "cycleLife": {
             "title": "Cycle Life",
             "type": "integer",
             "description": "Minimum number of cycles the battery can be recharged to at least 80% of initial capacity",
-            "example": 20000
+            "examples": 20000
           },
           "dimensions": {
             "title": "Dimensions",
@@ -303,7 +303,7 @@
             "title": "Weight [kg]",
             "type": "number",
             "description": "Total dry weight [kg]",
-            "example": 41.0
+            "examples": 41.0
           },
           "operatingTemperature": {
             "title": "Operating Temperature [°C]",
@@ -320,12 +320,12 @@
                 "$ref": "#/components/schemas/IPCode"
               }
             ],
-            "example": "IP6K9K"
+            "examples": "IP6K9K"
           },
           "maxCoolantPressure": {
             "title": "Max Coolant Pressure [bar]",
             "type": "number",
-            "example": 3.5
+            "examples": 3.5
           },
           "standardsCompliance": {
             "title": "Standards Compliance",
@@ -334,14 +334,14 @@
             "items": {
               "type": "string"
             },
-            "example": [
-              "UN 38.3",
+            "examples": [
               "ECE R10",
-              "IEC 62061 SIL 2",
+              "ISO 13849 PL C",
               "ECE R100",
+              "IEC 62061 SIL 2",
+              "UN 38.3",
               "IEC 61508 SIL 2",
-              "ISO 16750",
-              "ISO 13849 PL C"
+              "ISO 16750"
             ]
           }
         }
@@ -390,17 +390,17 @@
           "length": {
             "title": "Length [mm]",
             "type": "integer",
-            "example": 483
+            "examples": 483
           },
           "width": {
             "title": "Width [mm]",
             "type": "integer",
-            "example": 380
+            "examples": 380
           },
           "height": {
             "title": "Height [mm]",
             "type": "integer",
-            "example": 160
+            "examples": 160
           }
         }
       },
@@ -548,22 +548,22 @@
           "min": {
             "title": "Minimum operating temperature [°C]",
             "type": "number",
-            "example": -30.0
+            "examples": -30.0
           },
           "max": {
             "title": "Maximum operating temperature [°C]",
             "type": "number",
-            "example": 55.0
+            "examples": 55.0
           },
           "recommendedMin": {
             "title": "Minimum recommended operating temperature [°C]",
             "type": "number",
-            "example": 5.0
+            "examples": 5.0
           },
           "recommendedMax": {
             "title": "Maximum recommended operating temperature [°C]",
             "type": "number",
-            "example": 35
+            "examples": 35
           }
         }
       },
@@ -633,17 +633,17 @@
           "min": {
             "title": "Minimum voltage",
             "type": "number",
-            "example": 38.0
+            "examples": 38.0
           },
           "max": {
             "title": "Maximum voltage",
             "type": "number",
-            "example": 56.0
+            "examples": 56.0
           },
           "nominal": {
             "title": "Nominal voltage",
             "type": "number",
-            "example": 48.3
+            "examples": 48.3
           }
         }
       }
