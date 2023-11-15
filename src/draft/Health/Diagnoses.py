@@ -10,7 +10,9 @@ class HealthDiagnosesRequest(CamelCaseModel):
 
 class HealthDiagnosesResponse(CamelCaseModel):
     diagnoses: List[str] = Field(
-        ..., description="List of users diagnoses in ICD10 code", example=["icd10:J45"]
+        ...,
+        description="List of users diagnoses in ICD10 code",
+        examples=[["icd10:J45"]],
     )
 
 

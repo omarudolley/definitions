@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "Write Person Basic Information",
     "description": "Create or update a minimal set of basic information of a person",
@@ -13,48 +13,55 @@
         "operationId": "request_Person_BasicInformation_Write_v2_0",
         "parameters": [
           {
-            "description": "Consent token",
-            "required": true,
-            "schema": {
-              "title": "X-Consent-Token",
-              "type": "string",
-              "description": "Consent token"
-            },
             "name": "x-consent-token",
-            "in": "header"
-          },
-          {
-            "description": "The login token. Value should be \"Bearer [token]\"",
+            "in": "header",
             "required": true,
             "schema": {
-              "title": "Authorization",
               "type": "string",
-              "description": "The login token. Value should be \"Bearer [token]\""
+              "description": "Consent token",
+              "title": "X-Consent-Token"
             },
-            "name": "authorization",
-            "in": "header"
+            "description": "Consent token"
           },
           {
-            "description": "The bare domain of the system that provided the token.",
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "title": "Authorization"
+            },
+            "description": "The login token. Value should be \"Bearer [token]\""
+          },
+          {
+            "name": "x-authorization-provider",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Authorization-Provider",
-              "type": "string",
-              "description": "The bare domain of the system that provided the token."
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
             },
-            "name": "x-authorization-provider",
-            "in": "header"
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/BasicInformationRequestResponse"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -68,94 +75,98 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Unauthorized"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Forbidden"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "444": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceNotFound"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceError"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           },
           "502": {
-            "description": "Bad Gateway",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BadGateway"
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           },
           "503": {
-            "description": "Service Unavailable",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceUnavailable"
                 }
               }
-            }
+            },
+            "description": "Service Unavailable"
           },
           "504": {
-            "description": "Gateway Timeout",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GatewayTimeout"
                 }
               }
-            }
+            },
+            "description": "Gateway Timeout"
           },
           "550": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DoesNotConformToDefinition"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "422": {
             "description": "Validation Error",
@@ -174,206 +185,226 @@
   "components": {
     "schemas": {
       "BadGateway": {
-        "title": "BadGateway",
-        "type": "object",
         "properties": {},
+        "type": "object",
+        "title": "BadGateway",
         "description": "This response is reserved by Product Gateway."
       },
       "BasicInformationRequestResponse": {
-        "title": "BasicInformationRequestResponse",
-        "required": ["email"],
-        "type": "object",
         "properties": {
           "givenName": {
-            "title": "Given name",
-            "maxLength": 250,
-            "type": "string",
-            "description": "The first name that the person is being called by",
-            "example": "John"
-          },
-          "lastName": {
-            "title": "Last name",
-            "maxLength": 250,
-            "type": "string",
-            "description": "The person's current family name",
-            "example": "Doe"
-          },
-          "email": {
-            "title": "Email",
-            "type": "string",
-            "description": "The person's contact email address",
-            "format": "email",
-            "example": "john.doe@test.fi"
-          },
-          "phoneNumber": {
-            "title": "Phone number",
-            "maxLength": 250,
-            "type": "string",
-            "description": "The person's phone number in the international format",
-            "example": "+358501234567"
-          },
-          "citizenshipArea": {
-            "title": "Citizenship Area",
-            "allOf": [
+            "anyOf": [
               {
-                "$ref": "#/components/schemas/CitizenshipArea"
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Given name",
+            "description": "The first name that the person is being called by",
+            "examples": ["John"]
+          },
+          "lastName": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last name",
+            "description": "The person's current family name",
+            "examples": ["Doe"]
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email",
+            "description": "The person's contact email address",
+            "examples": ["john.doe@test.fi"]
+          },
+          "phoneNumber": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone number",
+            "description": "The person's phone number in the international format",
+            "examples": ["+358501234567"]
+          },
+          "citizenshipArea": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CitizenshipArea"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Citizenship Area",
             "description": "The citizenship area based on his or her native country. Switzerland is considered as part of the EEA category.",
-            "example": "EEA"
+            "examples": ["EEA"]
           }
-        }
+        },
+        "type": "object",
+        "required": ["email"],
+        "title": "BasicInformationRequestResponse"
       },
       "CitizenshipArea": {
-        "title": "CitizenshipArea",
-        "enum": ["EEA", "non-EEA"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["EEA", "non-EEA"],
+        "title": "CitizenshipArea"
       },
       "DataSourceError": {
-        "title": "DataSourceError",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
       },
       "DataSourceNotFound": {
-        "title": "DataSourceNotFound",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description",
             "default": "Data source not found"
           }
         },
+        "type": "object",
+        "title": "DataSourceNotFound",
         "description": "This response is reserved by Product Gateway."
       },
       "DoesNotConformToDefinition": {
-        "title": "DoesNotConformToDefinition",
-        "required": ["data_source_status_code"],
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Message",
             "type": "string",
+            "title": "Message",
             "default": "Response from data source does not conform to definition"
           },
           "data_source_status_code": {
-            "title": "Data source status code",
             "type": "integer",
+            "title": "Data source status code",
             "description": "HTTP status code returned from the data source"
           }
         },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
         "description": "This response is reserved by Product Gateway."
       },
       "Forbidden": {
-        "title": "Forbidden",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "GatewayTimeout": {
-        "title": "GatewayTimeout",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
         "description": "This response is reserved by Product Gateway."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "NotFound": {
-        "title": "NotFound",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "ServiceUnavailable": {
-        "title": "ServiceUnavailable",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
+      },
+      "ServiceUnavailable": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "ServiceUnavailable",
         "description": "This response is reserved by Product Gateway."
       },
       "Unauthorized": {
-        "title": "Unauthorized",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -383,17 +414,22 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
       }
     }
   }

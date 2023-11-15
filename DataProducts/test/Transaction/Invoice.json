@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "Invoice",
     "description": "Invoice",
@@ -13,48 +13,57 @@
         "operationId": "request_test_Transaction_Invoice",
         "parameters": [
           {
-            "description": "Optional consent token",
-            "required": false,
-            "schema": {
-              "title": "X-Consent-Token",
-              "type": "string",
-              "description": "Optional consent token"
-            },
             "name": "x-consent-token",
-            "in": "header"
-          },
-          {
-            "description": "The login token. Value should be \"Bearer [token]\"",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "Authorization",
               "type": "string",
-              "description": "The login token. Value should be \"Bearer [token]\""
+              "description": "Optional consent token",
+              "default": "",
+              "title": "X-Consent-Token"
             },
+            "description": "Optional consent token"
+          },
+          {
             "name": "authorization",
-            "in": "header"
-          },
-          {
-            "description": "The bare domain of the system that provided the token.",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Authorization-Provider",
               "type": "string",
-              "description": "The bare domain of the system that provided the token."
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "default": "",
+              "title": "Authorization"
             },
+            "description": "The login token. Value should be \"Bearer [token]\""
+          },
+          {
             "name": "x-authorization-provider",
-            "in": "header"
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
+            },
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/InvoiceRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -68,94 +77,98 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Unauthorized"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Forbidden"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "444": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceNotFound"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceError"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           },
           "502": {
-            "description": "Bad Gateway",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BadGateway"
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           },
           "503": {
-            "description": "Service Unavailable",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceUnavailable"
                 }
               }
-            }
+            },
+            "description": "Service Unavailable"
           },
           "504": {
-            "description": "Gateway Timeout",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GatewayTimeout"
                 }
               }
-            }
+            },
+            "description": "Gateway Timeout"
           },
           "550": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DoesNotConformToDefinition"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "422": {
             "description": "Validation Error",
@@ -174,114 +187,238 @@
   "components": {
     "schemas": {
       "BadGateway": {
-        "title": "BadGateway",
-        "type": "object",
         "properties": {},
+        "type": "object",
+        "title": "BadGateway",
         "description": "This response is reserved by Product Gateway."
       },
       "DataSourceError": {
-        "title": "DataSourceError",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
       },
       "DataSourceNotFound": {
-        "title": "DataSourceNotFound",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description",
             "default": "Data source not found"
           }
         },
+        "type": "object",
+        "title": "DataSourceNotFound",
         "description": "This response is reserved by Product Gateway."
       },
       "DoesNotConformToDefinition": {
-        "title": "DoesNotConformToDefinition",
-        "required": ["data_source_status_code"],
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Message",
             "type": "string",
+            "title": "Message",
             "default": "Response from data source does not conform to definition"
           },
           "data_source_status_code": {
-            "title": "Data source status code",
             "type": "integer",
+            "title": "Data source status code",
             "description": "HTTP status code returned from the data source"
           }
         },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
         "description": "This response is reserved by Product Gateway."
       },
       "Forbidden": {
-        "title": "Forbidden",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "GatewayTimeout": {
-        "title": "GatewayTimeout",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
         "description": "This response is reserved by Product Gateway."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "InvoiceRequest": {
-        "title": "InvoiceRequest",
-        "required": ["shipmentId"],
-        "type": "object",
         "properties": {
           "shipmentId": {
-            "title": "Shipment ID",
-            "type": "string"
+            "type": "string",
+            "title": "Shipment ID"
           }
-        }
+        },
+        "type": "object",
+        "required": ["shipmentId"],
+        "title": "InvoiceRequest"
       },
       "InvoiceResponse": {
-        "title": "InvoiceResponse",
+        "properties": {
+          "amountToBePaid": {
+            "type": "number",
+            "title": "Amount to be paid"
+          },
+          "bankContactBic": {
+            "type": "string",
+            "title": "Bank contact BIC"
+          },
+          "bankContactIban": {
+            "type": "string",
+            "title": "Bank contact IBAN"
+          },
+          "bankContactName": {
+            "type": "string",
+            "title": "Bank contact name"
+          },
+          "buyerContactPersonName": {
+            "type": "string",
+            "title": "Buyer contact person name"
+          },
+          "buyerName": {
+            "type": "string",
+            "title": "Buyer name"
+          },
+          "buyerVatNumber": {
+            "type": "string",
+            "title": "Buyer VAT number"
+          },
+          "contractReference": {
+            "type": "string",
+            "title": "Contract reference"
+          },
+          "countryOfOrigin": {
+            "type": "string",
+            "title": "Country of origin"
+          },
+          "currencyCode": {
+            "type": "string",
+            "title": "Currency code"
+          },
+          "descriptionOfGoods": {
+            "type": "string",
+            "title": "Description of goods"
+          },
+          "handlingUnits": {
+            "type": "integer",
+            "title": "Handling units"
+          },
+          "incoterm": {
+            "type": "string",
+            "title": "Incoterm"
+          },
+          "incotermPlace": {
+            "type": "string",
+            "title": "Incoterm place"
+          },
+          "invoiceNote": {
+            "type": "string",
+            "title": "Invoice note"
+          },
+          "invoiceReference": {
+            "type": "string",
+            "title": "Invoice reference"
+          },
+          "issueDate": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Issue date"
+          },
+          "lcNumber": {
+            "type": "string",
+            "title": "LC number"
+          },
+          "letterOfCreditValue": {
+            "type": "integer",
+            "title": "Letter of credit value"
+          },
+          "modeOfDelivery": {
+            "type": "string",
+            "title": "Mode of delivery"
+          },
+          "orderReference": {
+            "type": "string",
+            "title": "Order reference"
+          },
+          "projectReference": {
+            "type": "string",
+            "title": "Project reference"
+          },
+          "sellerContactPersonName": {
+            "type": "string",
+            "title": "Seller contact person name"
+          },
+          "sellerName": {
+            "type": "string",
+            "title": "Seller name"
+          },
+          "sellerVatNumber": {
+            "type": "string",
+            "title": "Seller VAT number"
+          },
+          "taxRate": {
+            "type": "integer",
+            "title": "Tax rate"
+          },
+          "totalGrossWeight": {
+            "type": "number",
+            "title": "Total gross weight"
+          },
+          "totalNetWeight": {
+            "type": "number",
+            "title": "Total net weight"
+          },
+          "totalVolume": {
+            "type": "number",
+            "title": "Total volume"
+          },
+          "valueOfShipment": {
+            "type": "number",
+            "title": "Value of shipment"
+          }
+        },
+        "type": "object",
         "required": [
           "amountToBePaid",
           "bankContactBic",
@@ -314,185 +451,58 @@
           "totalVolume",
           "valueOfShipment"
         ],
-        "type": "object",
-        "properties": {
-          "amountToBePaid": {
-            "title": "Amount to be paid",
-            "type": "number"
-          },
-          "bankContactBic": {
-            "title": "Bank contact BIC",
-            "type": "string"
-          },
-          "bankContactIban": {
-            "title": "Bank contact IBAN",
-            "type": "string"
-          },
-          "bankContactName": {
-            "title": "Bank contact name",
-            "type": "string"
-          },
-          "buyerContactPersonName": {
-            "title": "Buyer contact person name",
-            "type": "string"
-          },
-          "buyerName": {
-            "title": "Buyer name",
-            "type": "string"
-          },
-          "buyerVatNumber": {
-            "title": "Buyer VAT number",
-            "type": "string"
-          },
-          "contractReference": {
-            "title": "Contract reference",
-            "type": "string"
-          },
-          "countryOfOrigin": {
-            "title": "Country of origin",
-            "type": "string"
-          },
-          "currencyCode": {
-            "title": "Currency code",
-            "type": "string"
-          },
-          "descriptionOfGoods": {
-            "title": "Description of goods",
-            "type": "string"
-          },
-          "handlingUnits": {
-            "title": "Handling units",
-            "type": "integer"
-          },
-          "incoterm": {
-            "title": "Incoterm",
-            "type": "string"
-          },
-          "incotermPlace": {
-            "title": "Incoterm place",
-            "type": "string"
-          },
-          "invoiceNote": {
-            "title": "Invoice note",
-            "type": "string"
-          },
-          "invoiceReference": {
-            "title": "Invoice reference",
-            "type": "string"
-          },
-          "issueDate": {
-            "title": "Issue date",
-            "type": "string",
-            "format": "date-time"
-          },
-          "lcNumber": {
-            "title": "LC number",
-            "type": "string"
-          },
-          "letterOfCreditValue": {
-            "title": "Letter of credit value",
-            "type": "integer"
-          },
-          "modeOfDelivery": {
-            "title": "Mode of delivery",
-            "type": "string"
-          },
-          "orderReference": {
-            "title": "Order reference",
-            "type": "string"
-          },
-          "projectReference": {
-            "title": "Project reference",
-            "type": "string"
-          },
-          "sellerContactPersonName": {
-            "title": "Seller contact person name",
-            "type": "string"
-          },
-          "sellerName": {
-            "title": "Seller name",
-            "type": "string"
-          },
-          "sellerVatNumber": {
-            "title": "Seller VAT number",
-            "type": "string"
-          },
-          "taxRate": {
-            "title": "Tax rate",
-            "type": "integer"
-          },
-          "totalGrossWeight": {
-            "title": "Total gross weight",
-            "type": "number"
-          },
-          "totalNetWeight": {
-            "title": "Total net weight",
-            "type": "number"
-          },
-          "totalVolume": {
-            "title": "Total volume",
-            "type": "number"
-          },
-          "valueOfShipment": {
-            "title": "Value of shipment",
-            "type": "number"
-          }
-        }
+        "title": "InvoiceResponse"
       },
       "NotFound": {
-        "title": "NotFound",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "ServiceUnavailable": {
-        "title": "ServiceUnavailable",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
+      },
+      "ServiceUnavailable": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "ServiceUnavailable",
         "description": "This response is reserved by Product Gateway."
       },
       "Unauthorized": {
-        "title": "Unauthorized",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -502,17 +512,22 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
       }
     }
   }

@@ -6,31 +6,34 @@ from pydantic import Field
 
 class ShareSeries(CamelCaseModel):
     series_name: str = Field(
-        ..., title="Series Name", description="Classification of the share", example="A"
+        ...,
+        title="Series Name",
+        description="Classification of the share",
+        examples=["A"],
     )
     votes_per_share: int = Field(
         ...,
         title="Votes per share",
         description="Number of votes per share in the share series",
-        example=1,
+        examples=[1],
     )
     total_shares: int = Field(
         ...,
         title="Total Shares",
         description="Total number of shares in the share series",
-        example=1000,
+        examples=[1000],
     )
 
 
 class Ownerships(CamelCaseModel):
     series_name: str = Field(
-        ..., title="Series Name", description="Name of the share series", example="A"
+        ..., title="Series Name", description="Name of the share series", examples=["A"]
     )
     quantity: int = Field(
         ...,
         title="Number of Shares",
         description="Number of shares held by the owner",
-        example=100,
+        examples=[100],
     )
 
 
@@ -39,7 +42,7 @@ class Owners(CamelCaseModel):
         ...,
         title="Name of the Shareholder",
         description="Name of the shareholder",
-        example="Matti Meikäläinen | Oy Company Ltd",
+        examples=["Matti Meikäläinen | Oy Company Ltd"],
     )
     ownerships: List[Ownerships] = Field(
         ..., title="Ownerships", description="List of Ownerships"
@@ -51,7 +54,7 @@ class ShareholdersInfoRequest(CamelCaseModel):
         ...,
         title="Company ID",
         description="The ID of the company, only supports Finnish business ID's",
-        example="2464491-9",
+        examples=["2464491-9"],
     )
 
 

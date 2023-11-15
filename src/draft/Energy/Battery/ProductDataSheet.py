@@ -79,17 +79,17 @@ class Voltage(CamelCaseModel):
     min: float = Field(
         ...,
         title="Minimum voltage",
-        example=38.0,
+        examples=[38.0],
     )
     max: float = Field(
         ...,
         title="Maximum voltage",
-        example=56.0,
+        examples=[56.0],
     )
     nominal: float = Field(
         ...,
         title="Nominal voltage",
-        example=48.3,
+        examples=[48.3],
     )
 
 
@@ -97,17 +97,17 @@ class Dimensions(CamelCaseModel):
     length: int = Field(
         ...,
         title="Length [mm]",
-        example=483,
+        examples=[483],
     )
     width: int = Field(
         ...,
         title="Width [mm]",
-        example=380,
+        examples=[380],
     )
     height: int = Field(
         ...,
         title="Height [mm]",
-        example=160,
+        examples=[160],
     )
 
 
@@ -115,22 +115,22 @@ class OperatingTemperature(CamelCaseModel):
     min: float = Field(
         ...,
         title="Minimum operating temperature [°C]",
-        example=-30.0,
+        examples=[-30.0],
     )
     max: float = Field(
         ...,
         title="Maximum operating temperature [°C]",
-        example=55.0,
+        examples=[55.0],
     )
     recommended_min: float = Field(
         ...,
         title="Minimum recommended operating temperature [°C]",
-        example=5.0,
+        examples=[5.0],
     )
     recommended_max: float = Field(
         ...,
         title="Maximum recommended operating temperature [°C]",
-        example=35,
+        examples=[35],
     )
 
 
@@ -139,7 +139,7 @@ class BatteryDataRequest(CamelCaseModel):
         ...,
         title="Product Code",
         description="The product code used by the manufacturer",
-        example="MPP48V",
+        examples=["MPP48V"],
     )
 
 
@@ -148,35 +148,35 @@ class BatteryDataResponse(CamelCaseModel):
         ...,
         title="Manufacturer",
         description="The manufacturer of the battery",
-        example="Valmet Automotive",
+        examples=["Valmet Automotive"],
     )
     product_code: str = Field(
         ...,
         title="Product Code",
         description="The product code used by the manufacturer",
-        example="MPP48V",
+        examples=["MPP48V"],
     )
     name: str = Field(
         ...,
         title="Product Name",
-        example="Modular Power Pack, 48 V",
+        examples=["Modular Power Pack, 48 V"],
     )
     cell_type: CellType = Field(
         ...,
         title="Cell Type",
-        example=CellType.LTO,
+        examples=[CellType.LTO],
     )
     capacity: float = Field(
         ...,
         title="Capacity",
         description="Battery capacity in kWh",
-        example=2.2,
+        examples=[2.2],
     )
     energy: float = Field(
         ...,
         title="Energy (Ah)",
         description="Energy, Ah [1C @ 25°C]",
-        example=46.0,
+        examples=[46.0],
     )
     voltage: Voltage = Field(
         ...,
@@ -186,28 +186,28 @@ class BatteryDataResponse(CamelCaseModel):
     peak_discharging_power: float = Field(
         ...,
         title="Peak Discharging Power [kW]",
-        example=20.0,
+        examples=[20.0],
     )
     peak_charging_power: float = Field(
         ...,
         title="Peak Charging Power [kW]",
-        example=20.0,
+        examples=[20.0],
     )
     continuous_power: float = Field(
         ...,
         title="Continuous Power [kW]",
-        example=10.0,
+        examples=[10.0],
     )
     standby_consumption: float = Field(
         ...,
         title="Standby Power Consumption [W]",
-        example=1.0,
+        examples=[1.0],
     )
     cycle_life: int = Field(
         ...,
         title="Cycle Life",
         description="Minimum number of cycles the battery can be recharged to at least 80% of initial capacity",
-        example=20000,
+        examples=[20000],
     )
     dimensions: Dimensions = Field(
         ...,
@@ -218,7 +218,7 @@ class BatteryDataResponse(CamelCaseModel):
         ...,
         title="Weight [kg]",
         description="Total dry weight [kg]",
-        example=41.0,
+        examples=[41.0],
     )
     operating_temperature: OperatingTemperature = Field(
         ...,
@@ -227,24 +227,26 @@ class BatteryDataResponse(CamelCaseModel):
     ip_rating: IPCode = Field(
         ...,
         title="IP Rating",
-        example=IPCode.IP6K9K,
+        examples=[IPCode.IP6K9K],
     )
     max_coolant_pressure: float = Field(
         ...,
         title="Max Coolant Pressure [bar]",
-        example=3.5,
+        examples=[3.5],
     )
     standards_compliance: Set[str] = Field(
         title="Standards Compliance",
-        example={
-            ComplianceStandard.ECE_R100,
-            ComplianceStandard.ECE_R10,
-            ComplianceStandard.UN_38_3,
-            ComplianceStandard.ISO_16750,
-            ComplianceStandard.IEC_61508_SIL_2,
-            ComplianceStandard.ISO_13849_PL_C,
-            ComplianceStandard.IEC_62061_SIL_2,
-        },
+        examples=[
+            {
+                ComplianceStandard.ECE_R100,
+                ComplianceStandard.ECE_R10,
+                ComplianceStandard.UN_38_3,
+                ComplianceStandard.ISO_16750,
+                ComplianceStandard.IEC_61508_SIL_2,
+                ComplianceStandard.ISO_13849_PL_C,
+                ComplianceStandard.IEC_62061_SIL_2,
+            }
+        ],
     )
 
 

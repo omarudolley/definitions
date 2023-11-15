@@ -9,22 +9,22 @@ class RecommendationRequest(CamelCaseModel):
         ...,
         title="Keywords",
         description="Keyword data to base recommendations on",
-        example="Looking for data product companies to invest on",
+        examples=["Looking for data product companies to invest on"],
     )
 
 
 class Recommendation(CamelCaseModel):
     score: int = Field(
-        ..., description="Recommendation score of the company", example=231
+        ..., description="Recommendation score of the company", examples=[231]
     )
     company_id: str = Field(
-        ..., title="Company ID", description="Company ID", example="2464491-9"
+        ..., title="Company ID", description="Company ID", examples=["2464491-9"]
     )
     company_name: str = Field(
         ...,
         title="Company name",
         description="Company name",
-        example="Digital Living Oy",
+        examples=["Digital Living Oy"],
     )
 
 

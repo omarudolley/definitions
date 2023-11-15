@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "Job Posting",
     "description": "Data product for Job Posting",
@@ -13,48 +13,57 @@
         "operationId": "request_test_lassipatanen_Job_JobPosting",
         "parameters": [
           {
-            "description": "Optional consent token",
-            "required": false,
-            "schema": {
-              "title": "X-Consent-Token",
-              "type": "string",
-              "description": "Optional consent token"
-            },
             "name": "x-consent-token",
-            "in": "header"
-          },
-          {
-            "description": "The login token. Value should be \"Bearer [token]\"",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "Authorization",
               "type": "string",
-              "description": "The login token. Value should be \"Bearer [token]\""
+              "description": "Optional consent token",
+              "default": "",
+              "title": "X-Consent-Token"
             },
+            "description": "Optional consent token"
+          },
+          {
             "name": "authorization",
-            "in": "header"
-          },
-          {
-            "description": "The bare domain of the system that provided the token.",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Authorization-Provider",
               "type": "string",
-              "description": "The bare domain of the system that provided the token."
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "default": "",
+              "title": "Authorization"
             },
+            "description": "The login token. Value should be \"Bearer [token]\""
+          },
+          {
             "name": "x-authorization-provider",
-            "in": "header"
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
+            },
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/JobPostingRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -68,94 +77,98 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Unauthorized"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Forbidden"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "444": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceNotFound"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceError"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           },
           "502": {
-            "description": "Bad Gateway",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BadGateway"
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           },
           "503": {
-            "description": "Service Unavailable",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceUnavailable"
                 }
               }
-            }
+            },
+            "description": "Service Unavailable"
           },
           "504": {
-            "description": "Gateway Timeout",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GatewayTimeout"
                 }
               }
-            }
+            },
+            "description": "Gateway Timeout"
           },
           "550": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DoesNotConformToDefinition"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "422": {
             "description": "Validation Error",
@@ -174,379 +187,473 @@
   "components": {
     "schemas": {
       "BadGateway": {
-        "title": "BadGateway",
-        "type": "object",
         "properties": {},
+        "type": "object",
+        "title": "BadGateway",
         "description": "This response is reserved by Product Gateway."
       },
       "BasicInfo": {
-        "title": "BasicInfo",
-        "required": ["title", "description"],
-        "type": "object",
         "properties": {
           "title": {
-            "title": "Title",
             "type": "string",
+            "title": "Title",
             "description": "Title of the job posting"
           },
           "description": {
-            "title": "Description",
             "type": "string",
+            "title": "Description",
             "description": "Short description about the job"
           },
           "workTimeType": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Work time type",
-            "type": "string",
             "description": "<pre>01 = Full time\n02 = Part time</pre>",
-            "example": "01"
+            "examples": ["01"]
           }
-        }
+        },
+        "type": "object",
+        "required": ["title", "description"],
+        "title": "BasicInfo"
       },
       "DataSourceError": {
-        "title": "DataSourceError",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
       },
       "DataSourceNotFound": {
-        "title": "DataSourceNotFound",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description",
             "default": "Data source not found"
           }
         },
+        "type": "object",
+        "title": "DataSourceNotFound",
         "description": "This response is reserved by Product Gateway."
       },
       "DoesNotConformToDefinition": {
-        "title": "DoesNotConformToDefinition",
-        "required": ["data_source_status_code"],
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Message",
             "type": "string",
+            "title": "Message",
             "default": "Response from data source does not conform to definition"
           },
           "data_source_status_code": {
-            "title": "Data source status code",
             "type": "integer",
+            "title": "Data source status code",
             "description": "HTTP status code returned from the data source"
           }
         },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
         "description": "This response is reserved by Product Gateway."
       },
       "Forbidden": {
-        "title": "Forbidden",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "GatewayTimeout": {
-        "title": "GatewayTimeout",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
         "description": "This response is reserved by Product Gateway."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "JobLocation": {
-        "title": "JobLocation",
-        "required": ["municipality"],
-        "type": "object",
         "properties": {
           "municipality": {
-            "title": "Municipality",
             "type": "string",
+            "title": "Municipality",
             "description": "The code of the municipality according to Statistics Finland's municipalities 2022 classification"
           },
           "postcode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Postal code",
-            "type": "string",
             "description": "Postal code of the location"
           }
-        }
+        },
+        "type": "object",
+        "required": ["municipality"],
+        "title": "JobLocation"
       },
       "JobPosting": {
-        "title": "JobPosting",
-        "required": ["employer", "location", "basicInfo", "publishedAt"],
-        "type": "object",
         "properties": {
           "employer": {
-            "title": "Employer",
             "type": "string",
+            "title": "Employer",
             "description": "Employer name"
           },
           "location": {
-            "title": "Location",
             "allOf": [
               {
                 "$ref": "#/components/schemas/JobLocation"
               }
             ],
+            "title": "Location",
             "description": "Job posting location"
           },
           "basicInfo": {
-            "title": "Basic information",
             "allOf": [
               {
                 "$ref": "#/components/schemas/BasicInfo"
               }
             ],
+            "title": "Basic information",
             "description": "Basic information about job posting"
           },
           "publishedAt": {
-            "title": "Published at",
             "type": "string",
-            "description": "Published at",
-            "format": "date-time"
+            "format": "date-time",
+            "title": "Published at",
+            "description": "Published at"
           },
           "applicationEndDate": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Application end date",
-            "type": "string",
-            "description": "Last date to apply for the job",
-            "format": "date-time"
+            "description": "Last date to apply for the job"
           },
           "applicationUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Application URL",
-            "type": "string",
             "description": "Link to external application page"
           }
-        }
+        },
+        "type": "object",
+        "required": ["employer", "location", "basicInfo", "publishedAt"],
+        "title": "JobPosting"
       },
       "JobPostingRequest": {
-        "title": "JobPostingRequest",
-        "type": "object",
         "properties": {
           "query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Search query",
-            "type": "string",
             "description": "Comma separated list of query keywords to search for"
           },
           "location": {
-            "title": "Location",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/Location"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Location",
             "description": "Location to search jobs in"
           },
           "requirements": {
-            "title": "Requirements",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/Requirement"
-              }
-            ],
-            "description": "Requirements for the job posting",
-            "example": "http://data.europa.eu/esco/occupation/8d3e8aaa-791b-4c75-a465-f3f827028f50"
-          },
-          "paging": {
-            "title": "Paging",
-            "allOf": [
+              },
               {
-                "$ref": "#/components/schemas/Paging"
+                "type": "null"
               }
             ],
-            "description": "Paging for query"
-          }
-        }
-      },
-      "JobPostingResponse": {
-        "title": "JobPostingResponse",
-        "required": ["results", "totalCount"],
-        "type": "object",
-        "properties": {
-          "results": {
-            "title": "Search results",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/JobPosting"
-            },
-            "description": "Job postings"
-          },
-          "totalCount": {
-            "title": "Total count",
-            "type": "integer",
-            "description": "Total count of job postings",
-            "example": 1
-          }
-        }
-      },
-      "Location": {
-        "title": "Location",
-        "type": "object",
-        "properties": {
-          "countries": {
-            "title": "Countries",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Country codes of the location as the numeric codes according to ISO 3166",
-            "example": ["FI"]
-          },
-          "regions": {
-            "title": "Regions",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The numeric codes according to Statistics Finland's classification of Regions 2022 are used as the code for the region data",
-            "example": ["09"]
-          },
-          "municipalities": {
-            "title": "Municipalities",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The code of the municipality of location data is the numerical codes of municipalities according to Statistics Finland's municipalities 2022 classification",
-            "example": ["405"]
-          }
-        }
-      },
-      "NotFound": {
-        "title": "NotFound",
-        "required": ["type", "message"],
-        "type": "object",
-        "properties": {
-          "type": {
-            "title": "Error type",
-            "type": "string",
-            "description": "Error identifier"
-          },
-          "message": {
-            "title": "Error message",
-            "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "Paging": {
-        "title": "Paging",
-        "type": "object",
-        "properties": {
-          "limit": {
-            "title": "Limit",
-            "type": "integer",
-            "description": "Paging limit"
-          },
-          "offset": {
-            "title": "Offset",
-            "type": "integer",
-            "description": "Paging offset"
-          }
-        }
-      },
-      "Requirement": {
-        "title": "Requirement",
-        "type": "object",
-        "properties": {
-          "occupations": {
-            "title": "Occupations",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Professions being sought. The occupation codes used are in an URL format according to ESCO 1.1.0",
-            "example": [
+            "title": "Requirements",
+            "description": "Requirements for the job posting",
+            "examples": [
               "http://data.europa.eu/esco/occupation/8d3e8aaa-791b-4c75-a465-f3f827028f50"
             ]
           },
-          "skills": {
-            "title": "Skills",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Areas of expertise being sought. The codes for skills are in an URL format according to ESCO 1.1.0",
-            "example": [
-              "http://data.europa.eu/esco/skill/a17286c5-238d-4f0b-bc24-29e9121345de"
-            ]
-          }
-        }
-      },
-      "ServiceUnavailable": {
-        "title": "ServiceUnavailable",
-        "type": "object",
-        "properties": {
-          "message": {
-            "title": "Error message",
-            "type": "string",
-            "description": "Error description"
+          "paging": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Paging"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Paging",
+            "description": "Paging for query"
           }
         },
-        "description": "This response is reserved by Product Gateway."
-      },
-      "Unauthorized": {
-        "title": "Unauthorized",
-        "required": ["type", "message"],
         "type": "object",
+        "title": "JobPostingRequest"
+      },
+      "JobPostingResponse": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/JobPosting"
+            },
+            "type": "array",
+            "title": "Search results",
+            "description": "Job postings"
+          },
+          "totalCount": {
+            "type": "integer",
+            "title": "Total count",
+            "description": "Total count of job postings",
+            "examples": [1]
+          }
+        },
+        "type": "object",
+        "required": ["results", "totalCount"],
+        "title": "JobPostingResponse"
+      },
+      "Location": {
+        "properties": {
+          "countries": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Countries",
+            "description": "Country codes of the location as the numeric codes according to ISO 3166",
+            "examples": [["FI"]]
+          },
+          "regions": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Regions",
+            "description": "The numeric codes according to Statistics Finland's classification of Regions 2022 are used as the code for the region data",
+            "examples": [["09"]]
+          },
+          "municipalities": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Municipalities",
+            "description": "The code of the municipality of location data is the numerical codes of municipalities according to Statistics Finland's municipalities 2022 classification",
+            "examples": [["405"]]
+          }
+        },
+        "type": "object",
+        "title": "Location"
+      },
+      "NotFound": {
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
+      },
+      "Paging": {
+        "properties": {
+          "limit": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Limit",
+            "description": "Paging limit"
+          },
+          "offset": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Offset",
+            "description": "Paging offset"
+          }
+        },
+        "type": "object",
+        "title": "Paging"
+      },
+      "Requirement": {
+        "properties": {
+          "occupations": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occupations",
+            "description": "Professions being sought. The occupation codes used are in an URL format according to ESCO 1.1.0",
+            "examples": [
+              [
+                "http://data.europa.eu/esco/occupation/8d3e8aaa-791b-4c75-a465-f3f827028f50"
+              ]
+            ]
+          },
+          "skills": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skills",
+            "description": "Areas of expertise being sought. The codes for skills are in an URL format according to ESCO 1.1.0",
+            "examples": [
+              ["http://data.europa.eu/esco/skill/a17286c5-238d-4f0b-bc24-29e9121345de"]
+            ]
+          }
+        },
+        "type": "object",
+        "title": "Requirement"
+      },
+      "ServiceUnavailable": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "ServiceUnavailable",
+        "description": "This response is reserved by Product Gateway."
+      },
+      "Unauthorized": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Error type",
+            "description": "Error identifier"
+          },
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description"
+          }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -556,17 +663,22 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
       }
     }
   }
