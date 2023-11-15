@@ -2,7 +2,7 @@ Data Product Definitions must conform to the following set of rules:
 
 ## Definition specification format
 
-Each definition must be described in corresponding JSON file, which is an OpenAPI 3.0
+Each definition must be described in corresponding JSON file, which is an OpenAPI 3.x
 spec. Name of this file must be in UpperCamelCase.
 
 ## OpenAPI schema
