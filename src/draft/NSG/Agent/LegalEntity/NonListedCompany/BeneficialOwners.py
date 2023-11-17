@@ -9,14 +9,14 @@ class ShareOwnership(CamelCaseModel):
         ...,
         title="Share series class",
         description="The class of the share series that the shareholder owns.",
-        example="B",
+        examples=["B"],
         max_length=5,
     )
     quantity: int = Field(
         ...,
         title="Quantity",
         description="The number of shares that the shareholder owns a share series",
-        example=20,
+        examples=[20],
     )
 
 
@@ -25,20 +25,20 @@ class ShareSeries(CamelCaseModel):
         ...,
         title="Share series class",
         description="The type of the share series of a company",
-        example="A",
+        examples=["A"],
         max_length=5,
     )
     number_of_shares: int = Field(
         ...,
         title="Number of shares",
         description="The total number of the shares in the share series class",
-        example=1000,
+        examples=[1000],
     )
     votes_per_share: int = Field(
         ...,
         title="Votes per share",
         description="The number of votes per share in the share series",
-        example=1,
+        examples=[1],
     )
 
 
@@ -47,7 +47,7 @@ class Shareholder(CamelCaseModel):
         ...,
         title="Name",
         description="The name of a shareholder of the company",
-        example="Lars Lindberg | Company Ltd",
+        examples=["Lars Lindberg | Company Ltd"],
         max_length=250,
     )
     share_ownership: List[ShareOwnership] = Field(
@@ -63,7 +63,7 @@ class BeneficialOwnersRequest(CamelCaseModel):
         title="National identifier",
         description="The national identifier of the non-listed company issued by the "
         "trade register in any Nordic country.",
-        example="FIN: 2464491-9 / SWE: 5560125791 / NOR:  923609016",
+        examples=["FIN: 2464491-9 / SWE: 5560125791 / NOR:  923609016"],
         max_length=40,
     )
 

@@ -19,7 +19,7 @@ format in this repository, you can check these resources:
 # Repo structure
 
 - [./src](./src) - Definition sources in python format
-- [./DataProducts](./DataProducts) - Final Definitions as OpenAPI 3.0 specs
+- [./DataProducts](./DataProducts) - Final Definitions as OpenAPI 3.x specs
 - [.github/workflows](.github/workflows) - Pre-configured CI workflows for validating
   and converting definitions from sources
 
@@ -46,7 +46,7 @@ Each python file located in the `src` folder is treated as a Data Product defini
 For example, `src/AirQuality/Current_v1.0.py` defines the `AirQuality/Current_v1.0` data
 product.
 
-These files are then converted to OpenAPI 3.0 specs, which are final forms of
+These files are then converted to OpenAPI 3.x specs, which are final forms of
 definitions. To make the converter work correctly, each file must follow the same
 structure:
 
@@ -158,7 +158,7 @@ class CurrentWeatherMetricRequest(CamelCaseModel):
         description="The latitude coordinate of the desired location",
         ge=-90.0,
         le=90.0,
-        example=60.192059,
+        examples=[60.192059],
     )
     lon: float = Field(
         ...,
@@ -166,26 +166,26 @@ class CurrentWeatherMetricRequest(CamelCaseModel):
         description="The longitude coordinate of the desired location",
         ge=-180.0,
         le=180.0,
-        example=24.945831,
+        examples=[24.945831],
     )
 
 
 class CurrentWeatherMetricResponse(CamelCaseModel):
-    humidity: float = Field(..., title="Current relative air humidity in %", example=72)
-    pressure: float = Field(..., title="Current air pressure in hPa", example=1007)
+    humidity: float = Field(..., title="Current relative air humidity in %", examples=[72])
+    pressure: float = Field(..., title="Current air pressure in hPa", examples=[1007])
     rain: bool = Field(
         ..., title="Rain status", description="If it's currently raining or not."
     )
     temp: float = Field(
-        ..., title="Current temperature in Celsius", example=17.3, ge=-273.15
+        ..., title="Current temperature in Celsius", examples=[17.3], ge=-273.15
     )
-    wind_speed: float = Field(..., title="Current wind speed in m/s", example=2.1, ge=0)
+    wind_speed: float = Field(..., title="Current wind speed in m/s", examples=[2.1], ge=0)
     wind_direction: float = Field(
         ...,
         title="Current wind direction in meteorological wind direction degrees",
         ge=0,
         le=360,
-        example=220.0,
+        examples=[220.0],
     )
 
 

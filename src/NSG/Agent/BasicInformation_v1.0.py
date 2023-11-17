@@ -11,7 +11,7 @@ class BasicInformationRequest(CamelCaseModel):
         ...,
         title="National Identifier",
         description="National identifier for a legal entity",
-        example="2464491-9",
+        examples=["2464491-9"],
     )
 
 
@@ -415,7 +415,7 @@ class RegisteredAddress(CamelCaseModel):
         description="The complete address written as a string. Use of this property is "
         "recommended as it will not suffer any misunderstandings that might arise "
         "through the breaking up of an address into its component parts.",
-        example="Tietotie 4 A 7, 00100 Helsinki, Finland",
+        examples=["Tietotie 4 A 7, 00100 Helsinki, Finland"],
         min_length=1,
         max_length=250,
     )
@@ -425,7 +425,7 @@ class RegisteredAddress(CamelCaseModel):
         description="The name of a passage or way through from one location to "
         "another. A thoroughfare is usually a street, but it might be a waterway or "
         "some other feature.",
-        example="Avenue des Champs-Élysées",
+        examples=["Avenue des Champs-Élysées"],
         min_length=1,
         max_length=40,
     )
@@ -435,7 +435,7 @@ class RegisteredAddress(CamelCaseModel):
         description="A number or sequence of characters that uniquely identifies the "
         "locator within the relevant scope. In simpler terms, this is the building "
         "number, apartment number, etc.",
-        example="Flat 3, 17 or 3 A 4",
+        examples=["Flat 3, 17 or 3 A 4"],
         min_length=1,
         max_length=10,
     )
@@ -447,7 +447,7 @@ class RegisteredAddress(CamelCaseModel):
         "the building or part of the building, or it could be the name of a room "
         "inside a building. The key difference between a locator and a locator name is "
         "that the latter is a proper name and is unlikely to include digits.",
-        example="Shumann, Berlaymont (meeting room name)",
+        examples=["Shumann, Berlaymont (meeting room name)"],
         min_length=1,
         max_length=40,
     )
@@ -457,7 +457,7 @@ class RegisteredAddress(CamelCaseModel):
         description="The name of a geographic area that groups Addresses. This would "
         "typically be part of a city, a neighbourhood or village. Address area is not "
         "an administrative unit.",
-        example="Montmartre (in Paris)",
+        examples=["Montmartre (in Paris)"],
         min_length=1,
         max_length=40,
     )
@@ -466,7 +466,7 @@ class RegisteredAddress(CamelCaseModel):
         title="Post code",
         description="The code created and maintained for postal purposes to identify a "
         "subdivision of addresses and postal delivery points.",
-        example="75000",
+        examples=["75000"],
         min_length=1,
         max_length=10,
     )
@@ -475,7 +475,7 @@ class RegisteredAddress(CamelCaseModel):
         title="Post name",
         description="A name created and maintained for postal purposes to identify a "
         "subdivision of addresses and postal delivery points. Usually a city.",
-        example="Paris",
+        examples=["Paris"],
         min_length=1,
         max_length=40,
     )
@@ -484,7 +484,7 @@ class RegisteredAddress(CamelCaseModel):
         title="PO box",
         description="A location designator for a postal delivery point at a post "
         "office, usually a number.",
-        example="9383",
+        examples=["9383"],
         min_length=1,
         max_length=10,
     )
@@ -494,7 +494,7 @@ class RegisteredAddress(CamelCaseModel):
         title="Admin unit level 1",
         description="The name of the uppermost level of the address, almost always a "
         "country. ISO 3166 three character (Alpha 3) format.",
-        example=ISO_3166_1_Alpha_3.USA,
+        examples=[ISO_3166_1_Alpha_3.USA],
     )
     admin_unit_level_2: Optional[str] = Field(
         None,
@@ -503,7 +503,7 @@ class RegisteredAddress(CamelCaseModel):
         description="The name of a secondary level/region of the address, usually a "
         "county, state or other such area that typically encompasses several "
         "localities. Values could be a region or province, more granular than level 1.",
-        example="Uusimaa",
+        examples=["Uusimaa"],
         min_length=1,
         max_length=40,
     )
@@ -515,7 +515,7 @@ class RegisteredAddress(CamelCaseModel):
         "address is a crucial part of the INSPIRE data spec. A number of EU countries "
         "have already implemented an ID (a UUID) in their Address Register, among them "
         "Denmark.",
-        example="123e4567-e89b-12d3-a456-42661417400",
+        examples=["123e4567-e89b-12d3-a456-42661417400"],
         min_length=1,
         max_length=40,
     )
@@ -526,20 +526,20 @@ class BasicInformationResponse(CamelCaseModel):
         ...,
         title="Name",
         description="The name of the legal entity",
-        example="Oy Example Ab",
+        examples=["Oy Example Ab"],
     )
     legal_form: NordicLegalForm = Field(
         ...,
         title="Legal form",
         description="The [Nordic Legal Form code](https://koodistot.suomi.fi/"
         "codescheme;registryCode=verotus;schemeCode=LegalForm2) for the company.",
-        example=NordicLegalForm.FI_OY,
+        examples=[NordicLegalForm.FI_OY],
     )
     legal_status: LegalStatus = Field(
         ...,
         title="Legal status",
         description="Status of the legal entity",
-        example=LegalStatus.NORMAL,
+        examples=[LegalStatus.NORMAL],
     )
     registration_date: date = Field(
         ...,

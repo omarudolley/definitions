@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "Write Person Job Applicant Profile",
     "description": "Create or update a comprehensive set of skills, competences, occupations and work preferences of a person",
@@ -11,50 +11,58 @@
         "summary": "Write Person Job Applicant Profile",
         "description": "Create or update a comprehensive set of skills, competences, occupations and work preferences of a person",
         "operationId": "request_draft_Person_JobApplicantProfile_Write",
+        "deprecated": true,
         "parameters": [
           {
-            "description": "Consent token",
-            "required": true,
-            "schema": {
-              "title": "X-Consent-Token",
-              "type": "string",
-              "description": "Consent token"
-            },
             "name": "x-consent-token",
-            "in": "header"
-          },
-          {
-            "description": "The login token. Value should be \"Bearer [token]\"",
+            "in": "header",
             "required": true,
             "schema": {
-              "title": "Authorization",
               "type": "string",
-              "description": "The login token. Value should be \"Bearer [token]\""
+              "description": "Consent token",
+              "title": "X-Consent-Token"
             },
-            "name": "authorization",
-            "in": "header"
+            "description": "Consent token"
           },
           {
-            "description": "The bare domain of the system that provided the token.",
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "title": "Authorization"
+            },
+            "description": "The login token. Value should be \"Bearer [token]\""
+          },
+          {
+            "name": "x-authorization-provider",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Authorization-Provider",
-              "type": "string",
-              "description": "The bare domain of the system that provided the token."
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
             },
-            "name": "x-authorization-provider",
-            "in": "header"
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/JobApplicantProfileRequestResponse"
+                "$ref": "#/components/schemas/JobApplicantProfileRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -62,100 +70,104 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JobApplicantProfileRequestResponse"
+                  "$ref": "#/components/schemas/JobApplicantProfileResponse"
                 }
               }
             }
           },
           "401": {
-            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Unauthorized"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Forbidden"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "444": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceNotFound"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceError"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           },
           "502": {
-            "description": "Bad Gateway",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BadGateway"
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           },
           "503": {
-            "description": "Service Unavailable",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceUnavailable"
                 }
               }
-            }
+            },
+            "description": "Service Unavailable"
           },
           "504": {
-            "description": "Gateway Timeout",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GatewayTimeout"
                 }
               }
-            }
+            },
+            "description": "Gateway Timeout"
           },
           "550": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DoesNotConformToDefinition"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "422": {
             "description": "Validation Error",
@@ -167,157 +179,196 @@
               }
             }
           }
-        },
-        "deprecated": true
+        }
       }
     }
   },
   "components": {
     "schemas": {
       "BadGateway": {
-        "title": "BadGateway",
-        "type": "object",
         "properties": {},
+        "type": "object",
+        "title": "BadGateway",
         "description": "This response is reserved by Product Gateway."
       },
       "CERFLevel": {
-        "title": "CERFLevel",
-        "enum": ["native", "A1", "A2", "B1", "B2", "C1", "C2"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["native", "A1", "A2", "B1", "B2", "C1", "C2"],
+        "title": "CERFLevel"
       },
       "Certification": {
-        "title": "Certification",
-        "required": ["escoIdentifier"],
-        "type": "object",
         "properties": {
           "certificationName": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Certification name",
-            "maxLength": 250,
-            "type": "string",
             "description": "The name of the acquired certification.",
-            "example": "Cloud provider certification"
+            "examples": ["Cloud provider certification"]
           },
           "escoIdentifier": {
-            "title": "List of ESCO Uris",
-            "type": "array",
             "items": {
+              "type": "string",
               "maxLength": 2083,
               "minLength": 1,
-              "type": "string",
               "format": "uri"
             },
+            "type": "array",
+            "title": "List of ESCO Uris",
             "description": "The identifier of the skill in which the user has qualified. The skill identifier is based on European Standard Classification of Occupations (ESCO).",
-            "example": [
-              "http://data.europa.eu/esco/skill/b85711bc-32d6-42af-ae0f-e2e566d0dfca"
+            "examples": [
+              ["http://data.europa.eu/esco/skill/b85711bc-32d6-42af-ae0f-e2e566d0dfca"]
             ]
           },
           "institutionName": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Institution name",
-            "maxLength": 250,
-            "type": "string",
             "description": "The name of the organization that provided the certification.",
-            "example": "Skill Academy"
+            "examples": ["Skill Academy"]
           }
-        }
+        },
+        "type": "object",
+        "required": ["escoIdentifier"],
+        "title": "Certification"
       },
       "DataSourceError": {
-        "title": "DataSourceError",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
       },
       "DataSourceNotFound": {
-        "title": "DataSourceNotFound",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description",
             "default": "Data source not found"
           }
         },
+        "type": "object",
+        "title": "DataSourceNotFound",
         "description": "This response is reserved by Product Gateway."
       },
       "DoesNotConformToDefinition": {
-        "title": "DoesNotConformToDefinition",
-        "required": ["data_source_status_code"],
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Message",
             "type": "string",
+            "title": "Message",
             "default": "Response from data source does not conform to definition"
           },
           "data_source_status_code": {
-            "title": "Data source status code",
             "type": "integer",
+            "title": "Data source status code",
             "description": "HTTP status code returned from the data source"
           }
         },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
         "description": "This response is reserved by Product Gateway."
       },
       "Education": {
-        "title": "Education",
-        "type": "object",
         "properties": {
           "educationName": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Education name",
-            "maxLength": 250,
-            "type": "string",
             "description": "The name of the education completed by a person.",
-            "example": "Master of Business Administration"
+            "examples": ["Master of Business Administration"]
           },
           "educationLevel": {
-            "title": "Education level",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/EducationLevel"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Education level",
             "description": "The education level which the person has acquired based on the International Standard Classification of Education, [ISCED education codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=educationlevel).",
-            "example": "7"
+            "examples": ["7"]
           },
           "educationField": {
-            "title": "Education field",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/EducationField"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Education field",
             "description": "The education field based on the International Standard Classification of Education, [ISCED education codes](https://koodistot.suomi.fi/codescheme;registryCode=jhs;schemeCode=isced_ala_1_20110101).",
-            "example": "0731"
+            "examples": ["0731"]
           },
           "graduationDate": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Graduation date",
-            "type": "string",
             "description": "The date on which the specific education has been completed.",
-            "format": "date",
-            "example": "2022-12-08"
+            "examples": ["2022-12-08"]
           },
           "institutionName": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Institution name",
-            "maxLength": 250,
-            "type": "string",
             "description": "The name of the organization that provided the education.",
-            "example": "Institute of Technology"
+            "examples": ["Institute of Technology"]
           }
-        }
+        },
+        "type": "object",
+        "title": "Education"
       },
       "EducationField": {
-        "title": "EducationField",
+        "type": "string",
         "enum": [
           "00",
           "001",
@@ -465,23 +516,20 @@
           "999",
           "9999"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "EducationField"
       },
       "EducationLevel": {
-        "title": "EducationLevel",
-        "enum": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+        "title": "EducationLevel"
       },
       "EmploymentType": {
-        "title": "EmploymentType",
-        "enum": ["permanent", "temporary", "seasonal", "summerJob"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["permanent", "temporary", "seasonal", "summerJob"],
+        "title": "EmploymentType"
       },
       "EscoCode": {
-        "title": "EscoCode",
+        "type": "string",
         "enum": [
           "2654.1.7",
           "8121.4",
@@ -3491,11 +3539,10 @@
           "2422.1",
           "8211.5"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "EscoCode"
       },
       "FinnishMunicipality": {
-        "title": "FinnishMunicipality",
+        "type": "string",
         "enum": [
           "020",
           "005",
@@ -3807,53 +3854,53 @@
           "989",
           "992"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "FinnishMunicipality"
       },
       "Forbidden": {
-        "title": "Forbidden",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "GatewayTimeout": {
-        "title": "GatewayTimeout",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
         "description": "This response is reserved by Product Gateway."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "ISO_3166_2_FI": {
-        "title": "ISO_3166_2_FI",
+        "type": "string",
         "enum": [
           "FI-01",
           "FI-02",
@@ -3875,11 +3922,10 @@
           "FI-18",
           "FI-19"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "ISO_3166_2_FI"
       },
       "ISO_639_1": {
-        "title": "ISO_639_1",
+        "type": "string",
         "enum": [
           "aa",
           "ab",
@@ -4064,11 +4110,70 @@
           "za",
           "zh"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "ISO_639_1"
       },
-      "JobApplicantProfileRequestResponse": {
-        "title": "JobApplicantProfileRequestResponse",
+      "JobApplicantProfileRequest": {
+        "properties": {
+          "occupations": {
+            "items": {
+              "$ref": "#/components/schemas/Occupation"
+            },
+            "type": "array",
+            "title": "Occupations",
+            "description": "The work history of a person with a list of occupations, related industry fields, employer and the duration of a specific work experience."
+          },
+          "educations": {
+            "items": {
+              "$ref": "#/components/schemas/Education"
+            },
+            "type": "array",
+            "title": "Education",
+            "description": "The education history of a person with a list of educations, education fields and the graduation date."
+          },
+          "languageSkills": {
+            "items": {
+              "$ref": "#/components/schemas/LanguageSkill"
+            },
+            "type": "array",
+            "title": "Language skills",
+            "description": "List of person's language skills acquired with the earlier person's experience"
+          },
+          "otherSkills": {
+            "items": {
+              "$ref": "#/components/schemas/OtherSkill"
+            },
+            "type": "array",
+            "title": "Other skills",
+            "description": "List of person's skills acquired with the work experience, education, certification and permits"
+          },
+          "certifications": {
+            "items": {
+              "$ref": "#/components/schemas/Certification"
+            },
+            "type": "array",
+            "title": "Certification",
+            "description": "The certifications acquired by the person"
+          },
+          "permits": {
+            "items": {
+              "$ref": "#/components/schemas/Permit"
+            },
+            "type": "array",
+            "title": "Permit",
+            "description": "The acquired permit list of a person based on the national classification of institutional permits in Finland, [permit codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
+            "examples": [["075"]]
+          },
+          "workPreferences": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkPreference"
+              }
+            ],
+            "title": "Work preference",
+            "description": "The preferences that the person has for the work position."
+          }
+        },
+        "type": "object",
         "required": [
           "occupations",
           "educations",
@@ -4078,105 +4183,133 @@
           "permits",
           "workPreferences"
         ],
-        "type": "object",
+        "title": "JobApplicantProfileRequest"
+      },
+      "JobApplicantProfileResponse": {
         "properties": {
           "occupations": {
-            "title": "Occupations",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/Occupation"
             },
+            "type": "array",
+            "title": "Occupations",
             "description": "The work history of a person with a list of occupations, related industry fields, employer and the duration of a specific work experience."
           },
           "educations": {
-            "title": "Education",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/Education"
             },
+            "type": "array",
+            "title": "Education",
             "description": "The education history of a person with a list of educations, education fields and the graduation date."
           },
           "languageSkills": {
-            "title": "Language skills",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/LanguageSkill"
             },
+            "type": "array",
+            "title": "Language skills",
             "description": "List of person's language skills acquired with the earlier person's experience"
           },
           "otherSkills": {
-            "title": "Other skills",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/OtherSkill"
             },
+            "type": "array",
+            "title": "Other skills",
             "description": "List of person's skills acquired with the work experience, education, certification and permits"
           },
           "certifications": {
-            "title": "Certification",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/Certification"
             },
+            "type": "array",
+            "title": "Certification",
             "description": "The certifications acquired by the person"
           },
           "permits": {
-            "title": "Permit",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/Permit"
             },
+            "type": "array",
+            "title": "Permit",
             "description": "The acquired permit list of a person based on the national classification of institutional permits in Finland, [permit codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
-            "example": ["075"]
+            "examples": [["075"]]
           },
           "workPreferences": {
-            "title": "Work preference",
             "allOf": [
               {
                 "$ref": "#/components/schemas/WorkPreference"
               }
             ],
+            "title": "Work preference",
             "description": "The preferences that the person has for the work position."
           }
-        }
+        },
+        "type": "object",
+        "required": [
+          "occupations",
+          "educations",
+          "languageSkills",
+          "otherSkills",
+          "certifications",
+          "permits",
+          "workPreferences"
+        ],
+        "title": "JobApplicantProfileResponse"
       },
       "LanguageSkill": {
-        "title": "LanguageSkill",
-        "type": "object",
         "properties": {
           "escoIdentifier": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2083,
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "ESCO identifier",
-            "maxLength": 2083,
-            "minLength": 1,
-            "type": "string",
             "description": "The languange skill identifier based on European Standard Classification of Occupations (ESCO).",
-            "format": "uri",
-            "example": "http://data.europa.eu/esco/skill/6d3edede-8951-4621-a835-e04323300fa0"
+            "examples": [
+              "http://data.europa.eu/esco/skill/6d3edede-8951-4621-a835-e04323300fa0"
+            ]
           },
           "languageCode": {
-            "title": "Language code",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/ISO_639_1"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Language code",
             "description": "The language skill identifier by the ISO 639-1 standard (Alpha-2).",
-            "example": "en"
+            "examples": ["en"]
           },
           "skillLevel": {
-            "title": "Skill level",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/CERFLevel"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Skill level",
             "description": "The language skill level according to Common European Framework of Reference for Languages, known as CERF.",
-            "example": "B2"
+            "examples": ["B2"]
           }
-        }
+        },
+        "type": "object",
+        "title": "LanguageSkill"
       },
       "NaceCode": {
-        "title": "NaceCode",
+        "type": "string",
         "enum": [
           "01",
           "01.1",
@@ -5154,91 +5287,130 @@
           "99.0",
           "99.00"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "NaceCode"
       },
       "NotFound": {
-        "title": "NotFound",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
       },
       "Occupation": {
-        "title": "Occupation",
-        "type": "object",
         "properties": {
           "escoIdentifier": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2083,
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "ESCO identifier",
-            "maxLength": 2083,
-            "minLength": 1,
-            "type": "string",
             "description": "The identifier of the occupation in which the user has previously worked. The identifier is based on European Standard Classification of Occupations (ESCO).",
-            "format": "uri",
-            "example": "http://data.europa.eu/esco/occupation/0022f466-426c-41a4-ac96-a235c945cf97"
+            "examples": [
+              "http://data.europa.eu/esco/occupation/0022f466-426c-41a4-ac96-a235c945cf97"
+            ]
           },
           "escoCode": {
-            "title": "ESCO code",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/EscoCode"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "ESCO code",
             "description": "The code of the occupation in which the user has previously worked. The code based on European Standard Classification of Occupations (ESCO).",
-            "example": "2654.1.7"
+            "examples": ["2654.1.7"]
           },
           "workExperience": {
-            "title": "Work experience in months",
-            "type": "integer",
-            "description": "The number of months that the person has experience in the specific occupation.",
-            "example": 5
-          },
-          "employer": {
-            "title": "Employer",
-            "maxLength": 250,
-            "type": "string",
-            "description": "The name of the employer by which the work experience has been acquired.",
-            "example": "The name of the employer by which the work experience has been acquired."
-          }
-        }
-      },
-      "OtherSkill": {
-        "title": "OtherSkill",
-        "type": "object",
-        "properties": {
-          "escoIdentifier": {
-            "title": "ESCO identifier",
-            "maxLength": 2083,
-            "minLength": 1,
-            "type": "string",
-            "description": "The skill identifier based on European Standard Classification of Occupations (ESCO).",
-            "format": "uri",
-            "example": "http://data.europa.eu/esco/skill/869fc2ce-478f-4420-8766-e1f02cec4fb2"
-          },
-          "skillLevel": {
-            "title": "Skill level",
-            "allOf": [
+            "anyOf": [
               {
-                "$ref": "#/components/schemas/SkillLevel"
+                "type": "integer"
+              },
+              {
+                "type": "null"
               }
             ],
-            "description": "The language skill level according to Common European Framework of Reference for Languages, known as CERF.",
-            "example": "beginner"
+            "title": "Work experience in months",
+            "description": "The number of months that the person has experience in the specific occupation.",
+            "examples": [5]
+          },
+          "employer": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Employer",
+            "description": "The name of the employer by which the work experience has been acquired.",
+            "examples": [
+              "The name of the employer by which the work experience has been acquired."
+            ]
           }
-        }
+        },
+        "type": "object",
+        "title": "Occupation"
+      },
+      "OtherSkill": {
+        "properties": {
+          "escoIdentifier": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2083,
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "ESCO identifier",
+            "description": "The skill identifier based on European Standard Classification of Occupations (ESCO).",
+            "examples": [
+              "http://data.europa.eu/esco/skill/869fc2ce-478f-4420-8766-e1f02cec4fb2"
+            ]
+          },
+          "skillLevel": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SkillLevel"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skill level",
+            "description": "The language skill level according to Common European Framework of Reference for Languages, known as CERF.",
+            "examples": ["beginner"]
+          }
+        },
+        "type": "object",
+        "title": "OtherSkill"
       },
       "Permit": {
-        "title": "Permit",
+        "type": "string",
         "enum": [
           "001",
           "002",
@@ -5336,52 +5508,46 @@
           "094",
           "095"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "Permit"
       },
       "ServiceUnavailable": {
-        "title": "ServiceUnavailable",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
           }
         },
+        "type": "object",
+        "title": "ServiceUnavailable",
         "description": "This response is reserved by Product Gateway."
       },
       "SkillLevel": {
-        "title": "SkillLevel",
-        "enum": ["beginner", "intermediate", "master"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["beginner", "intermediate", "master"],
+        "title": "SkillLevel"
       },
       "Unauthorized": {
-        "title": "Unauthorized",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -5391,87 +5557,100 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
       },
       "WorkPreference": {
-        "title": "WorkPreference",
-        "required": ["preferredRegion", "preferredMunicipality", "workingLanguage"],
-        "type": "object",
         "properties": {
           "naceCode": {
-            "title": "NACE code",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/NaceCode"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "NACE code",
             "description": "The industry field where the person has worked on. The codes are based on the Statistical classification of economic activities in the European Community, abbreviated as NACE.",
-            "example": "62.01"
+            "examples": ["62.01"]
           },
           "preferredRegion": {
-            "title": "Preferred region",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ISO_3166_2_FI"
             },
+            "type": "array",
+            "title": "Preferred region",
             "description": "The potential regions in Finland that the user desired to find a job from.",
-            "example": ["FI-18"]
+            "examples": [["FI-18"]]
           },
           "preferredMunicipality": {
-            "title": "Preferred municipality",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/FinnishMunicipality"
             },
+            "type": "array",
+            "title": "Preferred municipality",
             "description": "The potential municipalities in Finland that the user desires to find a job from.",
-            "example": ["091"]
+            "examples": [["091"]]
           },
           "typeOfEmployment": {
-            "title": "Type of employment",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/EmploymentType"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Type of employment",
             "description": "The type of employment contract that the person is looking for.",
-            "example": "permanent"
+            "examples": ["permanent"]
           },
           "workingTime": {
-            "title": "Working time",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/WorkingTime"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Working time",
             "description": "The preferred working time that the person is looking for based on the national [working time codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
-            "example": "03"
+            "examples": ["03"]
           },
           "workingLanguage": {
-            "title": "Working language",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ISO_639_1"
             },
+            "type": "array",
+            "title": "Working language",
             "description": "The preferred list of working languages identified by the ISO 639-1 standard (Alpha-2).",
-            "example": ["en"]
+            "examples": [["en"]]
           }
-        }
+        },
+        "type": "object",
+        "required": ["preferredRegion", "preferredMunicipality", "workingLanguage"],
+        "title": "WorkPreference"
       },
       "WorkingTime": {
-        "title": "WorkingTime",
-        "enum": ["01", "02", "03", "04", "05", "06", "07", "08"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["01", "02", "03", "04", "05", "06", "07", "08"],
+        "title": "WorkingTime"
       }
     }
   }

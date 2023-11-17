@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "Employment ESCO Occupations",
     "description": "Returns the list of standardized occupations based on the European Standard Classification of Occupations (ESCO) version 1.1.1",
@@ -13,48 +13,57 @@
         "operationId": "request_Employment_EscoOccupations_v1_0",
         "parameters": [
           {
-            "description": "Optional consent token",
-            "required": false,
-            "schema": {
-              "title": "X-Consent-Token",
-              "type": "string",
-              "description": "Optional consent token"
-            },
             "name": "x-consent-token",
-            "in": "header"
-          },
-          {
-            "description": "The login token. Value should be \"Bearer [token]\"",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "Authorization",
               "type": "string",
-              "description": "The login token. Value should be \"Bearer [token]\""
+              "description": "Optional consent token",
+              "default": "",
+              "title": "X-Consent-Token"
             },
+            "description": "Optional consent token"
+          },
+          {
             "name": "authorization",
-            "in": "header"
-          },
-          {
-            "description": "The bare domain of the system that provided the token.",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Authorization-Provider",
               "type": "string",
-              "description": "The bare domain of the system that provided the token."
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "default": "",
+              "title": "Authorization"
             },
+            "description": "The login token. Value should be \"Bearer [token]\""
+          },
+          {
             "name": "x-authorization-provider",
-            "in": "header"
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
+            },
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/EscoOccupationRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -68,94 +77,98 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Unauthorized"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Forbidden"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "444": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceNotFound"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceError"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           },
           "502": {
-            "description": "Bad Gateway",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BadGateway"
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           },
           "503": {
-            "description": "Service Unavailable",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceUnavailable"
                 }
               }
-            }
+            },
+            "description": "Service Unavailable"
           },
           "504": {
-            "description": "Gateway Timeout",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GatewayTimeout"
                 }
               }
-            }
+            },
+            "description": "Gateway Timeout"
           },
           "550": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DoesNotConformToDefinition"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "422": {
             "description": "Validation Error",
@@ -174,61 +187,61 @@
   "components": {
     "schemas": {
       "BadGateway": {
-        "title": "BadGateway",
-        "type": "object",
         "properties": {},
+        "type": "object",
+        "title": "BadGateway",
         "description": "This response is reserved by Product Gateway."
       },
       "DataSourceError": {
-        "title": "DataSourceError",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
       },
       "DataSourceNotFound": {
-        "title": "DataSourceNotFound",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description",
             "default": "Data source not found"
           }
         },
+        "type": "object",
+        "title": "DataSourceNotFound",
         "description": "This response is reserved by Product Gateway."
       },
       "DoesNotConformToDefinition": {
-        "title": "DoesNotConformToDefinition",
-        "required": ["data_source_status_code"],
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Message",
             "type": "string",
+            "title": "Message",
             "default": "Response from data source does not conform to definition"
           },
           "data_source_status_code": {
-            "title": "Data source status code",
             "type": "integer",
+            "title": "Data source status code",
             "description": "HTTP status code returned from the data source"
           }
         },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
         "description": "This response is reserved by Product Gateway."
       },
       "EscoCode": {
-        "title": "EscoCode",
+        "type": "string",
         "enum": [
           "2654.1.7",
           "8121.4",
@@ -3238,111 +3251,172 @@
           "2422.1",
           "8211.5"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "EscoCode"
       },
       "EscoOccupationRequest": {
-        "title": "EscoOccupationRequest",
-        "type": "object",
         "properties": {
           "limit": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Limit",
-            "minimum": 1.0,
-            "type": "integer",
             "description": "The limit of items per page in response",
-            "example": 1000
+            "examples": [1000]
           },
           "offset": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Offset",
-            "minimum": 0.0,
-            "type": "integer",
             "description": "The starting index of responses",
-            "example": 0
+            "examples": [0]
           }
-        }
+        },
+        "type": "object",
+        "title": "EscoOccupationRequest"
       },
       "EscoOccupationResponse": {
-        "title": "EscoOccupationResponse",
-        "required": ["occupations", "totalCount"],
-        "type": "object",
         "properties": {
           "occupations": {
-            "title": "Occupations",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/Occupation"
             },
+            "type": "array",
+            "title": "Occupations",
             "description": "The list of occupations based on ESCO standard"
           },
           "totalCount": {
-            "title": "Total Count",
             "type": "integer",
+            "title": "Total Count",
             "description": "The total count of occupation entries",
-            "example": 3568
+            "examples": [3568]
           }
-        }
+        },
+        "type": "object",
+        "required": ["occupations", "totalCount"],
+        "title": "EscoOccupationResponse"
       },
       "Forbidden": {
-        "title": "Forbidden",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "GatewayTimeout": {
-        "title": "GatewayTimeout",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
         "description": "This response is reserved by Product Gateway."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "NotFound": {
-        "title": "NotFound",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
       },
       "Occupation": {
-        "title": "Occupation",
+        "properties": {
+          "escoCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EscoCode"
+              }
+            ],
+            "title": "ESCO Code",
+            "description": "The ESCO code based on the level 5 or narrower in ESCO classification",
+            "examples": ["8331.1"]
+          },
+          "escoJobTitle": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "ESCO Job Title",
+            "description": "The job title based on ESCO classification",
+            "examples": ["bus driver"]
+          },
+          "alternativeTitles": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "ESCO Alternative Job Titles",
+            "description": "The alternative job titles based on ESCO classification",
+            "examples": [["coach driver", "driver of a bus"]]
+          },
+          "escoDescription": {
+            "type": "string",
+            "title": "ESCO Job Title Description",
+            "description": "The description of the job title",
+            "examples": [
+              "Bus drivers operate buses or coaches, take fares, and look after passengers."
+            ]
+          },
+          "escoIdentifier": {
+            "type": "string",
+            "maxLength": 2083,
+            "minLength": 1,
+            "format": "uri",
+            "title": "ESCO Identifier",
+            "description": "The identifier of the ESCO occupation",
+            "examples": [
+              "http://data.europa.eu/esco/occupation/00cee175-1376-43fb-9f02-ba3d7a910a58"
+            ]
+          }
+        },
+        "type": "object",
         "required": [
           "escoCode",
           "escoJobTitle",
@@ -3350,88 +3424,41 @@
           "escoDescription",
           "escoIdentifier"
         ],
-        "type": "object",
-        "properties": {
-          "escoCode": {
-            "title": "ESCO Code",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EscoCode"
-              }
-            ],
-            "description": "The ESCO code based on the level 5 or narrower in ESCO classification",
-            "example": "8331.1"
-          },
-          "escoJobTitle": {
-            "title": "ESCO Job Title",
-            "maxLength": 250,
-            "type": "string",
-            "description": "The job title based on ESCO classification",
-            "example": "bus driver"
-          },
-          "alternativeTitles": {
-            "title": "ESCO Alternative Job Titles",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "The alternative job titles based on ESCO classification",
-            "example": ["coach driver", "driver of a bus"]
-          },
-          "escoDescription": {
-            "title": "ESCO Job Title Description",
-            "type": "string",
-            "description": "The description of the job title",
-            "example": "Bus drivers operate buses or coaches, take fares, and look after passengers."
-          },
-          "escoIdentifier": {
-            "title": "ESCO Identifier",
-            "maxLength": 2083,
-            "minLength": 1,
-            "type": "string",
-            "description": "The identifier of the ESCO occupation",
-            "format": "uri",
-            "example": "http://data.europa.eu/esco/occupation/00cee175-1376-43fb-9f02-ba3d7a910a58"
-          }
-        }
+        "title": "Occupation"
       },
       "ServiceUnavailable": {
-        "title": "ServiceUnavailable",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
           }
         },
+        "type": "object",
+        "title": "ServiceUnavailable",
         "description": "This response is reserved by Product Gateway."
       },
       "Unauthorized": {
-        "title": "Unauthorized",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -3441,17 +3468,22 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
       }
     }
   }

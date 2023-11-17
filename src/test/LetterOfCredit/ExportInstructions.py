@@ -32,7 +32,7 @@ class ExportInstructionsRequest(CamelCaseModel):
         ...,
         alias="letterOfCreditNumber",
         title="Letter of credit number",
-        example="123",
+        examples=["123"],
     )
 
 

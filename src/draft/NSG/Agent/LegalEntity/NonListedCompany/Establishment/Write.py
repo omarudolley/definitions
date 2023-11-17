@@ -1256,26 +1256,26 @@ class Registrant(CamelCaseModel):
         title="Given name",
         description="The first name that the person is being called by",
         max_length=250,
-        example="John",
+        examples=["John"],
     )
     last_name: str = Field(
         ...,
         title="Last name",
         description="The person's current family name",
         max_length=250,
-        example="Doe",
+        examples=["Doe"],
     )
     email: EmailStr = Field(
         ...,
         title="Email",
         description="The person's contact email address",
-        example="john.doe@test.fi",
+        examples=["john.doe@test.fi"],
     )
     phone_number: str = Field(
         ...,
         title="Phone number",
         description="The person's phone number in the international format",
-        example="+358501234567",
+        examples=["+358501234567"],
         max_length=250,
     )
 
@@ -1286,7 +1286,7 @@ class CompanyDetails(CamelCaseModel):
         title="Name",
         description="The desired name to be registered for the company",
         max_length=250,
-        example="Digital company X",
+        examples=["Digital company X"],
     )
     alternative_name: Optional[str] = Field(
         None,
@@ -1294,13 +1294,13 @@ class CompanyDetails(CamelCaseModel):
         description="The second alternative for the desired name to be registered for "
         "the company if the primary name is not available",
         max_length=250,
-        example="Digital company Y",
+        examples=["Digital company Y"],
     )
     founding_date: date = Field(
         ...,
         title="Founding date",
         description="The date of memorandum of association",
-        example=date(2022, 1, 1),
+        examples=[date(2022, 1, 1)],
     )
     industry_sector: IndustrySector = Field(
         ...,
@@ -1308,47 +1308,47 @@ class CompanyDetails(CamelCaseModel):
         description="The industry fields where the company will run its business. The "
         "codes are based on the Statistical classification of economic activities in "
         "the European Community, abbreviated as NACE.",
-        example=IndustrySector.NACE_62_01,
+        examples=[IndustrySector.NACE_62_01],
     )
     share_capital: float = Field(
         ...,
         title="Share capital",
         description="The total value of the issued shares of the company",
-        example=1000.0,
+        examples=[1000.0],
     )
     capital_currency: ISO_4217_CurrencyCode = Field(
         ...,
         title="Capital currency",
         description="The currency used for the share capital in ISO 4217 format",
-        example=ISO_4217_CurrencyCode.EUR,
+        examples=[ISO_4217_CurrencyCode.EUR],
     )
     settlement_deposit: Optional[float] = Field(
         None,
         title="Settlement deposit",
         description="The amount of the deposit paid during the establishment of a "
         "company",
-        example=1000.0,
+        examples=[1000.0],
     )
     deposit_currency: Optional[ISO_4217_CurrencyCode] = Field(
         None,
         title="Deposit currency",
         description="The currency used for the paying the settlement deposit in ISO "
         "4217 format",
-        example=ISO_4217_CurrencyCode.EUR,
+        examples=[ISO_4217_CurrencyCode.EUR],
     )
     settlement_date: Optional[date] = Field(
         None,
         title="Settlement date",
         description="The date on which the share deposit has been settled and "
         "available as full",
-        example=date(2022, 2, 1),
+        examples=[date(2022, 2, 1)],
     )
     country_of_residence: Optional[ISO_3166_1_Alpha_3] = Field(
         None,
         title="Country of residence",
         description="The company's current country of the residence in the three "
         "character (Alpha-3) format if it already exists abroad",
-        example=ISO_3166_1_Alpha_3.USA,
+        examples=[ISO_3166_1_Alpha_3.USA],
     )
 
 
@@ -1357,26 +1357,26 @@ class ShareSeries(CamelCaseModel):
         ...,
         title="Share series class",
         description="The type of the share series of a company",
-        example="A",
+        examples=["A"],
         max_length=5,
     )
     number_of_shares: int = Field(
         ...,
         title="Number of shares",
         description="The total number of the shares in the share series class",
-        example=100,
+        examples=[100],
     )
     share_value: float = Field(
         ...,
         title="Share value",
         description="The nominal value of a share of this class",
-        example=10,
+        examples=[10],
     )
     share_value_currency: ISO_4217_CurrencyCode = Field(
         None,
         title="Share value currency",
         description="The currency used for the share value in ISO 4217 format",
-        example=ISO_4217_CurrencyCode.EUR,
+        examples=[ISO_4217_CurrencyCode.EUR],
     )
 
 
@@ -1387,7 +1387,7 @@ class CompanyAddress(CamelCaseModel):
         description="The complete address written as a string. Use of this property is "
         "recommended as it will not suffer any misunderstandings that might arise "
         "through the breaking up of an address into its component parts.",
-        example="Tietotie 4 A 7, 00100 Helsinki, Finland",
+        examples=["Tietotie 4 A 7, 00100 Helsinki, Finland"],
         max_length=250,
     )
 
@@ -1397,7 +1397,7 @@ class CompanyAddress(CamelCaseModel):
         description="The name of a passage or way through from one location to "
         "another. A thoroughfare is usually a street, but it might be a waterway or "
         "some other feature.",
-        example="Avenue des Champs-Élysées",
+        examples=["Avenue des Champs-Élysées"],
         max_length=40,
     )
     locator_designator: Optional[str] = Field(
@@ -1406,7 +1406,7 @@ class CompanyAddress(CamelCaseModel):
         description="A number or sequence of characters that uniquely identifies the "
         "locator within the relevant scope. In simpler terms, this is the building "
         "number, apartment number, etc.",
-        example="Flat 3, 17 or 3 A 4",
+        examples=["Flat 3, 17 or 3 A 4"],
         max_length=10,
     )
     locator_name: Optional[str] = Field(
@@ -1418,7 +1418,7 @@ class CompanyAddress(CamelCaseModel):
         "inside a building. The key difference between a locator designator and a "
         "locator name is that the latter is a proper name and is unlikely to include "
         "digits.",
-        example="Shumann, Berlaymont building",
+        examples=["Shumann, Berlaymont building"],
         max_length=40,
     )
     address_area: Optional[str] = Field(
@@ -1427,7 +1427,7 @@ class CompanyAddress(CamelCaseModel):
         description="The name of a geographic area that groups addresses. This would "
         "typically be part of a city, a neighbourhood or village. Address area is not "
         "an administrative unit.",
-        example="Montmartre (in Paris)",
+        examples=["Montmartre (in Paris)"],
         max_length=40,
     )
     post_code: Optional[str] = Field(
@@ -1435,7 +1435,7 @@ class CompanyAddress(CamelCaseModel):
         title="Post code",
         description="The code created and maintained for postal purposes to identify a "
         "subdivision of addresses and postal delivery points.",
-        example="75000",
+        examples=["75000"],
         max_length=10,
     )
     post_name: Optional[str] = Field(
@@ -1443,7 +1443,7 @@ class CompanyAddress(CamelCaseModel):
         title="Post name",
         description="A name created and maintained for postal purposes to identify a "
         "subdivision of addresses and postal delivery points. Usually a city.",
-        example="Paris",
+        examples=["Paris"],
         max_length=40,
     )
     po_box: Optional[str] = Field(
@@ -1451,7 +1451,7 @@ class CompanyAddress(CamelCaseModel):
         title="PO box",
         description="A location designator for a postal delivery point at a post "
         "office, usually a number.",
-        example="9383",
+        examples=["9383"],
         max_length=10,
     )
     admin_unit_level_1: Optional[ISO_3166_1_Alpha_3] = Field(
@@ -1460,7 +1460,7 @@ class CompanyAddress(CamelCaseModel):
         title="Admin unit level 1",
         description="The name of the uppermost level of the address, almost always a "
         "country. ISO 3166 three character (Alpha 3) format.",
-        example=ISO_3166_1_Alpha_3.USA,
+        examples=[ISO_3166_1_Alpha_3.USA],
     )
     admin_unit_level_2: Optional[str] = Field(
         None,
@@ -1469,7 +1469,7 @@ class CompanyAddress(CamelCaseModel):
         description="The name of a secondary level/region of the address, usually a "
         "county, state or other such area that typically encompasses several "
         "localities. Values could be a region or province, more granular than level 1.",
-        example="Lapland",
+        examples=["Lapland"],
         max_length=40,
     )
 
@@ -1479,40 +1479,40 @@ class ManagingDirector(CamelCaseModel):
         ...,
         title="Role",
         description="The role of the director",
-        example=ManagingDirectorRole.DIRECTOR,
+        examples=[ManagingDirectorRole.DIRECTOR],
     )
     given_name: str = Field(
         ...,
         title="Given name",
         description="The first name that the person is being called by",
-        example="Mary",
+        examples=["Mary"],
         max_length=250,
     )
     middle_names: str = Field(
         ...,
         title="Middle name",
         description="All the middle names of the person",
-        example="Juliet Olive",
+        examples=["Juliet Olive"],
         max_length=250,
     )
     last_name: str = Field(
         ...,
         title="Last name",
         description="The person's current family name",
-        example="Deo",
+        examples=["Deo"],
         max_length=250,
     )
     date_of_birth: date = Field(
         ...,
         title="Date of birth",
         description="The birth day of the person",
-        example=date(1976, 4, 16),
+        examples=[date(1976, 4, 16)],
     )
     nationality: ISO_3166_1_Alpha_3 = Field(
         ...,
         title="Nationality",
         description="The nationality of the person",
-        example=ISO_3166_1_Alpha_3.USA,
+        examples=[ISO_3166_1_Alpha_3.USA],
     )
 
 
@@ -1521,40 +1521,40 @@ class BoardMember(CamelCaseModel):
         ...,
         title="Role",
         description="The role of the person in the board",
-        example=BoardMemberRole.MEMBER,
+        examples=[BoardMemberRole.MEMBER],
     )
     given_name: str = Field(
         ...,
         title="Given name",
         description="The first name that the person is being called by",
-        example="Mary",
+        examples=["Mary"],
         max_length=250,
     )
     middle_names: str = Field(
         ...,
         title="Middle names",
         description="All the middle names of the person",
-        example="Juliet Olive",
+        examples=["Juliet Olive"],
         max_length=250,
     )
     last_name: str = Field(
         ...,
         title="Last name",
         description="The person's current family name",
-        example="Deo",
+        examples=["Deo"],
         max_length=250,
     )
     date_of_birth: date = Field(
         ...,
         title="Date of birth",
         description="The birth day of the person",
-        example=date(1976, 4, 16),
+        examples=[date(1976, 4, 16)],
     )
     nationality: ISO_3166_1_Alpha_3 = Field(
         ...,
         title="Nationality",
         description="The nationality of the person",
-        example=ISO_3166_1_Alpha_3.USA,
+        examples=[ISO_3166_1_Alpha_3.USA],
     )
 
 
@@ -1563,7 +1563,7 @@ class AuditorDetails(CamelCaseModel):
         None,
         title="Company name",
         description="The name of the auditor company if it exists",
-        example="Auditor company X",
+        examples=["Auditor company X"],
         max_length=250,
     )
     national_identifier: Optional[str] = Field(
@@ -1571,21 +1571,21 @@ class AuditorDetails(CamelCaseModel):
         title="National identifier",
         description="The national identifier of the auditor company issued by the "
         "trade register",
-        example="2464491-9",
+        examples=["2464491-9"],
         max_length=40,
     )
     given_name: Optional[str] = Field(
         None,
         title="Given name",
         description="The first name that the person is being called by",
-        example="Jane",
+        examples=["Jane"],
         max_length=250,
     )
     last_name: Optional[str] = Field(
         None,
         title="Last name",
         description="The person's current family name",
-        example="Doe",
+        examples=["Doe"],
         max_length=250,
     )
 
@@ -1626,13 +1626,17 @@ class EstablishmentRequest(CamelCaseModel):
     )
 
 
+class EstablishmentResponse(EstablishmentRequest):
+    pass
+
+
 DEFINITION = DataProductDefinition(
     version="0.0.1",
     deprecated=True,
     title="Establish a non-listed company",
     description="Create the initial set of data to establish a non-listed company",
     request=EstablishmentRequest,
-    response=EstablishmentRequest,
+    response=EstablishmentResponse,
     requires_authorization=True,
     requires_consent=False,
 )

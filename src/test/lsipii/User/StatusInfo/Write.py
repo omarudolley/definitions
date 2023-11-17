@@ -17,31 +17,31 @@ class StatusInfoResponse(CamelCaseModel):
         ...,
         title="Label of the status",
         description="Label of the status in English",
-        example="Sent",
+        examples=["Sent"],
     )
     status_name: str = Field(
         ...,
         title="Name of the status",
         description="Programmatic identity field of the status",
-        example="tax_form",
+        examples=["tax_form"],
     )
     status_value: StatusInfoValue = Field(
         ...,
         title="Status",
         description="Value of the status",
-        example=StatusInfoValue.SENT,
+        examples=[StatusInfoValue.SENT],
     )
     updated_at: datetime = Field(
         ...,
         title="Datetime the data was last updated at",
         description="A datetime in RFC3339 date-time syntax",
-        example="2022-06-17T11:52:00Z",
+        examples=["2022-06-17T11:52:00Z"],
     )
     created_at: datetime = Field(
         ...,
         title="Datetime the data was created at",
         description="A datetime in RFC3339 date-time syntax",
-        example="2022-06-17T11:52:00Z",
+        examples=["2022-06-17T11:52:00Z"],
     )
 
 
@@ -55,7 +55,7 @@ class StatusInfoRequest(CamelCaseModel):
         ...,
         title="Status",
         description="Value of the status",
-        example=StatusInfoValue.SENT,
+        examples=[StatusInfoValue.SENT],
     )
 
 

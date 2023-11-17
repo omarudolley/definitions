@@ -9,13 +9,13 @@ class Beacon(CamelCaseModel):
         ...,
         title="Beacon ID",
         description="Beacon ID",
-        example="0d9b38d3-f8a0-4efe-ad62-f781fea62b86",
+        examples=["0d9b38d3-f8a0-4efe-ad62-f781fea62b86"],
     )
     rssi: float = Field(
         ...,
         title="RSSI",
         description="Received Signal Strength Indication, in dBm",
-        example=-55,
+        examples=[-55],
     )
 
 
@@ -28,10 +28,10 @@ class BLEBeaconsResponse(CamelCaseModel):
         ...,
         title="Location ID",
         description="Location ID",
-        example="849cc493-efb7-483f-b634-7a44849270f9",
+        examples=["849cc493-efb7-483f-b634-7a44849270f9"],
     )
     location_name: str = Field(
-        ..., title="Location name", description="Location name", example="Deck #3"
+        ..., title="Location name", description="Location name", examples=["Deck #3"]
     )
 
 

@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "Legal Entity Basic Information",
     "description": "Data Product for Legal Entity Basic Information",
@@ -13,48 +13,57 @@
         "operationId": "request_LegalEntity_BasicInformation_v1_0",
         "parameters": [
           {
-            "description": "Optional consent token",
-            "required": false,
-            "schema": {
-              "title": "X-Consent-Token",
-              "type": "string",
-              "description": "Optional consent token"
-            },
             "name": "x-consent-token",
-            "in": "header"
-          },
-          {
-            "description": "The login token. Value should be \"Bearer [token]\"",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "Authorization",
               "type": "string",
-              "description": "The login token. Value should be \"Bearer [token]\""
+              "description": "Optional consent token",
+              "default": "",
+              "title": "X-Consent-Token"
             },
+            "description": "Optional consent token"
+          },
+          {
             "name": "authorization",
-            "in": "header"
-          },
-          {
-            "description": "The bare domain of the system that provided the token.",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Authorization-Provider",
               "type": "string",
-              "description": "The bare domain of the system that provided the token."
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "default": "",
+              "title": "Authorization"
             },
+            "description": "The login token. Value should be \"Bearer [token]\""
+          },
+          {
             "name": "x-authorization-provider",
-            "in": "header"
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
+            },
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/BasicInformationRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -68,94 +77,98 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Unauthorized"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Forbidden"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "444": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceNotFound"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceError"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           },
           "502": {
-            "description": "Bad Gateway",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BadGateway"
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           },
           "503": {
-            "description": "Service Unavailable",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceUnavailable"
                 }
               }
-            }
+            },
+            "description": "Service Unavailable"
           },
           "504": {
-            "description": "Gateway Timeout",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GatewayTimeout"
                 }
               }
-            }
+            },
+            "description": "Gateway Timeout"
           },
           "550": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DoesNotConformToDefinition"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "422": {
             "description": "Validation Error",
@@ -174,7 +187,7 @@
   "components": {
     "schemas": {
       "Activity": {
-        "title": "Activity",
+        "type": "string",
         "enum": [
           "01",
           "01.1",
@@ -1152,30 +1165,75 @@
           "99.0",
           "99.00"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "Activity"
       },
       "BadGateway": {
-        "title": "BadGateway",
-        "type": "object",
         "properties": {},
+        "type": "object",
+        "title": "BadGateway",
         "description": "This response is reserved by Product Gateway."
       },
       "BasicInformationRequest": {
-        "title": "BasicInformationRequest",
-        "required": ["nationalIdentifier"],
-        "type": "object",
         "properties": {
           "nationalIdentifier": {
-            "title": "National Identifier",
             "type": "string",
+            "title": "National Identifier",
             "description": "National identifier for a legal entity",
-            "example": "2464491-9"
+            "examples": ["2464491-9"]
           }
-        }
+        },
+        "type": "object",
+        "required": ["nationalIdentifier"],
+        "title": "BasicInformationRequest"
       },
       "BasicInformationResponse": {
-        "title": "BasicInformationResponse",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "The name of the legal entity",
+            "examples": ["Oy Example Ab"]
+          },
+          "legalForm": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EntityLegalForm"
+              }
+            ],
+            "title": "Legal form",
+            "description": "ISO 20275 legal entity code from version 1.4.1",
+            "examples": ["DKUW"]
+          },
+          "activity": {
+            "items": {
+              "$ref": "#/components/schemas/Activity"
+            },
+            "type": "array",
+            "title": "Activity",
+            "description": "List of European level NACE classification codes",
+            "examples": [["62.01"]]
+          },
+          "legalStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LegalStatus"
+              }
+            ],
+            "title": "Legal status",
+            "description": "Status of the legal entity",
+            "examples": ["NORMAL"]
+          },
+          "registrationDate": {
+            "type": "string",
+            "format": "date",
+            "title": "Registration date",
+            "description": "Official registration date of the legal entity in the national trade registry"
+          },
+          "registeredAddress": {
+            "$ref": "#/components/schemas/RegisteredAddress"
+          }
+        },
+        "type": "object",
         "required": [
           "name",
           "legalForm",
@@ -1184,104 +1242,58 @@
           "registrationDate",
           "registeredAddress"
         ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "title": "Name",
-            "type": "string",
-            "description": "The name of the legal entity",
-            "example": "Oy Example Ab"
-          },
-          "legalForm": {
-            "title": "Legal form",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EntityLegalForm"
-              }
-            ],
-            "description": "ISO 20275 legal entity code from version 1.4.1",
-            "example": "DKUW"
-          },
-          "activity": {
-            "title": "Activity",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Activity"
-            },
-            "description": "List of European level NACE classification codes",
-            "example": ["62.01"]
-          },
-          "legalStatus": {
-            "title": "Legal status",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/LegalStatus"
-              }
-            ],
-            "description": "Status of the legal entity",
-            "example": "NORMAL"
-          },
-          "registrationDate": {
-            "title": "Registration date",
-            "type": "string",
-            "description": "Official registration date of the legal entity in the national trade registry",
-            "format": "date"
-          },
-          "registeredAddress": {
-            "$ref": "#/components/schemas/RegisteredAddress"
-          }
-        }
+        "title": "BasicInformationResponse"
       },
       "DataSourceError": {
-        "title": "DataSourceError",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
       },
       "DataSourceNotFound": {
-        "title": "DataSourceNotFound",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description",
             "default": "Data source not found"
           }
         },
+        "type": "object",
+        "title": "DataSourceNotFound",
         "description": "This response is reserved by Product Gateway."
       },
       "DoesNotConformToDefinition": {
-        "title": "DoesNotConformToDefinition",
-        "required": ["data_source_status_code"],
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Message",
             "type": "string",
+            "title": "Message",
             "default": "Response from data source does not conform to definition"
           },
           "data_source_status_code": {
-            "title": "Data source status code",
             "type": "integer",
+            "title": "Data source status code",
             "description": "HTTP status code returned from the data source"
           }
         },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
         "description": "This response is reserved by Product Gateway."
       },
       "EntityLegalForm": {
-        "title": "EntityLegalForm",
+        "type": "string",
         "enum": [
           "8888",
           "9999",
@@ -4558,53 +4570,53 @@
           "TA9Z",
           "UZ9W"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "EntityLegalForm"
       },
       "Forbidden": {
-        "title": "Forbidden",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "GatewayTimeout": {
-        "title": "GatewayTimeout",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
         "description": "This response is reserved by Product Gateway."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "ISO_3166_1_Alpha_2": {
-        "title": "ISO_3166_1_Alpha_2",
+        "type": "string",
         "enum": [
           "AD",
           "AE",
@@ -4856,34 +4868,86 @@
           "ZM",
           "ZW"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "ISO_3166_1_Alpha_2"
       },
       "LegalStatus": {
-        "title": "LegalStatus",
-        "enum": ["NORMAL", "LIQUIDATION", "RESTRUCTURING", "BANKRUPTCY"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["NORMAL", "LIQUIDATION", "RESTRUCTURING", "BANKRUPTCY"],
+        "title": "LegalStatus"
       },
       "NotFound": {
-        "title": "NotFound",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
       },
       "RegisteredAddress": {
-        "title": "RegisteredAddress",
+        "properties": {
+          "streetName": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Street name",
+            "examples": ["Fredrikinkatu"]
+          },
+          "buildingDesignator": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 1,
+            "title": "Building designator",
+            "examples": ["34 A 17"]
+          },
+          "postalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 1,
+            "title": "Postal code",
+            "examples": ["00100"]
+          },
+          "city": {
+            "type": "string",
+            "maxLength": 20,
+            "minLength": 1,
+            "title": "City",
+            "examples": ["Helsinki"]
+          },
+          "region": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 20,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region",
+            "examples": ["Southern Finland"]
+          },
+          "country": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ISO_3166_1_Alpha_2"
+              }
+            ],
+            "title": "Country",
+            "description": "ISO 3166-1 alpha-2 code for the country",
+            "examples": ["FI"]
+          }
+        },
+        "type": "object",
         "required": [
           "streetName",
           "buildingDesignator",
@@ -4892,92 +4956,41 @@
           "region",
           "country"
         ],
-        "type": "object",
-        "properties": {
-          "streetName": {
-            "title": "Street name",
-            "maxLength": 40,
-            "minLength": 1,
-            "type": "string",
-            "example": "Fredrikinkatu"
-          },
-          "buildingDesignator": {
-            "title": "Building designator",
-            "maxLength": 10,
-            "minLength": 1,
-            "type": "string",
-            "example": "34 A 17"
-          },
-          "postalCode": {
-            "title": "Postal code",
-            "maxLength": 10,
-            "minLength": 1,
-            "type": "string",
-            "example": "00100"
-          },
-          "city": {
-            "title": "City",
-            "maxLength": 20,
-            "minLength": 1,
-            "type": "string",
-            "example": "Helsinki"
-          },
-          "region": {
-            "title": "Region",
-            "maxLength": 20,
-            "minLength": 1,
-            "type": "string",
-            "example": "Southern Finland"
-          },
-          "country": {
-            "title": "Country",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ISO_3166_1_Alpha_2"
-              }
-            ],
-            "description": "ISO 3166-1 alpha-2 code for the country",
-            "example": "FI"
-          }
-        }
+        "title": "RegisteredAddress"
       },
       "ServiceUnavailable": {
-        "title": "ServiceUnavailable",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
           }
         },
+        "type": "object",
+        "title": "ServiceUnavailable",
         "description": "This response is reserved by Product Gateway."
       },
       "Unauthorized": {
-        "title": "Unauthorized",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -4987,17 +5000,22 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
       }
     }
   }

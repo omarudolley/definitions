@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "Basic user profile information",
     "description": "Data product for basic user profile information",
@@ -13,48 +13,57 @@
         "operationId": "request_test_lassipatanen_User_Profile",
         "parameters": [
           {
-            "description": "Optional consent token",
-            "required": false,
-            "schema": {
-              "title": "X-Consent-Token",
-              "type": "string",
-              "description": "Optional consent token"
-            },
             "name": "x-consent-token",
-            "in": "header"
-          },
-          {
-            "description": "The login token. Value should be \"Bearer [token]\"",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "Authorization",
               "type": "string",
-              "description": "The login token. Value should be \"Bearer [token]\""
+              "description": "Optional consent token",
+              "default": "",
+              "title": "X-Consent-Token"
             },
+            "description": "Optional consent token"
+          },
+          {
             "name": "authorization",
-            "in": "header"
-          },
-          {
-            "description": "The bare domain of the system that provided the token.",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Authorization-Provider",
               "type": "string",
-              "description": "The bare domain of the system that provided the token."
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "default": "",
+              "title": "Authorization"
             },
+            "description": "The login token. Value should be \"Bearer [token]\""
+          },
+          {
             "name": "x-authorization-provider",
-            "in": "header"
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
+            },
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ProfileRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -68,94 +77,98 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Unauthorized"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Forbidden"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "444": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceNotFound"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceError"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           },
           "502": {
-            "description": "Bad Gateway",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BadGateway"
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           },
           "503": {
-            "description": "Service Unavailable",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceUnavailable"
                 }
               }
-            }
+            },
+            "description": "Service Unavailable"
           },
           "504": {
-            "description": "Gateway Timeout",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GatewayTimeout"
                 }
               }
-            }
+            },
+            "description": "Gateway Timeout"
           },
           "550": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DoesNotConformToDefinition"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "422": {
             "description": "Validation Error",
@@ -174,250 +187,317 @@
   "components": {
     "schemas": {
       "Address": {
-        "title": "Address",
-        "type": "object",
         "properties": {
           "streetAddress": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Street address",
-            "type": "string",
             "description": "Street address",
-            "nullable": true,
-            "example": "Mannerheimintie 42"
+            "examples": ["Mannerheimintie 42"],
+            "nullable": true
           },
           "zipCode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 5,
+                "minLength": 5
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "ZIP code",
-            "maxLength": 5,
-            "minLength": 5,
-            "type": "string",
             "description": "ZIP code of the address",
-            "nullable": true,
-            "example": "00100"
+            "examples": ["00100"],
+            "nullable": true
           },
           "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "City",
-            "type": "string",
             "description": "City of the address location",
-            "nullable": true,
-            "example": "Helsinki"
+            "examples": ["Helsinki"],
+            "nullable": true
           },
           "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Country",
-            "type": "string",
             "description": "Country of the address",
-            "nullable": true,
-            "example": "Suomi"
+            "examples": ["Suomi"],
+            "nullable": true
           }
-        }
+        },
+        "type": "object",
+        "title": "Address"
       },
       "BadGateway": {
-        "title": "BadGateway",
-        "type": "object",
         "properties": {},
+        "type": "object",
+        "title": "BadGateway",
         "description": "This response is reserved by Product Gateway."
       },
       "DataSourceError": {
-        "title": "DataSourceError",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
       },
       "DataSourceNotFound": {
-        "title": "DataSourceNotFound",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description",
             "default": "Data source not found"
           }
         },
+        "type": "object",
+        "title": "DataSourceNotFound",
         "description": "This response is reserved by Product Gateway."
       },
       "DoesNotConformToDefinition": {
-        "title": "DoesNotConformToDefinition",
-        "required": ["data_source_status_code"],
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Message",
             "type": "string",
+            "title": "Message",
             "default": "Response from data source does not conform to definition"
           },
           "data_source_status_code": {
-            "title": "Data source status code",
             "type": "integer",
+            "title": "Data source status code",
             "description": "HTTP status code returned from the data source"
           }
         },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
         "description": "This response is reserved by Product Gateway."
       },
       "EmploymentType": {
-        "title": "EmploymentType",
-        "enum": ["permanent", "temporary", "seasonal", "summerJob"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["permanent", "temporary", "seasonal", "summerJob"],
+        "title": "EmploymentType"
       },
       "Forbidden": {
-        "title": "Forbidden",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "GatewayTimeout": {
-        "title": "GatewayTimeout",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
         "description": "This response is reserved by Product Gateway."
       },
       "Gender": {
-        "title": "Gender",
-        "enum": ["Male", "Female", "Other"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["Male", "Female", "Other"],
+        "title": "Gender"
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "NotFound": {
-        "title": "NotFound",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
       },
       "Occupation": {
-        "title": "Occupation",
-        "type": "object",
         "properties": {
           "escoIdentifier": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2083,
+                "minLength": 1,
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "ESCO identifier",
-            "maxLength": 2083,
-            "minLength": 1,
-            "type": "string",
             "description": "The identifier of the occupation in which the user has previously worked. The identifier is based on European Standard Classification of Occupations (ESCO).",
-            "format": "uri",
-            "nullable": true,
-            "example": "http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84"
+            "examples": [
+              "http://data.europa.eu/esco/occupation/000e93a3-d956-4e45-aacb-f12c83fedf84"
+            ],
+            "nullable": true
           },
           "escoCode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "ESCO code",
-            "type": "string",
             "description": "The code of the occupation in which the user has previously worked. The code based on European Standard Classification of Occupations (ESCO).",
-            "nullable": true,
-            "example": "2654.1.7"
+            "examples": ["2654.1.7"],
+            "nullable": true
           },
           "naceCode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "NACE code",
-            "type": "string",
             "description": "The industry field where the person has worked on. The codes are based on the Statistical classification of economic activities in the European Community, abbreviated as NACE.",
-            "nullable": true,
-            "example": "62.01"
+            "examples": ["62.01"],
+            "nullable": true
           },
           "workExperience": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Work experience in years",
-            "type": "integer",
             "description": "The number of months that the person has experience in the specific occupation",
-            "nullable": true,
-            "example": 5
+            "examples": [5],
+            "nullable": true
           }
-        }
+        },
+        "type": "object",
+        "title": "Occupation"
       },
       "ProfileRequest": {
-        "title": "ProfileRequest",
+        "properties": {},
         "type": "object",
-        "properties": {}
+        "title": "ProfileRequest"
       },
       "ProfileResponse": {
-        "title": "ProfileResponse",
-        "required": ["id", "created", "modified", "address", "jobTitles", "regions"],
-        "type": "object",
         "properties": {
           "id": {
-            "title": "Id",
             "type": "string",
-            "description": "uuid formatted string used to identify users",
             "format": "uuid",
-            "example": "cf57432e-809e-4353-adbd-9d5c0d733868"
+            "title": "Id",
+            "description": "uuid formatted string used to identify users",
+            "examples": ["cf57432e-809e-4353-adbd-9d5c0d733868"]
           },
           "created": {
-            "title": "Created",
             "type": "string",
-            "description": "Created at timestamp",
             "format": "date-time",
-            "example": "2042-04-23T10:20:30.400"
+            "title": "Created",
+            "description": "Created at timestamp",
+            "examples": ["2042-04-23T10:20:30.400"]
           },
           "modified": {
-            "title": "Modified",
             "type": "string",
-            "description": "Modified at timestamp",
             "format": "date-time",
-            "example": "2042-04-23T10:20:30.400"
+            "title": "Modified",
+            "description": "Modified at timestamp",
+            "examples": ["2042-04-23T10:20:30.400"]
           },
           "firstName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "First name",
-            "type": "string",
             "description": "First name of the user",
-            "nullable": true,
-            "example": "John"
+            "examples": ["John"],
+            "nullable": true
           },
           "lastName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Last name",
-            "type": "string",
             "description": "Last name of the user",
-            "nullable": true,
-            "example": "Doe"
+            "examples": ["Doe"],
+            "nullable": true
           },
           "address": {
-            "title": "Address",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Address"
@@ -426,132 +506,180 @@
             "description": "Address of the user"
           },
           "dateOfBirth": {
-            "title": "Date of birth",
-            "type": "string",
-            "description": "Date of Birth (date only)",
-            "format": "date",
-            "nullable": true,
-            "example": "2000-01-01"
-          },
-          "gender": {
-            "title": "Gender",
-            "allOf": [
+            "anyOf": [
               {
-                "$ref": "#/components/schemas/Gender"
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Date of birth",
+            "description": "Date of Birth (date only)",
+            "examples": ["2000-01-01"],
+            "nullable": true
+          },
+          "gender": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Gender"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gender",
             "description": "Gender of the user",
             "nullable": true
           },
           "countryOfBirthCode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2,
+                "minLength": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Country of birth code",
-            "maxLength": 2,
-            "minLength": 2,
-            "type": "string",
             "description": "ISO 3166-1 alpha-2 code for country",
-            "nullable": true,
-            "example": "FI"
+            "examples": ["FI"],
+            "nullable": true
           },
           "nativeLanguageCode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 3,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Native language code",
-            "maxLength": 3,
-            "minLength": 3,
-            "type": "string",
             "description": "ISO 639-3 code for language",
-            "nullable": true,
-            "example": "fin"
+            "examples": ["fin"],
+            "nullable": true
           },
           "occupationCode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Occupation code",
-            "type": "string",
             "description": "Code scheme for occupation. Full set of codes can be found at https://koodistot.suomi.fi/codelist-api/api/v1/coderegistries/jhs/codeschemes/ammatti_1_20100101/codes/",
-            "nullable": true,
-            "example": "11122"
+            "examples": ["11122"],
+            "nullable": true
           },
           "occupations": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Occupation"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Occupations",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Occupation"
-            },
             "description": "The work history of a person with a list of occupations, related industry fields, employer and the duration of a specific work experience.",
             "nullable": true
           },
           "workPreferences": {
-            "title": "Working preferences",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/WorkPreferences"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Working preferences",
+            "description": "",
             "nullable": true
           },
           "citizenshipCode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2,
+                "minLength": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Nationality code",
-            "maxLength": 2,
-            "minLength": 2,
-            "type": "string",
             "description": "ISO 3166-1 alpha-2 code for nationality",
-            "nullable": true,
-            "example": "FI"
+            "examples": ["FI"],
+            "nullable": true
           },
           "jobTitles": {
-            "title": "Job titles",
-            "type": "array",
             "items": {
               "type": "string"
             },
+            "type": "array",
+            "title": "Job titles",
             "description": "List of job titles",
-            "example": ["Chef", "Programmer"]
+            "examples": [["Chef", "Programmer"]]
           },
           "regions": {
-            "title": "Regions",
-            "type": "array",
             "items": {
               "type": "string"
             },
+            "type": "array",
+            "title": "Regions",
             "description": "List of regions where user would want to search for a job",
-            "example": ["Etelä-Suomi"]
-          }
-        }
-      },
-      "ServiceUnavailable": {
-        "title": "ServiceUnavailable",
-        "type": "object",
-        "properties": {
-          "message": {
-            "title": "Error message",
-            "type": "string",
-            "description": "Error description"
+            "examples": [["Etelä-Suomi"]]
           }
         },
+        "type": "object",
+        "required": ["id", "created", "modified", "address", "jobTitles", "regions"],
+        "title": "ProfileResponse"
+      },
+      "ServiceUnavailable": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "ServiceUnavailable",
         "description": "This response is reserved by Product Gateway."
       },
       "Unauthorized": {
-        "title": "Unauthorized",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -561,94 +689,139 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
       },
       "WorkPreferences": {
-        "title": "WorkPreferences",
-        "type": "object",
         "properties": {
           "preferredRegion": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Preferred region",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
             "description": "List of regions from where the user would like to search for jobs",
-            "nullable": true,
-            "example": ["01"]
+            "examples": [["01"]],
+            "nullable": true
           },
           "preferredMunicipality": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Preferred municipality",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
             "description": "List of municipalities from where the user would like to search for jobs",
-            "nullable": true,
-            "example": ["091"]
+            "examples": [["091"]],
+            "nullable": true
           },
           "typeOfEmployment": {
-            "title": "Type of employment",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/EmploymentType"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Type of employment",
             "description": "The type of employment contract that the person is looking for.",
-            "nullable": true,
-            "example": "summerJob"
+            "examples": ["summerJob"],
+            "nullable": true
           },
           "workingTime": {
-            "title": "Working Time",
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/WorkingTime"
+              },
+              {
+                "type": "null"
               }
             ],
+            "title": "Working Time",
             "description": "The preferred working time that the person is looking for based on the national [working time codes](https://koodistot.suomi.fi/codescheme;registryCode=dataecon;schemeCode=permit).",
-            "nullable": true,
-            "example": "03"
+            "examples": ["03"],
+            "nullable": true
           },
           "workingLanguage": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Working Language",
-            "type": "string",
             "description": "The preferred list of working languages identified by the ISO 639-1 standard (Alpha-2).",
-            "nullable": true,
-            "example": "fi"
+            "examples": ["fi"],
+            "nullable": true
           },
           "created": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Created at timestamp",
-            "type": "string",
             "description": "Timestamp for when the work preferences were first saved",
-            "format": "date-time",
-            "nullable": true,
-            "example": "2042-04-23T10:20:30.400"
+            "examples": ["2042-04-23T10:20:30.400"],
+            "nullable": true
           },
           "modified": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Modified at timestamp",
-            "type": "string",
             "description": "Timestamp for when the work preferences were last modified",
-            "format": "date-time",
-            "nullable": true,
-            "example": "2042-04-23T10:20:30.400"
+            "examples": ["2042-04-23T10:20:30.400"],
+            "nullable": true
           }
-        }
+        },
+        "type": "object",
+        "title": "WorkPreferences"
       },
       "WorkingTime": {
-        "title": "WorkingTime",
-        "enum": ["01", "02", "03", "04", "05", "06", "07", "08"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["01", "02", "03", "04", "05", "06", "07", "08"],
+        "title": "WorkingTime"
       }
     }
   }
