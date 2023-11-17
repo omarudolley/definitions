@@ -1,0 +1,877 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Employment Work Contract",
+    "description": "Contents of a work contract",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/Employment/WorkContractRequest_v1.0": {
+      "post": {
+        "summary": "Employment Work Contract",
+        "description": "Contents of a work contract",
+        "operationId": "request_Employment_WorkContractRequest_v1_0",
+        "parameters": [
+          {
+            "name": "x-consent-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Consent token",
+              "title": "X-Consent-Token"
+            },
+            "description": "Consent token"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "title": "Authorization"
+            },
+            "description": "The login token. Value should be \"Bearer [token]\""
+          },
+          {
+            "name": "x-authorization-provider",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
+            },
+            "description": "The bare domain of the system that provided the token."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkContractRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkContractResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorized"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forbidden"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFound"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "444": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSourceNotFound"
+                }
+              }
+            },
+            "description": "Additional Response"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSourceError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadGateway"
+                }
+              }
+            },
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "content": {
+              "text/plain": {},
+              "text/html": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceUnavailable"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "504": {
+            "content": {
+              "text/plain": {},
+              "text/html": {},
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayTimeout"
+                }
+              }
+            },
+            "description": "Gateway Timeout"
+          },
+          "550": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoesNotConformToDefinition"
+                }
+              }
+            },
+            "description": "Additional Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BadGateway": {
+        "properties": {},
+        "type": "object",
+        "title": "BadGateway",
+        "description": "This response is reserved by Product Gateway."
+      },
+      "Benefit": {
+        "properties": {
+          "benefit": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Benefit",
+            "description": "The name of the benefit received as a compensation",
+            "examples": ["Lunch benefit"]
+          },
+          "benefitType": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BenefitType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Benefit Type",
+            "description": "The type of the taxable benefit",
+            "examples": ["part of salary", "additional to salary"]
+          },
+          "taxableValue": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Taxable Value",
+            "description": "The taxable value for the compensation per month",
+            "examples": [200]
+          }
+        },
+        "type": "object",
+        "title": "Benefit"
+      },
+      "BenefitType": {
+        "type": "string",
+        "enum": ["part of salary", "additional to salary"],
+        "title": "BenefitType"
+      },
+      "Compensation": {
+        "properties": {
+          "paymentGrounds": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentGrounds"
+              }
+            ],
+            "title": "Payment Grounds",
+            "description": "The grounds for paying the salary",
+            "examples": ["monthly", "hourly"]
+          },
+          "salary": {
+            "type": "number",
+            "title": "Salary",
+            "description": "The amount of salary in euros",
+            "examples": [2500]
+          },
+          "bonuses": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bonuses",
+            "description": "The details of the salary bonuses",
+            "examples": ["No additional bonuses"]
+          },
+          "paymentTime": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "Payment Time",
+            "description": "The conditions for paying the salary",
+            "examples": ["The 15th of every month"]
+          }
+        },
+        "type": "object",
+        "required": ["salary", "paymentTime"],
+        "title": "Compensation"
+      },
+      "DataSourceError": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Error type",
+            "description": "Error identifier"
+          },
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description"
+          }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
+      },
+      "DataSourceNotFound": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": "Data source not found"
+          }
+        },
+        "type": "object",
+        "title": "DataSourceNotFound",
+        "description": "This response is reserved by Product Gateway."
+      },
+      "DeterminationOfHoliday": {
+        "type": "string",
+        "enum": ["annual holiday act", "collective agreement"],
+        "title": "DeterminationOfHoliday"
+      },
+      "DoesNotConformToDefinition": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "default": "Response from data source does not conform to definition"
+          },
+          "data_source_status_code": {
+            "type": "integer",
+            "title": "Data source status code",
+            "description": "HTTP status code returned from the data source"
+          }
+        },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
+        "description": "This response is reserved by Product Gateway."
+      },
+      "EmployeeInfo": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "Name",
+            "description": "The name of the employee",
+            "examples": ["Tom Williams"]
+          },
+          "streetAddress": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "Street Address",
+            "description": "The street name of the employee contact address",
+            "examples": ["49 Featherstone Street"]
+          },
+          "postalCode": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Postal Code",
+            "description": "The postal code of the employee address",
+            "examples": ["EC1Y 8SY"]
+          },
+          "city": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "City",
+            "description": "The city of the employee address",
+            "examples": ["London"]
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Country",
+            "description": "The country of the employee address",
+            "examples": ["United Kingdom"]
+          },
+          "signatureDate": {
+            "type": "string",
+            "format": "date",
+            "title": "Signature Date",
+            "description": "The date of the employee signature for the work contract",
+            "examples": ["2023-08-27T00:00:00"]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "streetAddress",
+          "postalCode",
+          "city",
+          "country",
+          "signatureDate"
+        ],
+        "title": "EmployeeInfo"
+      },
+      "EmployerInfo": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "Name",
+            "description": "The official name of the employer",
+            "examples": ["Staffpoint Oy"]
+          },
+          "businessId": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "Business ID",
+            "description": "The business ID of the employer",
+            "examples": ["2492090-1"]
+          },
+          "streetName": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Street Name",
+            "description": "The street name of the employer contact address",
+            "examples": ["Ruoholahdenkatu 17 A 6"]
+          },
+          "postalCode": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "Postal Code",
+            "description": "The postal code of the employer address",
+            "examples": ["00180"]
+          },
+          "city": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "City",
+            "description": "The city of the employer address",
+            "examples": ["Helsinki"]
+          },
+          "signatureDate": {
+            "type": "string",
+            "format": "date",
+            "title": "Signature Date",
+            "description": "The date of the employer signature for the work contract",
+            "examples": ["2023-08-25T00:00:00"]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "businessId",
+          "streetName",
+          "postalCode",
+          "city",
+          "signatureDate"
+        ],
+        "title": "EmployerInfo"
+      },
+      "Forbidden": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Error type",
+            "description": "Error identifier"
+          },
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description"
+          }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
+        "description": "This response is reserved by Product Gateway."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Holidays": {
+        "properties": {
+          "paidHolidayIncluded": {
+            "type": "boolean",
+            "title": "Paid Holiday",
+            "description": "Indicates if the contract includes paid holiday",
+            "examples": [true]
+          },
+          "numberOfHolidays": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Number of Holidays",
+            "description": "The terms used for the paid holidays",
+            "examples": [5]
+          },
+          "determinationOfHoliday": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DeterminationOfHoliday"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Determination of Holiday",
+            "description": "The determination of the holiday",
+            "examples": ["The holiday is determined by the employer"]
+          }
+        },
+        "type": "object",
+        "required": ["paidHolidayIncluded"],
+        "title": "Holidays"
+      },
+      "NotFound": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Error type",
+            "description": "Error identifier"
+          },
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description"
+          }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
+      },
+      "PaymentGrounds": {
+        "type": "string",
+        "enum": ["monthly", "hourly"],
+        "title": "PaymentGrounds"
+      },
+      "ServiceUnavailable": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "ServiceUnavailable",
+        "description": "This response is reserved by Product Gateway."
+      },
+      "Term": {
+        "properties": {
+          "termDescription": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Term Description",
+            "description": "The description of the term",
+            "examples": [
+              "The employee is mandated to use workwear appointed by the Lapland Hotels and return them at the end of the contract"
+            ]
+          }
+        },
+        "type": "object",
+        "title": "Term"
+      },
+      "TermsOfWork": {
+        "properties": {
+          "employmentStart": {
+            "type": "string",
+            "format": "date",
+            "title": "Employment Start",
+            "description": "The start date of the employment",
+            "examples": ["2023-11-07T00:00:00"]
+          },
+          "employmentEnd": {
+            "type": "string",
+            "format": "date",
+            "title": "Employment End",
+            "description": "The end date of the employment",
+            "examples": ["2024-02-19T00:00:00"]
+          },
+          "groundsForFixedTerm": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grounds for Fixed Term",
+            "description": "The reasoning if the contract is fixed term",
+            "examples": ["The winter time tourism in Lapland"]
+          },
+          "workDuties": {
+            "type": "string",
+            "maxLength": 400,
+            "title": "Work Duties",
+            "description": "The work duties of the employee",
+            "examples": ["Hotel guest reception"]
+          },
+          "workConditions": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Work Conditions",
+            "description": "The special conditions regarding the work duties, e.g. work for another party than the employer",
+            "examples": ["The work duties done for Lapland Hotels"]
+          },
+          "industry": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 10
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Industry",
+            "description": "The work industry based on the Statistical classification of economic activities in the European Community, abbreviated as NACE.",
+            "examples": ["79.1"]
+          },
+          "locations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 250,
+            "title": "Locations",
+            "description": "The region in Finland where the work is done",
+            "examples": ["Rovaniemi", "Lapland"]
+          },
+          "workingHours": {
+            "type": "number",
+            "title": "Working Hours",
+            "description": "The number of work hours per week",
+            "examples": [30]
+          },
+          "collectiveAgreement": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 250
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Collective Agreement",
+            "description": "The name of the applicable collective agreement",
+            "examples": ["The collective agreement for Employment industry (HELA)"]
+          },
+          "overtimeRules": {
+            "type": "string",
+            "maxLength": 400,
+            "title": "Overtime Rules",
+            "description": "The terms for the overtime work and compensation",
+            "examples": ["For overtime work you receive 25 € per overtime hour"]
+          },
+          "probation": {
+            "type": "string",
+            "maxLength": 250,
+            "title": "Probation",
+            "description": "The terms for the period of conditional employment",
+            "examples": [
+              "The probationary period lasts 2 months from the employment start date"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "employmentStart",
+          "employmentEnd",
+          "workDuties",
+          "workingHours",
+          "overtimeRules",
+          "probation"
+        ],
+        "title": "TermsOfWork"
+      },
+      "Unauthorized": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Error type",
+            "description": "Error identifier"
+          },
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description"
+          }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
+      },
+      "WorkContractRequest": {
+        "properties": {
+          "endUserAuthenticationToken": {
+            "type": "string",
+            "title": "Enduserauthenticationtoken",
+            "description": "The end user authentication token"
+          }
+        },
+        "type": "object",
+        "required": ["endUserAuthenticationToken"],
+        "title": "WorkContractRequest"
+      },
+      "WorkContractResponse": {
+        "properties": {
+          "employerInfo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmployerInfo"
+              }
+            ],
+            "title": "Employer Info",
+            "description": "The details of the employer"
+          },
+          "employeeInfo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EmployeeInfo"
+              }
+            ],
+            "title": "Employee Info",
+            "description": "The details of the employee"
+          },
+          "termsOfWork": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TermsOfWork"
+              }
+            ],
+            "title": "Terms of Work",
+            "description": "The terms and conditions for the work"
+          },
+          "compensation": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Compensation"
+              }
+            ],
+            "description": "The details of the compensation for the work"
+          },
+          "holidays": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Holidays"
+              }
+            ],
+            "description": "The details of the paid holidays"
+          },
+          "benefits": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Benefit"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Benefits",
+            "description": "The list of taxable benefits for the employee in addition to salary compensation"
+          },
+          "termination": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Termination",
+            "description": "The terms and conditions for the contract termination",
+            "examples": [
+              "To terminate the work contract, the terminating party must provide 30 days of written notice to the other party"
+            ]
+          },
+          "otherTerms": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Term"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Other Terms",
+            "description": "The description other terms included in the work contract"
+          }
+        },
+        "type": "object",
+        "required": [
+          "employerInfo",
+          "employeeInfo",
+          "termsOfWork",
+          "compensation",
+          "holidays"
+        ],
+        "title": "WorkContractResponse"
+      }
+    }
+  }
+}

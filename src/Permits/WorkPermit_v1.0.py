@@ -25,7 +25,7 @@ class Permit(CamelCaseModel):
         description="The decision of the permit was accepted",
         examples=[True],
     )
-    permit_type: [PermitType] = Field(
+    permit_type: Optional[PermitType] = Field(
         ...,
         title="Permit Type",
         description="The type of the permit validity issued for a person",

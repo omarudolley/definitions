@@ -46,7 +46,7 @@ class IncomeTaxResponse(CamelCaseModel):
         ...,
         title="Validity Period",
         description="The date from which the tax withholding details are valid",
-        examples=[datetime.datetime(2023, 6, 31)],
+        examples=[datetime.datetime(2023, 6, 30)],
     )
 
 
