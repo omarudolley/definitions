@@ -372,7 +372,7 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 250
+                "maxLength": 3
               },
               {
                 "type": "null"
@@ -380,7 +380,7 @@
             ],
             "title": "Country",
             "description": "The country of the employee address",
-            "examples": ["United Kingdom"]
+            "examples": ["GBR"]
           },
           "signatureDate": {
             "type": "string",
@@ -419,14 +419,14 @@
           },
           "streetName": {
             "type": "string",
-            "maxLength": 10,
+            "maxLength": 250,
             "title": "Street Name",
             "description": "The street name of the employer contact address",
             "examples": ["Ruoholahdenkatu 17 A 6"]
           },
           "postalCode": {
             "type": "string",
-            "maxLength": 250,
+            "maxLength": 10,
             "title": "Postal Code",
             "description": "The postal code of the employer address",
             "examples": ["00180"]

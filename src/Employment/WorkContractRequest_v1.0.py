@@ -31,14 +31,14 @@ class EmployerInfo(CamelCaseModel):
     street_name: str = Field(
         ...,
         title="Street Name",
-        max_length=10,
+        max_length=250,
         description="The street name of the employer contact address",
         examples=["Ruoholahdenkatu 17 A 6"],
     )
     postal_code: str = Field(
         ...,
         title="Postal Code",
-        max_length=250,
+        max_length=10,
         description="The postal code of the employer address",
         examples=["00180"],
     )
@@ -89,9 +89,9 @@ class EmployeeInfo(CamelCaseModel):
     country: Optional[str] = Field(
         ...,
         title="Country",
-        max_length=250,
+        max_length=3,
         description="The country of the employee address",
-        examples=["United Kingdom"],
+        examples=["GBR"],
     )
     signature_date: date = Field(
         ...,

@@ -17,7 +17,7 @@ class Permit(CamelCaseModel):
         ...,
         title="Permit Name",
         description="The name of the permit issued for a person for residence ",
-        examples=["Seasonal work certificate "],
+        examples=["Seasonal work certificate"],
     )
     permit_accepted: bool = Field(
         ...,
