@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "Update the user's terms of service agreement",
     "description": "Data product for updating the user's terms of service agreement",
@@ -13,48 +13,56 @@
         "operationId": "request_test_lsipii_Service_Terms_Agreement_Write",
         "parameters": [
           {
-            "description": "Optional consent token",
+            "name": "x-consent-token",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Consent-Token",
               "type": "string",
-              "description": "Optional consent token"
+              "description": "Optional consent token",
+              "default": "",
+              "title": "X-Consent-Token"
             },
-            "name": "x-consent-token",
-            "in": "header"
+            "description": "Optional consent token"
           },
           {
-            "description": "The login token. Value should be \"Bearer [token]\"",
+            "name": "authorization",
+            "in": "header",
             "required": true,
             "schema": {
-              "title": "Authorization",
               "type": "string",
-              "description": "The login token. Value should be \"Bearer [token]\""
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "title": "Authorization"
             },
-            "name": "authorization",
-            "in": "header"
+            "description": "The login token. Value should be \"Bearer [token]\""
           },
           {
-            "description": "The bare domain of the system that provided the token.",
+            "name": "x-authorization-provider",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Authorization-Provider",
-              "type": "string",
-              "description": "The bare domain of the system that provided the token."
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
             },
-            "name": "x-authorization-provider",
-            "in": "header"
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AgreementRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -68,94 +76,98 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Unauthorized"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Forbidden"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "444": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceNotFound"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceError"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           },
           "502": {
-            "description": "Bad Gateway",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BadGateway"
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           },
           "503": {
-            "description": "Service Unavailable",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceUnavailable"
                 }
               }
-            }
+            },
+            "description": "Service Unavailable"
           },
           "504": {
-            "description": "Gateway Timeout",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GatewayTimeout"
                 }
               }
-            }
+            },
+            "description": "Gateway Timeout"
           },
           "550": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DoesNotConformToDefinition"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "422": {
             "description": "Validation Error",
@@ -174,26 +186,73 @@
   "components": {
     "schemas": {
       "AgreementRequest": {
-        "title": "AgreementRequest",
-        "required": ["accepted", "version"],
-        "type": "object",
         "properties": {
           "accepted": {
-            "title": "Accepted",
             "type": "boolean",
+            "title": "Accepted",
             "description": "Whether the user has accepted the terms of service",
-            "example": false
+            "examples": [false]
           },
           "version": {
-            "title": "Version",
             "type": "string",
+            "title": "Version",
             "description": "Version of the terms of service",
-            "example": "1.0"
+            "examples": ["1.0"]
           }
-        }
+        },
+        "type": "object",
+        "required": ["accepted", "version"],
+        "title": "AgreementRequest"
       },
       "AgreementResponse": {
-        "title": "AgreementResponse",
+        "properties": {
+          "termsOfServiceUrl": {
+            "type": "string",
+            "title": "Terms of service URL",
+            "description": "Link to the terms of service",
+            "examples": ["https://example.com/terms-of-service-v1.0"]
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Description of the terms of service",
+            "examples": ["This is the terms of service for the example service"]
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "description": "Version of the terms of service",
+            "examples": ["1.0"]
+          },
+          "accepted": {
+            "type": "boolean",
+            "title": "Accepted",
+            "description": "Whether the user has accepted the terms of service",
+            "examples": [false]
+          },
+          "acceptedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Datetime the terms of service was accepted at",
+            "description": "A datetime in RFC3339 date-time syntax",
+            "examples": ["2022-06-17T11:52:00Z"],
+            "nullable": true
+          },
+          "acceptedPreviousVersion": {
+            "type": "boolean",
+            "title": "Accepted previous version",
+            "description": "Whether the user has accepted the previous version of the terms of service",
+            "examples": [false]
+          }
+        },
+        "type": "object",
         "required": [
           "termsOfServiceUrl",
           "description",
@@ -201,198 +260,155 @@
           "accepted",
           "acceptedPreviousVersion"
         ],
-        "type": "object",
-        "properties": {
-          "termsOfServiceUrl": {
-            "title": "Terms of service URL",
-            "type": "string",
-            "description": "Link to the terms of service",
-            "example": "https://example.com/terms-of-service-v1.0"
-          },
-          "description": {
-            "title": "Description",
-            "type": "string",
-            "description": "Description of the terms of service",
-            "example": "This is the terms of service for the example service"
-          },
-          "version": {
-            "title": "Version",
-            "type": "string",
-            "description": "Version of the terms of service",
-            "example": "1.0"
-          },
-          "accepted": {
-            "title": "Accepted",
-            "type": "boolean",
-            "description": "Whether the user has accepted the terms of service",
-            "example": false
-          },
-          "acceptedAt": {
-            "title": "Datetime the terms of service was accepted at",
-            "type": "string",
-            "description": "A datetime in RFC3339 date-time syntax",
-            "format": "date-time",
-            "nullable": true,
-            "example": "2022-06-17T11:52:00Z"
-          },
-          "acceptedPreviousVersion": {
-            "title": "Accepted previous version",
-            "type": "boolean",
-            "description": "Whether the user has accepted the previous version of the terms of service",
-            "example": false
-          }
-        }
+        "title": "AgreementResponse"
       },
       "BadGateway": {
-        "title": "BadGateway",
-        "type": "object",
         "properties": {},
+        "type": "object",
+        "title": "BadGateway",
         "description": "This response is reserved by Product Gateway."
       },
       "DataSourceError": {
-        "title": "DataSourceError",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
       },
       "DataSourceNotFound": {
-        "title": "DataSourceNotFound",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description",
             "default": "Data source not found"
           }
         },
+        "type": "object",
+        "title": "DataSourceNotFound",
         "description": "This response is reserved by Product Gateway."
       },
       "DoesNotConformToDefinition": {
-        "title": "DoesNotConformToDefinition",
-        "required": ["data_source_status_code"],
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Message",
             "type": "string",
+            "title": "Message",
             "default": "Response from data source does not conform to definition"
           },
           "data_source_status_code": {
-            "title": "Data source status code",
             "type": "integer",
+            "title": "Data source status code",
             "description": "HTTP status code returned from the data source"
           }
         },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
         "description": "This response is reserved by Product Gateway."
       },
       "Forbidden": {
-        "title": "Forbidden",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "GatewayTimeout": {
-        "title": "GatewayTimeout",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
         "description": "This response is reserved by Product Gateway."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "NotFound": {
-        "title": "NotFound",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "ServiceUnavailable": {
-        "title": "ServiceUnavailable",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
+      },
+      "ServiceUnavailable": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "ServiceUnavailable",
         "description": "This response is reserved by Product Gateway."
       },
       "Unauthorized": {
-        "title": "Unauthorized",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -402,17 +418,22 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
       }
     }
   }

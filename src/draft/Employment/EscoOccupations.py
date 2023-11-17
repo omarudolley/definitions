@@ -3020,32 +3020,36 @@ class Occupation(CamelCaseModel):
         ...,
         title="ESCO Code",
         description="The ESCO code based on the level 5 or narrower in ESCO classification",
-        example=EscoCode.ESCO_8331_1,
+        examples=[EscoCode.ESCO_8331_1],
     )
     esco_job_title: str = Field(
         ...,
         title="ESCO Job Title",
         description="The job title based on ESCO classification",
         max_length=250,
-        example="bus driver",
+        examples=["bus driver"],
     )
     alternative_titles: List[str] = Field(
         ...,
         title="ESCO Alternative Job Titles",
         description="The alternative job titles based on ESCO classification",
-        example=["coach driver", "driver of a bus"],
+        examples=[["coach driver", "driver of a bus"]],
     )
     esco_description: str = Field(
         ...,
         title="ESCO Job Title Description",
         description="The description of the job title",
-        example="Bus drivers operate buses or coaches, take fares, and look after passengers.",
+        examples=[
+            "Bus drivers operate buses or coaches, take fares, and look after passengers."
+        ],
     )
     esco_identifier: HttpUrl = Field(
         ...,
         title="ESCO Identifier",
         description="The identifier of the ESCO occupation",
-        example="http://data.europa.eu/esco/occupation/00cee175-1376-43fb-9f02-ba3d7a910a58",
+        examples=[
+            "http://data.europa.eu/esco/occupation/00cee175-1376-43fb-9f02-ba3d7a910a58"
+        ],
     )
 
 
@@ -3055,14 +3059,14 @@ class EscoOccupationRequest(CamelCaseModel):
         title="Limit",
         description="The limit of items per page in response",
         ge=1,
-        example=1000,
+        examples=[1000],
     )
     offset: Optional[int] = Field(
         None,
         title="Offset",
         description="The starting index of responses",
         ge=0,
-        example=0,
+        examples=[0],
     )
 
 
@@ -3076,7 +3080,7 @@ class EscoOccupationResponse(CamelCaseModel):
         ...,
         title="Total Count",
         description="The total count of occupation entries",
-        example=3568,
+        examples=[3568],
     )
 
 

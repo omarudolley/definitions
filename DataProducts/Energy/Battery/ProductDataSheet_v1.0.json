@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.2",
+  "openapi": "3.1.0",
   "info": {
     "title": "Battery product data sheet",
     "description": "Technical details of a battery such as capacity and voltage",
@@ -13,48 +13,57 @@
         "operationId": "request_Energy_Battery_ProductDataSheet_v1_0",
         "parameters": [
           {
-            "description": "Optional consent token",
-            "required": false,
-            "schema": {
-              "title": "X-Consent-Token",
-              "type": "string",
-              "description": "Optional consent token"
-            },
             "name": "x-consent-token",
-            "in": "header"
-          },
-          {
-            "description": "The login token. Value should be \"Bearer [token]\"",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "Authorization",
               "type": "string",
-              "description": "The login token. Value should be \"Bearer [token]\""
+              "description": "Optional consent token",
+              "default": "",
+              "title": "X-Consent-Token"
             },
+            "description": "Optional consent token"
+          },
+          {
             "name": "authorization",
-            "in": "header"
-          },
-          {
-            "description": "The bare domain of the system that provided the token.",
+            "in": "header",
             "required": false,
             "schema": {
-              "title": "X-Authorization-Provider",
               "type": "string",
-              "description": "The bare domain of the system that provided the token."
+              "description": "The login token. Value should be \"Bearer [token]\"",
+              "default": "",
+              "title": "Authorization"
             },
+            "description": "The login token. Value should be \"Bearer [token]\""
+          },
+          {
             "name": "x-authorization-provider",
-            "in": "header"
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "The bare domain of the system that provided the token.",
+              "title": "X-Authorization-Provider"
+            },
+            "description": "The bare domain of the system that provided the token."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/BatteryDataRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -68,94 +77,98 @@
             }
           },
           "401": {
-            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Unauthorized"
                 }
               }
-            }
+            },
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Forbidden"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "444": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceNotFound"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DataSourceError"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           },
           "502": {
-            "description": "Bad Gateway",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BadGateway"
                 }
               }
-            }
+            },
+            "description": "Bad Gateway"
           },
           "503": {
-            "description": "Service Unavailable",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceUnavailable"
                 }
               }
-            }
+            },
+            "description": "Service Unavailable"
           },
           "504": {
-            "description": "Gateway Timeout",
             "content": {
+              "text/plain": {},
+              "text/html": {},
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GatewayTimeout"
                 }
               }
-            }
+            },
+            "description": "Gateway Timeout"
           },
           "550": {
-            "description": "Additional Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DoesNotConformToDefinition"
                 }
               }
-            }
+            },
+            "description": "Additional Response"
           },
           "422": {
             "description": "Validation Error",
@@ -174,26 +187,155 @@
   "components": {
     "schemas": {
       "BadGateway": {
-        "title": "BadGateway",
-        "type": "object",
         "properties": {},
+        "type": "object",
+        "title": "BadGateway",
         "description": "This response is reserved by Product Gateway."
       },
       "BatteryDataRequest": {
-        "title": "BatteryDataRequest",
-        "required": ["productCode"],
-        "type": "object",
         "properties": {
           "productCode": {
-            "title": "Product Code",
             "type": "string",
+            "title": "Product Code",
             "description": "The product code used by the manufacturer",
-            "example": "MPP48V"
+            "examples": ["MPP48V"]
           }
-        }
+        },
+        "type": "object",
+        "required": ["productCode"],
+        "title": "BatteryDataRequest"
       },
       "BatteryDataResponse": {
-        "title": "BatteryDataResponse",
+        "properties": {
+          "manufacturer": {
+            "type": "string",
+            "title": "Manufacturer",
+            "description": "The manufacturer of the battery",
+            "examples": ["Valmet Automotive"]
+          },
+          "productCode": {
+            "type": "string",
+            "title": "Product Code",
+            "description": "The product code used by the manufacturer",
+            "examples": ["MPP48V"]
+          },
+          "name": {
+            "type": "string",
+            "title": "Product Name",
+            "examples": ["Modular Power Pack, 48 V"]
+          },
+          "cellType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CellType"
+              }
+            ],
+            "title": "Cell Type",
+            "examples": ["lithium-titanate"]
+          },
+          "capacity": {
+            "type": "number",
+            "title": "Capacity",
+            "description": "Battery capacity in kWh",
+            "examples": [2.2]
+          },
+          "energy": {
+            "type": "number",
+            "title": "Energy (Ah)",
+            "description": "Energy, Ah [1C @ 25°C]",
+            "examples": [46.0]
+          },
+          "voltage": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Voltage"
+              }
+            ],
+            "description": "Information about the voltage of the battery"
+          },
+          "peakDischargingPower": {
+            "type": "number",
+            "title": "Peak Discharging Power [kW]",
+            "examples": [20.0]
+          },
+          "peakChargingPower": {
+            "type": "number",
+            "title": "Peak Charging Power [kW]",
+            "examples": [20.0]
+          },
+          "continuousPower": {
+            "type": "number",
+            "title": "Continuous Power [kW]",
+            "examples": [10.0]
+          },
+          "standbyConsumption": {
+            "type": "number",
+            "title": "Standby Power Consumption [W]",
+            "examples": [1.0]
+          },
+          "cycleLife": {
+            "type": "integer",
+            "title": "Cycle Life",
+            "description": "Minimum number of cycles the battery can be recharged to at least 80% of initial capacity",
+            "examples": [20000]
+          },
+          "dimensions": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Dimensions"
+              }
+            ],
+            "description": "Physical dimensions of the battery"
+          },
+          "weight": {
+            "type": "number",
+            "title": "Weight [kg]",
+            "description": "Total dry weight [kg]",
+            "examples": [41.0]
+          },
+          "operatingTemperature": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OperatingTemperature"
+              }
+            ],
+            "title": "Operating Temperature [°C]"
+          },
+          "ipRating": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IPCode"
+              }
+            ],
+            "title": "IP Rating",
+            "examples": ["IP6K9K"]
+          },
+          "maxCoolantPressure": {
+            "type": "number",
+            "title": "Max Coolant Pressure [bar]",
+            "examples": [3.5]
+          },
+          "standardsCompliance": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Standards Compliance",
+            "examples": [
+              [
+                "ECE R100",
+                "ISO 13849 PL C",
+                "ISO 16750",
+                "IEC 62061 SIL 2",
+                "IEC 61508 SIL 2",
+                "UN 38.3",
+                "ECE R10"
+              ]
+            ]
+          }
+        },
+        "type": "object",
         "required": [
           "manufacturer",
           "productCode",
@@ -214,257 +356,128 @@
           "maxCoolantPressure",
           "standardsCompliance"
         ],
-        "type": "object",
-        "properties": {
-          "manufacturer": {
-            "title": "Manufacturer",
-            "type": "string",
-            "description": "The manufacturer of the battery",
-            "example": "Valmet Automotive"
-          },
-          "productCode": {
-            "title": "Product Code",
-            "type": "string",
-            "description": "The product code used by the manufacturer",
-            "example": "MPP48V"
-          },
-          "name": {
-            "title": "Product Name",
-            "type": "string",
-            "example": "Modular Power Pack, 48 V"
-          },
-          "cellType": {
-            "title": "Cell Type",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CellType"
-              }
-            ],
-            "example": "lithium-titanate"
-          },
-          "capacity": {
-            "title": "Capacity",
-            "type": "number",
-            "description": "Battery capacity in kWh",
-            "example": 2.2
-          },
-          "energy": {
-            "title": "Energy (Ah)",
-            "type": "number",
-            "description": "Energy, Ah [1C @ 25°C]",
-            "example": 46.0
-          },
-          "voltage": {
-            "title": "Voltage",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Voltage"
-              }
-            ],
-            "description": "Information about the voltage of the battery"
-          },
-          "peakDischargingPower": {
-            "title": "Peak Discharging Power [kW]",
-            "type": "number",
-            "example": 20.0
-          },
-          "peakChargingPower": {
-            "title": "Peak Charging Power [kW]",
-            "type": "number",
-            "example": 20.0
-          },
-          "continuousPower": {
-            "title": "Continuous Power [kW]",
-            "type": "number",
-            "example": 10.0
-          },
-          "standbyConsumption": {
-            "title": "Standby Power Consumption [W]",
-            "type": "number",
-            "example": 1.0
-          },
-          "cycleLife": {
-            "title": "Cycle Life",
-            "type": "integer",
-            "description": "Minimum number of cycles the battery can be recharged to at least 80% of initial capacity",
-            "example": 20000
-          },
-          "dimensions": {
-            "title": "Dimensions",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Dimensions"
-              }
-            ],
-            "description": "Physical dimensions of the battery"
-          },
-          "weight": {
-            "title": "Weight [kg]",
-            "type": "number",
-            "description": "Total dry weight [kg]",
-            "example": 41.0
-          },
-          "operatingTemperature": {
-            "title": "Operating Temperature [°C]",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/OperatingTemperature"
-              }
-            ]
-          },
-          "ipRating": {
-            "title": "IP Rating",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/IPCode"
-              }
-            ],
-            "example": "IP6K9K"
-          },
-          "maxCoolantPressure": {
-            "title": "Max Coolant Pressure [bar]",
-            "type": "number",
-            "example": 3.5
-          },
-          "standardsCompliance": {
-            "title": "Standards Compliance",
-            "uniqueItems": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "example": [
-              "ISO 16750",
-              "IEC 61508 SIL 2",
-              "UN 38.3",
-              "ECE R100",
-              "ISO 13849 PL C",
-              "ECE R10",
-              "IEC 62061 SIL 2"
-            ]
-          }
-        }
+        "title": "BatteryDataResponse"
       },
       "CellType": {
-        "title": "CellType",
-        "enum": ["lithium-titanate", "lithium-ion polymer"],
         "type": "string",
-        "description": "An enumeration."
+        "enum": ["lithium-titanate", "lithium-ion polymer"],
+        "title": "CellType"
       },
       "DataSourceError": {
-        "title": "DataSourceError",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "DataSourceError"
       },
       "DataSourceNotFound": {
-        "title": "DataSourceNotFound",
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description",
             "default": "Data source not found"
           }
         },
+        "type": "object",
+        "title": "DataSourceNotFound",
         "description": "This response is reserved by Product Gateway."
       },
       "Dimensions": {
-        "title": "Dimensions",
-        "required": ["length", "width", "height"],
-        "type": "object",
         "properties": {
           "length": {
-            "title": "Length [mm]",
             "type": "integer",
-            "example": 483
+            "title": "Length [mm]",
+            "examples": [483]
           },
           "width": {
-            "title": "Width [mm]",
             "type": "integer",
-            "example": 380
+            "title": "Width [mm]",
+            "examples": [380]
           },
           "height": {
-            "title": "Height [mm]",
             "type": "integer",
-            "example": 160
+            "title": "Height [mm]",
+            "examples": [160]
           }
-        }
+        },
+        "type": "object",
+        "required": ["length", "width", "height"],
+        "title": "Dimensions"
       },
       "DoesNotConformToDefinition": {
-        "title": "DoesNotConformToDefinition",
-        "required": ["data_source_status_code"],
-        "type": "object",
         "properties": {
           "message": {
-            "title": "Message",
             "type": "string",
+            "title": "Message",
             "default": "Response from data source does not conform to definition"
           },
           "data_source_status_code": {
-            "title": "Data source status code",
             "type": "integer",
+            "title": "Data source status code",
             "description": "HTTP status code returned from the data source"
           }
         },
+        "type": "object",
+        "required": ["data_source_status_code"],
+        "title": "DoesNotConformToDefinition",
         "description": "This response is reserved by Product Gateway."
       },
       "Forbidden": {
-        "title": "Forbidden",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "GatewayTimeout": {
-        "title": "GatewayTimeout",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Forbidden"
+      },
+      "GatewayTimeout": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "GatewayTimeout",
         "description": "This response is reserved by Product Gateway."
       },
       "HTTPValidationError": {
-        "title": "HTTPValidationError",
-        "type": "object",
         "properties": {
           "detail": {
-            "title": "Detail",
-            "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
-            }
+            },
+            "type": "array",
+            "title": "Detail"
           }
-        }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
       },
       "IPCode": {
-        "title": "IPCode",
+        "type": "string",
         "enum": [
           "IP5X",
           "IP50",
@@ -519,90 +532,85 @@
           "IP6K8",
           "IP6K9K"
         ],
-        "type": "string",
-        "description": "An enumeration."
+        "title": "IPCode"
       },
       "NotFound": {
-        "title": "NotFound",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
-            "description": "Error description"
-          }
-        }
-      },
-      "OperatingTemperature": {
-        "title": "OperatingTemperature",
-        "required": ["min", "max", "recommendedMin", "recommendedMax"],
-        "type": "object",
-        "properties": {
-          "min": {
-            "title": "Minimum operating temperature [°C]",
-            "type": "number",
-            "example": -30.0
-          },
-          "max": {
-            "title": "Maximum operating temperature [°C]",
-            "type": "number",
-            "example": 55.0
-          },
-          "recommendedMin": {
-            "title": "Minimum recommended operating temperature [°C]",
-            "type": "number",
-            "example": 5.0
-          },
-          "recommendedMax": {
-            "title": "Maximum recommended operating temperature [°C]",
-            "type": "number",
-            "example": 35
-          }
-        }
-      },
-      "ServiceUnavailable": {
-        "title": "ServiceUnavailable",
-        "type": "object",
-        "properties": {
-          "message": {
             "title": "Error message",
-            "type": "string",
             "description": "Error description"
           }
         },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "NotFound"
+      },
+      "OperatingTemperature": {
+        "properties": {
+          "min": {
+            "type": "number",
+            "title": "Minimum operating temperature [°C]",
+            "examples": [-30.0]
+          },
+          "max": {
+            "type": "number",
+            "title": "Maximum operating temperature [°C]",
+            "examples": [55.0]
+          },
+          "recommendedMin": {
+            "type": "number",
+            "title": "Minimum recommended operating temperature [°C]",
+            "examples": [5.0]
+          },
+          "recommendedMax": {
+            "type": "number",
+            "title": "Maximum recommended operating temperature [°C]",
+            "examples": [35]
+          }
+        },
+        "type": "object",
+        "required": ["min", "max", "recommendedMin", "recommendedMax"],
+        "title": "OperatingTemperature"
+      },
+      "ServiceUnavailable": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Error message",
+            "description": "Error description",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "ServiceUnavailable",
         "description": "This response is reserved by Product Gateway."
       },
       "Unauthorized": {
-        "title": "Unauthorized",
-        "required": ["type", "message"],
-        "type": "object",
         "properties": {
           "type": {
-            "title": "Error type",
             "type": "string",
+            "title": "Error type",
             "description": "Error identifier"
           },
           "message": {
-            "title": "Error message",
             "type": "string",
+            "title": "Error message",
             "description": "Error description"
           }
-        }
+        },
+        "type": "object",
+        "required": ["type", "message"],
+        "title": "Unauthorized"
       },
       "ValidationError": {
-        "title": "ValidationError",
-        "required": ["loc", "msg", "type"],
-        "type": "object",
         "properties": {
           "loc": {
-            "title": "Location",
-            "type": "array",
             "items": {
               "anyOf": [
                 {
@@ -612,39 +620,44 @@
                   "type": "integer"
                 }
               ]
-            }
+            },
+            "type": "array",
+            "title": "Location"
           },
           "msg": {
-            "title": "Message",
-            "type": "string"
+            "type": "string",
+            "title": "Message"
           },
           "type": {
-            "title": "Error Type",
-            "type": "string"
+            "type": "string",
+            "title": "Error Type"
           }
-        }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
       },
       "Voltage": {
-        "title": "Voltage",
-        "required": ["min", "max", "nominal"],
-        "type": "object",
         "properties": {
           "min": {
-            "title": "Minimum voltage",
             "type": "number",
-            "example": 38.0
+            "title": "Minimum voltage",
+            "examples": [38.0]
           },
           "max": {
-            "title": "Maximum voltage",
             "type": "number",
-            "example": 56.0
+            "title": "Maximum voltage",
+            "examples": [56.0]
           },
           "nominal": {
-            "title": "Nominal voltage",
             "type": "number",
-            "example": 48.3
+            "title": "Nominal voltage",
+            "examples": [48.3]
           }
-        }
+        },
+        "type": "object",
+        "required": ["min", "max", "nominal"],
+        "title": "Voltage"
       }
     }
   }

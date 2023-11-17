@@ -11,7 +11,7 @@ class BasicInformationRequest(CamelCaseModel):
         ...,
         title="National Identifier",
         description="National identifier for a legal entity",
-        example="2464491-9",
+        examples=["2464491-9"],
     )
 
 
@@ -4533,35 +4533,35 @@ class RegisteredAddress(CamelCaseModel):
     street_name: str = Field(
         ...,
         title="Street name",
-        example="Fredrikinkatu",
+        examples=["Fredrikinkatu"],
         min_length=1,
         max_length=40,
     )
     building_designator: str = Field(
         ...,
         title="Building designator",
-        example="34 A 17",
+        examples=["34 A 17"],
         min_length=1,
         max_length=10,
     )
     postal_code: str = Field(
         ...,
         title="Postal code",
-        example="00100",
+        examples=["00100"],
         min_length=1,
         max_length=10,
     )
     city: str = Field(
         ...,
         title="City",
-        example="Helsinki",
+        examples=["Helsinki"],
         min_length=1,
         max_length=20,
     )
     region: Optional[str] = Field(
         ...,
         title="Region",
-        example="Southern Finland",
+        examples=["Southern Finland"],
         min_length=1,
         max_length=20,
     )
@@ -4569,7 +4569,7 @@ class RegisteredAddress(CamelCaseModel):
         ...,
         title="Country",
         description="ISO 3166-1 alpha-2 code for the country",
-        example="FI",
+        examples=["FI"],
     )
 
 
@@ -4578,25 +4578,25 @@ class BasicInformationResponse(CamelCaseModel):
         ...,
         title="Name",
         description="The name of the legal entity",
-        example="Oy Example Ab",
+        examples=["Oy Example Ab"],
     )
     legal_form: EntityLegalForm = Field(
         ...,
         title="Legal form",
         description="ISO 20275 legal entity code from version 1.4.1",
-        example=EntityLegalForm.ISO_20275_DKUW,
+        examples=[EntityLegalForm.ISO_20275_DKUW],
     )
     activity: List[Activity] = Field(
         ...,
         title="Activity",
         description="List of European level NACE classification codes",
-        example=[Activity.NACE_62_01],
+        examples=[[Activity.NACE_62_01]],
     )
     legal_status: LegalStatus = Field(
         ...,
         title="Legal status",
         description="Status of the legal entity",
-        example=LegalStatus.NORMAL,
+        examples=[LegalStatus.NORMAL],
     )
     registration_date: date = Field(
         ...,

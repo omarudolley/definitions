@@ -7,7 +7,7 @@ class EnvironmentalFootprintRequest(CamelCaseModel):
         ...,
         title="Serial Number",
         description="The serial number given by the manufacturer",
-        example="MPP48V-296cde7f",
+        examples=["MPP48V-296cde7f"],
     )
 
 
@@ -16,13 +16,13 @@ class EnvironmentalFootprintResponse(CamelCaseModel):
         ...,
         title="Carbon Equivalent (CO2e) [kg]",
         description="The amount of emissions from all greenhouse gases converted to CO2 emission equivalents in the product manufacturing phase",
-        example=200.0,
+        examples=[200.0],
     )
     material_waste: float = Field(
         ...,
         title="Material Waste [kg]",
         description="The amount of material waste produced in the product manufacturing phase",
-        example=8.0,
+        examples=[8.0],
     )
 
 

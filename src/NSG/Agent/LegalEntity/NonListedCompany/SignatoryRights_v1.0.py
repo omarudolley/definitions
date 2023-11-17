@@ -266,7 +266,7 @@ class SignatoryRights(CamelCaseModel):
     role: Role = Field(
         ...,
         title="Role",
-        example=Role.CHAIRPERSON,
+        examples=[Role.CHAIRPERSON],
         description="The role of the person that has a signing right in the company",
     )
     personal_id: Optional[str] = Field(
@@ -274,41 +274,41 @@ class SignatoryRights(CamelCaseModel):
         title="Personal ID",
         description="The ID of a person if exists, e.g. social security number or "
         "similar",
-        example="1129955131",
+        examples=["1129955131"],
         max_length=40,
     )
     given_name: str = Field(
         ...,
         title="Given name",
         description="The first name that the person is being called by",
-        example="Mary",
+        examples=["Mary"],
         max_length=250,
     )
     middle_names: str = Field(
         ...,
         title="Middle names",
         description="All the middle names of the person",
-        example="Juliet Olive",
+        examples=["Juliet Olive"],
         max_length=250,
     )
     last_name: str = Field(
         ...,
         title="Last name",
         description="The person's current family name",
-        example="Deo",
+        examples=["Deo"],
         max_length=250,
     )
     date_of_birth: date = Field(
         ...,
         title="Date of birth",
         description="The birth day of a person",
-        example=date(1976, 4, 16),
+        examples=[date(1976, 4, 16)],
     )
     nationality: ISO_3166_1_Alpha_3 = Field(
         ...,
         title="Nationality",
         description="The nationality of a person",
-        example=ISO_3166_1_Alpha_3.USA,
+        examples=[ISO_3166_1_Alpha_3.USA],
     )
 
     full_address: Optional[str] = Field(
@@ -317,7 +317,7 @@ class SignatoryRights(CamelCaseModel):
         description="The complete address written as a string. Use of this property is "
         "recommended as it will not suffer any misunderstandings that might arise "
         "through the breaking up of an address into its component parts.",
-        example="Tietotie 4 A 7, 00100 Helsinki, Finland",
+        examples=["Tietotie 4 A 7, 00100 Helsinki, Finland"],
         max_length=250,
     )
 
@@ -327,7 +327,7 @@ class SignatoryRights(CamelCaseModel):
         description="The name of a passage or way through from one location to "
         "another. A thoroughfare is usually a street, but it might be a waterway or "
         "some other feature.",
-        example="Avenue des Champs-Élysées",
+        examples=["Avenue des Champs-Élysées"],
         max_length=40,
     )
     locator_designator: Optional[str] = Field(
@@ -336,7 +336,7 @@ class SignatoryRights(CamelCaseModel):
         description="A number or sequence of characters that uniquely identifies the "
         "locator within the relevant scope. In simpler terms, this is the building "
         "number, apartment number, etc.",
-        example="Flat 3, 17 or 3 A 4",
+        examples=["Flat 3, 17 or 3 A 4"],
         max_length=10,
     )
     locator_name: Optional[str] = Field(
@@ -348,7 +348,7 @@ class SignatoryRights(CamelCaseModel):
         "inside a building. The key difference between a locator designator and a "
         "locator name is that the latter is a proper name and is unlikely to include "
         "digits.",
-        example="Shumann, Berlaymont building",
+        examples=["Shumann, Berlaymont building"],
         max_length=40,
     )
     address_area: Optional[str] = Field(
@@ -357,7 +357,7 @@ class SignatoryRights(CamelCaseModel):
         description="The name of a geographic area that groups Addresses. This would "
         "typically be part of a city, a neighbourhood or village. Address area is not "
         "an administrative unit.",
-        example="Montmartre (in Paris)",
+        examples=["Montmartre (in Paris)"],
         max_length=40,
     )
     post_code: Optional[str] = Field(
@@ -365,7 +365,7 @@ class SignatoryRights(CamelCaseModel):
         title="Post code",
         description="The code created and maintained for postal purposes to identify a "
         "subdivision of addresses and postal delivery points.",
-        example="75000",
+        examples=["75000"],
         max_length=10,
     )
     post_name: Optional[str] = Field(
@@ -373,7 +373,7 @@ class SignatoryRights(CamelCaseModel):
         title="Post name",
         description="A name created and maintained for postal purposes to identify a "
         "subdivision of addresses and postal delivery points. Usually a city.",
-        example="Paris",
+        examples=["Paris"],
         max_length=40,
     )
     po_box: Optional[str] = Field(
@@ -381,7 +381,7 @@ class SignatoryRights(CamelCaseModel):
         title="PO box",
         description="A location designator for a postal delivery point at a post "
         "office, usually a number.",
-        example="9383",
+        examples=["9383"],
         max_length=10,
     )
     admin_unit_level_1: Optional[ISO_3166_1_Alpha_3] = Field(
@@ -390,7 +390,7 @@ class SignatoryRights(CamelCaseModel):
         title="Admin unit level 1",
         description="The name of the uppermost level of the address, almost always a "
         "country. ISO 3166 three character (Alpha 3) format.",
-        example=ISO_3166_1_Alpha_3.USA,
+        examples=[ISO_3166_1_Alpha_3.USA],
     )
     admin_unit_level_2: Optional[str] = Field(
         None,
@@ -399,7 +399,7 @@ class SignatoryRights(CamelCaseModel):
         description="The name of a secondary level/region of the address, usually a "
         "county, state or other such area that typically encompasses several "
         "localities. Values could be a region or province, more granular than level 1.",
-        example="Lapland",
+        examples=["Lapland"],
         max_length=40,
     )
 
@@ -410,7 +410,7 @@ class SignatoryRightsRequest(CamelCaseModel):
         title="National identifier",
         description="The national identifier of the non-listed company issued by the "
         "trade register",
-        example="FIN: 2464491-9 / SWE: 5560125791 / NOR: 923609016",
+        examples=["FIN: 2464491-9 / SWE: 5560125791 / NOR: 923609016"],
         max_length=40,
     )
 
