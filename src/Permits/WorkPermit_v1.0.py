@@ -16,13 +16,13 @@ class Permit(CamelCaseModel):
     permit_name: str = Field(
         ...,
         title="Permit Name",
-        description="The name of the permit issued for a person for residence ",
+        description="The name of the permit issued to a person for residence",
         examples=["Seasonal work certificate"],
     )
     permit_accepted: bool = Field(
         ...,
         title="Permit Accepted",
-        description="The decision of the permit was accepted",
+        description="The decision if the permit was accepted.",
         examples=[True],
     )
     permit_type: Optional[PermitType] = Field(
