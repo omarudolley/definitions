@@ -316,10 +316,10 @@
             "description": "The secondary withholding percentage of the income",
             "examples": [0.45]
           },
-          "validityPeriod": {
+          "validityDate": {
             "type": "string",
             "format": "date",
-            "title": "Validity Period",
+            "title": "Validity Date",
             "description": "The date from which the tax withholding details are valid",
             "examples": ["2023-06-30T00:00:00"]
           }
@@ -330,7 +330,7 @@
           "withholdingPercentage",
           "incomeLimit",
           "additionalPercentage",
-          "validityPeriod"
+          "validityDate"
         ],
         "title": "IncomeTaxResponse"
       },

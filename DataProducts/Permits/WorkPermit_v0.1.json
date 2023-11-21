@@ -360,7 +360,7 @@
             "type": "array",
             "title": "Industries",
             "description": "The list of industries that the permit holder is allowed to work based on the Statistical classification of economic activities in the European Community, abbreviated as NACE.",
-            "examples": ["79.1, 79.9"]
+            "examples": [["79.1", "79.9"]]
           },
           "employerName": {
             "anyOf": [
@@ -456,7 +456,8 @@
               "$ref": "#/components/schemas/Permit"
             },
             "type": "array",
-            "title": "Permits"
+            "title": "Permits",
+            "description": "List of permits"
           }
         },
         "type": "object",

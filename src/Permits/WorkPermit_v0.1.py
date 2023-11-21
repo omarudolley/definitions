@@ -52,7 +52,7 @@ class Permit(CamelCaseModel):
         title="Industries",
         description="The list of industries that the permit holder is allowed to work based on the Statistical "
         "classification of economic activities in the European Community, abbreviated as NACE.",
-        examples=["79.1, 79.9"],
+        examples=[["79.1", "79.9"]],
     )
     employer_name: Optional[str] = Field(
         None,
@@ -66,6 +66,7 @@ class WorkPermitResponse(CamelCaseModel):
     permits: List[Permit] = Field(
         ...,
         title="Permits",
+        description="List of permits",
     )
 
 
