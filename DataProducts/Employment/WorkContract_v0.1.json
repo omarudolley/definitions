@@ -217,7 +217,7 @@
             ],
             "title": "Benefit Type",
             "description": "The type of the taxable benefit",
-            "examples": ["part of salary", "additional to salary"]
+            "examples": ["partOfSalary", "additionToSalary"]
           },
           "taxableValue": {
             "anyOf": [
@@ -238,7 +238,7 @@
       },
       "BenefitType": {
         "type": "string",
-        "enum": ["part of salary", "additional to salary"],
+        "enum": ["partOfSalary", "additionToSalary"],
         "title": "BenefitType"
       },
       "Compensation": {
@@ -496,7 +496,7 @@
       },
       "Holidays": {
         "properties": {
-          "paidHolidayIncluded": {
+          "paidHoliday": {
             "type": "boolean",
             "title": "Paid Holiday",
             "description": "Indicates if the contract includes paid holiday",
@@ -530,7 +530,7 @@
           }
         },
         "type": "object",
-        "required": ["paidHolidayIncluded"],
+        "required": ["paidHoliday"],
         "title": "Holidays"
       },
       "NotFound": {

@@ -215,8 +215,8 @@ class Compensation(CamelCaseModel):
 
 
 class BenefitType(str, Enum):
-    PART_OF_SALARY = "part of salary"
-    ADDITIONAL_TO_SALARY = "additional to salary"
+    PART_OF_SALARY = "partOfSalary"
+    ADDITIONAL_TO_SALARY = "additionToSalary"
 
 
 class Benefit(CamelCaseModel):
@@ -247,7 +247,7 @@ class DeterminationOfHoliday(str, Enum):
 
 
 class Holidays(CamelCaseModel):
-    paid_holiday_included: bool = Field(
+    paid_holiday: bool = Field(
         ...,
         title="Paid Holiday",
         description="Indicates if the contract includes paid holiday",
