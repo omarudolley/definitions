@@ -68,7 +68,7 @@ class EmployeeInfo(CamelCaseModel):
     street_address: str = Field(
         ...,
         title="Street Address",
-        max_length=250,
+        max_length=40,
         description="The street name of the employee contact address",
         examples=["49 Featherstone Street"],
     )
@@ -82,7 +82,7 @@ class EmployeeInfo(CamelCaseModel):
     city: str = Field(
         ...,
         title="City",
-        max_length=250,
+        max_length=40,
         description="The city of the employee address",
         examples=["London"],
     )

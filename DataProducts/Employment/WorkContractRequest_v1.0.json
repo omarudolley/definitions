@@ -349,7 +349,7 @@
           },
           "streetAddress": {
             "type": "string",
-            "maxLength": 250,
+            "maxLength": 40,
             "title": "Street Address",
             "description": "The street name of the employee contact address",
             "examples": ["49 Featherstone Street"]
@@ -363,7 +363,7 @@
           },
           "city": {
             "type": "string",
-            "maxLength": 250,
+            "maxLength": 40,
             "title": "City",
             "description": "The city of the employee address",
             "examples": ["London"]
