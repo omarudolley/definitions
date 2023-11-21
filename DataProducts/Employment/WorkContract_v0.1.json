@@ -600,8 +600,15 @@
             "examples": ["2023-11-07T00:00:00"]
           },
           "employmentEnd": {
-            "type": "string",
-            "format": "date",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Employment End",
             "description": "The end date of the employment",
             "examples": ["2024-02-19T00:00:00"]
@@ -705,7 +712,6 @@
         "type": "object",
         "required": [
           "employmentStart",
-          "employmentEnd",
           "workDuties",
           "workingHours",
           "overtimeRules",

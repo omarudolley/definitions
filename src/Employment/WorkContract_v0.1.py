@@ -108,8 +108,8 @@ class TermsOfWork(CamelCaseModel):
         description="The start date of the employment",
         examples=[datetime.datetime(2023, 11, 7)],
     )
-    employment_end: date = Field(
-        ...,
+    employment_end: Optional[date] = Field(
+        None,
         title="Employment End",
         description="The end date of the employment",
         examples=[datetime.datetime(2024, 2, 19)],
