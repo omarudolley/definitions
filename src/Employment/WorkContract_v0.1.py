@@ -215,8 +215,8 @@ class Compensation(CamelCaseModel):
 
 
 class BenefitType(str, Enum):
-    PART_OF_SALARY = "partOfSalary"
-    ADDITIONAL_TO_SALARY = "additionToSalary"
+    PART_OF_SALARY = "part of salary"
+    ADDITION_TO_SALARY = "addition to salary"
 
 
 class Benefit(CamelCaseModel):
@@ -231,7 +231,7 @@ class Benefit(CamelCaseModel):
         None,
         title="Benefit Type",
         description="The type of the taxable benefit",
-        examples=[BenefitType.PART_OF_SALARY, BenefitType.ADDITIONAL_TO_SALARY],
+        examples=[BenefitType.PART_OF_SALARY, BenefitType.ADDITION_TO_SALARY],
     )
     taxable_value: Optional[float] = Field(
         None,

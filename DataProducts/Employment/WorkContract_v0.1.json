@@ -217,7 +217,7 @@
             ],
             "title": "Benefit Type",
             "description": "The type of the taxable benefit",
-            "examples": ["partOfSalary", "additionToSalary"]
+            "examples": ["part of salary", "addition to salary"]
           },
           "taxableValue": {
             "anyOf": [
@@ -238,7 +238,7 @@
       },
       "BenefitType": {
         "type": "string",
-        "enum": ["partOfSalary", "additionToSalary"],
+        "enum": ["part of salary", "addition to salary"],
         "title": "BenefitType"
       },
       "Compensation": {
