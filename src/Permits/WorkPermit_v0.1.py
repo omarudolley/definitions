@@ -47,12 +47,12 @@ class Permit(CamelCaseModel):
         description="The end date of the residence permit validity",
         examples=[datetime.datetime(2024, 2, 19)],
     )
-    industries: List[float] = Field(
+    industries: List[str] = Field(
         ...,
         title="Industries",
         description="The list of industries that the permit holder is allowed to work based on the Statistical "
         "classification of economic activities in the European Community, abbreviated as NACE.",
-        examples=[79.1, 79.9],
+        examples=["79.1, 79.9"],
     )
     employer_name: Optional[str] = Field(
         None,
