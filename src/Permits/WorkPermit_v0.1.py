@@ -30,7 +30,7 @@ class Permit(CamelCaseModel):
         examples=[True],
     )
     permit_type: Optional[PermitType] = Field(
-        ...,
+        None,
         title="Permit Type",
         description="The type of the permit validity issued for a person",
         examples=[PermitType.A, PermitType.B],
@@ -47,7 +47,7 @@ class Permit(CamelCaseModel):
         description="The end date of the residence permit validity",
         examples=[datetime.datetime(2024, 2, 19)],
     )
-    industries: Optional[List[float]] = Field(
+    industries: List[float] = Field(
         ...,
         title="Industries",
         description="The list of industries that the permit holder is allowed to work based on the Statistical "

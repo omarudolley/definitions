@@ -354,17 +354,10 @@
             "examples": ["2024-02-19T00:00:00"]
           },
           "industries": {
-            "anyOf": [
-              {
-                "items": {
-                  "type": "number"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
             "title": "Industries",
             "description": "The list of industries that the permit holder is allowed to work based on the Statistical classification of economic activities in the European Community, abbreviated as NACE.",
             "examples": [79.1, 79.9]
@@ -384,7 +377,7 @@
           }
         },
         "type": "object",
-        "required": ["permitName", "permitAccepted", "permitType", "industries"],
+        "required": ["permitName", "permitAccepted", "industries"],
         "title": "Permit"
       },
       "PermitType": {
