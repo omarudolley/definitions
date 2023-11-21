@@ -571,15 +571,8 @@
       "Term": {
         "properties": {
           "termDescription": {
-            "anyOf": [
-              {
-                "type": "string",
-                "maxLength": 250
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
+            "maxLength": 250,
             "title": "Term Description",
             "description": "The description of the term",
             "examples": [
@@ -588,6 +581,7 @@
           }
         },
         "type": "object",
+        "required": ["termDescription"],
         "title": "Term"
       },
       "TermsOfWork": {

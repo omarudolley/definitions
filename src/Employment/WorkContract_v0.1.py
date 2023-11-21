@@ -269,8 +269,8 @@ class Holidays(CamelCaseModel):
 
 
 class Term(CamelCaseModel):
-    term_description: Optional[str] = Field(
-        None,
+    term_description: str = Field(
+        ...,
         title="Term Description",
         max_length=250,
         description="The description of the term",
