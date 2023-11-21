@@ -349,7 +349,7 @@
           },
           "streetAddress": {
             "type": "string",
-            "maxLength": 40,
+            "maxLength": 250,
             "title": "Street Address",
             "description": "The street name of the employee contact address",
             "examples": ["49 Featherstone Street"]

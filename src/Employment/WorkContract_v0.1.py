@@ -19,9 +19,10 @@ class EmployerInfo(CamelCaseModel):
         description="The official name of the employer",
         examples=["Staffpoint Oy"],
     )
-    businessID: str = Field(
+    business_id: str = Field(
         ...,
         title="Business ID",
+        alias="businessID",
         max_length=250,
         description="The business ID of the employer",
         examples=["2492090-1"],
@@ -66,7 +67,7 @@ class EmployeeInfo(CamelCaseModel):
     street_address: str = Field(
         ...,
         title="Street Address",
-        max_length=40,
+        max_length=250,
         description="The street name of the employee contact address",
         examples=["49 Featherstone Street"],
     )
