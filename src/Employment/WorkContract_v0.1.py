@@ -255,13 +255,13 @@ class Holidays(CamelCaseModel):
     )
     number_of_holidays: Optional[int] = Field(
         None,
-        title="Number of Holidays",
+        title="Number Of Holidays",
         description="The terms used for the paid holidays",
         examples=[5],
     )
     determination_of_holiday: Optional[DeterminationOfHoliday] = Field(
         None,
-        title="Determination of Holiday",
+        title="Determination Of Holiday",
         description="The determination of the holiday",
         examples=["The holiday is determined by the employer"],
     )
