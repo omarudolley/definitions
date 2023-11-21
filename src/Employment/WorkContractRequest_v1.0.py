@@ -90,7 +90,7 @@ class EmployeeInfo(CamelCaseModel):
         ...,
         title="Country",
         max_length=3,
-        description="The country of the employee address",
+        description="The country code of the employee address in Alpha-3 format",
         examples=["GBR"],
     )
     signature_date: date = Field(
