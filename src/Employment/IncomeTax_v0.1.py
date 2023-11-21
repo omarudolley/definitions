@@ -40,9 +40,9 @@ class IncomeTaxResponse(CamelCaseModel):
         description="The secondary withholding percentage of the income",
         examples=[0.45],
     )
-    validity_period: date = Field(
+    validity_date: date = Field(
         ...,
-        title="Validity Period",
+        title="Validity Date",
         description="The date from which the tax withholding details are valid",
         examples=[datetime.datetime(2023, 6, 30)],
     )
