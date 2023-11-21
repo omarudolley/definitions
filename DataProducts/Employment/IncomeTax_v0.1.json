@@ -3,14 +3,14 @@
   "info": {
     "title": "Employment Income Tax",
     "description": "Tax withholding details of a person's income",
-    "version": "1.0.0"
+    "version": "0.1.0"
   },
   "paths": {
-    "/Employment/IncomeTax_v1.0": {
+    "/Employment/IncomeTax_v0.1": {
       "post": {
         "summary": "Employment Income Tax",
         "description": "Tax withholding details of a person's income",
-        "operationId": "request_Employment_IncomeTax_v1_0",
+        "operationId": "request_Employment_IncomeTax_v0_1",
         "parameters": [
           {
             "name": "x-consent-token",
@@ -282,15 +282,8 @@
         "title": "HTTPValidationError"
       },
       "IncomeTaxRequest": {
-        "properties": {
-          "endUserAuthenticationToken": {
-            "type": "string",
-            "title": "Enduserauthenticationtoken",
-            "description": "The end user authentication token"
-          }
-        },
+        "properties": {},
         "type": "object",
-        "required": ["endUserAuthenticationToken"],
         "title": "IncomeTaxRequest"
       },
       "IncomeTaxResponse": {

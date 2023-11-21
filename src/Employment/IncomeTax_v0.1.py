@@ -6,15 +6,13 @@ from definition_tooling.converter import CamelCaseModel, DataProductDefinition
 from pydantic import Field
 
 
+class IncomeTaxRequest(CamelCaseModel):
+    pass
+
+
 class TaxPayerType(str, Enum):
     RESIDENT = "resident"
     NON_RESIDENT = "non-resident"
-
-
-class IncomeTaxRequest(CamelCaseModel):
-    end_user_authentication_token: str = Field(
-        ..., description="The end user authentication token"
-    )
 
 
 class IncomeTaxResponse(CamelCaseModel):
@@ -51,7 +49,7 @@ class IncomeTaxResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    version="1.0.0",
+    version="0.1.0",
     title="Employment Income Tax",
     description="Tax withholding details of a person's income",
     request=IncomeTaxRequest,

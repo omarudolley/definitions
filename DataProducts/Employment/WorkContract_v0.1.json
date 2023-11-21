@@ -3,14 +3,14 @@
   "info": {
     "title": "Employment Work Contract",
     "description": "Contents of a work contract",
-    "version": "1.0.0"
+    "version": "0.1.0"
   },
   "paths": {
-    "/Employment/WorkContract_v1.0": {
+    "/Employment/WorkContract_v0.1": {
       "post": {
         "summary": "Employment Work Contract",
         "description": "Contents of a work contract",
-        "operationId": "request_Employment_WorkContract_v1_0",
+        "operationId": "request_Employment_WorkContract_v0_1",
         "parameters": [
           {
             "name": "x-consent-token",
@@ -372,7 +372,8 @@
             "anyOf": [
               {
                 "type": "string",
-                "maxLength": 3
+                "maxLength": 3,
+                "minLength": 3
               },
               {
                 "type": "null"
@@ -391,14 +392,7 @@
           }
         },
         "type": "object",
-        "required": [
-          "name",
-          "streetAddress",
-          "postalCode",
-          "city",
-          "country",
-          "signatureDate"
-        ],
+        "required": ["name", "streetAddress", "postalCode", "city", "signatureDate"],
         "title": "EmployeeInfo"
       },
       "EmployerInfo": {
@@ -410,7 +404,7 @@
             "description": "The official name of the employer",
             "examples": ["Staffpoint Oy"]
           },
-          "businessId": {
+          "businessID": {
             "type": "string",
             "maxLength": 250,
             "title": "Business ID",
@@ -419,7 +413,7 @@
           },
           "streetName": {
             "type": "string",
-            "maxLength": 250,
+            "maxLength": 40,
             "title": "Street Name",
             "description": "The street name of the employer contact address",
             "examples": ["Ruoholahdenkatu 17 A 6"]
@@ -433,7 +427,7 @@
           },
           "city": {
             "type": "string",
-            "maxLength": 250,
+            "maxLength": 40,
             "title": "City",
             "description": "The city of the employer address",
             "examples": ["Helsinki"]
@@ -449,7 +443,7 @@
         "type": "object",
         "required": [
           "name",
-          "businessId",
+          "businessID",
           "streetName",
           "postalCode",
           "city",
@@ -669,7 +663,7 @@
             "maxItems": 250,
             "title": "Locations",
             "description": "The region in Finland where the work is done",
-            "examples": ["Rovaniemi", "Lapland"]
+            "examples": ["Rovaniemi, Lapland"]
           },
           "workingHours": {
             "type": "number",
@@ -766,15 +760,8 @@
         "title": "ValidationError"
       },
       "WorkContractRequest": {
-        "properties": {
-          "endUserAuthenticationToken": {
-            "type": "string",
-            "title": "Enduserauthenticationtoken",
-            "description": "The end user authentication token"
-          }
-        },
+        "properties": {},
         "type": "object",
-        "required": ["endUserAuthenticationToken"],
         "title": "WorkContractRequest"
       },
       "WorkContractResponse": {
@@ -823,17 +810,10 @@
             "description": "The details of the paid holidays"
           },
           "benefits": {
-            "anyOf": [
-              {
-                "items": {
-                  "$ref": "#/components/schemas/Benefit"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "items": {
+              "$ref": "#/components/schemas/Benefit"
+            },
+            "type": "array",
             "title": "Benefits",
             "description": "The list of taxable benefits for the employee in addition to salary compensation"
           },
@@ -847,17 +827,10 @@
             ]
           },
           "otherTerms": {
-            "anyOf": [
-              {
-                "items": {
-                  "$ref": "#/components/schemas/Term"
-                },
-                "type": "array"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "items": {
+              "$ref": "#/components/schemas/Term"
+            },
+            "type": "array",
             "title": "Other Terms",
             "description": "The description other terms included in the work contract"
           }
@@ -868,7 +841,9 @@
           "employeeInfo",
           "termsOfWork",
           "compensation",
-          "holidays"
+          "holidays",
+          "benefits",
+          "otherTerms"
         ],
         "title": "WorkContractResponse"
       }

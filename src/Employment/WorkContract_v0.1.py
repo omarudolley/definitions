@@ -8,9 +8,7 @@ from pydantic import Field
 
 
 class WorkContractRequest(CamelCaseModel):
-    end_user_authentication_token: str = Field(
-        ..., description="The end user authentication token"
-    )
+    pass
 
 
 class EmployerInfo(CamelCaseModel):
@@ -21,7 +19,7 @@ class EmployerInfo(CamelCaseModel):
         description="The official name of the employer",
         examples=["Staffpoint Oy"],
     )
-    business_id: str = Field(
+    businessID: str = Field(
         ...,
         title="Business ID",
         max_length=250,
@@ -31,7 +29,7 @@ class EmployerInfo(CamelCaseModel):
     street_name: str = Field(
         ...,
         title="Street Name",
-        max_length=250,
+        max_length=40,
         description="The street name of the employer contact address",
         examples=["Ruoholahdenkatu 17 A 6"],
     )
@@ -45,7 +43,7 @@ class EmployerInfo(CamelCaseModel):
     city: str = Field(
         ...,
         title="City",
-        max_length=250,
+        max_length=40,
         description="The city of the employer address",
         examples=["Helsinki"],
     )
@@ -87,9 +85,10 @@ class EmployeeInfo(CamelCaseModel):
         examples=["London"],
     )
     country: Optional[str] = Field(
-        ...,
+        None,
         title="Country",
         max_length=3,
+        min_length=3,
         description="The country code of the employee address in Alpha-3 format",
         examples=["GBR"],
     )
@@ -147,7 +146,7 @@ class TermsOfWork(CamelCaseModel):
         None,
         title="Locations",
         description="The region in Finland where the work is done",
-        examples=["Rovaniemi", "Lapland"],
+        examples=["Rovaniemi, Lapland"],
         max_length=250,
     )
     working_hours: float = Field(
@@ -307,8 +306,8 @@ class WorkContractResponse(CamelCaseModel):
         title="Holidays",
         description="The details of the paid holidays",
     )
-    benefits: Optional[List[Benefit]] = Field(
-        None,
+    benefits: List[Benefit] = Field(
+        ...,
         title="Benefits",
         description="The list of taxable benefits for the employee in addition to salary compensation",
     )
@@ -322,15 +321,15 @@ class WorkContractResponse(CamelCaseModel):
             "the other party"
         ],
     )
-    other_terms: Optional[List[Term]] = Field(
-        None,
+    other_terms: List[Term] = Field(
+        ...,
         title="Other Terms",
         description="The description other terms included in the work contract",
     )
 
 
 DEFINITION = DataProductDefinition(
-    version="1.0.0",
+    version="0.1.0",
     title="Employment Work Contract",
     description="Contents of a work contract",
     request=WorkContractRequest,

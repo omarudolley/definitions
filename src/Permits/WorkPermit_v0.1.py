@@ -7,6 +7,10 @@ from definition_tooling.converter import CamelCaseModel, DataProductDefinition
 from pydantic import Field
 
 
+class WorkPermitRequest(CamelCaseModel):
+    pass
+
+
 class PermitType(str, Enum):
     A = "A"
     B = "B"
@@ -58,12 +62,6 @@ class Permit(CamelCaseModel):
     )
 
 
-class WorkPermitRequest(CamelCaseModel):
-    end_user_authentication_token: str = Field(
-        ..., description="The end user authentication token"
-    )
-
-
 class WorkPermitResponse(CamelCaseModel):
     permits: List[Permit] = Field(
         ...,
@@ -72,7 +70,7 @@ class WorkPermitResponse(CamelCaseModel):
 
 
 DEFINITION = DataProductDefinition(
-    version="1.0.0",
+    version="0.1.0",
     title="Permits Work Permit",
     description="Work permit details of a person",
     request=WorkPermitRequest,

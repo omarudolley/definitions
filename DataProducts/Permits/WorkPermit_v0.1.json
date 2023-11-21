@@ -3,14 +3,14 @@
   "info": {
     "title": "Permits Work Permit",
     "description": "Work permit details of a person",
-    "version": "1.0.0"
+    "version": "0.1.0"
   },
   "paths": {
-    "/Permits/WorkPermit_v1.0": {
+    "/Permits/WorkPermit_v0.1": {
       "post": {
         "summary": "Permits Work Permit",
         "description": "Work permit details of a person",
-        "operationId": "request_Permits_WorkPermit_v1_0",
+        "operationId": "request_Permits_WorkPermit_v0_1",
         "parameters": [
           {
             "name": "x-consent-token",
@@ -452,15 +452,8 @@
         "title": "ValidationError"
       },
       "WorkPermitRequest": {
-        "properties": {
-          "endUserAuthenticationToken": {
-            "type": "string",
-            "title": "Enduserauthenticationtoken",
-            "description": "The end user authentication token"
-          }
-        },
+        "properties": {},
         "type": "object",
-        "required": ["endUserAuthenticationToken"],
         "title": "WorkPermitRequest"
       },
       "WorkPermitResponse": {
