@@ -6,11 +6,11 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/Employment/WorkContractRequest_v1.0": {
+    "/Employment/WorkContract_v1.0": {
       "post": {
         "summary": "Employment Work Contract",
         "description": "Contents of a work contract",
-        "operationId": "request_Employment_WorkContractRequest_v1_0",
+        "operationId": "request_Employment_WorkContract_v1_0",
         "parameters": [
           {
             "name": "x-consent-token",
