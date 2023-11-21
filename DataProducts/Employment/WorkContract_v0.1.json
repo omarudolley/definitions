@@ -282,7 +282,7 @@
           }
         },
         "type": "object",
-        "required": ["salary", "paymentTime"],
+        "required": ["paymentGrounds", "salary", "paymentTime"],
         "title": "Compensation"
       },
       "DataSourceError": {
@@ -843,6 +843,7 @@
           "compensation",
           "holidays",
           "benefits",
+          "termination",
           "otherTerms"
         ],
         "title": "WorkContractResponse"

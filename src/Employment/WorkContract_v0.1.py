@@ -187,7 +187,7 @@ class PaymentGrounds(str, Enum):
 
 class Compensation(CamelCaseModel):
     payment_grounds: PaymentGrounds = Field(
-        None,
+        ...,
         title="Payment Grounds",
         description="The grounds for paying the salary",
         examples=[PaymentGrounds.MONTHLY, PaymentGrounds.HOURLY],
@@ -312,7 +312,7 @@ class WorkContractResponse(CamelCaseModel):
         description="The list of taxable benefits for the employee in addition to salary compensation",
     )
     termination: str = Field(
-        None,
+        ...,
         title="Termination",
         max_length=500,
         description="The terms and conditions for the contract termination",
